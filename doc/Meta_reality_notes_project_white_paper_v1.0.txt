@@ -7,10 +7,10 @@
     
 1.项目简介
 
-    项目软件仓库：
-    项目网址：
-    联系人：
-    社群：
+    项目软件仓库： https://github.com/wingon-niu/MetaRealityNotes
+    项目网址：     建立中
+    联系人：       https://t.me/wingon_niu
+    社群：         https://t.me/MetaRealityNotes
 
     本项目由两大部分组成，第一部分是区块链Dapp软件，第二部分是元宇宙 VR/AR 业务。
 
