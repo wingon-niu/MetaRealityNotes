@@ -25,7 +25,8 @@ public:
           _user_profiles         (get_self(), get_self().value),
           _articles              (get_self(), get_self().value),
           _replies_of_article    (get_self(), get_self().value),
-          _replies_of_reply      (get_self(), get_self().value){};
+          _replies_of_reply      (get_self(), get_self().value),
+          _user_relationships    (get_self(), get_self().value){};
 
 private:
 
@@ -42,7 +43,7 @@ private:
 
         uint64_t primary_key() const { return user.value; }
     };
-    typedef eosio::multi_index<"user_profiles"_n, st_user_profile> tb_user_profiles;
+    typedef eosio::multi_index<"userprofiles"_n, st_user_profile> tb_user_profiles;
 
     // 文章
     TABLE st_article {
@@ -61,7 +62,7 @@ private:
         }
     };
     typedef eosio::multi_index<
-        "articles"_n, st_article,
+        "articles1234"_n, st_article,
         indexed_by< "byusrpostime"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_post_time> >
     > tb_articles;
 
@@ -79,7 +80,7 @@ private:
         }
     };
     typedef eosio::multi_index<
-        "replies_of_article"_n, st_reply_of_article,
+        "repofarticle"_n, st_reply_of_article,
         indexed_by< "byartpostime"_n, const_mem_fun<st_reply_of_article, uint128_t, &st_reply_of_article::by_article_post_time> >
     > tb_replies_of_article;
 
@@ -97,13 +98,33 @@ private:
         }
     };
     typedef eosio::multi_index<
-        "replies_of_reply"_n, st_reply_of_reply,
+        "repesofreply"_n, st_reply_of_reply,
         indexed_by< "byreppostime"_n, const_mem_fun<st_reply_of_reply, uint128_t, &st_reply_of_reply::by_reply_post_time> >
     > tb_replies_of_reply;
 
+    TABLE st_user_relationship {
+        uint64_t     id;
+        name         follow_user;
+        name         followed_user;
+        uint32_t     follow_time;
+
+        uint64_t  primary_key()           const { return id; }
+        uint128_t by_follow_followed()    const {
+            return uint128_t{follow_user.value}<<64 + uint128_t{followed_user.value};
+        }
+        uint128_t by_followed_follow()    const {
+            return uint128_t{followed_user.value}<<64 + uint128_t{follow_user.value};
+        }
+    };
+    typedef eosio::multi_index<
+        "userelations"_n, st_user_relationship,
+        indexed_by< "byfllwfllwed"_n, const_mem_fun<st_user_relationship, uint64_t, &st_user_relationship::by_follow_followed> >,
+        indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint64_t, &st_user_relationship::by_followed_follow> >
+    > tb_user_relationships;
 
     tb_user_profiles         _user_profiles;
     tb_articles              _articles;
     tb_replies_of_article    _replies_of_article;
     tb_replies_of_reply      _replies_of_reply;
+    tb_user_relationships    _user_relationships;
 };
