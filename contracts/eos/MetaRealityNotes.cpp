@@ -60,10 +60,14 @@ private:
             uint128_t ccc = uint128_t{bbb};
             return uint128_t{user.value}<<64 + ccc;
         }
+        uint128_t by_forward_article()    const {
+            return uint128_t{forward_article_id}<<64 + uint128_t{article_id};
+        }
     };
     typedef eosio::multi_index<
         "articles1234"_n, st_article,
-        indexed_by< "byusrpostime"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_post_time> >
+        indexed_by< "byusrpostime"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_post_time>,
+        indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >
     > tb_articles;
 
     // 文章的回复
@@ -102,6 +106,7 @@ private:
         indexed_by< "byreppostime"_n, const_mem_fun<st_reply_of_reply, uint128_t, &st_reply_of_reply::by_reply_post_time> >
     > tb_replies_of_reply;
 
+    // 用户关系
     TABLE st_user_relationship {
         uint64_t     id;
         name         follow_user;
@@ -118,8 +123,8 @@ private:
     };
     typedef eosio::multi_index<
         "userelations"_n, st_user_relationship,
-        indexed_by< "byfllwfllwed"_n, const_mem_fun<st_user_relationship, uint64_t, &st_user_relationship::by_follow_followed> >,
-        indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint64_t, &st_user_relationship::by_followed_follow> >
+        indexed_by< "byfllwfllwed"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_follow_followed> >,
+        indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_followed_follow> >
     > tb_user_relationships;
 
     tb_user_profiles         _user_profiles;
