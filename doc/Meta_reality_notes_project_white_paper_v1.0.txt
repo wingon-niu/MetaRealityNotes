@@ -82,20 +82,21 @@
     The total number of NFTs for public welfare medals is tentatively set at 210,000. Users who join the community before the official launch of the DAPP will each airdrop one. After the official operation, the public welfare medal NFT will be sold at a symbolic price of 1 USDT each until it is sold out, and the income will go to the project team for development and operating expenses.
     Those who have good suggestions or positive contributions to the project will also give a certain number of public welfare medal NFTs to show our gratitude.
 
+7. Team introduction
 
+    At present, there is only one founder in the team. Welcome interested friends to join the team and move forward together.
+    About the founder: wingon_niu, has more than 15 years of software development experience, rich practical experience in cloud computing and big data, 5 years of development experience in blockchain, and is familiar with the development, deployment and operation of ETH/EOS smart contracts and web front ends. 1 year experience in VR/AR software design and development.
 
+8. Financing demand and use of funds
 
+    If approved, the funds obtained from crowdfunding will be used in the following areas:
+    a. In DAPP development, if developers develop together, they will be paid accordingly.
+    b. In terms of operation promotion, if there is an operation staff for operation promotion, the corresponding remuneration will be paid.
+    c. Pay for web front-end server fees.
+    d. Pay for smart contract deployment and operation related costs, such as EOS memory costs.
 
+9. Risk description and avoidance
 
-
-
-
-
-
-
-
-
-
-
-
+    a. The project is in the initial stage, and the primary risk is the shortage of manpower and funds, which may cause the slow progress of the project and make it difficult to carry out steadily according to the original plan. For this risk, one is to spontaneously encourage and promote and strive for development by virtue of interest in blockchain and metaverse technology. Second, we hope to get a certain degree of support from the community to help the project complete development and launch operation. After the project is launch, it will also give back to the community.
+    b. The second risk is legal risk. At present, in some countries, there are no clear laws on blockchain, metaverse, etc., and it may inadvertently violate some other possibly related laws. In response to this risk, it is necessary to strengthen legal research in these countries to avoid violations of the law.
 
