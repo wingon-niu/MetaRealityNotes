@@ -93,7 +93,7 @@
     a. In DAPP development, if developers develop together, they will be paid accordingly.
     b. In terms of operation promotion, if there is an operation staff for operation promotion, the corresponding remuneration will be paid.
     c. Pay for web front-end server fees.
-    d. Pay for smart contract deployment and operation related costs, such as EOS memory costs.
+    d. Pay for smart contract deployment and operation related costs, such as EOS RAM costs.
 
 9. Risk description and avoidance
 
