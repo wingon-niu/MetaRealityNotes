@@ -2,6 +2,73 @@
           Meta Reality Notes Project White Paper
 
 
+1. Project brief introduction
+
+    project repo:        https://github.com/wingon-niu/MetaRealityNotes
+    website:             building
+    contacts(telegram):  https://t.me/wingon_niu
+    community(telegram): https://t.me/MetaRealityNotes
+
+    The project consists of two parts. The first part is blockchain DAPP software, and the second part is metaverse VR/AR business.
+
+2. Blockchain DAPP software
+
+    The meta reality notes DAPP based on EOS blockchain can be understood as the twitter of blockchain version. The articles published by users will be saved to the blockchain in the form of transaction. The contents of the articles will be permanently saved and cannot be deleted or modified.
+
+    The DAPP consists of four modules: reality notes, dream notes, public welfare fund and public welfare medal NFT, which are described below.
+
+2.1 Reality notes
+
+    Users can record what happened in their real life and publish it in this module. Users can also communicate with other users like using twitter.
+
+2.2 Dream notes
+
+    Users can record their hopes, wishes and dreams and publish them in this module. In the real world, these things may never happen.
+
+2.3 Public welfare fund
+
+    We have set up a blockchain public welfare fund account. When users publish articles, they need to transfer a small amount of funds to this account, and the amount is determined by the user.
+    In the future, a management committee will be established and elected by the community to manage the public welfare fund account and contribute to qualified objectives.
+
+2.4 Public welfare medal NFT
+
+    We will create and issue an NFT called the public welfare medal NFT.
+    When users publish articles, the amount donated to the public welfare fund account will be accumulated into the public welfare medal NFT. With the increase of articles published by users, the donation amount will be accumulated one by one, and the public welfare medal NFT will be upgraded accordingly.
+    The public welfare medal NFT held by users can be used as a voucher for users to participate in public welfare undertakings.
+
+3. Metaverse VR/AR business
+
+    What users record in their dream notes can be realized in the virtual world of the metaverse in the future.
+    In the future, we plan to set up a team or company to use VR/AR and other technologies to realize the dreams written in their dream notes for users in the virtual world of the metaverse.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
