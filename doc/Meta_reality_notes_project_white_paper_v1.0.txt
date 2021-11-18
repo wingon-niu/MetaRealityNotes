@@ -41,19 +41,46 @@
     What users record in their dream notes can be realized in the virtual world of the metaverse in the future.
     In the future, we plan to set up a team or company to use VR/AR and other technologies to realize the dreams written in their dream notes for users in the virtual world of the metaverse.
 
+4. Social values and future prospects
 
+4.1 Meta reality notes DAPP
 
+    The articles published by users in the meta reality notes DAPP, including micro articles and long articles, are saved on the blockchain in the form of blockchain transaction and cannot be deleted or modified. As long as this chain exists forever, the user's article will also exist forever.
+    In the past, when there was no blockchain, most ordinary people usually could not keep their information permanently, and only a few big people could leave their names and deeds in history. And countless ordinary people, what their names are and what they have experienced in their life, can not survive, just as they have never existed in the world.
+    Now with the blockchain and the meta reality notes DAPP, ordinary people can also permanently save their information on the blockchain for future human viewing.
+    Users can permanently record some things in their lives, whether real or dream, on the blockchain. People 100 years later, even 1000 or 10000 years later, can see a person who once lived in history, see his story, see his dream and see his legend.
 
+4.2 Metaverse VR/AR business
 
+    Perhaps for many people, there will always be some unsolvable problems in real life, or some eternal regrets.
+    Regarding these problems or regrets, human beings have an instinct, which is imagination, or dream. Mankind can imagine a world where problems have been solved without regrets.
+    Just like the little match girl, the world she sees when she strikes a match is the beautiful world she dreams of. Although this world does not exist in reality, the match will disappear as soon as the match is extinguished, but within a few seconds when the match is lit, the little girl feels warmth and happiness in the virtual world of her dreams.
+    Another example is what we have all seen before. Some people have lost their pet dogs and are very sad. They may be able to find them, or they may never be able to find them. He will imagine that his dog has not been lost, or has been found back, and he is still living with him. This is his beautiful dream.
+    With the advancement of VR/AR and other technologies, we can carry out business accordingly, and realize their wishes recorded in dream notes for users in the metaverse virtual world constructed by VR/AR technology. In the early stage of the business, dreams may only be realized from a visual point of view. For some users, it is also a joy or comfort. As in the above example, as long as the user puts on the VR glasses, he can see his pet dog running around him as usual. The pet dog and the surrounding scenes are all created for users by using VR technology.
+    With the development of VR/AR and other technologies in the future, more advanced and mature, we can realize the dreams of more users in their dream notes and bring them a virtual perfect world in their dreams.
 
+5. DAPP development and launch time plan, road map
 
+    Note: This time plan and roadmap only includes the meta reality notes DAPP. Metaverse VR/AR business is a long-term project. After the DAPP is launched, the corresponding plan will be made according to the actual situation and will be carried out gradually.
 
+    November 1, 2021   -   December 31, 2021
+        Complete the design, development and testing of smart contracts
 
+    January 1, 2022    -   March 31, 2022
+        Complete Web design, development, and testing
 
+    April 1, 2022      -   April 30, 2022
+        DAPP trial run, community building. If everything is normal, go to formal operation
 
+    Since May 1, 2022
+        Officially launch DAPP, elect the public welfare fund management committee, transfer the account management authority to the committee
 
+6. Operation and promotion
 
-
+    Meta reality notes DAPP is a public product in which users publish articles. The DAPP system does not charge a fee. Users only need to transfer a small amount determined by themselves to the public welfare fund account, which will be accumulated into the public welfare medal NFT held by users. In addition, users only need to pay the CPU/NET/RAM fees required to use the EOS blockchain itself.
+    To use the DAPP system, users need to hold a public welfare medal NFT.
+    The total number of NFTs for public welfare medals is tentatively set at 210,000. Users who join the community before the official launch of the DAPP will each airdrop one. After the official operation, the public welfare medal NFT will be sold at a symbolic price of 1 USDT each until it is sold out, and the income will go to the project team for development and operating expenses.
+    Those who have good suggestions or positive contributions to the project will also give a certain number of public welfare medal NFTs to show our gratitude.
 
 
 
