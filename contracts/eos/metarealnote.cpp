@@ -15,13 +15,13 @@ using std::string;
 // MetaRealityNotes
 // 超越现实笔记
 
-CONTRACT MetaRealityNotes : public eosio::contract {
+CONTRACT metarealnote : public eosio::contract {
 
 public:
 
     using contract::contract;
 
-    MetaRealityNotes(name self, name first_receiver, datastream<const char*> ds) : contract(self, first_receiver, ds),
+    metarealnote(name self, name first_receiver, datastream<const char*> ds) : contract(self, first_receiver, ds),
           _user_profiles         (get_self(), get_self().value),
           _articles              (get_self(), get_self().value),
           _replies_of_article    (get_self(), get_self().value),
@@ -134,4 +134,4 @@ private:
     tb_user_relationships    _user_relationships;
 };
 
-// 
+// TODO
