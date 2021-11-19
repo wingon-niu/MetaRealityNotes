@@ -79,6 +79,7 @@ private:
         name         user;
         uint64_t     reply_id;
         string       reply_hash;
+        uint8_t      storage_location;    // 1=EOS；     2=ETH       （回复内容数据存储在哪条链上）
         uint64_t     target_article_id;
         uint32_t     post_time;
 
@@ -97,6 +98,7 @@ private:
         name         user;
         uint64_t     reply_id;
         string       reply_hash;
+        uint8_t      storage_location;    // 1=EOS；     2=ETH       （回复内容数据存储在哪条链上）
         uint64_t     target_reply_id;
         uint32_t     post_time;
 
