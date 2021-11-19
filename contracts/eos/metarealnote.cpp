@@ -56,20 +56,21 @@ private:
         uint64_t     forward_article_id;  // 转发的文章的id，0表示没有转发
         uint32_t     post_time;
 
-        uint64_t  primary_key()       const { return article_id; }
-        uint128_t by_user_post_time() const {
-            uint64_t  aaa = uint64_t{post_time};
-            uint64_t  bbb = ~aaa;
-            uint128_t ccc = uint128_t{bbb};
-            return uint128_t{user.value}<<64 + ccc;
+        uint64_t  primary_key()                const { return article_id; }
+        uint128_t by_user_category_post_time() const {
+            return uint128_t{user.value}<<64 + uint128_t{category}<<32 + uint128_t{~post_time};
         }
-        uint128_t by_forward_article()    const {
+        uint64_t  by_category_post_time()      const {
+            return uint64_t{category}<<32 + uint64_t{~post_time};
+        }
+        uint128_t by_forward_article()         const {
             return uint128_t{forward_article_id}<<64 + uint128_t{article_id};
         }
     };
     typedef eosio::multi_index<
         "articles1234"_n, st_article,
-        indexed_by< "byusrpostime"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_post_time>,
+        indexed_by< "byusrcatpost"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_category_post_time>,
+        indexed_by< "bycatpostime"_n, const_mem_fun<st_article, uint64_t,  &st_article::by_category_post_time>,
         indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >
     > tb_articles;
 
