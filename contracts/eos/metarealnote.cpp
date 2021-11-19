@@ -50,6 +50,9 @@ private:
         name         user;
         uint64_t     article_id;
         string       article_hash;
+        uint8_t      category;            // 1=现实笔记；2=梦想笔记
+        uint8_t      type;                // 1=微文；    2=长文      （区别在于长文可以有标题，微文没有标题。长文与微文都没有长度限制。）
+        uint8_t      storage_location;    // 1=EOS；     2=ETH       （文章内容数据存储在哪条链上）
         uint64_t     forward_article_id;  // 转发的文章的id，0表示没有转发
         uint32_t     post_time;
 
