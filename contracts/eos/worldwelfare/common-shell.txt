@@ -1,0 +1,7 @@
+
+cleoslocal set account permission worldwelfare active --add-code
+
+eosio-cpp worldwelfare.cpp -I . -o worldwelfare.wasm -abigen
+
+cleoslocal set contract worldwelfare ../worldwelfare -p worldwelfare@active
+
