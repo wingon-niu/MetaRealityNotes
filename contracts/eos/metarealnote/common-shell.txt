@@ -1,0 +1,41 @@
+
+# cleos get table --help
+Retrieve the contents of a database table
+Usage: cleos get table [OPTIONS] account scope table
+
+Positionals:
+  account TEXT REQUIRED       The account who owns the table
+  scope TEXT REQUIRED         The scope within the contract in which the table is found
+  table TEXT REQUIRED         The name of the table as specified by the contract abi
+
+Options:
+  -h,--help                   Print this help message and exit
+  -l,--limit UINT             The maximum number of rows to return
+  -k,--key TEXT               Deprecated
+  -L,--lower TEXT             JSON representation of lower bound value of key, defaults to first
+  -U,--upper TEXT             JSON representation of upper bound value of key, defaults to last
+  --index TEXT                Index number, 1 - primary (first), 2 - secondary index (in order defined by multi_index), 3 - third index, etc.
+                                                        Number or name of index can be specified, e.g. 'secondary' or '2'.
+  --key-type TEXT             The key type of --index, primary only supports (i64), all others support (i64, i128, i256, float64, float128, ripemd160, sha256).
+                                                        Special type 'name' indicates an account name.
+  --encode-type TEXT          The encoding type of key_type (i64 , i128 , float64, float128) only support decimal encoding e.g. 'dec'i256 - supports both 'dec' and 'hex', ripemd160 and sha256 is 'hex' only
+  -b,--binary                 Return the value as BINARY rather than using abi to interpret as JSON
+  -r,--reverse                Iterate in reverse order
+  --show-payer                Show RAM payer
+
+#######################################################################################
+
+eosio-cpp metarealnote.cpp -I . -o metarealnote.wasm -abigen
+
+cleoslocal set contract metarealnote ../metarealnote -p metarealnote@active
+
+cleoslocal -v push action metarealnote clearalldata '[]' -p metarealnote@active
+
+cleoslocal get table metarealnote metarealnote userprofiles
+cleoslocal get table metarealnote metarealnote articles1234
+cleoslocal get table metarealnote metarealnote repofarticle
+cleoslocal get table metarealnote metarealnote repesofreply
+cleoslocal get table metarealnote metarealnote userelations
+
+cleoslocal get table metarealnote metarealnote articles1234 -l 10 -L 2 -U 6 --index 4 --key-type i128 --encode-type dec --show-payer
+
