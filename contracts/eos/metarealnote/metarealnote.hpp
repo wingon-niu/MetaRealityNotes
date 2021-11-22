@@ -28,6 +28,9 @@ public:
           _replies_of_reply      (get_self(), get_self().value),
           _user_relationships    (get_self(), get_self().value){};
 
+    // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
+    ACTION clearalldata();
+
 private:
 
     // 用户资料
