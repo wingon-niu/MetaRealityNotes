@@ -22,6 +22,7 @@ public:
     using contract::contract;
 
     metarealnote(name self, name first_receiver, datastream<const char*> ds) : contract(self, first_receiver, ds),
+          _accounts              (get_self(), get_self().value),
           _user_profiles         (get_self(), get_self().value),
           _articles              (get_self(), get_self().value),
           _replies_of_article    (get_self(), get_self().value),
@@ -32,6 +33,15 @@ public:
     ACTION clearalldata();
 
 private:
+
+    // 用户转账信息
+    TABLE st_account {
+        name         user;
+        asset        quantity;
+
+        uint64_t primary_key() const { return user.value; }
+    };
+    typedef eosio::multi_index<"accounts"_n, st_account> tb_accounts;
 
     // 用户资料
     TABLE st_user_profile {
@@ -136,6 +146,7 @@ private:
         indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_followed_follow> >
     > tb_user_relationships;
 
+    tb_accounts              _accounts;
     tb_user_profiles         _user_profiles;
     tb_articles              _articles;
     tb_replies_of_article    _replies_of_article;

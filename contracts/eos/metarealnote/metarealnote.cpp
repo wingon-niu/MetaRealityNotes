@@ -14,6 +14,17 @@ ACTION metarealnote::clearalldata()
     print("\nclear all data.\n");
 
     keysForDeletion.clear();
+    for (auto& item : _accounts) {
+        keysForDeletion.push_back(item.user.value);
+    }
+    for (uint64_t key : keysForDeletion) {
+        auto itr = _accounts.find(key);
+        if (itr != _accounts.end()) {
+            _accounts.erase(itr);
+        }
+    }
+
+    keysForDeletion.clear();
     for (auto& item : _user_profiles) {
         keysForDeletion.push_back(item.user.value);
     }
