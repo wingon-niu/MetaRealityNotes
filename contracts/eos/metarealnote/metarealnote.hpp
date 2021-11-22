@@ -71,7 +71,7 @@ private:
         }
     };
     typedef eosio::multi_index<
-        "articles1234"_n, st_article,
+        "articles"_n, st_article,
         indexed_by< "byusrcatpost"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_category_post_time> >,
         indexed_by< "bycatpostime"_n, const_mem_fun<st_article, uint64_t,  &st_article::by_category_post_time> >,
         indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >
