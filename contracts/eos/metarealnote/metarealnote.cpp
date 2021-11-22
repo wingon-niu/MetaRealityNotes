@@ -4,7 +4,23 @@
 
 // TODO
 
+// 为用户新增转账信息
+ACTION metarealnote::addaccount(const name& user, const asset& quantity)
+{
+    require_auth( "worldwelfare"_n );
 
+    auto itr = _accounts.find(user.value);
+    if( itr == _accounts.end() ) {
+       itr = _accounts.emplace(_self, [&](auto& acnt){
+          acnt.user     = user;
+          acnt.quantity = ZERO_FEE;
+       });
+    }
+
+    _accounts.modify( itr, _self, [&]( auto& acnt ) {
+       acnt.quantity += quantity;
+    });
+}
 
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
 ACTION metarealnote::clearalldata()

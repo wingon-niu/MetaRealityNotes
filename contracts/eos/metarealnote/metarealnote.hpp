@@ -9,6 +9,9 @@
 #include <vector>
 #include <string>
 
+#define  MAIN_SYMBOL     symbol(symbol_code("SYS"), 4)
+#define  ZERO_FEE        asset((int64_t)0, MAIN_SYMBOL)   // 0 EOS
+
 using namespace eosio;
 using std::string;
 
@@ -28,6 +31,9 @@ public:
           _replies_of_article    (get_self(), get_self().value),
           _replies_of_reply      (get_self(), get_self().value),
           _user_relationships    (get_self(), get_self().value){};
+
+    // 为用户新增转账信息
+    ACTION addaccount(const name& user, const asset& quantity);
 
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
