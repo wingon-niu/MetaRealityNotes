@@ -33,3 +33,9 @@ void worldwelfare::deposit(name from, name to, eosio::asset quantity, std::strin
         std::make_tuple(from, quantity)
     }.send();
 }
+
+// Пе ACTION
+ACTION worldwelfare::empty()
+{
+    require_auth( _self );
+}

@@ -29,4 +29,7 @@ public:
     // 接收用户转账，并调用 metarealnote 合约，为用户新增转账信息
     [[eosio::on_notify("eosio.token::transfer")]]
     void deposit(name from, name to, eosio::asset quantity, std::string memo);
+
+    // 空 ACTION
+    ACTION empty();
 };
