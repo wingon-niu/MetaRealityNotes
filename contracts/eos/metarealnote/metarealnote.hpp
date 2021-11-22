@@ -58,13 +58,13 @@ private:
 
         uint64_t  primary_key()                const { return article_id; }
         uint128_t by_user_category_post_time() const {
-            return uint128_t{user.value}<<64 + uint128_t{category}<<32 + uint128_t{~post_time};
+            return (uint128_t{user.value}<<64) + (uint128_t{category}<<32) + uint128_t{~post_time};
         }
         uint64_t  by_category_post_time()      const {
-            return uint64_t{category}<<32 + uint64_t{~post_time};
+            return (uint64_t{category}<<32) + uint64_t{~post_time};
         }
         uint128_t by_forward_article()         const {
-            return uint128_t{forward_article_id}<<64 + uint128_t{article_id};
+            return (uint128_t{forward_article_id}<<64) + uint128_t{article_id};
         }
     };
     typedef eosio::multi_index<
@@ -85,7 +85,7 @@ private:
 
         uint64_t  primary_key()          const { return reply_id; }
         uint128_t by_article_post_time() const {
-            return uint128_t{target_article_id}<<64 + uint128_t{~post_time};
+            return (uint128_t{target_article_id}<<64) + uint128_t{~post_time};
         }
     };
     typedef eosio::multi_index<
@@ -104,7 +104,7 @@ private:
 
         uint64_t  primary_key()          const { return reply_id; }
         uint128_t by_reply_post_time()   const {
-            return uint128_t{target_reply_id}<<64 + uint128_t{~post_time};
+            return (uint128_t{target_reply_id}<<64) + uint128_t{~post_time};
         }
     };
     typedef eosio::multi_index<
@@ -121,10 +121,10 @@ private:
 
         uint64_t  primary_key()           const { return id; }
         uint128_t by_follow_followed()    const {
-            return uint128_t{follow_user.value}<<64 + uint128_t{followed_user.value};
+            return (uint128_t{follow_user.value}<<64) + uint128_t{followed_user.value};
         }
         uint128_t by_followed_follow()    const {
-            return uint128_t{followed_user.value}<<64 + uint128_t{follow_user.value};
+            return (uint128_t{followed_user.value}<<64) + uint128_t{follow_user.value};
         }
     };
     typedef eosio::multi_index<
