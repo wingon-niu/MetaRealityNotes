@@ -35,6 +35,18 @@ public:
     // 为用户新增转账信息
     ACTION addaccount(const name& user, const asset& quantity);
 
+    // 用户注册
+    ACTION userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& avatar_pic_hash, const string& description);
+
+    // 用户注销
+    ACTION userunregist(const name& user);
+
+    // 关注用户
+    ACTION followuser(const name& follow_user, const name& followed_user);
+
+    // 取消关注用户
+    ACTION canclefollow(const name& follow_user, const name& followed_user);
+
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
 
@@ -55,7 +67,7 @@ private:
         string       user_name;
         string       user_family_name;
         string       gender;
-        uint32_t     birthday;
+        string       birthday;
         string       avatar_pic_hash;
         string       description;
         uint32_t     reg_time;

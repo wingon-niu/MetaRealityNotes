@@ -1,8 +1,26 @@
 #include "metarealnote.hpp"
 
+//
 
+// 用户注册
+ACTION metarealnote::userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& avatar_pic_hash, const string& description)
+{
+}
 
-// TODO
+// 用户注销
+ACTION metarealnote::userunregist(const name& user)
+{
+}
+
+// 关注用户
+ACTION metarealnote::followuser(const name& follow_user, const name& followed_user)
+{
+}
+
+// 取消关注用户
+ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_user)
+{
+}
 
 // 为用户新增转账信息
 ACTION metarealnote::addaccount(const name& user, const asset& quantity)
