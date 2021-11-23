@@ -42,6 +42,11 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
 // 用户注销
 ACTION metarealnote::userunregist(const name& user)
 {
+    require_auth( user );
+
+    auto itr = _user_profiles.find(user.value);
+    eosio::check(itr != _user_profiles.end(), "user does not exist.");
+    _user_profiles.erase(itr);
 }
 
 // 关注用户
