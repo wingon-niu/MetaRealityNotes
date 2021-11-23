@@ -7,6 +7,13 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
 {
     require_auth( user );
 
+    eosio::check( user_name.length()        <=  100, "user_name is too long, max 100" );
+    eosio::check( user_family_name.length() <=  100, "user_family_name is too long, max 100" );
+    eosio::check( gender.length()           <=  100, "gender is too long, max 100" );
+    eosio::check( birthday.length()         <=  100, "birthday is too long, max 100" );
+    eosio::check( avatar_pic_hash.length()  <=  129, "avatar_pic_hash is too long, max 129" );
+    eosio::check( description.length()      <= 1000, "description is too long, max 1000" );
+
     auto itr = _user_profiles.find(user.value);
     if( itr == _user_profiles.end() ) {
        itr = _user_profiles.emplace(_self, [&](auto& acnt){
