@@ -24,7 +24,7 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
           acnt.birthday         = "";
           acnt.avatar_pic_hash  = "";
           acnt.description      = "";
-          acnt.reg_time         = 1;
+          acnt.reg_time         = now();
        });
     }
 
@@ -35,7 +35,6 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
           acnt.birthday         = birthday;
           acnt.avatar_pic_hash  = avatar_pic_hash;
           acnt.description      = description;
-          acnt.reg_time         = now();
     });
 }
 
