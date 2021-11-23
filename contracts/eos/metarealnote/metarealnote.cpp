@@ -2,6 +2,24 @@
 
 //
 
+// 为用户新增转账信息
+ACTION metarealnote::addaccount(const name& user, const asset& quantity)
+{
+    require_auth( "worldwelfare"_n );
+
+    auto itr = _accounts.find(user.value);
+    if( itr == _accounts.end() ) {
+       itr = _accounts.emplace(_self, [&](auto& acnt){
+          acnt.user     = user;
+          acnt.quantity = ZERO_FEE;
+       });
+    }
+
+    _accounts.modify( itr, _self, [&]( auto& acnt ) {
+       acnt.quantity += quantity;
+    });
+}
+
 // 用户注册
 ACTION metarealnote::userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& avatar_pic_hash, const string& description)
 {
@@ -58,22 +76,24 @@ ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_
 {
 }
 
-// 为用户新增转账信息
-ACTION metarealnote::addaccount(const name& user, const asset& quantity)
+// 发表文章
+ACTION metarealnote::postarticle()
 {
-    require_auth( "worldwelfare"_n );
+}
 
-    auto itr = _accounts.find(user.value);
-    if( itr == _accounts.end() ) {
-       itr = _accounts.emplace(_self, [&](auto& acnt){
-          acnt.user     = user;
-          acnt.quantity = ZERO_FEE;
-       });
-    }
+// 删除文章
+ACTION metarealnote::rmarticle()
+{
+}
 
-    _accounts.modify( itr, _self, [&]( auto& acnt ) {
-       acnt.quantity += quantity;
-    });
+// 发表回复
+ACTION metarealnote::postreply()
+{
+}
+
+// 删除回复
+ACTION metarealnote::rmreply()
+{
 }
 
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉

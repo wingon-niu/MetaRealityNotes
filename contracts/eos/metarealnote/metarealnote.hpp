@@ -46,6 +46,18 @@ public:
     // 取消关注用户
     ACTION canclefollow(const name& follow_user, const name& followed_user);
 
+    // 发表文章
+    ACTION postarticle();
+
+    // 删除文章
+    ACTION rmarticle();
+
+    // 发表回复
+    ACTION postreply();
+
+    // 删除回复
+    ACTION rmreply();
+
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
 
