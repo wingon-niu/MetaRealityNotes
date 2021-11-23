@@ -117,24 +117,13 @@ ACTION metarealnote::clearalldata()
     }
 
     keysForDeletion.clear();
-    for (auto& item : _replies_of_article) {
+    for (auto& item : _replies) {
         keysForDeletion.push_back(item.reply_id);
     }
     for (uint64_t key : keysForDeletion) {
-        auto itr = _replies_of_article.find(key);
-        if (itr != _replies_of_article.end()) {
-            _replies_of_article.erase(itr);
-        }
-    }
-
-    keysForDeletion.clear();
-    for (auto& item : _replies_of_reply) {
-        keysForDeletion.push_back(item.reply_id);
-    }
-    for (uint64_t key : keysForDeletion) {
-        auto itr = _replies_of_reply.find(key);
-        if (itr != _replies_of_reply.end()) {
-            _replies_of_reply.erase(itr);
+        auto itr = _replies.find(key);
+        if (itr != _replies.end()) {
+            _replies.erase(itr);
         }
     }
 

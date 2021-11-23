@@ -28,8 +28,7 @@ public:
           _accounts              (get_self(), get_self().value),
           _user_profiles         (get_self(), get_self().value),
           _articles              (get_self(), get_self().value),
-          _replies_of_article    (get_self(), get_self().value),
-          _replies_of_reply      (get_self(), get_self().value),
+          _replies               (get_self(), get_self().value),
           _user_relationships    (get_self(), get_self().value){};
 
     // 为用户新增转账信息
@@ -90,6 +89,8 @@ private:
         uint8_t      type;                // 1=微文；    2=长文      （区别在于长文可以有标题，微文没有标题。长文与微文都没有长度限制。）
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
         uint64_t     forward_article_id;  // 转发的文章的id，0表示没有转发
+        uint32_t     forwarded_times;     // 被转发的次数
+        uint32_t     replied_times;       // 被回复的次数
         uint32_t     post_time;
 
         uint64_t  primary_key()                const { return article_id; }
@@ -110,43 +111,30 @@ private:
         indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >
     > tb_articles;
 
-    // 文章的回复
-    TABLE st_reply_of_article {
+    // 回复
+    TABLE st_reply {
         name         user;
         uint64_t     reply_id;
         string       reply_hash;
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
-        uint64_t     target_article_id;
+        uint64_t     target_article_id;   // 目标文章的id，0表示自己不是文章的回复
+        uint64_t     target_reply_id;     // 目标回复的id，0表示自己不是回复的回复
+        uint16_t     replied_times;       // 自己被回复的次数
         uint32_t     post_time;
 
         uint64_t  primary_key()          const { return reply_id; }
         uint128_t by_article_post_time() const {
             return (uint128_t{target_article_id}<<64) + uint128_t{~post_time};
         }
-    };
-    typedef eosio::multi_index<
-        "repofarticle"_n, st_reply_of_article,
-        indexed_by< "byartpostime"_n, const_mem_fun<st_reply_of_article, uint128_t, &st_reply_of_article::by_article_post_time> >
-    > tb_replies_of_article;
-
-    // 回复的回复
-    TABLE st_reply_of_reply {
-        name         user;
-        uint64_t     reply_id;
-        string       reply_hash;
-        uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
-        uint64_t     target_reply_id;
-        uint32_t     post_time;
-
-        uint64_t  primary_key()          const { return reply_id; }
         uint128_t by_reply_post_time()   const {
             return (uint128_t{target_reply_id}<<64) + uint128_t{~post_time};
         }
     };
     typedef eosio::multi_index<
-        "repesofreply"_n, st_reply_of_reply,
-        indexed_by< "byreppostime"_n, const_mem_fun<st_reply_of_reply, uint128_t, &st_reply_of_reply::by_reply_post_time> >
-    > tb_replies_of_reply;
+        "replies"_n, st_reply,
+        indexed_by< "byartpostime"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_article_post_time> >,
+        indexed_by< "byreppostime"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_reply_post_time> >
+    > tb_replies;
 
     // 用户关系
     TABLE st_user_relationship {
@@ -172,7 +160,6 @@ private:
     tb_accounts              _accounts;
     tb_user_profiles         _user_profiles;
     tb_articles              _articles;
-    tb_replies_of_article    _replies_of_article;
-    tb_replies_of_reply      _replies_of_reply;
+    tb_replies               _replies;
     tb_user_relationships    _user_relationships;
 };
