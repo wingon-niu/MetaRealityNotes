@@ -52,6 +52,11 @@ public:
 
 private:
 
+    // 返回当前时间戳
+    uint32_t now() const {
+        return current_time_point().sec_since_epoch();
+    };
+
     // 用户转账信息
     TABLE st_account {
         name         user;

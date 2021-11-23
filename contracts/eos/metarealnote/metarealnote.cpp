@@ -5,6 +5,31 @@
 // 用户注册
 ACTION metarealnote::userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& avatar_pic_hash, const string& description)
 {
+    require_auth( user );
+
+    auto itr = _user_profiles.find(user.value);
+    if( itr == _user_profiles.end() ) {
+       itr = _user_profiles.emplace(_self, [&](auto& acnt){
+          acnt.user             = user;
+          acnt.user_name        = "";
+          acnt.user_family_name = "";
+          acnt.gender           = "";
+          acnt.birthday         = "";
+          acnt.avatar_pic_hash  = "";
+          acnt.description      = "";
+          acnt.reg_time         = 1;
+       });
+    }
+
+    _user_profiles.modify( itr, _self, [&]( auto& acnt ) {
+          acnt.user_name        = user_name;
+          acnt.user_family_name = user_family_name;
+          acnt.gender           = gender;
+          acnt.birthday         = birthday;
+          acnt.avatar_pic_hash  = avatar_pic_hash;
+          acnt.description      = description;
+          acnt.reg_time         = now();
+    });
 }
 
 // 用户注销
