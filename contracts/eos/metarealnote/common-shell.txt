@@ -10,8 +10,7 @@ cleoslocal -v push action metarealnote clearalldata '[]' -p metarealnote@active
 cleoslocal get table metarealnote metarealnote accounts
 cleoslocal get table metarealnote metarealnote userprofiles
 cleoslocal get table metarealnote metarealnote articles
-cleoslocal get table metarealnote metarealnote repofarticle
-cleoslocal get table metarealnote metarealnote repesofreply
+cleoslocal get table metarealnote metarealnote replies
 cleoslocal get table metarealnote metarealnote userelations
 
 cleoslocal get table metarealnote metarealnote articles -l 10 -L 2 -U 6 --index 4 --key-type i128 --encode-type dec --show-payer
