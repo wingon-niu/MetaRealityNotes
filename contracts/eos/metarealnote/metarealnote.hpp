@@ -127,17 +127,17 @@ private:
         uint128_t by_user_category_post_time() const {
             return (uint128_t{user.value}<<64) + (uint128_t{category}<<32) + uint128_t{~post_time};
         }
-        uint64_t  by_category_post_time()      const {
-            return (uint64_t{category}<<32) + uint64_t{~post_time};
+        uint128_t by_category_article()        const {
+            return (uint128_t{category}<<64) + uint128_t{~article_id};
         }
         uint128_t by_forward_article()         const {
-            return (uint128_t{forward_article_id}<<64) + uint128_t{article_id};
+            return (uint128_t{forward_article_id}<<64) + uint128_t{~article_id};
         }
     };
     typedef eosio::multi_index<
         "articles"_n, st_article,
         indexed_by< "byusrcatpost"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_category_post_time> >,
-        indexed_by< "bycatpostime"_n, const_mem_fun<st_article, uint64_t,  &st_article::by_category_post_time> >,
+        indexed_by< "bycatarticle"_n, const_mem_fun<st_article, uint128_t, &st_article::by_category_article> >,
         indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >
     > tb_articles;
 
@@ -152,21 +152,21 @@ private:
         uint16_t     replied_times;       // 自己被回复的次数
         uint32_t     post_time;
 
-        uint64_t  primary_key()          const { return reply_id; }
-        uint128_t by_article_post_time() const {
-            return (uint128_t{target_article_id}<<64) + uint128_t{~post_time};
+        uint64_t  primary_key()      const { return reply_id; }
+        uint128_t by_article_reply() const {
+            return (uint128_t{target_article_id}<<64) + uint128_t{~reply_id};
         }
-        uint128_t by_reply_post_time()   const {
-            return (uint128_t{target_reply_id}<<64) + uint128_t{~post_time};
+        uint128_t by_reply_reply()   const {
+            return (uint128_t{target_reply_id}<<64) + uint128_t{~reply_id};
         }
-        uint128_t by_user_reply()        const {
+        uint128_t by_user_reply()    const {
             return (uint128_t{user.value}<<64) + uint128_t{~reply_id};
         }
     };
     typedef eosio::multi_index<
         "replies"_n, st_reply,
-        indexed_by< "byartpostime"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_article_post_time> >,
-        indexed_by< "byreppostime"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_reply_post_time> >,
+        indexed_by< "byarticlerep"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_article_reply> >,
+        indexed_by< "byreplyreply"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_reply_reply> >,
         indexed_by< "byuserreply"_n,  const_mem_fun<st_reply, uint128_t, &st_reply::by_user_reply> >
     > tb_replies;
 
