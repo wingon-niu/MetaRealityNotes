@@ -90,6 +90,15 @@ ACTION metarealnote::followuser(const name& follow_user, const name& followed_us
 // 取消关注用户
 ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_user)
 {
+    require_auth( follow_user );
+
+    auto index = _user_relationships.get_index<name("byfllwfllwed")>();
+    auto itr = index.lower_bound((uint128_t{follow_user.value}<<64) + uint128_t{followed_user.value});
+    eosio::check( itr != index.end() && itr->follow_user == follow_user && itr->followed_user == followed_user, "user not been followed.");
+
+    auto itr_pri = _user_relationships.find( itr->id );
+    eosio::check( itr_pri != _user_relationships.end(), "user not been followed or unknown error.");
+    _user_relationships.erase(itr_pri);
 }
 
 // 发表文章
