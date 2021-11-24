@@ -159,11 +159,15 @@ private:
         uint128_t by_reply_post_time()   const {
             return (uint128_t{target_reply_id}<<64) + uint128_t{~post_time};
         }
+        uint128_t by_user_reply()        const {
+            return (uint128_t{user.value}<<64) + uint128_t{~reply_id};
+        }
     };
     typedef eosio::multi_index<
         "replies"_n, st_reply,
         indexed_by< "byartpostime"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_article_post_time> >,
-        indexed_by< "byreppostime"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_reply_post_time> >
+        indexed_by< "byreppostime"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_reply_post_time> >,
+        indexed_by< "byuserreply"_n,  const_mem_fun<st_reply, uint128_t, &st_reply::by_user_reply> >
     > tb_replies;
 
     // 用户关系
