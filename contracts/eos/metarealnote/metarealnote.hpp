@@ -47,7 +47,7 @@ public:
     ACTION canclefollow(const name& follow_user, const name& followed_user);
 
     // 发表文章
-    ACTION postarticle();
+    ACTION postarticle(const name& user, const string& article_hash, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id);
 
     // 删除文章
     ACTION rmarticle();

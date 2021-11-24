@@ -102,8 +102,31 @@ ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_
 }
 
 // 发表文章
-ACTION metarealnote::postarticle()
+ACTION metarealnote::postarticle(const name& user, const string& article_hash, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id)
 {
+    require_auth( user );
+    eosio::check( article_hash.length()  <=  129, "article_hash is too long, max 129" );
+
+    _articles.emplace(_self, [&](auto& item){
+        auto id = _articles.available_primary_key();
+        if (id == 0) {
+            id = 1;
+        }
+        item.user               = user;
+        item.article_id         = id;
+        item.article_hash       = article_hash;
+        item.category           = category;
+        item.type               = type;
+        item.storage_location   = storage_location;
+        item.forward_article_id = forward_article_id;
+        item.forwarded_times    = 0;
+        item.replied_times      = 0;
+        item.post_time          = now();
+    });
+
+    if (forward_article_id > 0) {
+        add_article_forwarded_times(forward_article_id);
+    }
 }
 
 // 删除文章
