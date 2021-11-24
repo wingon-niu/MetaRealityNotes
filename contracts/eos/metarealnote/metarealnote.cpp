@@ -69,6 +69,22 @@ ACTION metarealnote::userunregist(const name& user)
 // 关注用户
 ACTION metarealnote::followuser(const name& follow_user, const name& followed_user)
 {
+    require_auth( follow_user );
+
+    auto index = _user_relationships.get_index<name("byfllwfllwed")>();
+    auto itr = index.lower_bound((uint128_t{follow_user.value}<<64) + uint128_t{followed_user.value});
+    eosio::check( ! (itr != index.end() && itr->follow_user == follow_user && itr->followed_user == followed_user), "already followed.");
+
+    _user_relationships.emplace(_self, [&](auto& item){
+        auto id = _user_relationships.available_primary_key();
+        if (id == 0) {
+            id = 1;
+        }
+        item.id            = id;
+        item.follow_user   = follow_user;
+        item.followed_user = followed_user;
+        item.follow_time   = now();
+    });
 }
 
 // 取消关注用户
