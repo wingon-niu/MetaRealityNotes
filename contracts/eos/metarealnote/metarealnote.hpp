@@ -68,6 +68,24 @@ private:
         return current_time_point().sec_since_epoch();
     };
 
+    // 文章的转发数加1
+    void add_article_forwarded_times(const uint64_t & article_id);
+
+    // 文章的转发数减1
+    void sub_article_forwarded_times(const uint64_t & article_id);
+
+    // 文章的回复数加1
+    void add_article_replied_times(const uint64_t & article_id);
+
+    // 文章的回复数减1
+    void sub_article_replied_times(const uint64_t & article_id);
+
+    // 回复的回复数加1
+    void add_reply_replied_times(const uint64_t & reply_id);
+
+    // 回复的回复数减1
+    void sub_reply_replied_times(const uint64_t & reply_id);
+
     // 用户转账信息
     TABLE st_account {
         name         user;

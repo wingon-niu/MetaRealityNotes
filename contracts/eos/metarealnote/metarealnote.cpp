@@ -121,6 +121,72 @@ ACTION metarealnote::rmreply()
 {
 }
 
+// 文章的转发数加1
+void metarealnote::add_article_forwarded_times(const uint64_t & article_id)
+{
+    auto itr = _articles.find(article_id);
+    if (itr != _articles.end()) {
+        _articles.modify( itr, _self, [&]( auto& item ) {
+            item.forwarded_times += 1;
+        });
+    }
+}
+
+// 文章的转发数减1
+void metarealnote::sub_article_forwarded_times(const uint64_t & article_id)
+{
+    auto itr = _articles.find(article_id);
+    if (itr != _articles.end()) {
+        _articles.modify( itr, _self, [&]( auto& item ) {
+            item.forwarded_times -= 1;
+        });
+    }
+}
+
+// 文章的回复数加1
+void metarealnote::add_article_replied_times(const uint64_t & article_id)
+{
+    auto itr = _articles.find(article_id);
+    if (itr != _articles.end()) {
+        _articles.modify( itr, _self, [&]( auto& item ) {
+            item.replied_times += 1;
+        });
+    }
+}
+
+// 文章的回复数减1
+void metarealnote::sub_article_replied_times(const uint64_t & article_id)
+{
+    auto itr = _articles.find(article_id);
+    if (itr != _articles.end()) {
+        _articles.modify( itr, _self, [&]( auto& item ) {
+            item.replied_times -= 1;
+        });
+    }
+}
+
+// 回复的回复数加1
+void metarealnote::add_reply_replied_times(const uint64_t & reply_id)
+{
+    auto itr = _replies.find(reply_id);
+    if (itr != _replies.end()) {
+        _replies.modify( itr, _self, [&]( auto& item ) {
+            item.replied_times += 1;
+        });
+    }
+}
+
+// 回复的回复数减1
+void metarealnote::sub_reply_replied_times(const uint64_t & reply_id)
+{
+    auto itr = _replies.find(reply_id);
+    if (itr != _replies.end()) {
+        _replies.modify( itr, _self, [&]( auto& item ) {
+            item.replied_times -= 1;
+        });
+    }
+}
+
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
 ACTION metarealnote::clearalldata()
 {
