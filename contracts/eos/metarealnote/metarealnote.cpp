@@ -130,8 +130,20 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
 }
 
 // 删除文章
-ACTION metarealnote::rmarticle()
+ACTION metarealnote::rmarticle(const name& user, const uint64_t article_id)
 {
+    require_auth( user );
+
+    auto itr = _articles.find( article_id );
+    eosio::check(itr != _articles.end(), "article does not exist.");
+    eosio::check(itr->user == user, "this article is not belong to you.");
+
+    auto forward_article_id = itr->forward_article_id;
+    _articles.erase(itr);
+
+    if (forward_article_id > 0) {
+        sub_article_forwarded_times(forward_article_id);
+    }
 }
 
 // 发表回复
