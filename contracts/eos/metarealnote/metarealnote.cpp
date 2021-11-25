@@ -198,8 +198,25 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
 }
 
 // 删除回复
-ACTION metarealnote::rmreply()
+ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
 {
+    require_auth( user );
+
+    auto itr = _replies.find( reply_id );
+    eosio::check(itr != _replies.end(), "reply does not exist.");
+    eosio::check(itr->user == user, "this reply is not belong to you.");
+
+    auto target_article_id = itr->target_article_id;
+    auto target_reply_id   = itr->target_reply_id;
+    _replies.erase(itr);
+
+    if (target_article_id > 0) {
+        sub_article_replied_times(target_article_id);
+    }
+
+    if (target_reply_id > 0) {
+        sub_reply_replied_times(target_reply_id);
+    }
 }
 
 // 文章的转发数加1

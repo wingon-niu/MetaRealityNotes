@@ -56,7 +56,7 @@ public:
     ACTION postreply(const name& user, const string& reply_hash, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id);
 
     // 删除回复
-    ACTION rmreply();
+    ACTION rmreply(const name& user, const uint64_t reply_id);
 
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
