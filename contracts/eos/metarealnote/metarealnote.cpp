@@ -107,6 +107,12 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
     require_auth( user );
     eosio::check( article_hash.length()  <=  129, "article_hash is too long, max 129" );
 
+    auto itr_account = _accounts.find( user.value );
+
+    if (storage_location == 1) { // 文章的内容数据存储在 EOS 链上
+        eosio::check(itr_account != _accounts.end() && itr_account->quantity.amount > 0, "you must transfer tokens to worldwelfare first.");
+    }
+
     _articles.emplace(_self, [&](auto& item){
         auto id = _articles.available_primary_key();
         if (id == 0) {
@@ -126,6 +132,10 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
 
     if (forward_article_id > 0) {
         add_article_forwarded_times(forward_article_id);
+    }
+
+    if (storage_location == 1) { // 文章的内容数据存储在 EOS 链上
+        _accounts.erase(itr_account);
     }
 }
 
