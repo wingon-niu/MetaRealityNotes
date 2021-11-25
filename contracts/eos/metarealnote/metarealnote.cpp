@@ -157,8 +157,44 @@ ACTION metarealnote::rmarticle(const name& user, const uint64_t article_id)
 }
 
 // 发表回复
-ACTION metarealnote::postreply()
+ACTION metarealnote::postreply(const name& user, const string& reply_hash, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id)
 {
+    require_auth( user );
+    eosio::check( reply_hash.length()  <=  129, "reply_hash is too long, max 129" );
+    eosio::check( (target_article_id > 0 && target_reply_id == 0) || (target_article_id == 0 && target_reply_id > 0), "you can only reply to an article or a reply once.");
+
+    auto itr_account = _accounts.find( user.value );
+
+    if (storage_location == 1) { // 回复的内容数据存储在 EOS 链上
+        eosio::check(itr_account != _accounts.end() && itr_account->quantity.amount > 0, "you must transfer tokens to worldwelfare first.");
+    }
+
+    _replies.emplace(_self, [&](auto& item){
+        auto id = _replies.available_primary_key();
+        if (id == 0) {
+            id = 1;
+        }
+        item.user              = user;
+        item.reply_id          = id;
+        item.reply_hash        = reply_hash;
+        item.storage_location  = storage_location;
+        item.target_article_id = target_article_id;
+        item.target_reply_id   = target_reply_id;
+        item.replied_times     = 0;
+        item.post_time         = now();
+    });
+
+    if (target_article_id > 0) {
+        add_article_replied_times(target_article_id);
+    }
+
+    if (target_reply_id > 0) {
+        add_reply_replied_times(target_reply_id);
+    }
+
+    if (storage_location == 1) { // 回复的内容数据存储在 EOS 链上
+        _accounts.erase(itr_account);
+    }
 }
 
 // 删除回复

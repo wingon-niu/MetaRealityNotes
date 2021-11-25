@@ -53,7 +53,7 @@ public:
     ACTION rmarticle(const name& user, const uint64_t article_id);
 
     // 发表回复
-    ACTION postreply();
+    ACTION postreply(const name& user, const string& reply_hash, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id);
 
     // 删除回复
     ACTION rmreply();
