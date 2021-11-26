@@ -61,6 +61,7 @@ private:
     // 公益勋章 NFT
     TABLE st_medalnft {
         uint64_t     nft_id;
+        asset        quantity;
         uint8_t      level;
         string       pic_hash;
         string       motto_fixed;         // 格言，创建时设置，以后固定不可修改
