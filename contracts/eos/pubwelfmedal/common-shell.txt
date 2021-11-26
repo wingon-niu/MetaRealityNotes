@@ -1,0 +1,11 @@
+
+cleoslocal set account permission pubwelfmedal active --add-code
+
+eosio-cpp pubwelfmedal.cpp -I . -o pubwelfmedal.wasm -abigen
+
+cleoslocal set contract pubwelfmedal ../pubwelfmedal -p pubwelfmedal@active
+
+cleoslocal -v push action pubwelfmedal clearalldata '[]' -p pubwelfmedal@active
+
+cleoslocal get table pubwelfmedal pubwelfmedal medalnfts
+
