@@ -24,6 +24,11 @@ uint8_t pubwelfmedal::get_level(const uint64_t amount) const
     return 1;
 }
 
+// 用户修改自己的 NFT 的可设置格言
+ACTION pubwelfmedal::editmotto(const name& user, const uint64_t nft_id, const string& motto_modifiable)
+{
+}
+
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
 ACTION pubwelfmedal::clearalldata()
 {

@@ -50,6 +50,9 @@ public:
     // NFT 累计贡献值
     ACTION donateaddup(const name& user, const asset& quantity);
 
+    // 用户修改自己的 NFT 的可设置格言
+    ACTION editmotto(const name& user, const uint64_t nft_id, const string& motto_modifiable);
+
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
 
