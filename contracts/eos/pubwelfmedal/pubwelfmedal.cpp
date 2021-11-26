@@ -75,7 +75,20 @@ ACTION pubwelfmedal::donateaddup(const name& user, const asset& quantity)
 // 根据数值计算级别
 uint8_t pubwelfmedal::get_level(const uint64_t amount) const
 {
-    return 1;
+    uint8_t i = 1;
+
+    if      (           0 <= amount && amount < 10 )         { i = 1;  }
+    else if (          10 <= amount && amount < 100 )        { i = 2;  }
+    else if (         100 <= amount && amount < 1000 )       { i = 3;  }
+    else if (        1000 <= amount && amount < 10000 )      { i = 4;  }
+    else if (       10000 <= amount && amount < 100000 )     { i = 5;  }
+    else if (      100000 <= amount && amount < 1000000 )    { i = 6;  }
+    else if (     1000000 <= amount && amount < 10000000 )   { i = 7;  }
+    else if (    10000000 <= amount && amount < 100000000 )  { i = 8;  }
+    else if (   100000000 <= amount && amount < 1000000000 ) { i = 9;  }
+    else if (  1000000000 <= amount )                        { i = 10; }
+
+    return i;
 }
 
 // 用户修改自己的 NFT 的可设置格言
