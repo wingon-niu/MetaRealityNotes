@@ -50,26 +50,26 @@ ACTION pubwelfmedal::donateaddup(const name& user, const asset& quantity)
 {
     require_auth( ISSUER );
 
-    uint64_t nft_id = 1;                                      // 默认将贡献值累计到 1 号 NFT。
+    uint64_t nft_id = 1;                                        // 默认将贡献值累计到 1 号 NFT。
 
     auto index = _medalnfts.get_index<name("byownernft")>();
     auto itr = index.lower_bound(uint128_t{user.value}<<64);
-    if ( itr != index.end() && itr->owner == user ) {         // 如果用户拥有 NFT，则找到用户拥有的第一个 NFT，并将贡献值累计给这个 NFT。
+    if ( itr != index.end() && itr->owner == user ) {           // 如果用户拥有 NFT，则找到用户拥有的第一个 NFT，并将贡献值累计给这个 NFT。
         nft_id = itr->nft_id;
     }
 
     auto itr_nft = _medalnfts.find( nft_id );
-    eosio::check( itr_nft != _medalnfts.end(), "nft_id does not exist, unknown error." );
-
-    _medalnfts.modify( itr_nft, _self, [&]( auto& item ) {
-        const string s[11] = {"", PIC_HASH_LEVEL_1, PIC_HASH_LEVEL_2, PIC_HASH_LEVEL_3, PIC_HASH_LEVEL_4, PIC_HASH_LEVEL_5, PIC_HASH_LEVEL_6, PIC_HASH_LEVEL_7, PIC_HASH_LEVEL_8, PIC_HASH_LEVEL_9, PIC_HASH_LEVEL_10};
-        item.quantity += quantity;
-        auto i = get_level(item.quantity.amount);
-        if ( i > item.level ) {
-            item.level    = i;
-            item.pic_hash = s[i];
-        }
-    });
+    if ( itr_nft != _medalnfts.end() ) {                        // 找到则累计，没找到就什么都不做，不需要报错。
+        _medalnfts.modify( itr_nft, _self, [&]( auto& item ) {
+            const string s[11] = {"", PIC_HASH_LEVEL_1, PIC_HASH_LEVEL_2, PIC_HASH_LEVEL_3, PIC_HASH_LEVEL_4, PIC_HASH_LEVEL_5, PIC_HASH_LEVEL_6, PIC_HASH_LEVEL_7, PIC_HASH_LEVEL_8, PIC_HASH_LEVEL_9, PIC_HASH_LEVEL_10};
+            item.quantity += quantity;
+            auto i = get_level(item.quantity.amount);
+            if ( i > item.level ) {
+                item.level    = i;
+                item.pic_hash = s[i];
+            }
+        });
+    }
 }
 
 // 根据数值计算级别
