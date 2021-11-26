@@ -5,6 +5,26 @@
 // 发行、创建一个 NFT
 ACTION pubwelfmedal::issue(const string& motto_fixed)
 {
+    require_auth( ISSUER );
+    eosio::check( motto_fixed.size() <= 256, "motto_fixed has more than 256 bytes." );
+
+    auto nft_count = _medalnfts.available_primary_key();
+    eosio::check( nft_count < MAX_SUPPLY, "supply exceeds max supply." );
+
+    _medalnfts.emplace(_self, [&](auto& item){
+        auto id = _medalnfts.available_primary_key();
+        if (id == 0) {
+            id = 1;
+        }
+        item.nft_id           = id;
+        item.level            = 1;
+        item.pic_hash         = PIC_HASH_LEVEL_1;
+        item.motto_fixed      = motto_fixed;
+        item.motto_modifiable = "";
+        item.reserved_field   = "";
+        item.owner            = ISSUER;
+        item.time_of_receipt  = now();
+    });
 }
 
 // NFT 转账
