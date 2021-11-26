@@ -94,6 +94,16 @@ uint8_t pubwelfmedal::get_level(const uint64_t amount) const
 // 用户修改自己的 NFT 的可设置格言
 ACTION pubwelfmedal::editmotto(const name& user, const uint64_t nft_id, const string& motto_modifiable)
 {
+    require_auth( user );
+    eosio::check( motto_modifiable.size() <= 256, "motto_modifiable has more than 256 bytes." );
+
+    auto itr = _medalnfts.find( nft_id );
+    eosio::check( itr != _medalnfts.end(), "nft_id does not exist." );
+    eosio::check( itr->owner == user, "this nft is not belong to you." );
+
+    _medalnfts.modify( itr, _self, [&]( auto& item ) {
+        item.motto_modifiable = motto_modifiable;
+    });
 }
 
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
