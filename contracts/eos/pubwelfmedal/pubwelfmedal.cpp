@@ -9,7 +9,7 @@ ACTION pubwelfmedal::issue(const string& motto_fixed)
     eosio::check( motto_fixed.size() <= 256, "motto_fixed has more than 256 bytes." );
 
     auto nft_count = _medalnfts.available_primary_key();
-    eosio::check( nft_count < MAX_SUPPLY, "supply exceeds max supply." );
+    eosio::check( nft_count <= MAX_SUPPLY, "supply exceeds max supply." );
 
     _medalnfts.emplace(_self, [&](auto& item){
         auto id = _medalnfts.available_primary_key();
@@ -30,6 +30,18 @@ ACTION pubwelfmedal::issue(const string& motto_fixed)
 // NFT ×ªÕË
 ACTION pubwelfmedal::transfer(const name& from, const name& to, uint64_t nft_id, const string& memo)
 {
+    require_auth( from );
+    eosio::check( memo.size() <= 256, "memo has more than 256 bytes.");
+    eosio::check( nft_id != 1, "number 1 nft can not be transfered to other user.");
+
+    auto itr = _medalnfts.find( nft_id );
+    eosio::check( itr != _medalnfts.end(), "nft_id does not exist." );
+    eosio::check( itr->owner == from, "this nft is not belong to you." );
+
+    _medalnfts.modify( itr, _self, [&]( auto& item ) {
+        item.owner           = to;
+        item.time_of_receipt = now();
+    });
 }
 
 // NFT ÀÛ¼Æ¹±Ï×Öµ
