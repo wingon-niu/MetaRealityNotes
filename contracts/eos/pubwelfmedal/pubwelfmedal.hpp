@@ -74,10 +74,15 @@ private:
         uint128_t by_owner_nft() const {
             return (uint128_t{owner.value}<<64) + uint128_t{nft_id};
         }
+        uint64_t  by_quantity()  const {
+            uint64_t amount = quantity.amount;
+            return ~amount;
+        }
     };
     typedef eosio::multi_index<
         "medalnfts"_n, st_medalnft,
-        indexed_by< "byownernft"_n, const_mem_fun<st_medalnft, uint128_t, &st_medalnft::by_owner_nft> >
+        indexed_by< "byownernft"_n, const_mem_fun<st_medalnft, uint128_t, &st_medalnft::by_owner_nft> >,
+        indexed_by< "byquantity"_n, const_mem_fun<st_medalnft, uint64_t,  &st_medalnft::by_quantity> >
     > tb_medalnfts;
 
     tb_medalnfts              _medalnfts;
