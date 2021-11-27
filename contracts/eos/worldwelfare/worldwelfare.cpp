@@ -32,6 +32,13 @@ void worldwelfare::deposit(name from, name to, eosio::asset quantity, std::strin
         "addaccount"_n,
         std::make_tuple(from, quantity)
     }.send();
+
+    action{
+        permission_level{get_self(), "active"_n},
+        "pubwelfmedal"_n,
+        "donateaddup"_n,
+        std::make_tuple(from, quantity)
+    }.send();
 }
 
 // Пе ACTION
