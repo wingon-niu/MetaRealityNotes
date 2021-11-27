@@ -12,7 +12,7 @@
 #define  MAIN_SYMBOL     symbol(symbol_code("SYS"), 4)
 #define  ZERO_FEE        asset((int64_t)0, MAIN_SYMBOL)   // 0 EOS
 
-#define  MAX_SUPPLY      3
+#define  MAX_SUPPLY      210000
 #define  ISSUER          name("worldwelfare")
 
 #define  PIC_HASH_LEVEL_1   "pic_hash_level_1"
