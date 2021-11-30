@@ -16,15 +16,17 @@ $(document).ready(function () {
 
 	$("#tab_real").on("click", function() {
 		current_note_category = "real";
+		current_article_id = 0;
 		//get_public_albums();
 	});
 
 	$("#tab_dream").on("click", function() {
 		current_note_category = "dream";
+		current_article_id = 0;
 		//get_private_albums();
 	});
 
-	//$("#pics_div").hide();
+	$("#article_content_div").hide();
 
 	$("#header_go_back").on("click", function() {
 		go_back();
@@ -73,7 +75,7 @@ function go_back()
 {
 	if (current_note_category != "" && current_article_id != 0) {
 		current_article_id = 0;
-		//$("#pics_div").hide();
+		$("#article_content_div").hide();
 		$("#all_tabs").show();
 		window.scrollTo(0, doc_scroll_top);
 	}
