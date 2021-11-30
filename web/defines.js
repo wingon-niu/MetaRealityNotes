@@ -40,6 +40,7 @@ var current_network       = eos_network;
 var current_endpoint      = eos_endpoint;
 var current_user_account  = "";
 var current_note_category = "real";      // "real" or "dream"
+var current_article_id    = 0;
 var doc_scroll_top        = 0;
 var scatter               = null;
 
