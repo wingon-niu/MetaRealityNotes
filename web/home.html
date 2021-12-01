@@ -175,7 +175,7 @@
             <input type="hidden" id="forward_article_id" value="0" />
             <div class="am-form-group">
               <label class="am-radio-inline" id="category_1">
-                <input type="radio" name="radio10" value="1" data-am-ucheck>Real Note
+                <input type="radio" name="radio10" value="1" data-am-ucheck checked>Real Note
               </label>
               <label class="am-radio-inline" id="category_2">
                 <input type="radio" name="radio10" value="2" data-am-ucheck>Dream Note
@@ -183,7 +183,7 @@
             </div>
             <div class="am-form-group">
               <label class="am-radio-inline" id="type_1">
-                <input type="radio" name="radio11" value="1" data-am-ucheck>Micro text
+                <input type="radio" name="radio11" value="1" data-am-ucheck checked>Micro text
               </label>
               <label class="am-radio-inline" id="type_2">
                 <input type="radio" name="radio11" value="2" data-am-ucheck>Long text
@@ -192,7 +192,7 @@
             <div class="am-form-group">
               <span class="storage_location">Select storage block chain:</span>
               <label class="am-radio-inline">
-                <input type="radio" name="radio12" value="1" data-am-ucheck>EOS
+                <input type="radio" name="radio12" value="1" data-am-ucheck checked>EOS
               </label>
               <label class="am-radio-inline">
                 <input type="radio" name="radio12" value="2" data-am-ucheck>ETH
@@ -207,14 +207,17 @@
                 <input type="radio" name="radio12" value="5" data-am-ucheck>BTC
               </label>
             </div>
-            <br /><span id="pic_name">New Name:</span>
-            <input type="text" class="am-modal-prompt-input" id="pic_new_name" placeholder="" />
-            <br /><span id="pic_detail">New Detail:</span>
-            <textarea class="am-modal-prompt-input" rows="15" id="pic_new_detail" placeholder=""></textarea>
+            <br /><span class="trn_tip">Transfer amount per transaction:</span>
+            <input type="text" class="am-modal-prompt-input" id="amount_per_trn_article" placeholder="" />
+            <br /><span id="article_title">Article title: (Max 36 characters)</span>
+            <input type="text" class="am-modal-prompt-input" id="title_of_article" placeholder="" />
+            <br /><span id="article_content">Article content: (Unlimited length)</span>
+            <textarea class="am-modal-prompt-input" rows="15" id="content_of_article" placeholder=""></textarea>
         </div>
         <div class="am-modal-footer">
-            <span class="am-modal-btn my_cancel"  data-am-modal-cancel >Cancel</span>
+            <span class="am-modal-btn number_of_trns" id="view_times_of_txn_article">View times of txn</span>
             <span class="am-modal-btn my_confirm" data-am-modal-confirm>Confirm</span>
+            <span class="am-modal-btn my_cancel"  data-am-modal-cancel >Cancel</span>
         </div>
     </div>
 </div>

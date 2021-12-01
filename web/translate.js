@@ -45,10 +45,15 @@ function change_lang(lang_type)
 			$("#category_2").html($.i18n.prop('category_2'));
 			$("#type_1").html($.i18n.prop('type_1'));
 			$("#type_2").html($.i18n.prop('type_2'));
+			$('#amount_per_trn_article').attr('placeholder', $.i18n.prop('quantity_example'));
 			$(".storage_location").html($.i18n.prop('storage_location'));
+			$(".trn_tip").html($.i18n.prop('trn_tip'));
+			$(".number_of_trns").html($.i18n.prop('number_of_trns'));
+			$(".my_cancel").html($.i18n.prop('my_cancel'));
+			$(".my_confirm").html($.i18n.prop('my_confirm'));
+			$("#article_title").html($.i18n.prop('article_title'));
+			$("#article_content").html($.i18n.prop('article_content'));
 
-			//$(".my_cancel").html($.i18n.prop('my_cancel'));
-			//$(".my_confirm").html($.i18n.prop('my_confirm'));
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));
 			//$("#target_public_album_id").html($.i18n.prop('target_public_album_id'));
