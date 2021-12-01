@@ -168,12 +168,45 @@
 
 
 
-<!--  修改图片的名字和描述  显示的模态框  -->
-<!--  ---------------------------------------------------------------------------
-<div class="am-modal am-modal-confirm" tabindex="-1" id="div_modifypicnd">
+<!--  写文章  显示的模态框  -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="div_write_an_article">
     <div class="am-modal-dialog">
         <div>
-            <input type="hidden" id="real_pic_id" value="" />
+            <input type="hidden" id="forward_article_id" value="0" />
+            <div class="am-form-group">
+              <label class="am-radio-inline" id="category_1">
+                <input type="radio" name="radio10" value="1" data-am-ucheck>Real Note
+              </label>
+              <label class="am-radio-inline" id="category_2">
+                <input type="radio" name="radio10" value="2" data-am-ucheck>Dream Note
+              </label>
+            </div>
+            <div class="am-form-group">
+              <label class="am-radio-inline" id="type_1">
+                <input type="radio" name="radio11" value="1" data-am-ucheck>Micro text
+              </label>
+              <label class="am-radio-inline" id="type_2">
+                <input type="radio" name="radio11" value="2" data-am-ucheck>Long text
+              </label>
+            </div>
+            <div class="am-form-group">
+              <span class="storage_location">Select storage block chain:</span>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio12" value="1" data-am-ucheck>EOS
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio12" value="2" data-am-ucheck>ETH
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio12" value="3" data-am-ucheck>BSC
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio12" value="4" data-am-ucheck>HECO
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio12" value="5" data-am-ucheck>BTC
+              </label>
+            </div>
             <br /><span id="pic_name">New Name:</span>
             <input type="text" class="am-modal-prompt-input" id="pic_new_name" placeholder="" />
             <br /><span id="pic_detail">New Detail:</span>
@@ -185,7 +218,6 @@
         </div>
     </div>
 </div>
--------------------------------------------------------------------------------->
 
 
 

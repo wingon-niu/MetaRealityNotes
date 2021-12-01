@@ -41,8 +41,12 @@ function change_lang(lang_type)
 			$("#tab_dream").html($.i18n.prop('tab_dream'));
 			$("#write_an_article").html($.i18n.prop('write_an_article'));
 			$("#user_info").html($.i18n.prop('user_info'));
+			$("#category_1").html($.i18n.prop('category_1'));
+			$("#category_2").html($.i18n.prop('category_2'));
+			$("#type_1").html($.i18n.prop('type_1'));
+			$("#type_2").html($.i18n.prop('type_2'));
+			$(".storage_location").html($.i18n.prop('storage_location'));
 
-			//$(".quantity_example").html($.i18n.prop('quantity_example'));
 			//$(".my_cancel").html($.i18n.prop('my_cancel'));
 			//$(".my_confirm").html($.i18n.prop('my_confirm'));
 			//$(".my_close").html($.i18n.prop('my_close'));
