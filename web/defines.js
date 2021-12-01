@@ -21,13 +21,13 @@ if (runmode === "prod") { // 生产环境
 		chainId: eos_chain_id
 	}
 } else { // 开发测试环境
-	eos_chain_id     = "5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191";
+	eos_chain_id     = "8a34ec7df1b8cd06ff4a8abbaa7cc50300823350cadc59ab296cb00d104d2b8f";
 
 	eos_network = {
 		blockchain: 'eos',
-		protocol: 'https',
-		host: 'api-kylin.eosasia.one',
-		port: 443,
+		protocol: 'http',
+		host: '192.168.135.100',
+		port: 8888,
 		chainId: eos_chain_id
 	}
 }
