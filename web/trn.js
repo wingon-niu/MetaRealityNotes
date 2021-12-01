@@ -80,18 +80,15 @@ function my_logoff()
 
 function set_login_flag()
 {
-	//clear_login_flag();
-
-	//if      (current_block_chain === "eos")     $("#menu_eos").html(    "EOS"     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===>&nbsp;&nbsp;Logined");
-	//else if (current_block_chain === "bos")     $("#menu_bos").html(    "BOS"     + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===>&nbsp;&nbsp;Logined");
-	//else if (current_block_chain === "meetone") $("#menu_meetone").html("MeetOne" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;===>&nbsp;&nbsp;Logined");
+	let s = $("#login").html() + " " + current_user_account;
+	$("#login").html(s);
 }
 
 function clear_login_flag()
 {
-	//$("#menu_eos").html("EOS");
-	//$("#menu_bos").html("BOS");
-	//$("#menu_meetone").html("MeetOne (not supported yet)");
+	let s = $("#login").html();
+	let i = s.indexOf(" ");
+	$("#login").html( s.substring(0, i) );
 }
 
 function show_error(error)
