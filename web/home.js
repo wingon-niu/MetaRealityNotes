@@ -63,7 +63,6 @@ $(document).ready(function () {
 	//
 
 	ScatterJS.plugins( new ScatterEOS() );
-	//change_network();
 	setTimeout(
 		function(){
 			//get_public_albums()
