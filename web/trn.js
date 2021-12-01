@@ -88,7 +88,9 @@ function clear_login_flag()
 {
 	let s = $("#login").html();
 	let i = s.indexOf(" ");
-	$("#login").html( s.substring(0, i) );
+	if (i > -1) {
+		$("#login").html( s.substring(0, i) );
+	}
 }
 
 function show_error(error)
