@@ -70,6 +70,10 @@ $(document).ready(function () {
 		write_an_article();
 	});
 
+	$("#view_times_of_txn_article").on("click", function() {
+		alert("in view_times_of_txn_article");
+	});
+
 	//
 
 	ScatterJS.plugins( new ScatterEOS() );
@@ -97,6 +101,7 @@ function write_an_article()
 		onCancel: function() {
 		},
 		onConfirm: function() {
+			alert("in onConfirm");
 //			let real_pic_id = Number($("#real_pic_id").val());
 //			let name_str   = $("#pic_new_name").val().trim();
 //			let detail_str = $("#pic_new_detail").val().trim();
