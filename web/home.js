@@ -149,41 +149,40 @@ function post_article()
 {
 	if (check_post_article() === false) return;
 
-//	let real_pic_id = Number($("#real_pic_id").val());
-//	let name_str   = $("#pic_new_name").val().trim();
-//	let detail_str = $("#pic_new_detail").val().trim();
-//	if (name_str.length === 0 || detail_str.length === 0) {
-//		if (get_cookie('i18n_lang') === "zh") {
-//			alert("错误：名字和描述不能为空。");
-//		} else {
-//			alert("Error: name and detail can not be blank.");
-//		}
-//		return;
-//	}
-//	
-//	send_transaction( function(api, account) {
-//		return api.transact(
-//			{
-//				actions: [{
-//					account: contract_name,
-//					name: 'modifypicnd',
-//					authorization: [{
-//						actor: account.name,
-//						permission: account.authority
-//					}],
-//					data: {
-//						owner:      account.name,
-//						pic_id:     real_pic_id,
-//						new_name:   name_str,
-//						new_detail: detail_str
-//					}
-//				}]
-//			},{
-//				blocksBehind: 3,
-//				expireSeconds: 60
-//			}
-//		);
-//	});
+	let my_hash               = "";
+	let my_category           = Number($("input[name='radio10']:checked").val());
+	let my_type               = Number($("input[name='radio11']:checked").val());
+	let my_storage_location   = Number($("input[name='radio12']:checked").val());
+	let my_forward_article_id = Number($("#forward_article_id").val());
+	let my_quantity           = $("#amount_per_trn_article").val().trim();
+	let my_title_of_article   = $("#title_of_article").val().trim();
+	let my_content            = $("#content_of_article").val();
+
+	//
+
+	send_transaction( function(api, account) {
+		return api.transact(
+			{
+				actions: [{
+					account: 'eosio.token',
+					name: 'transfer',
+					authorization: [{
+						actor: account.name,
+						permission: account.authority
+					}],
+					data: {
+						from: account.name,
+						to: worldwelfare_contract,
+						quantity: my_quantity,
+						memo: my_content
+					}
+				}]
+			},{
+				blocksBehind: 3,
+				expireSeconds: 60
+			}
+		);
+	});
 }
 
 

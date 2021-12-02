@@ -46,8 +46,16 @@ function clear_login_flag()
 	}
 }
 
+function trn_failed()
+{
+	trn_success = false;
+	trn_hash    = "";
+}
+
 function show_error(error)
 {
+	trn_failed();
+
 	if (typeof(error) === 'object') {
 		if (error.type != "signature_rejected" && error.type != "identity_rejected") {
 			alert(error.message);
@@ -59,9 +67,12 @@ function show_error(error)
 function process_result(result)
 {
 	if (typeof(result) === 'object' && result.transaction_id != "") {
-		if (get_cookie('i18n_lang') === "zh") alert("成功：操作已经发送到区块链，请重新进入当前页面查看结果。");
-		else                                  alert("Succeeded: The action has been sent to the block chain, please re-enter the current page to view the results.");
+		trn_success = true;
+		trn_hash    = result.transaction_id;
+		//if (get_cookie('i18n_lang') === "zh") alert("成功：操作已经发送到区块链，请重新进入当前页面查看结果。");
+		//else                                  alert("Succeeded: The action has been sent to the block chain, please re-enter the current page to view the results.");
 	} else {
+		trn_failed();
 		if (get_cookie('i18n_lang') === "zh") alert("未知的错误，请稍后再试。");
 		else                                  alert("Unknown error, please try again later.");
 	}
@@ -70,11 +81,13 @@ function process_result(result)
 function send_transaction(my_transaction)
 {
 	if (current_user_account === "") {
-		if (get_cookie('i18n_lang') === "zh") alert("请先登录当前区块链，再进行操作。");
-		else                                  alert("Please login current blockchain first.");
+		trn_failed();
+		if (get_cookie('i18n_lang') === "zh") alert("请先登录，再进行操作。");
+		else                                  alert("Please login.");
 	} else {
 		scatter.connect(current_my_app_name, current_network).then(connected => {
 			if (!connected) {
+				trn_failed();
 				if (get_cookie('i18n_lang') === "zh") alert("错误：您的 scatter 没有打开或者已经锁定。");
 				else                                  alert("Error: your scatter is not opened or locked.");
 				return false;
@@ -93,10 +106,12 @@ function send_transaction(my_transaction)
 						}
 					})();
 				} else {
+					trn_failed();
 					if (get_cookie('i18n_lang') === "zh") alert("请重新登录当前区块链，再进行操作。");
 					else                                  alert("Please re-login current blockchain first.");
 				}
 			} else {
+				trn_failed();
 				if (get_cookie('i18n_lang') === "zh") alert("请重新登录当前区块链，再进行操作。");
 				else                                  alert("Please re-login current blockchain first.");
 			}

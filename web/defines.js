@@ -1,11 +1,11 @@
 
 const runmode               = "dev";                    // prod or dev
 
-const worldwelfare_contract = "worldwelfare";
-const metarealnote_contract = "metarealnote";
-const pubwelfmedal_contract = "pubwelfmedal";
+const worldwelfare_contract = 'worldwelfare';
+const metarealnote_contract = 'metarealnote';
+const pubwelfmedal_contract = 'pubwelfmedal';
 
-const my_app_name_eos       = "metarealnote";
+const my_app_name_eos       = 'metarealnote';
 
 var eos_chain_id            = null;
 var eos_network             = null;
@@ -43,6 +43,8 @@ var current_note_category = "real";      // "real" or "dream"
 var current_article_id    = 0;
 var doc_scroll_top        = 0;
 var scatter               = null;
+var trn_success           = true;
+var trn_hash              = "";
 
 const name_max_len   = 36;
 const detail_max_len = 512;
