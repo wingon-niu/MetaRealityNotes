@@ -78,6 +78,14 @@ $(document).ready(function () {
 		post_article();
 	});
 
+	$("#micro_text").on("click", function() {
+		$("#title_of_article").attr("disabled", true);
+	});
+
+	$("#long_text").on("click", function() {
+		$("#title_of_article").attr("disabled", false);
+	});
+
 	//
 
 	ScatterJS.plugins( new ScatterEOS() );
@@ -105,6 +113,11 @@ function write_an_article_show_modal()
 		onCancel: function() {},
 		onConfirm: function() {}
 	});
+}
+
+function check_post_article()
+{
+	//
 }
 
 function view_times_of_txn_article()
