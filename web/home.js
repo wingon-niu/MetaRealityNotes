@@ -60,18 +60,19 @@ $(document).ready(function () {
 		my_logoff();
 	});
 
-	$("#write_an_article").on("click", function() {
+	$("#write_an_article_href").on("click", function() {
 		if(current_user_account === "") {
 			if (get_cookie('i18n_lang') === "zh") alert("请先登录。");
 			else                                  alert("Please login.");
 			return;
 		}
 		$("#forward_article_id").val("0");
-		write_an_article();
+		write_an_article_show_modal();
 	});
 
 	$("#view_times_of_txn_article").on("click", function() {
 		alert("in view_times_of_txn_article");
+		write_an_article_show_modal();
 	});
 
 	//
@@ -94,52 +95,58 @@ function go_back()
 	}
 }
 
-function write_an_article()
+function write_an_article_show_modal()
 {
 	$('#div_write_an_article').modal({
 		relatedTarget: this,
-		onCancel: function() {
-		},
-		onConfirm: function() {
-			alert("in onConfirm");
-//			let real_pic_id = Number($("#real_pic_id").val());
-//			let name_str   = $("#pic_new_name").val().trim();
-//			let detail_str = $("#pic_new_detail").val().trim();
-//			if (name_str.length === 0 || detail_str.length === 0) {
-//				if (get_cookie('i18n_lang') === "zh") {
-//					alert("错误：名字和描述不能为空。");
-//				} else {
-//					alert("Error: name and detail can not be blank.");
-//				}
-//				return;
-//			}
-//
-//			send_transaction( function(api, account) {
-//				return api.transact(
-//					{
-//						actions: [{
-//							account: contract_name,
-//							name: 'modifypicnd',
-//							authorization: [{
-//								actor: account.name,
-//								permission: account.authority
-//							}],
-//							data: {
-//								owner:      account.name,
-//								pic_id:     real_pic_id,
-//								new_name:   name_str,
-//								new_detail: detail_str
-//							}
-//						}]
-//					},{
-//						blocksBehind: 3,
-//						expireSeconds: 60
-//					}
-//				);
-//			});
-		}
+		onCancel: function() {},
+		onConfirm: function() { write_an_article();	}
 	});
 }
+
+function write_an_article()
+{
+	alert("in onConfirm");
+	write_an_article_show_modal();
+
+//	let real_pic_id = Number($("#real_pic_id").val());
+//	let name_str   = $("#pic_new_name").val().trim();
+//	let detail_str = $("#pic_new_detail").val().trim();
+//	if (name_str.length === 0 || detail_str.length === 0) {
+//		if (get_cookie('i18n_lang') === "zh") {
+//			alert("错误：名字和描述不能为空。");
+//		} else {
+//			alert("Error: name and detail can not be blank.");
+//		}
+//		return;
+//	}
+//	
+//	send_transaction( function(api, account) {
+//		return api.transact(
+//			{
+//				actions: [{
+//					account: contract_name,
+//					name: 'modifypicnd',
+//					authorization: [{
+//						actor: account.name,
+//						permission: account.authority
+//					}],
+//					data: {
+//						owner:      account.name,
+//						pic_id:     real_pic_id,
+//						new_name:   name_str,
+//						new_detail: detail_str
+//					}
+//				}]
+//			},{
+//				blocksBehind: 3,
+//				expireSeconds: 60
+//			}
+//		);
+//	});
+}
+
+
 
 //function get_public_albums()
 //{
