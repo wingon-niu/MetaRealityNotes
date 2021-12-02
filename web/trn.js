@@ -96,7 +96,7 @@ function send_transaction(my_transaction)
 				let account = scatter.identity.accounts.find(x => x.chainId === current_network.chainId);
 				if (account != null && account != undefined) {
 					const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
-					const api = scatter.eos(current_network, eosjs_api.Api, {rpc, textDecoder: new TextDecoder(), textEncoder: new TextEncoder(), beta3:true});
+					const api = scatter.eos(current_network, eosjs_api.Api, {rpc, textDecoder: new TextDecoder(), textEncoder: new TextEncoder()});
 					(async () => {
 						try {
 							const result = await my_transaction(api, account);
