@@ -117,17 +117,37 @@ function write_an_article_show_modal()
 
 function check_post_article()
 {
-	//
+	let my_type = $("input[name='radio11']:checked").val();  // 微文还是长文
+	if (my_type === "2") { // 长文
+		let s = $("#title_of_article").val().trim();
+		if (s.length === 0 || s.length > 36) {
+			if (get_cookie('i18n_lang') === "zh") alert("错误：文章标题为空或者长度超出限制。");
+			else                                  alert("Error: Title of article is blank, or too long.");
+			return false;
+		}
+	}
+	let my_storage_location = $("input[name='radio12']:checked").val();  // 存储位置
+	if (my_storage_location != "1") { // 不是EOS
+		if (get_cookie('i18n_lang') === "zh") alert("错误：文章内容数据目前只支持存储于EOS链上。");
+		else                                  alert("Error: Only EOS block chain is supported at the moment.");
+		return false;
+	}
+	let my_content = $("#content_of_article").val().trim();  // 文章内容
+	if (my_content === "") {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：文章内容为空。");
+		else                                  alert("Error: The content of article is blank.");
+		return false;
+	}
 }
 
 function view_times_of_txn_article()
 {
-	alert("in view_times_of_txn_article");
+	if (check_post_article() === false) return;
 }
 
 function post_article()
 {
-	alert("in post_article");
+	if (check_post_article() === false) return;
 
 //	let real_pic_id = Number($("#real_pic_id").val());
 //	let name_str   = $("#pic_new_name").val().trim();
