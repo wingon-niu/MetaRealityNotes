@@ -149,7 +149,7 @@ function post_article()
 {
 	if (check_post_article() === false) return;
 
-	let my_hash               = "";
+	let my_hash               = 'abc';
 	let my_category           = Number($("input[name='radio10']:checked").val());
 	let my_type               = Number($("input[name='radio11']:checked").val());
 	let my_storage_location   = Number($("input[name='radio12']:checked").val());
@@ -159,7 +159,33 @@ function post_article()
 	let my_content            = $("#content_of_article").val();
 
 	//
-
+/*
+	send_transaction( function(api, account) {
+		return api.transact(
+			{
+				actions: [{
+					account: metarealnote_contract,
+					name: 'postarticle',
+					authorization: [{
+						actor: account.name,
+						permission: account.authority
+					}],
+					data: {
+						user: account.name,
+						article_hash: my_hash,
+						category: my_category,
+						type: my_type,
+						storage_location: my_storage_location,
+						forward_article_id: my_forward_article_id
+					}
+				}]
+			},{
+				blocksBehind: 3,
+				expireSeconds: 60
+			}
+		);
+	});
+*/
 	send_transaction( function(api, account) {
 		return api.transact(
 			{
