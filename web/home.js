@@ -149,7 +149,6 @@ function post_article()
 {
 	if (check_post_article() === false) return;
 
-	let my_hash               = '';
 	let my_category           = Number($("input[name='radio10']:checked").val());
 	let my_type               = Number($("input[name='radio11']:checked").val());
 	let my_storage_location   = Number($("input[name='radio12']:checked").val());
@@ -160,60 +159,75 @@ function post_article()
 
 	//
 
-	send_transaction( function(api, account) {
-		return api.transact(
-			{
-				actions: [{
-					account: 'eosio.token',
-					name: 'transfer',
-					authorization: [{
-						actor: account.name,
-						permission: account.authority
-					}],
-					data: {
-						from: account.name,
-						to: worldwelfare_contract,
-						quantity: my_quantity,
-						memo: my_content
+	send_transactions( function(api, account) {
+		(async () => {
+			try {
+				var result = null;
+
+				result = await api.transact(
+					{
+						actions: [{
+							account: 'eosio.token',
+							name: 'transfer',
+							authorization: [{
+								actor: account.name,
+								permission: account.authority
+							}],
+							data: {
+								from: account.name,
+								to: worldwelfare_contract,
+								quantity: my_quantity,
+								memo: my_content
+							}
+						}]
+					},{
+						blocksBehind: 3,
+						expireSeconds: 60
 					}
-				}]
-			},{
-				blocksBehind: 3,
-				expireSeconds: 60
+				);
+				process_result(result);
+
+				if (! trn_success) {
+					alert("error will be catched by try-catch outside.");
+					return;
+				}
+
+				result = await api.transact(
+					{
+						actions: [{
+							account: metarealnote_contract,
+							name: 'postarticle',
+							authorization: [{
+								actor: account.name,
+								permission: account.authority
+							}],
+							data: {
+								user: account.name,
+								article_hash: trn_hash,
+								category: my_category,
+								type: my_type,
+								storage_location: my_storage_location,
+								forward_article_id: my_forward_article_id
+							}
+						}]
+					},{
+						blocksBehind: 3,
+						expireSeconds: 60
+					}
+				);
+				process_result(result);
+
+				if (! trn_success) {
+					alert("error will be catched by try-catch outside.");
+					return;
+				}
+
+				alert("OK");
+			} catch (e) {
+				show_error(e);
 			}
-		);
+		})();
 	});
-
-	if (trn_success) {
-		alert(trn_hash);
-	}
-	else alert("error");
-
-/*	send_transaction( function(api, account) {
-		return api.transact(
-			{
-				actions: [{
-					account: metarealnote_contract,
-					name: 'postarticle',
-					authorization: [{
-						actor: account.name,
-						permission: account.authority
-					}],
-					data: {
-						user: account.name,
-						article_hash: my_hash,
-						category: my_category,
-						type: my_type,
-						storage_location: my_storage_location,
-						forward_article_id: my_forward_article_id
-					}
-				}]
-			},{
-				blocksBehind: 3,
-				expireSeconds: 60
-			}
-		);
-	});*/
 }
 
 
