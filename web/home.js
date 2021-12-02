@@ -71,8 +71,11 @@ $(document).ready(function () {
 	});
 
 	$("#view_times_of_txn_article").on("click", function() {
-		alert("in view_times_of_txn_article");
-		write_an_article_show_modal();
+		view_times_of_txn_article();
+	});
+
+	$("#post_article").on("click", function() {
+		post_article();
 	});
 
 	//
@@ -100,14 +103,18 @@ function write_an_article_show_modal()
 	$('#div_write_an_article').modal({
 		relatedTarget: this,
 		onCancel: function() {},
-		onConfirm: function() { write_an_article();	}
+		onConfirm: function() {}
 	});
 }
 
-function write_an_article()
+function view_times_of_txn_article()
 {
-	alert("in onConfirm");
-	write_an_article_show_modal();
+	alert("in view_times_of_txn_article");
+}
+
+function post_article()
+{
+	alert("in post_article");
 
 //	let real_pic_id = Number($("#real_pic_id").val());
 //	let name_str   = $("#pic_new_name").val().trim();
