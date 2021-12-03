@@ -194,7 +194,7 @@ function post_article()
 									from: account.name,
 									to: worldwelfare_contract,
 									quantity: my_quantity,
-									memo: '{' + trn_hash + '}' + strArray[j];
+									memo: '{' + trn_hash + '}' + strArray[j]
 								}
 							}]
 						},{
