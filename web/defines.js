@@ -46,6 +46,6 @@ var scatter               = null;
 var trn_success           = true;
 var trn_hash              = "";
 
-const eos_per_trn_len     = 3;
+const eos_per_trn_len     = 88;
 const eth_per_trn_len     = 2000;
 const btc_per_trn_len     = 1000;
