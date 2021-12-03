@@ -173,8 +173,6 @@ function post_article()
 	for (let i = 0; i < my_len; i += per_trn_len) {           // 按照长度将内容分割存入字符串数组
 		strArray.push(my_content.slice(i, i + per_trn_len));
 	}
-	console.log(strArray);
-	return;
 
 	send_transactions( function(api, account) {
 		(async () => {
@@ -182,34 +180,34 @@ function post_article()
 				trn_hash   = '';
 				var result = null;
 
-				result = await api.transact(
-					{
-						actions: [{
-							account: 'eosio.token',
-							name: 'transfer',
-							authorization: [{
-								actor: account.name,
-								permission: account.authority
-							}],
-							data: {
-								from: account.name,
-								to: worldwelfare_contract,
-								quantity: my_quantity,
-								memo: '{' + trn_hash + '}' + my_content
-							}
-						}]
-					},{
-						blocksBehind: 3,
-						expireSeconds: 60
+				for (let j = strArray.length - 1; j >= 0; j--) {
+					result = await api.transact(
+						{
+							actions: [{
+								account: 'eosio.token',
+								name: 'transfer',
+								authorization: [{
+									actor: account.name,
+									permission: account.authority
+								}],
+								data: {
+									from: account.name,
+									to: worldwelfare_contract,
+									quantity: my_quantity,
+									memo: '{' + trn_hash + '}' + strArray[j];
+								}
+							}]
+						},{
+							blocksBehind: 3,
+							expireSeconds: 60
+						}
+					);
+					process_result(result);
+					if (! trn_success) {
+						alert("error will be catched by try-catch outside.");
+						return;
 					}
-				);
-				process_result(result);
-
-				if (! trn_success) {
-					alert("error will be catched by try-catch outside.");
-					return;
 				}
-
 				result = await api.transact(
 					{
 						actions: [{
@@ -234,12 +232,10 @@ function post_article()
 					}
 				);
 				process_result(result);
-
 				if (! trn_success) {
 					alert("error will be catched by try-catch outside.");
 					return;
 				}
-
 				alert("OK");
 			} catch (e) {
 				show_error(e);
