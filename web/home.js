@@ -157,7 +157,24 @@ function post_article()
 	let my_title_of_article   = $("#title_of_article").val().trim();
 	let my_content            = $("#content_of_article").val();
 
-	//
+	let per_trn_len = 10;     // 每个交易memo存放的数据长度，不同的链设置不同的值
+	let strArray    = [];
+
+	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
+		if (my_type === 2) {                     // 长文
+			strArray.push(my_title_of_article);  // 长文的标题单独保存在一个交易的memo里
+		}
+		per_trn_len = eos_per_trn_len;
+	} else {
+		return;
+	}
+
+	let my_len = my_content.length;
+	for (let i = 0; i < my_len; i += per_trn_len) {           // 按照长度将内容分割存入字符串数组
+		strArray.push(my_content.slice(i, i + per_trn_len));
+	}
+	console.log(strArray);
+	return;
 
 	send_transactions( function(api, account) {
 		(async () => {
