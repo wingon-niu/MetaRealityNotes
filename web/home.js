@@ -162,6 +162,7 @@ function post_article()
 	send_transactions( function(api, account) {
 		(async () => {
 			try {
+				trn_hash   = '';
 				var result = null;
 
 				result = await api.transact(
@@ -177,7 +178,7 @@ function post_article()
 								from: account.name,
 								to: worldwelfare_contract,
 								quantity: my_quantity,
-								memo: my_content
+								memo: '{' + trn_hash + '}' + my_content
 							}
 						}]
 					},{
