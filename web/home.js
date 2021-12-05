@@ -174,10 +174,18 @@ function view_times_of_txn_article()
 
 function post_article()
 {
+	post_article_first_time = true;
+	do_post_article();
 }
 
 function resume_from_break_point_post_article()
 {
+	if (post_article_first_time) {
+		if (get_cookie('i18n_lang') === "zh") alert("只有在交易发送过程中产生错误而中止，才可以使用断点续传功能。");
+		else                                  alert("This function can only be used if the transaction is aborted due to an error in the sending process.");
+	} else {
+		do_post_article();
+	}
 }
 
 function do_post_article()
@@ -200,7 +208,8 @@ function do_post_article()
 			strArray.push(my_title_of_article);  // 长文的标题单独保存在一个交易的memo里
 		}
 		per_trn_len = eos_per_trn_len;
-	} else {
+	}
+	else {        // 内容数据存储在其他链
 		return;
 	}
 
@@ -209,27 +218,64 @@ function do_post_article()
 		strArray.push(my_content.slice(i, i + per_trn_len));
 	}
 
-	send_transactions( function(api, account) {
-		(async () => {
-			try {
-				trn_hash   = '';
-				var result = null;
+	if (post_article_first_time) {                 // 如果是第一次发送文章
+		post_article_first_time     = false;
+		trn_hash                    = "";
+		post_article_write_to_table = false;
+		post_article_current_index  = strArray.length - 1;
+	}
 
-				for (let j = strArray.length - 1; j >= 0; j--) {
+	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
+		send_transactions( function(api, account) {
+			(async () => {
+				try {
+					trn_hash   = '';
+					var result = null;
+	
+					for (let j = strArray.length - 1; j >= 0; j--) {
+						result = await api.transact(
+							{
+								actions: [{
+									account: 'eosio.token',
+									name: 'transfer',
+									authorization: [{
+										actor: account.name,
+										permission: account.authority
+									}],
+									data: {
+										from: account.name,
+										to: worldwelfare_contract,
+										quantity: my_quantity,
+										memo: '{' + trn_hash + '}' + strArray[j]
+									}
+								}]
+							},{
+								blocksBehind: 3,
+								expireSeconds: 60
+							}
+						);
+						process_result(result);
+						if (! trn_success) {
+							alert("error will be catched by try-catch outside.");
+							return;
+						}
+					}
 					result = await api.transact(
 						{
 							actions: [{
-								account: 'eosio.token',
-								name: 'transfer',
+								account: metarealnote_contract,
+								name: 'postarticle',
 								authorization: [{
 									actor: account.name,
 									permission: account.authority
 								}],
 								data: {
-									from: account.name,
-									to: worldwelfare_contract,
-									quantity: my_quantity,
-									memo: '{' + trn_hash + '}' + strArray[j]
+									user: account.name,
+									article_hash: trn_hash,
+									category: my_category,
+									type: my_type,
+									storage_location: my_storage_location,
+									forward_article_id: my_forward_article_id
 								}
 							}]
 						},{
@@ -242,41 +288,16 @@ function do_post_article()
 						alert("error will be catched by try-catch outside.");
 						return;
 					}
+					alert("OK");
+				} catch (e) {
+					show_error(e);
 				}
-				result = await api.transact(
-					{
-						actions: [{
-							account: metarealnote_contract,
-							name: 'postarticle',
-							authorization: [{
-								actor: account.name,
-								permission: account.authority
-							}],
-							data: {
-								user: account.name,
-								article_hash: trn_hash,
-								category: my_category,
-								type: my_type,
-								storage_location: my_storage_location,
-								forward_article_id: my_forward_article_id
-							}
-						}]
-					},{
-						blocksBehind: 3,
-						expireSeconds: 60
-					}
-				);
-				process_result(result);
-				if (! trn_success) {
-					alert("error will be catched by try-catch outside.");
-					return;
-				}
-				alert("OK");
-			} catch (e) {
-				show_error(e);
-			}
-		})();
-	});
+			})();
+		});
+	}
+	else {        // 内容数据存储在其他链
+		return;
+	}
 }
 
 
