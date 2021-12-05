@@ -32,7 +32,7 @@ if (runmode === "prod") { // 生产环境
 	}
 }
 
-const eos_endpoint     = eos_network.protocol     + '://' + eos_network.host     + ':' + eos_network.port;
+const eos_endpoint        = eos_network.protocol     + '://' + eos_network.host     + ':' + eos_network.port;
 
 var current_block_chain   = "eos";
 var current_my_app_name   = my_app_name_eos;
@@ -43,9 +43,13 @@ var current_note_category = "real";      // "real" or "dream"
 var current_article_id    = 0;
 var doc_scroll_top        = 0;
 var scatter               = null;
-var trn_success           = true;
-var trn_hash              = "";
 
-const eos_per_trn_len     = 63;          // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
+var trn_success                 = true;   // 最近一次交易的状态
+var trn_hash                    = "";     // 最近一次成功的转账交易的交易hash
+var post_article_first_time     = true;   // true：表示第一次发送文章；false：表示出错后进行的断点续传
+var post_article_write_to_table = false;  // true：表示合约metarealnote的postarticle交易已经完成；false：表示没有完成
+var post_article_current_index  = -1;     // 正在发送的字符串在整个字符串数组中的位置下标。也就是发送失败后，进行断点续传的起始下标
+
+const eos_per_trn_len     = 3;            // 63;          // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
 const eth_per_trn_len     = 2000;
 const btc_per_trn_len     = 1000;

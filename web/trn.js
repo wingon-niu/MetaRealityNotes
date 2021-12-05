@@ -49,7 +49,6 @@ function clear_login_flag()
 function trn_failed()
 {
 	trn_success = false;
-	trn_hash    = "";
 }
 
 function show_error(error)
@@ -68,7 +67,6 @@ function process_result_show_msg(result)
 {
 	if (typeof(result) === 'object' && result.transaction_id != "") {
 		trn_success = true;
-		trn_hash    = result.transaction_id;
 		if (get_cookie('i18n_lang') === "zh") alert("成功：操作已经发送到区块链。");
 		else                                  alert("Succeeded: The action has been sent to the block chain.");
 	} else {
@@ -82,7 +80,6 @@ function process_result(result)
 {
 	if (typeof(result) === 'object' && result.transaction_id != "") {
 		trn_success = true;
-		trn_hash    = result.transaction_id;
 	} else {
 		trn_failed();
 		if (get_cookie('i18n_lang') === "zh") alert("未知的错误，请稍后再试。");
