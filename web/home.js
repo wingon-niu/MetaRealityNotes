@@ -180,7 +180,7 @@ function post_article()
 
 function resume_from_break_point_post_article()
 {
-	if (post_article_first_time) {
+	if (post_article_first_time || trn_success) {
 		if (get_cookie('i18n_lang') === "zh") alert("只有在交易发送过程中产生错误而中止，才可以使用断点续传功能。");
 		else                                  alert("This function can only be used if the transaction is aborted due to an error in the sending process.");
 	} else {
@@ -231,7 +231,7 @@ function do_post_article()
 				try {
 					trn_hash   = '';
 					var result = null;
-	
+
 					for (let j = strArray.length - 1; j >= 0; j--) {
 						result = await api.transact(
 							{
