@@ -78,6 +78,10 @@ $(document).ready(function () {
 		post_article();
 	});
 
+	$("#resume_from_break_point_post_article").on("click", function() {
+		resume_from_break_point_post_article();
+	});
+
 	$("#micro_text").on("click", function() {
 		$("#title_of_article").attr("disabled", true);
 	});
@@ -169,6 +173,14 @@ function view_times_of_txn_article()
 }
 
 function post_article()
+{
+}
+
+function resume_from_break_point_post_article()
+{
+}
+
+function do_post_article()
 {
 	if (check_post_article() === false) return;
 
