@@ -229,10 +229,10 @@ function do_post_article()
 		send_transactions( function(api, account) {
 			(async () => {
 				try {
-					trn_hash   = '';
 					var result = null;
 
-					for (let j = strArray.length - 1; j >= 0; j--) {
+					for (let j = post_article_current_index; j >= 0; j--) {
+						post_article_current_index = j;
 						result = await api.transact(
 							{
 								actions: [{
@@ -254,39 +254,40 @@ function do_post_article()
 								expireSeconds: 60
 							}
 						);
-						process_result(result);
-						if (! trn_success) {
-							alert("error will be catched by try-catch outside.");
-							return;
-						}
+						if (typeof(result) === 'object' && result.transaction_id != "") {
+							trn_success = true;
+							trn_hash    = result.transaction_id;
+						} else { trn_failed(); return; }
 					}
-					result = await api.transact(
-						{
-							actions: [{
-								account: metarealnote_contract,
-								name: 'postarticle',
-								authorization: [{
-									actor: account.name,
-									permission: account.authority
-								}],
-								data: {
-									user: account.name,
-									article_hash: trn_hash,
-									category: my_category,
-									type: my_type,
-									storage_location: my_storage_location,
-									forward_article_id: my_forward_article_id
-								}
-							}]
-						},{
-							blocksBehind: 3,
-							expireSeconds: 60
-						}
-					);
-					process_result(result);
-					if (! trn_success) {
-						alert("error will be catched by try-catch outside.");
-						return;
+					post_article_current_index = -1;
+					if (post_article_write_to_table === false) {
+						result = await api.transact(
+							{
+								actions: [{
+									account: metarealnote_contract,
+									name: 'postarticle',
+									authorization: [{
+										actor: account.name,
+										permission: account.authority
+									}],
+									data: {
+										user: account.name,
+										article_hash: trn_hash,
+										category: my_category,
+										type: my_type,
+										storage_location: my_storage_location,
+										forward_article_id: my_forward_article_id
+									}
+								}]
+							},{
+								blocksBehind: 3,
+								expireSeconds: 60
+							}
+						);
+						if (typeof(result) === 'object' && result.transaction_id != "") {
+							trn_success                 = true;
+							post_article_write_to_table = true;
+						} else { trn_failed(); return; }
 					}
 					alert("OK");
 				} catch (e) {
