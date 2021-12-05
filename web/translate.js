@@ -53,6 +53,8 @@ function change_lang(lang_type)
 			$(".my_confirm").html($.i18n.prop('my_confirm'));
 			$("#article_title").html($.i18n.prop('article_title'));
 			$("#article_content").html($.i18n.prop('article_content'));
+			$("#post_article").html($.i18n.prop('post_article'));
+			$("#resume_from_break_point_post_article").html($.i18n.prop('resume_from_break_point_post_article'));
 
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));

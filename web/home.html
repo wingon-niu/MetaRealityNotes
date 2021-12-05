@@ -208,17 +208,19 @@
               </label>
             </div>
             <span class="trn_tip">Transfer amount per transaction:</span>
-            <input type="text" class="am-modal-prompt-input" id="amount_per_trn_article" placeholder="" />
+            <input type="text" class="am-modal-prompt-input" id="amount_per_trn_article" placeholder="" value="1.0000 SYS" />
             <span id="article_title">Article title: (Max 36 characters)</span>
             <input type="text" class="am-modal-prompt-input" id="title_of_article" placeholder="" disabled="disabled" />
             <span id="article_content">Article content: (Unlimited length)</span>
-            <textarea class="am-modal-prompt-input" rows="15" id="content_of_article" placeholder=""></textarea>
+            <textarea class="am-modal-prompt-input" rows="12" id="content_of_article" placeholder=""></textarea>
+            <div>
+              <a href="##"><span class="number_of_trns" id="view_times_of_txn_article">View times of txn</span></a>&nbsp;&nbsp;&nbsp;
+              <a href="##"><span                        id="post_article">Post</span></a><br />
+              <a href="##"><span                        id="resume_from_break_point_post_article">Resume from break point</span></a>
+            </div>
         </div>
         <div class="am-modal-footer">
-            <a href="##"><span class="number_of_trns" id="view_times_of_txn_article">View times of txn</span></a>&nbsp;&nbsp;&nbsp;
-            <a href="##"><span class="my_confirm"     id="post_article">Confirm</span></a>
             <span class="am-modal-btn my_cancel"  data-am-modal-cancel >Cancel</span>
-            <!--<span class="am-modal-btn my_confirm" data-am-modal-confirm>Confirm</span>-->
         </div>
     </div>
 </div>
