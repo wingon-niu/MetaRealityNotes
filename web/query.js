@@ -51,6 +51,58 @@ function get_real_notes()
 	}
 }
 
+function get_dream_notes()
+{
+	if (current_note_category === "dream") {
+		$("#my_modal_loading").modal('open');
+		const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
+		(async () => {
+			try {
+				let lower_bd  = new BigNumber(2);
+				lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+				lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+				let upper_bd  = new BigNumber(3);
+				upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+				upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+				const resp = await rpc.get_table_rows({ // 默认查询100条记录，以后再做翻页的功能
+					json:  true,
+					code:  metarealnote_contract,
+					scope: metarealnote_contract,
+					table: 'articles',
+					index_position: 3,
+					key_type: 'i128',
+					lower_bound: lower_bd,
+					upper_bound: upper_bd,
+					limit: 100,
+					reverse: false,
+					show_payer: false					
+				});
+				let articles = '';
+				let i = 0;
+				let len = resp.rows.length;
+				if (len === 0) {
+					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+				}
+				for (i = 0; i < len; i++) {
+					articles = articles + '<div>' + '<span>' + resp.rows[i].article_id + '</span>' + '</div>';
+//					articles = articles + '<img src="' + ipfs_root_url + resp.rows[i].cover_thumb_pic_ipfs_hash + '" alt="cover pic" onclick=\'show_pics_div(' + resp.rows[i].pub_album_id + ', "' + album_name + '");\'/>';
+//					articles = articles + '<div class="am-thumbnail-caption">';
+//					articles = articles + '<p class="am-text-xs">id: ' + resp.rows[i].pub_album_id + '<br />' + album_name + ' (' + resp.rows[i].pic_num + ')<br />' + timestamp_trans(resp.rows[i].create_time) + ' UTC</p>';
+//					articles = articles + '</div></div></div>';
+				}
+				$("#dream_notes_div").html(articles);
+				$("#my_modal_loading").modal('close');
+			} catch (e) {
+				$("#dream_notes_div").html('<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>');
+				$("#my_modal_loading").modal('close');
+				alert(e);
+			}
+		})();
+	}
+}
+
 //function get_public_albums()
 //{
 //	if (current_album_type == "public") {

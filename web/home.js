@@ -23,7 +23,7 @@ $(document).ready(function () {
 	$("#tab_dream").on("click", function() {
 		current_note_category = "dream";
 		current_article_id = 0;
-		//get_private_albums();
+		get_dream_notes();
 	});
 
 	$("#article_content_div").hide();
