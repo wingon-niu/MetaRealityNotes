@@ -34,14 +34,15 @@ function get_real_notes()
 					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 				}
 				for (i = 0; i < len; i++) {
-					articles = articles + '<div>' + '<span>' + resp.rows[i].article_id + '</span>' + '</div>';
-//					articles = articles + '<img src="' + ipfs_root_url + resp.rows[i].cover_thumb_pic_ipfs_hash + '" alt="cover pic" onclick=\'show_pics_div(' + resp.rows[i].pub_album_id + ', "' + album_name + '");\'/>';
-//					articles = articles + '<div class="am-thumbnail-caption">';
-//					articles = articles + '<p class="am-text-xs">id: ' + resp.rows[i].pub_album_id + '<br />' + album_name + ' (' + resp.rows[i].pic_num + ')<br />' + timestamp_trans(resp.rows[i].create_time) + ' UTC</p>';
-//					articles = articles + '</div></div></div>';
+					articles = articles + '<div><table width="100%" border="0">';
+					articles = articles + '<tr>' + '<td rowspan="3" width="80" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
+					articles = articles + '<tr>' + '<td>aaa</td>' + '</tr>';
+					articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+					articles = articles + '</table></div><hr>';
 				}
 				$("#real_notes_div").html(articles);
 				$("#my_modal_loading").modal('close');
+				//
 			} catch (e) {
 				$("#real_notes_div").html('<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>');
 				$("#my_modal_loading").modal('close');
