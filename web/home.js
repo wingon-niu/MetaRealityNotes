@@ -17,7 +17,7 @@ $(document).ready(function () {
 	$("#tab_real").on("click", function() {
 		current_note_category = "real";
 		current_article_id = 0;
-		//get_public_albums();
+		get_real_notes();
 	});
 
 	$("#tab_dream").on("click", function() {
@@ -95,7 +95,7 @@ $(document).ready(function () {
 	ScatterJS.plugins( new ScatterEOS() );
 	setTimeout(
 		function(){
-			//get_public_albums()
+			get_real_notes()
 	    }, 1000
 	);
 });
