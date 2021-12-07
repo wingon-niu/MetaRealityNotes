@@ -157,6 +157,89 @@ function get_dream_notes()
 	}
 }
 
+function show_article_content_div(article_id)
+{
+	if (current_note_category === "real" || current_note_category === "dream") {
+		doc_scroll_top = get_doc_scroll_top();
+		$("#my_modal_loading").modal('open');
+
+		var index_pos = 1;
+		var lower_bd  = new BigNumber(article_id);
+
+		const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
+		(async () => {
+			try {
+				const resp = await rpc.get_table_rows({
+					json:  true,
+					code:  metarealnote_contract,
+					scope: metarealnote_contract,
+					table: 'articles',
+					index_position: index_pos,
+					key_type: 'i64',
+					lower_bound: lower_bd,
+					limit: 1,
+					reverse: false,
+					show_payer: false
+				});
+				let article = '';
+				let i = 0;
+				let len = resp.rows.length;
+				if (len === 0) {
+					article = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+				}
+				for (i = 0; i < len; i++) {
+					article = article + '<div><table width="100%" border="0">';
+					article = article + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
+					article = article + '<tr>' + '<td><textarea rows="3" style="width:100%;" id="content_of_article_' + resp.rows[i].article_id + '" placeholder="" readonly="readonly"></textarea></td>' + '</tr>';
+					article = article + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+					article = article + '</table></div><hr />';
+				}
+				$("#article_content_div").html(article);
+				$("#my_modal_loading").modal('close');
+				for (i = 0; i < len; i++) {
+					let memo        = '';
+					let next_hash   = '';
+					let content     = '';
+					let transaction = null;
+					if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
+						transaction = await rpc.history_get_transaction(resp.rows[i].article_hash);
+						memo = transaction.trx.trx.actions[0].data.memo;
+						next_hash = memo.slice(0, memo.indexOf('}') + 1);
+						if (next_hash.length > 2) {
+							next_hash = memo.slice(1, memo.indexOf('}'));
+						} else {
+							next_hash = '';
+						}
+						content = memo.slice(memo.indexOf('}') + 1, memo.length);
+						if (resp.rows[i].type === 2) {                                                // 长文
+							transaction = await rpc.history_get_transaction(next_hash);
+							memo = transaction.trx.trx.actions[0].data.memo;
+							content = '                    ' + content + '\n';
+							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+						}
+					}
+					else {      // 数据存储在其他链上
+					}
+					$("#content_of_article_" + resp.rows[i].article_id).html(content);
+				}
+				//
+			} catch (e) {
+				$(".am-pureview-nav").html('');     // amaze ui need
+				$(".am-pureview-slider").html('');  // amaze ui need
+				$("#pics_ul").html('');
+				$("#pics_footer_msg").html('&nbsp;');
+				$("#my_modal_loading").modal('close');
+				$("#all_tabs").hide();
+				$("#pics_div").show();
+				window.scrollTo(0, 0);
+				alert(e);
+			}
+		})();
+	}
+}
+
+
+
 //function get_public_albums()
 //{
 //	if (current_album_type == "public") {
