@@ -196,7 +196,7 @@ function show_article_content_div(article_id)
 					articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
-				$("#article_content_div").html(articles);
+				$("#article_content_info_div").html(articles);
 				$("#my_modal_loading").modal('close');
 				for (i = 0; i < len; i++) {
 					let memo        = '';
@@ -225,6 +225,9 @@ function show_article_content_div(article_id)
 					$("#content_of_article_" + resp.rows[i].article_id).html(content);
 				}
 				//
+				$("#all_tabs").hide();
+				$("#article_content_div").show();
+				window.scrollTo(0, 0);
 			} catch (e) {
 				$("#article_content_footer_msg").html('&nbsp;');
 				$("#my_modal_loading").modal('close');
