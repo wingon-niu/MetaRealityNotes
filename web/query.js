@@ -36,7 +36,7 @@ function get_real_notes()
 				for (i = 0; i < len; i++) {
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-					articles = articles + '<tr>' + '<td><textarea rows="3" style="width:100%;" id="content_of_article_' + resp.rows[i].article_id + '" placeholder="" readonly="readonly"></textarea></td>' + '</tr>';
+					articles = articles + '<tr>' + '<td><pre id="content_of_article_' + resp.rows[i].article_id + '">&nbsp;</pre></td>' + '</tr>';
 					articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
@@ -60,7 +60,7 @@ function get_real_notes()
 						if (resp.rows[i].type === 2) {                                                // 长文
 							transaction = await rpc.history_get_transaction(next_hash);
 							memo = transaction.trx.trx.actions[0].data.memo;
-							content = '                    ' + content + '\n';
+							content = '               ' + content + '\n';
 							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
 						}
 					}
