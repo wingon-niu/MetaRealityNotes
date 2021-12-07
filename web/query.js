@@ -205,9 +205,10 @@ function show_article_content_div(article_id)
 					let content     = '';
 					let transaction = null;
 					if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
+						next_hash      = resp.rows[i].article_hash;
 						let first_loop = true;
 						do {
-							transaction = await rpc.history_get_transaction(resp.rows[i].article_hash);
+							transaction = await rpc.history_get_transaction(next_hash);
 							memo = transaction.trx.trx.actions[0].data.memo;
 							next_hash = memo.slice(0, memo.indexOf('}') + 1);
 							if (next_hash.length > 2) {
