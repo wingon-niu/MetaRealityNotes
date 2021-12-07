@@ -188,7 +188,8 @@ function show_article_content_div(article_id)
 				let i = 0;
 				let len = resp.rows.length;
 				if (len === 0) {
-					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+					if (get_cookie('i18n_lang') === "zh") articles = '<p>文章不存在或者已经被删除。</p>';
+					else                                  articles = '<p>The article does not exist or has been deleted.</p>';
 				}
 				for (i = 0; i < len; i++) {
 					articles = articles + '<div><table width="100%" border="0">';
