@@ -218,8 +218,8 @@ function show_article_content_div(article_id)
 							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
 							if (resp.rows[i].type === 2 && first_loop) {                              // 长文
 								content = '        ' + content + '\n';
-								first_loop = false;
 							}
+							first_loop = false;
 						} while (next_hash != '');
 					}
 					else {      // 数据存储在其他链上
