@@ -205,21 +205,22 @@ function show_article_content_div(article_id)
 					let content     = '';
 					let transaction = null;
 					if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
-						transaction = await rpc.history_get_transaction(resp.rows[i].article_hash);
-						memo = transaction.trx.trx.actions[0].data.memo;
-						next_hash = memo.slice(0, memo.indexOf('}') + 1);
-						if (next_hash.length > 2) {
-							next_hash = memo.slice(1, memo.indexOf('}'));
-						} else {
-							next_hash = '';
-						}
-						content = memo.slice(memo.indexOf('}') + 1, memo.length);
-						if (resp.rows[i].type === 2) {                                                // 长文
-							transaction = await rpc.history_get_transaction(next_hash);
+						let first_loop = true;
+						do {
+							transaction = await rpc.history_get_transaction(resp.rows[i].article_hash);
 							memo = transaction.trx.trx.actions[0].data.memo;
-							content = '        ' + content + '\n';
+							next_hash = memo.slice(0, memo.indexOf('}') + 1);
+							if (next_hash.length > 2) {
+								next_hash = memo.slice(1, memo.indexOf('}'));
+							} else {
+								next_hash = '';
+							}
 							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-						}
+							if (resp.rows[i].type === 2 && first_loop) {                              // 长文
+								content = '        ' + content + '\n';
+								first_loop = false;
+							}
+						} while (next_hash != '');
 					}
 					else {      // 数据存储在其他链上
 					}
