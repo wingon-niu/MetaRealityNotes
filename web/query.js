@@ -165,6 +165,7 @@ function show_article_content_div(article_id)
 
 		var index_pos = 1;
 		var lower_bd  = new BigNumber(article_id);
+		var upper_bd  = new BigNumber(article_id + 1);
 
 		const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
 		(async () => {
@@ -177,24 +178,25 @@ function show_article_content_div(article_id)
 					index_position: index_pos,
 					key_type: 'i64',
 					lower_bound: lower_bd,
+					upper_bound: upper_bd,
 					limit: 1,
 					reverse: false,
 					show_payer: false
 				});
-				let article = '';
+				let articles = '';
 				let i = 0;
 				let len = resp.rows.length;
 				if (len === 0) {
-					article = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 				}
 				for (i = 0; i < len; i++) {
-					article = article + '<div><table width="100%" border="0">';
-					article = article + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-					article = article + '<tr>' + '<td><textarea rows="3" style="width:100%;" id="content_of_article_' + resp.rows[i].article_id + '" placeholder="" readonly="readonly"></textarea></td>' + '</tr>';
-					article = article + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
-					article = article + '</table></div><hr />';
+					articles = articles + '<div><table width="100%" border="0">';
+					articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
+					articles = articles + '<tr>' + '<td><textarea rows="3" style="width:100%;" id="content_of_article_' + resp.rows[i].article_id + '" placeholder="" readonly="readonly"></textarea></td>' + '</tr>';
+					articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+					articles = articles + '</table></div><hr />';
 				}
-				$("#article_content_div").html(article);
+				$("#article_content_div").html(articles);
 				$("#my_modal_loading").modal('close');
 				for (i = 0; i < len; i++) {
 					let memo        = '';
@@ -224,13 +226,10 @@ function show_article_content_div(article_id)
 				}
 				//
 			} catch (e) {
-				$(".am-pureview-nav").html('');     // amaze ui need
-				$(".am-pureview-slider").html('');  // amaze ui need
-				$("#pics_ul").html('');
-				$("#pics_footer_msg").html('&nbsp;');
+				$("#article_content_footer_msg").html('&nbsp;');
 				$("#my_modal_loading").modal('close');
 				$("#all_tabs").hide();
-				$("#pics_div").show();
+				$("#article_content_div").show();
 				window.scrollTo(0, 0);
 				alert(e);
 			}
