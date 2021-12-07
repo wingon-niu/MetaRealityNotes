@@ -66,7 +66,7 @@ function get_real_notes()
 					}
 					else {      // 数据存储在其他链上
 					}
-					$("#content_of_article_" + resp.rows[i].article_id).html(content);
+					$("#content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 				}
 				//
 			} catch (e) {

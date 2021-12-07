@@ -36,3 +36,23 @@ function get_doc_scroll_top()
 	}
 	return t;
 }
+
+function my_escapeHTML(unsafe)
+{
+	return unsafe
+		.replace(/&/g, "&amp;")
+		.replace(/</g, "&lt;")
+		.replace(/>/g, "&gt;")
+		.replace(/"/g, "&quot;")
+		.replace(/'/g, "&#039;");
+}
+
+function my_unescapeHTML(safe)
+{
+	return safe
+		.replace(/&amp;/g,  '&')
+		.replace(/&lt;/g,   '<')
+		.replace(/&gt;/g,   '>')
+		.replace(/&quot;/g, '"')
+		.replace(/&#039;/g, "'");
+}
