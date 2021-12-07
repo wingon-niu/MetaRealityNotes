@@ -193,7 +193,7 @@ function show_article_content_div(article_id)
 				for (i = 0; i < len; i++) {
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-					articles = articles + '<tr>' + '<td><pre id="content_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
+					articles = articles + '<tr>' + '<td><pre id="content_page_of_article_' + resp.rows[i].article_id + '">&nbsp;</pre></td>' + '</tr>';
 					articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
@@ -223,7 +223,7 @@ function show_article_content_div(article_id)
 					}
 					else {      // 数据存储在其他链上
 					}
-					$("#content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
+					$("#content_page_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 				}
 				//
 				$("#all_tabs").hide();
