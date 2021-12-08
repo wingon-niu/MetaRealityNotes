@@ -54,4 +54,5 @@ const eos_per_trn_len     = 63;           // 一个utf8编码的汉字3个字节
 const eth_per_trn_len     = 2000;
 const btc_per_trn_len     = 1000;
 
-var current_page = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
+var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
+var articles_array = [0];    // 数组，保存所有打开的文章的ID，因为从文章中可以打开别的文章，所以可能会有多个打开的文章，用于点击后退按钮功能时从一个文章后退到前一个文章，逐个进行后退
