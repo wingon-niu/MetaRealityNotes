@@ -78,6 +78,20 @@ function show_users_follow_me()
 	$("#users_follow_me_div").show();
 }
 
+function show_articles_of_user_i_follow()
+{
+	hide_all_pages();
+	current_page = "articles_of_user_i_follow";
+	$("#articles_of_user_i_follow_div").show();
+}
+
+function show_articles_of_user_follow_me()
+{
+	hide_all_pages();
+	current_page = "articles_of_user_follow_me";
+	$("#articles_of_user_follow_me_div").show();
+}
+
 function hide_all_pages()
 {
 	$("#all_tabs").hide();
@@ -99,14 +113,26 @@ function go_back()
 		} else {                         // 没有打开的文章了
 			current_article_id = 0;
 			$("#article_content_div").hide();
-			if      (current_page === "home")                       { $("#all_tabs").show();                   }
-			else if (current_page === "my_articles")                { $("#my_articles_div").show();            }
-			else if (current_page === "my_replies")                 { $("#my_replies_div").show();             }
-			else if (current_page === "articles_of_user_i_follow")  {                                          }
-			else if (current_page === "articles_of_user_follow_me") {                                          }
-			else                                                    { alert("go_back unknown error.");         }
+			if      (current_page === "home")                       { $("#all_tabs").show();                       }
+			else if (current_page === "my_articles")                { $("#my_articles_div").show();                }
+			else if (current_page === "my_replies")                 { $("#my_replies_div").show();                 }
+			else if (current_page === "articles_of_user_i_follow")  { $("#articles_of_user_i_follow_div").show();  }
+			else if (current_page === "articles_of_user_follow_me") { $("#articles_of_user_follow_me_div").show(); }
+			else                                                    { alert("go_back unknown error.");             }
 			window.scrollTo(0, doc_scroll_top);
 		}
 	} else {                             // 不在打开的文章中
+		if      (current_page === "articles_of_user_i_follow") {
+			hide_all_pages();
+			current_page = "users_i_follow";
+			$("#users_i_follow_div").show();
+		}
+		else if (current_page === "articles_of_user_follow_me") {
+			hide_all_pages();
+			current_page = "users_follow_me";
+			$("#users_follow_me_div").show();
+		}
+		else {
+		}
 	}
 }
