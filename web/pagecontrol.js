@@ -25,10 +25,6 @@ function page_control_init()
 function show_home()
 {
 	$("#menu_body").offCanvas('close');
-	if(current_user_account === "") {
-		alert($("#please_login").html());
-		return;
-	}
 	hide_all_pages();
 	current_page = "home";
 	$("#all_tabs").show();
