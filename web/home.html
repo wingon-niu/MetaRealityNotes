@@ -55,6 +55,7 @@
 <script src="/trn.js"></script>
 <script src="/home.js"></script>
 <script src="/query.js"></script>
+<script src="/pagecontrol.js"></script>
 
 
 
@@ -107,26 +108,6 @@
 
 
 
-<!--  当前位置  -->
-<!--  -------------
-<div data-am-sticky="{top:48}">
-  <table style="width:100%;border-width:0px 0px 0px 0px;background-color:#66B3FF;">
-    <tr>
-      <td class="am-text-xs" style="width:112px;white-space:nowrap;"            id="current_block_chain">Current block chain:</td>
-      <td class="am-text-xs" style="width: 78px;white-space:nowrap;"            id="current_block_chain_value">EOS</td>
-      <td class="am-text-xs" style="word-wrap:break-word;word-break:break-all;" id="current_account_name">&nbsp;</td>
-    </tr>
-    <tr>
-      <td class="am-text-xs" style="width:112px;white-space:nowrap;"            id="current_album_label">Current album:</td>
-      <td class="am-text-xs" style="width: 78px;white-space:nowrap;"            id="current_album_type">Public album</td>
-      <td class="am-text-xs" style="word-wrap:break-word;word-break:break-all;" id="current_album_name">&nbsp;</td>
-    </tr>
-  </table>
-</div>
------------------->
-
-
-
 <!--  现实笔记、梦想笔记 Tabs  -->
 <div data-am-widget="tabs" class="am-tabs am-tabs-default" id="all_tabs">
     <ul class="am-tabs-nav am-cf">
@@ -151,9 +132,56 @@
 
 <!--  显示文章内容  -->
 <div style="position:absolute;z-index:100;top:60px;width:100%;background-color:#FBFBFF;" id="article_content_div">
-    <div id="article_content_info_div">&nbsp;</div>
-    <p id="article_content_footer_msg">&nbsp;</p>
-    <p>&nbsp;</p>
+    <div id="article_content_info_div">article_content</div>
+    <div id="article_content_footer_msg">&nbsp;</div>
+</div>
+
+
+
+<!--  我的文章  -->
+<div style="position:absolute;z-index:100;top:60px;width:100%;background-color:#FBFBFF;" id="my_articles_div">
+    <div id="my_articles_info_div">my_articles</div>
+    <div id="my_articles_footer_msg">&nbsp;</div>
+</div>
+
+
+
+<!--  我的回复  -->
+<div style="position:absolute;z-index:100;top:60px;width:100%;background-color:#FBFBFF;" id="my_replies_div">
+    <div id="my_replies_info_div">my_replies</div>
+    <div id="my_replies_footer_msg">&nbsp;</div>
+</div>
+
+
+
+<!--  我关注的用户  -->
+<div style="position:absolute;z-index:100;top:60px;width:100%;background-color:#FBFBFF;" id="users_i_follow_div">
+    <div id="users_i_follow_info_div">users_i_follow</div>
+    <div id="users_i_follow_footer_msg">&nbsp;</div>
+</div>
+
+
+
+<!--  关注我的用户  -->
+<div style="position:absolute;z-index:100;top:60px;width:100%;background-color:#FBFBFF;" id="users_follow_me_div">
+    <div id="users_follow_me_info_div">users_follow_me</div>
+    <div id="users_follow_me_footer_msg">&nbsp;</div>
+</div>
+
+
+
+<!--  我关注的用户的文章  -->
+<div style="position:absolute;z-index:100;top:60px;width:100%;background-color:#FBFBFF;" id="articles_of_user_i_follow_div">
+    <div id="articles_of_user_i_follow_info_div">articles_of_user_i_follow</div>
+    <div id="articles_of_user_i_follow_footer_msg">&nbsp;</div>
+</div>
+
+
+
+<!--  关注我的用户的文章  -->
+<div style="position:absolute;z-index:100;top:60px;width:100%;background-color:#FBFBFF;" id="articles_of_user_follow_me_div">
+    <div id="articles_of_user_follow_me_info_div">articles_of_user_follow_me</div>
+    <div id="articles_of_user_follow_me_footer_msg">&nbsp;</div>
 </div>
 
 

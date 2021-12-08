@@ -27,6 +27,12 @@ $(document).ready(function () {
 	});
 
 	$("#article_content_div").hide();
+	$("#my_articles_div").hide();
+	$("#my_replies_div").hide();
+	$("#users_i_follow_div").hide();
+	$("#users_follow_me_div").hide();
+	$("#articles_of_user_i_follow_div").hide();
+	$("#articles_of_user_follow_me_div").hide();
 
 	$("#header_go_back").on("click", function() {
 		go_back();
