@@ -55,6 +55,10 @@ function change_lang(lang_type)
 			$("#article_content").html($.i18n.prop('article_content'));
 			$("#post_article").html($.i18n.prop('post_article'));
 			$("#resume_from_break_point_post_article").html($.i18n.prop('resume_from_break_point_post_article'));
+			$("#my_articles_menu").html($.i18n.prop('my_articles'));
+			$("#my_replies_menu").html($.i18n.prop('my_replies'));
+			$("#users_i_follow_menu").html($.i18n.prop('users_i_follow'));
+			$("#users_follow_me_menu").html($.i18n.prop('users_follow_me'));
 
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));
