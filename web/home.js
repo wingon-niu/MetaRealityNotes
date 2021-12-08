@@ -34,6 +34,8 @@ $(document).ready(function () {
 	$("#articles_of_user_i_follow_div").hide();
 	$("#articles_of_user_follow_me_div").hide();
 
+	page_control_init();
+
 	$("#header_go_back").on("click", function() {
 		go_back();
 	});
