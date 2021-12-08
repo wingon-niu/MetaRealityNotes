@@ -53,3 +53,5 @@ var post_article_current_index  = -1;     // 正在发送的字符串在整个�
 const eos_per_trn_len     = 63;           // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
 const eth_per_trn_len     = 2000;
 const btc_per_trn_len     = 1000;
+
+var current_page = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
