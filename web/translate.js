@@ -63,6 +63,7 @@ function change_lang(lang_type)
 			$("#home_page").html($.i18n.prop('home_page'));
 			$("#forward").html($.i18n.prop('forward'));
 			$("#reply").html($.i18n.prop('reply'));
+			$("#forward_article").html($.i18n.prop('forward_article'));
 
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));
