@@ -109,16 +109,6 @@ $(document).ready(function () {
 	);
 });
 
-function go_back()
-{
-	if (current_note_category != "" && current_article_id != 0) {
-		current_article_id = 0;
-		$("#article_content_div").hide();
-		$("#all_tabs").show();
-		window.scrollTo(0, doc_scroll_top);
-	}
-}
-
 function write_an_article_show_modal()
 {
 	$('#div_write_an_article').modal({

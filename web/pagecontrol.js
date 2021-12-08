@@ -89,3 +89,13 @@ function hide_all_pages()
 	$("#articles_of_user_i_follow_div").hide();
 	$("#articles_of_user_follow_me_div").hide();
 }
+
+function go_back()
+{
+	if (current_note_category != "" && current_article_id != 0) {
+		current_article_id = 0;
+		$("#article_content_div").hide();
+		$("#all_tabs").show();
+		window.scrollTo(0, doc_scroll_top);
+	}
+}
