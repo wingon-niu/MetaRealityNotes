@@ -20,6 +20,7 @@ function page_control_init()
 
 function show_my_articles()
 {
+	$("#menu_body").offCanvas('close');
 	if(current_user_account === "") {
 		alert($("#please_login").html());
 		return;
@@ -28,6 +29,7 @@ function show_my_articles()
 
 function show_my_replies()
 {
+	$("#menu_body").offCanvas('close');
 	if(current_user_account === "") {
 		alert($("#please_login").html());
 		return;
@@ -36,6 +38,7 @@ function show_my_replies()
 
 function show_users_i_follow()
 {
+	$("#menu_body").offCanvas('close');
 	if(current_user_account === "") {
 		alert($("#please_login").html());
 		return;
@@ -44,6 +47,7 @@ function show_users_i_follow()
 
 function show_users_follow_me()
 {
+	$("#menu_body").offCanvas('close');
 	if(current_user_account === "") {
 		alert($("#please_login").html());
 		return;
