@@ -33,6 +33,7 @@ $(document).ready(function () {
 	$("#users_follow_me_div").hide();
 	$("#articles_of_user_i_follow_div").hide();
 	$("#articles_of_user_follow_me_div").hide();
+	$("#my_messages_div").hide();
 
 	page_control_init();
 

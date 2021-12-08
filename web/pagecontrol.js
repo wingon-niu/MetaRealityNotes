@@ -20,16 +20,32 @@ function page_control_init()
 
 function show_my_articles()
 {
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
 }
 
 function show_my_replies()
 {
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
 }
 
 function show_users_i_follow()
 {
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
 }
 
 function show_users_follow_me()
 {
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
 }
