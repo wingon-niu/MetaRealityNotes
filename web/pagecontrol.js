@@ -1,6 +1,10 @@
 
 function page_control_init()
 {
+	$("#home_page").on("click", function() {
+		show_home();
+	});
+
 	$("#my_articles_menu").on("click", function() {
 		show_my_articles();
 	});
@@ -16,6 +20,18 @@ function page_control_init()
 	$("#users_follow_me_menu").on("click", function() {
 		show_users_follow_me();
 	});
+}
+
+function show_home()
+{
+	$("#menu_body").offCanvas('close');
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
+	hide_all_pages();
+	current_page = "home";
+	$("#all_tabs").show();
 }
 
 function show_my_articles()
