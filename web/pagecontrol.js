@@ -92,6 +92,15 @@ function hide_all_pages()
 
 function go_back()
 {
+	if (articles_array.length > 1) {     // 正在打开的文章中
+		articles_array.pop();
+		if (articles_array.length > 1) { // 还有打开的文章
+			
+		} else {                         // 没有打开的文章了
+		}
+	} else {                             // 不在打开的文章中
+	}
+
 	if (current_note_category != "" && current_article_id != 0) {
 		current_article_id = 0;
 		$("#article_content_div").hide();

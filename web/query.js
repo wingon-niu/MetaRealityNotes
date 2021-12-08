@@ -160,6 +160,9 @@ function get_dream_notes()
 function show_article_content_div(article_id)
 {
 	if (current_note_category === "real" || current_note_category === "dream") {
+		if (articles_array.indexOf(article_id) === -1) {
+			articles_array.push(article_id);
+		}
 		current_article_id = article_id;
 		doc_scroll_top = get_doc_scroll_top();
 		$("#my_modal_loading").modal('open');
