@@ -34,9 +34,9 @@ function get_real_notes()
 					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 				}
 				for (i = 0; i < len; i++) {
-					let f = '';
+					let f = 'id' + resp.rows[i].article_id + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 					if (resp.rows[i].forward_article_id > 0) {
-						f = '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
+						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
@@ -117,9 +117,9 @@ function get_dream_notes()
 					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 				}
 				for (i = 0; i < len; i++) {
-					let f = '';
+					let f = 'id' + resp.rows[i].article_id + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 					if (resp.rows[i].forward_article_id > 0) {
-						f = '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
+						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
@@ -205,9 +205,9 @@ function show_article_content_div(article_id)
 					else                                  articles = '<p>The article does not exist or has been deleted.</p>';
 				}
 				for (i = 0; i < len; i++) {
-					let f = '';
+					let f = 'id' + resp.rows[i].article_id + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 					if (resp.rows[i].forward_article_id > 0) {
-						f = '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
+						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
