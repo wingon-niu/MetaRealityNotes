@@ -25,6 +25,7 @@ function page_control_init()
 function show_home()
 {
 	$("#menu_body").offCanvas('close');
+	articles_array = [0];
 	hide_all_pages();
 	current_page = "home";
 	$("#all_tabs").show();
@@ -37,6 +38,7 @@ function show_my_articles()
 		alert($("#please_login").html());
 		return;
 	}
+	articles_array = [0];
 	hide_all_pages();
 	current_page = "my_articles";
 	$("#my_articles_div").show();
@@ -49,6 +51,7 @@ function show_my_replies()
 		alert($("#please_login").html());
 		return;
 	}
+	articles_array = [0];
 	hide_all_pages();
 	current_page = "my_replies";
 	$("#my_replies_div").show();
@@ -61,6 +64,7 @@ function show_users_i_follow()
 		alert($("#please_login").html());
 		return;
 	}
+	articles_array = [0];
 	hide_all_pages();
 	current_page = "users_i_follow";
 	$("#users_i_follow_div").show();
@@ -73,6 +77,7 @@ function show_users_follow_me()
 		alert($("#please_login").html());
 		return;
 	}
+	articles_array = [0];
 	hide_all_pages();
 	current_page = "users_follow_me";
 	$("#users_follow_me_div").show();
@@ -80,6 +85,7 @@ function show_users_follow_me()
 
 function show_articles_of_user_i_follow()
 {
+	articles_array = [0];
 	hide_all_pages();
 	current_page = "articles_of_user_i_follow";
 	$("#articles_of_user_i_follow_div").show();
@@ -87,6 +93,7 @@ function show_articles_of_user_i_follow()
 
 function show_articles_of_user_follow_me()
 {
+	articles_array = [0];
 	hide_all_pages();
 	current_page = "articles_of_user_follow_me";
 	$("#articles_of_user_follow_me_div").show();
