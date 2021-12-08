@@ -229,13 +229,12 @@ function show_article_content_div(article_id)
 					$("#content_page_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 				}
 				//
-				$("#all_tabs").hide();
+				hide_all_pages();
 				$("#article_content_div").show();
 				window.scrollTo(0, 0);
 			} catch (e) {
-				$("#article_content_footer_msg").html('&nbsp;');
 				$("#my_modal_loading").modal('close');
-				$("#all_tabs").hide();
+				hide_all_pages();
 				$("#article_content_div").show();
 				window.scrollTo(0, 0);
 				alert(e);
