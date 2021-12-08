@@ -61,6 +61,8 @@ function change_lang(lang_type)
 			$("#users_follow_me_menu").html($.i18n.prop('users_follow_me'));
 			$("#please_login").html($.i18n.prop('please_login'));
 			$("#home_page").html($.i18n.prop('home_page'));
+			$("#forward").html($.i18n.prop('forward'));
+			$("#reply").html($.i18n.prop('reply'));
 
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));

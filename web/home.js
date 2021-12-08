@@ -300,6 +300,14 @@ function do_post_article()
 	}
 }
 
+function forward_an_article(article_id)
+{
+}
+
+function reply_an_article(article_id)
+{
+}
+
 
 
 //// 为图片点赞
