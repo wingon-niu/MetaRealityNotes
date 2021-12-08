@@ -71,8 +71,7 @@ $(document).ready(function () {
 
 	$("#write_an_article_href").on("click", function() {
 		if(current_user_account === "") {
-			if (get_cookie('i18n_lang') === "zh") alert("请先登录。");
-			else                                  alert("Please login.");
+			alert($("#please_login").html());
 			return;
 		}
 		$("#forward_article_id").val("0");
@@ -302,10 +301,20 @@ function do_post_article()
 
 function forward_an_article(article_id)
 {
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
+	$("#forward_article_id").val(article_id.toString());
+	write_an_article_show_modal();
 }
 
 function reply_an_article(article_id)
 {
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
 }
 
 
