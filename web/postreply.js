@@ -24,7 +24,7 @@ function check_post_reply()
 	let my_target_article_id = Number($("#target_article_id").val());
 	let my_target_reply_id   = Number($("#target_reply_id").val());
 	if ( !( my_target_article_id > 0 && my_target_reply_id === 0 || my_target_article_id === 0 && my_target_reply_id > 0 ) ) {
-		alert("target_article_id is error or target_reply_id is error.");
+		alert("target_article_id is wrong or target_reply_id is wrong.");
 		return false;
 	}
 	let my_storage_location = $("input[name='radio20']:checked").val();  // 存储位置
@@ -40,4 +40,9 @@ function check_post_reply()
 		return false;
 	}
 	return true;
+}
+
+function view_times_of_txn_reply()
+{
+	if (check_post_reply() === false) return;
 }

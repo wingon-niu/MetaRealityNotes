@@ -98,6 +98,10 @@ $(document).ready(function () {
 		$("#title_of_article").attr("disabled", false);
 	});
 
+	$("#view_times_of_txn_reply").on("click", function() {
+		view_times_of_txn_reply();
+	});
+
 	//
 
 	ScatterJS.plugins( new ScatterEOS() );
