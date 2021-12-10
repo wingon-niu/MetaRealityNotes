@@ -268,8 +268,8 @@ function show_article_content_div(article_id)
 					show_payer: false
 				});
 				let replies = '';
-				let i = 0;
-				let len = resp.rows.length;
+				i   = 0;
+				len = resp.rows.length;
 				if (len === 0) {
 					replies = '&nbsp;';
 				}
