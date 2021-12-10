@@ -68,8 +68,22 @@ function view_times_of_txn_reply()
 
 function post_reply()
 {
+	post_reply_first_time = true;
+	do_post_reply();
 }
 
 function resume_from_break_point_post_reply()
 {
+	if (post_reply_first_time || trn_success) {
+		if (get_cookie('i18n_lang') === "zh") alert("只有在交易发送过程中产生错误而中止，才可以使用断点续传功能。");
+		else                                  alert("This function can only be used if the transaction is aborted due to an error in the sending process.");
+	} else {
+		do_post_reply();
+	}
+}
+
+function do_post_reply()
+{
+	if (check_post_reply() === false) return;
+
 }
