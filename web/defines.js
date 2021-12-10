@@ -50,6 +50,10 @@ var post_article_first_time     = true;   // true：表示第一次发送文章�
 var post_article_write_to_table = false;  // true：表示合约metarealnote的postarticle交易已经完成；false：表示没有完成
 var post_article_current_index  = -1;     // 正在发送的字符串在整个字符串数组中的位置下标。也就是发送失败后，进行断点续传的起始下标
 
+var post_reply_first_time       = true;
+var post_reply_write_to_table   = false;
+var post_reply_current_index    = -1;
+
 const eos_per_trn_len     = 3;            //63;           // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
 const eth_per_trn_len     = 2000;
 const btc_per_trn_len     = 1000;
