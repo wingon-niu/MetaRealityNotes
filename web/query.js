@@ -21,8 +21,8 @@ function get_real_notes()
 					table: 'articles',
 					index_position: 3,
 					key_type: 'i128',
-					lower_bound: lower_bd,
-					upper_bound: upper_bd,
+					lower_bound: lower_bd.toFixed(),
+					upper_bound: upper_bd.toFixed(),
 					limit: 100,
 					reverse: false,
 					show_payer: false					
@@ -104,8 +104,8 @@ function get_dream_notes()
 					table: 'articles',
 					index_position: 3,
 					key_type: 'i128',
-					lower_bound: lower_bd,
-					upper_bound: upper_bd,
+					lower_bound: lower_bd.toFixed(),
+					upper_bound: upper_bd.toFixed(),
 					limit: 100,
 					reverse: false,
 					show_payer: false					
@@ -191,8 +191,8 @@ function show_article_content_div(article_id)
 					table: 'articles',
 					index_position: index_pos,
 					key_type: 'i64',
-					lower_bound: lower_bd,
-					upper_bound: upper_bd,
+					lower_bound: lower_bd.toFixed(),
+					upper_bound: upper_bd.toFixed(),
 					limit: 1,
 					reverse: false,
 					show_payer: false
@@ -261,8 +261,8 @@ function show_article_content_div(article_id)
 					table: 'replies',
 					index_position: 2,
 					key_type: 'i128',
-					lower_bound: lower_bd,
-					upper_bound: upper_bd,
+					lower_bound: lower_bd.toFixed(),
+					upper_bound: upper_bd.toFixed(),
 					limit: 100,
 					reverse: false,
 					show_payer: false
