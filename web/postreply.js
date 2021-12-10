@@ -86,22 +86,16 @@ function do_post_reply()
 {
 	if (check_post_reply() === false) return;
 
-
-	let my_category           = Number($("input[name='radio10']:checked").val());
-	let my_type               = Number($("input[name='radio11']:checked").val());
-	let my_storage_location   = Number($("input[name='radio12']:checked").val());
-	let my_forward_article_id = Number($("#forward_article_id").val());
-	let my_quantity           = $("#amount_per_trn_article").val().trim();
-	let my_title_of_article   = $("#title_of_article").val().trim();
-	let my_content            = $("#content_of_article").val();
+	let my_storage_location   = Number($("input[name='radio20']:checked").val());
+	let my_target_article_id  = Number($("#target_article_id").val());
+	let my_target_reply_id    = Number($("#target_reply_id").val());
+	let my_quantity           = $("#amount_per_trn_reply").val().trim();
+	let my_content            = $("#content_of_reply").val();
 
 	let per_trn_len = 10;     // 每个交易memo存放的数据长度，不同的链设置不同的值
 	let strArray    = [];
 
 	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
-		if (my_type === 2) {                     // 长文
-			strArray.push(my_title_of_article);  // 长文的标题单独保存在一个交易的memo里
-		}
 		per_trn_len = eos_per_trn_len;
 	}
 	else {        // 内容数据存储在其他链
@@ -113,11 +107,11 @@ function do_post_reply()
 		strArray.push(my_content.slice(i, i + per_trn_len));
 	}
 
-	if (post_article_first_time) {                 // 如果是第一次发送文章
-		post_article_first_time     = false;
+	if (post_reply_first_time) {                 // 如果是第一次发送
+		post_reply_first_time       = false;
 		trn_hash                    = "";
-		post_article_write_to_table = false;
-		post_article_current_index  = strArray.length - 1;
+		post_reply_write_to_table   = false;
+		post_reply_current_index    = strArray.length - 1;
 	}
 
 	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
@@ -126,8 +120,8 @@ function do_post_reply()
 				try {
 					var result = null;
 
-					for (let j = post_article_current_index; j >= 0; j--) {
-						post_article_current_index = j;
+					for (let j = post_reply_current_index; j >= 0; j--) {
+						post_reply_current_index = j;
 						result = await api.transact(
 							{
 								actions: [{
@@ -154,24 +148,23 @@ function do_post_reply()
 							trn_hash    = result.transaction_id;
 						} else { trn_failed(); return; }
 					}
-					post_article_current_index = -1;
-					if (post_article_write_to_table === false) {
+					post_reply_current_index = -1;
+					if (post_reply_write_to_table === false) {
 						result = await api.transact(
 							{
 								actions: [{
 									account: metarealnote_contract,
-									name: 'postarticle',
+									name: 'postreply',
 									authorization: [{
 										actor: account.name,
 										permission: account.authority
 									}],
 									data: {
 										user: account.name,
-										article_hash: trn_hash,
-										category: my_category,
-										type: my_type,
+										reply_hash: trn_hash,
 										storage_location: my_storage_location,
-										forward_article_id: my_forward_article_id
+										target_article_id: my_target_article_id,
+										target_reply_id: my_target_reply_id
 									}
 								}]
 							},{
@@ -181,7 +174,7 @@ function do_post_reply()
 						);
 						if (typeof(result) === 'object' && result.transaction_id != "") {
 							trn_success                 = true;
-							post_article_write_to_table = true;
+							post_reply_write_to_table   = true;
 						} else { trn_failed(); return; }
 					}
 					alert("OK");
