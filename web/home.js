@@ -102,6 +102,14 @@ $(document).ready(function () {
 		view_times_of_txn_reply();
 	});
 
+	$("#post_reply").on("click", function() {
+		post_reply();
+	});
+
+	$("#resume_from_break_point_post_reply").on("click", function() {
+		resume_from_break_point_post_reply();
+	});
+
 	//
 
 	ScatterJS.plugins( new ScatterEOS() );

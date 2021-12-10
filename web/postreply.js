@@ -65,3 +65,11 @@ function view_times_of_txn_reply()
 	if (get_cookie('i18n_lang') === "zh") alert("需要发送的交易次数总共为：" + times_of_txn + "。请确保您的帐户有足够余额以及足够的CPU/NET资源。");
 	else                                  alert("The total number of transactions to be sent is: " + times_of_txn + ". Please ensure that your account has sufficient balance and sufficient CPU/NET resources");
 }
+
+function post_reply()
+{
+}
+
+function resume_from_break_point_post_reply()
+{
+}
