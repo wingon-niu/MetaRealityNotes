@@ -34,7 +34,7 @@ function get_real_notes()
 					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 				}
 				for (i = 0; i < len; i++) {
-					let f = 'id' + resp.rows[i].article_id + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+					let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + '{' + resp.rows[i].article_hash + '}\');">id' + resp.rows[i].article_id + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 					if (resp.rows[i].forward_article_id > 0) {
 						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
@@ -117,7 +117,7 @@ function get_dream_notes()
 					articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 				}
 				for (i = 0; i < len; i++) {
-					let f = 'id' + resp.rows[i].article_id + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+					let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + '{' + resp.rows[i].article_hash + '}\');">id' + resp.rows[i].article_id + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 					if (resp.rows[i].forward_article_id > 0) {
 						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
@@ -205,7 +205,7 @@ function show_article_content_div(article_id)
 					else                                  articles = '<p>The article does not exist or has been deleted.</p>';
 				}
 				for (i = 0; i < len; i++) {
-					let f = 'id' + resp.rows[i].article_id + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+					let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + '{' + resp.rows[i].article_hash + '}\');">id' + resp.rows[i].article_id + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 					if (resp.rows[i].forward_article_id > 0) {
 						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
