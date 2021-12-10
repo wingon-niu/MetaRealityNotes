@@ -31,6 +31,7 @@ function check_post_article()
 		else                                  alert("Error: The content of article is blank.");
 		return false;
 	}
+	return true;
 }
 
 function view_times_of_txn_article()
