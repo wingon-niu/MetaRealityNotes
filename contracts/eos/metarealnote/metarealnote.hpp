@@ -147,8 +147,8 @@ private:
         uint64_t     reply_id;
         string       reply_hash;
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
-        uint64_t     target_article_id;   // 目标文章的id，0表示自己不是文章的回复
-        uint64_t     target_reply_id;     // 目标回复的id，0表示自己不是回复的回复
+        uint64_t     target_article_id;   // 目标文章的id。所有的回复都有一个目标文章。
+        uint64_t     target_reply_id;     // 目标回复的id。回复属于一个目标文章，同时回复还可以指向一个回复，也就是对回复进行的回复。
         uint16_t     replied_times;       // 自己被回复的次数
         uint32_t     post_time;
 
