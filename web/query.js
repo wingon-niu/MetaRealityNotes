@@ -276,7 +276,7 @@ function show_article_content_div(article_id)
 				for (i = 0; i < len; i++) {
 					let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].reply_hash + '}\');">id' + resp.rows[i].reply_id + '</a>&nbsp;&nbsp;';
 					if (resp.rows[i].target_reply_id > 0) {
-						f = f + 
+						f = f + $("#reply_to").html() + '<span id="user_of_reply_' + resp.rows[i].target_reply_id + '">&nbsp;</span>&nbsp;&nbsp;id' + resp.rows[i].target_reply_id;
 					}
 					replies = replies + '<div><table width="100%" border="0">';
 					replies = replies + '<tr>' + '<td rowspan="3" width="40" align="center" valign="top">&nbsp;</td>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
