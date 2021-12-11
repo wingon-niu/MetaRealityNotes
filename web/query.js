@@ -283,6 +283,7 @@ function show_article_content_div(article_id)
 					replies = replies + '<tr>' + '<td>' + f + '<pre id="content_of_reply_' + resp.rows[i].reply_id + '">&nbsp;</pre></td>' + '</tr>';
 					replies = replies + '<tr>' + '<td align="right"><a href="##" onclick="reply_an_article(' + current_article_id + ', ' + resp.rows[i].reply_id + ');">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 					replies = replies + '</table></div><hr />';
+					reply_user_map.set(resp.rows[i].reply_id, resp.rows[i].user);
 				}
 				$("#article_replies_div").html(replies);
 				for (i = 0; i < len; i++) {
