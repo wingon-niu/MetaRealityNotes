@@ -1,12 +1,12 @@
 
-function reply_an_article(article_id)
+function reply_an_article(article_id, reply_id)
 {
 	if(current_user_account === "") {
 		alert($("#please_login").html());
 		return;
 	}
 	$("#target_article_id").val(article_id.toString());
-	$("#target_reply_id").val("0");
+	$("#target_reply_id").val(reply_id.toString());
 	write_a_reply_show_modal();
 }
 
@@ -21,10 +21,10 @@ function write_a_reply_show_modal()
 
 function check_post_reply()
 {
-	let my_target_article_id = Number($("#target_article_id").val());
-	let my_target_reply_id   = Number($("#target_reply_id").val());
-	if ( !( my_target_article_id > 0 && my_target_reply_id === 0 || my_target_article_id === 0 && my_target_reply_id > 0 ) ) {
-		alert("target_article_id is wrong or target_reply_id is wrong.");
+	let my_target_article_id  = Number($("#target_article_id").val());
+	let my_target_reply_id    = Number($("#target_reply_id").val());
+	if (my_target_article_id <= 0) {
+		alert("target_article_id is wrong.");
 		return false;
 	}
 	let my_storage_location = $("input[name='radio20']:checked").val();  // 存储位置
