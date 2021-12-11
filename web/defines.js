@@ -62,3 +62,4 @@ var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users
 var articles_array = [0];    // 数组，保存所有打开的文章的ID，因为从文章中可以打开别的文章，所以可能会有多个打开的文章，用于点击后退按钮功能时从一个文章后退到前一个文章，逐个进行后退
 
 const storage_locations = ['WHO', 'EOS', 'ETH', 'BSC', 'HECO', 'BTC'];
+var   reply_user_map    = null;

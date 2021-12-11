@@ -110,6 +110,8 @@ $(document).ready(function () {
 		resume_from_break_point_post_reply();
 	});
 
+	reply_user_map = new Map();
+
 	//
 
 	ScatterJS.plugins( new ScatterEOS() );
