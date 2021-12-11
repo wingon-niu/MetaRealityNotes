@@ -161,7 +161,7 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
 {
     require_auth( user );
     eosio::check( reply_hash.length()  <=  129, "reply_hash is too long, max 129" );
-    eosio::check( (target_article_id > 0 && target_reply_id == 0) || (target_article_id == 0 && target_reply_id > 0), "you can only reply to an article or a reply once.");
+    eosio::check( target_article_id    >     0, "you must reply to an article.");
 
     auto itr_account = _accounts.find( user.value );
 
