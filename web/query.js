@@ -309,6 +309,34 @@ function show_article_content_div(article_id)
 					$("#content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
 				}
 				//
+				for (i = 0; i < len; i++) {
+					if (resp.rows[i].target_reply_id > 0) {
+						let user = '';
+						if (false) {
+						} else {
+							lower_bd  = new BigNumber(resp.rows[i].target_reply_id);
+							upper_bd  = new BigNumber(resp.rows[i].target_reply_id + 1);
+							var    r  = await rpc.get_table_rows({
+								json:  true,
+								code:  metarealnote_contract,
+								scope: metarealnote_contract,
+								table: 'replies',
+								index_position: 1,
+								key_type: 'i64',
+								lower_bound: lower_bd.toFixed(),
+								upper_bound: upper_bd.toFixed(),
+								limit: 1,
+								reverse: false,
+								show_payer: false
+							});
+							if (r.rows.length === 1) {
+								user = r.rows[0].user;
+							}
+						}
+						$("#user_of_reply_" + resp.rows[i].target_reply_id).html(my_escapeHTML(user));
+					}
+				}
+				//
 				hide_all_pages();
 				$("#article_content_div").show();
 				window.scrollTo(0, 0);
