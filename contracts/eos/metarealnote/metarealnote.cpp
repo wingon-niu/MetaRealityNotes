@@ -224,6 +224,39 @@ ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
 // 上传相册条目
 ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length)
 {
+    require_auth( user );
+    eosio::check( preview_head_hash.length() <= 129, "preview_head_hash is too long, max 129" );
+    eosio::check( origin_head_hash.length()  <= 129, "origin_head_hash is too long, max 129" );
+    eosio::check( description.length()       <=  90, "description is too long, max 30" );
+
+    auto itr_account = _accounts.find( user.value );
+
+    if (storage_location == 1) { // 数据存储在 EOS 链上
+        eosio::check(itr_account != _accounts.end() && itr_account->quantity.amount > 0, "you must transfer tokens to worldwelfare first.");
+    }
+
+    _albums.emplace(_self, [&](auto& item){
+        auto id = _albums.available_primary_key();
+        if (id == 0) {
+            id = 1;
+        }
+        item.user              = user;
+        item.item_id           = id;
+        item.item_type         = item_type;
+        item.storage_location  = storage_location;
+        item.description       = description;
+        item.post_time         = now();
+        item.preview_head_hash = preview_head_hash;
+        item.preview_trn_num   = preview_trn_num;
+        item.preview_length    = preview_length;
+        item.origin_head_hash  = origin_head_hash;
+        item.origin_trn_num    = origin_trn_num;
+        item.origin_length     = origin_length;
+    });
+
+    if (storage_location == 1) { // 数据存储在 EOS 链上
+        _accounts.erase(itr_account);
+    }
 }
 
 // 删除相册条目
