@@ -161,11 +161,12 @@ function do_post_article()
 										permission: account.authority
 									}],
 									data: {
-										user: account.name,
-										article_hash: trn_hash,
-										category: my_category,
-										type: my_type,
-										storage_location: my_storage_location,
+										user:               account.name,
+										article_hash:       trn_hash,
+										num_of_trns:        strArray.length,
+										category:           my_category,
+										type:               my_type,
+										storage_location:   my_storage_location,
 										forward_article_id: my_forward_article_id
 									}
 								}]
