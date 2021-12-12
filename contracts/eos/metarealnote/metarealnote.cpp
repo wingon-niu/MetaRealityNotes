@@ -121,6 +121,7 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
         item.user               = user;
         item.article_id         = id;
         item.article_hash       = article_hash;
+        item.num_of_trns        = num_of_trns;
         item.category           = category;
         item.type               = type;
         item.storage_location   = storage_location;
@@ -177,6 +178,7 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
         item.user              = user;
         item.reply_id          = id;
         item.reply_hash        = reply_hash;
+        item.num_of_trns       = num_of_trns;
         item.storage_location  = storage_location;
         item.target_article_id = target_article_id;
         item.target_reply_id   = target_reply_id;
