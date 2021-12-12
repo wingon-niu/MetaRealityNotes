@@ -273,6 +273,16 @@ ACTION metarealnote::rmalbumitem(const name& user, const uint64_t item_id)
 // 修改相册条目的描述
 ACTION metarealnote::edititemdesc(const name& user, const uint64_t item_id, const string& description)
 {
+    require_auth( user );
+    eosio::check( description.length()       <=  90, "description is too long, max 30" );
+
+    auto itr = _albums.find( item_id );
+    eosio::check(itr != _albums.end(), "item does not exist.");
+    eosio::check(itr->user == user, "this item is not belong to you.");
+
+    _albums.modify( itr, _self, [&]( auto& item ) {
+        item.description = description;
+    });
 }
 
 // 文章的转发数加1
