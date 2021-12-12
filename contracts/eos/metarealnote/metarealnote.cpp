@@ -221,6 +221,21 @@ ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
     }
 }
 
+// 上传相册条目
+ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length)
+{
+}
+
+// 删除相册条目
+ACTION metarealnote::rmalbumitem(const name& user, const uint64_t item_id)
+{
+}
+
+// 修改相册条目的描述
+ACTION metarealnote::edititemdesc(const name& user, const uint64_t item_id, const string& description)
+{
+}
+
 // 文章的转发数加1
 void metarealnote::add_article_forwarded_times(const uint64_t & article_id)
 {

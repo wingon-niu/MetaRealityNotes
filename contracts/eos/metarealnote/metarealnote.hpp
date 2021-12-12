@@ -59,6 +59,15 @@ public:
     // 删除回复
     ACTION rmreply(const name& user, const uint64_t reply_id);
 
+    // 上传相册条目
+    ACTION postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length);
+
+    // 删除相册条目
+    ACTION rmalbumitem(const name& user, const uint64_t item_id);
+
+    // 修改相册条目的描述
+    ACTION edititemdesc(const name& user, const uint64_t item_id, const string& description);
+
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
 
