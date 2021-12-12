@@ -69,6 +69,8 @@ function change_lang(lang_type)
 			$("#resume_from_break_point_post_reply").html($.i18n.prop('resume_from_break_point_post_reply'));
 			$("#head_hash").html($.i18n.prop('head_hash'));
 			$("#reply_to").html($.i18n.prop('reply_to'));
+			$("#real").html($.i18n.prop('real'));
+			$("#dream").html($.i18n.prop('dream'));
 
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));
