@@ -133,12 +133,16 @@ private:
         uint128_t by_forward_article()         const {
             return (uint128_t{forward_article_id}<<64) + uint128_t{~article_id};
         }
+        uint128_t by_user_article()            const {
+            return (uint128_t{user}<<64) + uint128_t{~article_id};
+        }
     };
     typedef eosio::multi_index<
         "articles"_n, st_article,
         indexed_by< "byusrcatpost"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_category_post_time> >,
         indexed_by< "bycatarticle"_n, const_mem_fun<st_article, uint128_t, &st_article::by_category_article> >,
-        indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >
+        indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >,
+        indexed_by< "byusrarticle"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_article> >
     > tb_articles;
 
     // »Ø¸´
