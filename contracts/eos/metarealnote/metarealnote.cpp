@@ -262,6 +262,12 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
 // 删除相册条目
 ACTION metarealnote::rmalbumitem(const name& user, const uint64_t item_id)
 {
+    require_auth( user );
+
+    auto itr = _albums.find( item_id );
+    eosio::check(itr != _albums.end(), "item does not exist.");
+    eosio::check(itr->user == user, "this item is not belong to you.");
+    _albums.erase(itr);
 }
 
 // 修改相册条目的描述
