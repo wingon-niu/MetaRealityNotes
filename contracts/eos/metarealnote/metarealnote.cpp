@@ -102,7 +102,7 @@ ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_
 }
 
 // 发表文章
-ACTION metarealnote::postarticle(const name& user, const string& article_hash, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id)
+ACTION metarealnote::postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id)
 {
     require_auth( user );
     eosio::check( article_hash.length()  <=  129, "article_hash is too long, max 129" );
@@ -157,7 +157,7 @@ ACTION metarealnote::rmarticle(const name& user, const uint64_t article_id)
 }
 
 // 发表回复
-ACTION metarealnote::postreply(const name& user, const string& reply_hash, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id)
+ACTION metarealnote::postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id)
 {
     require_auth( user );
     eosio::check( reply_hash.length()  <=  129, "reply_hash is too long, max 129" );

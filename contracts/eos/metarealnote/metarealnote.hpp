@@ -47,13 +47,13 @@ public:
     ACTION canclefollow(const name& follow_user, const name& followed_user);
 
     // 发表文章
-    ACTION postarticle(const name& user, const string& article_hash, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id);
+    ACTION postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id);
 
     // 删除文章
     ACTION rmarticle(const name& user, const uint64_t article_id);
 
     // 发表回复
-    ACTION postreply(const name& user, const string& reply_hash, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id);
+    ACTION postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id);
 
     // 删除回复
     ACTION rmreply(const name& user, const uint64_t reply_id);
@@ -114,7 +114,8 @@ private:
     TABLE st_article {
         name         user;
         uint64_t     article_id;
-        string       article_hash;
+        string       article_hash;        // 文章的内容的数据的首hash
+        uint64_t     num_of_trns;         // 发送文章进行的转账交易次数
         uint8_t      category;            // 1=现实笔记；2=梦想笔记
         uint8_t      type;                // 1=微文；    2=长文      （区别在于长文可以有标题，微文没有标题。长文与微文都没有长度限制。）
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
@@ -134,7 +135,7 @@ private:
             return (uint128_t{forward_article_id}<<64) + uint128_t{~article_id};
         }
         uint128_t by_user_article()            const {
-            return (uint128_t{user}<<64) + uint128_t{~article_id};
+            return (uint128_t{user.value}<<64) + uint128_t{~article_id};
         }
     };
     typedef eosio::multi_index<
@@ -149,7 +150,8 @@ private:
     TABLE st_reply {
         name         user;
         uint64_t     reply_id;
-        string       reply_hash;
+        string       reply_hash;          // 回复的内容的数据的首hash
+        uint32_t     num_of_trns;         // 发送回复进行的转账交易次数
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
         uint64_t     target_article_id;   // 目标文章的id。所有的回复都有一个目标文章。
         uint64_t     target_reply_id;     // 目标回复的id。回复属于一个目标文章，同时回复还可以指向一个回复，也就是对回复进行的回复。
