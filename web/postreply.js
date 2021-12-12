@@ -160,11 +160,12 @@ function do_post_reply()
 										permission: account.authority
 									}],
 									data: {
-										user: account.name,
-										reply_hash: trn_hash,
-										storage_location: my_storage_location,
+										user:              account.name,
+										reply_hash:        trn_hash,
+										num_of_trns:       strArray.length,
+										storage_location:  my_storage_location,
 										target_article_id: my_target_article_id,
-										target_reply_id: my_target_reply_id
+										target_reply_id:   my_target_reply_id
 									}
 								}]
 							},{
