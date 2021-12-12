@@ -153,7 +153,7 @@ private:
         uint64_t     reply_id;
         string       reply_hash;          // 回复的内容的数据的首hash
         uint32_t     num_of_trns;         // 发送回复进行的转账交易次数
-        uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
+        uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （回复内容数据存储在哪条链上）
         uint64_t     target_article_id;   // 目标文章的id。所有的回复都有一个目标文章。
         uint64_t     target_reply_id;     // 目标回复的id。回复属于一个目标文章，同时回复还可以指向一个回复，也就是对回复进行的回复。
         uint16_t     replied_times;       // 自己被回复的次数
@@ -200,23 +200,27 @@ private:
 
     // 相册
     TABLE st_album {
-        uint64_t     id;
-        name         follow_user;
-        name         followed_user;
-        uint32_t     follow_time;
+        name         user;
+        uint64_t     item_id;
+        uint8_t      item_type;           // 1=图片；2=视频；
+        uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （条目的数据存储在哪条链上）
+        string       description;
+        uint32_t     post_time;
+        string       preview_head_hash;   // preview 代表图片的缩略图或者视频的首画面的缩略图。
+        uint64_t     preview_trn_num;
+        uint64_t     preview_length;
+        string       origin_head_hash;    // origin  代表图片或者视频的原始文件。
+        uint64_t     origin_trn_num;
+        uint64_t     origin_length;
 
-        uint64_t  primary_key()           const { return id; }
-        uint128_t by_follow_followed()    const {
-            return (uint128_t{follow_user.value}<<64) + uint128_t{followed_user.value};
-        }
-        uint128_t by_followed_follow()    const {
-            return (uint128_t{followed_user.value}<<64) + uint128_t{follow_user.value};
-        }
+        uint64_t  primary_key()      const { return item_id; }
+        uint128_t by_user_item()     const { return (uint128_t{user.value}<<64) + uint128_t{item_id}; }
+        uint64_t  by_origin_length() const { return ~origin_length; }
     };
     typedef eosio::multi_index<
         "albums"_n, st_album,
-        indexed_by< "byfllwfllwed"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_follow_followed> >,
-        indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_followed_follow> >
+        indexed_by< "byuseritem"_n,  const_mem_fun<st_album, uint128_t, &st_album::by_user_item> >,
+        indexed_by< "byoriginlen"_n, const_mem_fun<st_album, uint64_t,  &st_album::by_origin_length> >
     > tb_albums;
 
     tb_accounts              _accounts;
