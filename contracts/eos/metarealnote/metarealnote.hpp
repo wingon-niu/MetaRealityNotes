@@ -29,7 +29,8 @@ public:
           _user_profiles         (get_self(), get_self().value),
           _articles              (get_self(), get_self().value),
           _replies               (get_self(), get_self().value),
-          _user_relationships    (get_self(), get_self().value){};
+          _user_relationships    (get_self(), get_self().value),
+          _albums                (get_self(), get_self().value){};
 
     // 为用户新增转账信息
     ACTION addaccount(const name& user, const asset& quantity);
@@ -197,9 +198,31 @@ private:
         indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_followed_follow> >
     > tb_user_relationships;
 
+    // 相册
+    TABLE st_album {
+        uint64_t     id;
+        name         follow_user;
+        name         followed_user;
+        uint32_t     follow_time;
+
+        uint64_t  primary_key()           const { return id; }
+        uint128_t by_follow_followed()    const {
+            return (uint128_t{follow_user.value}<<64) + uint128_t{followed_user.value};
+        }
+        uint128_t by_followed_follow()    const {
+            return (uint128_t{followed_user.value}<<64) + uint128_t{follow_user.value};
+        }
+    };
+    typedef eosio::multi_index<
+        "albums"_n, st_album,
+        indexed_by< "byfllwfllwed"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_follow_followed> >,
+        indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_followed_follow> >
+    > tb_albums;
+
     tb_accounts              _accounts;
     tb_user_profiles         _user_profiles;
     tb_articles              _articles;
     tb_replies               _replies;
     tb_user_relationships    _user_relationships;
+    tb_albums                _albums;
 };
