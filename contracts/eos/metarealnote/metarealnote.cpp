@@ -348,4 +348,15 @@ ACTION metarealnote::clearalldata()
             _user_relationships.erase(itr);
         }
     }
+
+    keysForDeletion.clear();
+    for (auto& item : _albums) {
+        keysForDeletion.push_back(item.item_id);
+    }
+    for (uint64_t key : keysForDeletion) {
+        auto itr = _albums.find(key);
+        if (itr != _albums.end()) {
+            _albums.erase(itr);
+        }
+    }
 }
