@@ -96,6 +96,23 @@ private:
     // 回复的回复数减1
     void sub_reply_replied_times(const uint64_t & reply_id);
 
+    // 查询用户发表的文章总数
+    uint64_t get_num_of_articles(const name& user);
+
+    // 查询用户发表的回复总数
+    uint32_t get_num_of_replies(const name& user);
+
+    // 查询用户关注的用户总数
+    uint32_t get_num_of_follow(const name& user);
+
+    // 查询用户被关注的总数
+    uint32_t get_num_of_followed(const name& user);
+
+    // 查询用户相册中的条目总数
+    uint32_t get_num_of_album_items(const name& user);
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     // 用户转账信息
     TABLE st_account {
         name         user;
