@@ -357,26 +357,51 @@ void metarealnote::sub_reply_replied_times(const uint64_t & reply_id)
 // 查询用户发表的文章总数
 uint64_t metarealnote::get_num_of_articles(const name& user)
 {
+    auto index = _articles.get_index<name("byusrarticle")>();
+    auto itr = index.lower_bound(uint128_t{user.value}<<64);
+    if (itr == index.end()) {
+    	return 0;
+    }
+    uint64_t num = 0;
+    while(itr != index.end() && itr->user == user) {
+    	num++;
+    	itr++;
+    }
+    return num;
 }
 
 // 查询用户发表的回复总数
 uint32_t metarealnote::get_num_of_replies(const name& user)
 {
+    auto index = _replies.get_index<name("byuserreply")>();
+    auto itr = index.lower_bound(uint128_t{user.value}<<64);
+    if (itr == index.end()) {
+    	return 0;
+    }
+    uint32_t num = 0;
+    while(itr != index.end() && itr->user == user) {
+    	num++;
+    	itr++;
+    }
+    return num;
 }
 
 // 查询用户关注的用户总数
 uint32_t metarealnote::get_num_of_follow(const name& user)
 {
+	return 0;
 }
 
 // 查询用户被关注的总数
 uint32_t metarealnote::get_num_of_followed(const name& user)
 {
+	return 0;
 }
 
 // 查询用户相册中的条目总数
 uint32_t metarealnote::get_num_of_album_items(const name& user)
 {
+	return 0;
 }
 
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
