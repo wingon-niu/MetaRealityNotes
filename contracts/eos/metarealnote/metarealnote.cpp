@@ -42,11 +42,11 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
           acnt.avatar_album_item_id = 0;
           acnt.description          = description;
           acnt.reg_time             = now();
-          acnt.num_of_articles      = 0;
-          acnt.num_of_replies       = 0;
-          acnt.num_of_follow        = 0;
-          acnt.num_of_followed      = 0;
-          acnt.num_of_album_items   = 0;
+          acnt.num_of_articles      = get_num_of_articles(user);
+          acnt.num_of_replies       = get_num_of_replies(user);
+          acnt.num_of_follow        = get_num_of_follow(user);
+          acnt.num_of_followed      = get_num_of_followed(user);
+          acnt.num_of_album_items   = get_num_of_album_items(user);
        });
     } else {
        _user_profiles.modify( itr, _self, [&]( auto& acnt ) {
