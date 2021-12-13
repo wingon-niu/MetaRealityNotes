@@ -437,51 +437,111 @@ uint32_t metarealnote::get_num_of_album_items(const name& user)
 // 用户的文章总数加1
 void metarealnote::add_num_of_articles(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_articles += 1;
+        });
+    }
 }
 
 // 用户的文章总数减1
 void metarealnote::sub_num_of_articles(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_articles -= 1;
+        });
+    }
 }
 
 // 用户的回复总数加1
 void metarealnote::add_num_of_replies(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_replies += 1;
+        });
+    }
 }
 
 // 用户的回复总数减1
 void metarealnote::sub_num_of_replies(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_replies -= 1;
+        });
+    }
 }
 
 // 用户的关注用户总数加1
 void metarealnote::add_num_of_follow(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_follow += 1;
+        });
+    }
 }
 
 // 用户的关注用户总数减1
 void metarealnote::sub_num_of_follow(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_follow -= 1;
+        });
+    }
 }
 
 // 用户的被关注总数加1
 void metarealnote::add_num_of_followed(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_followed += 1;
+        });
+    }
 }
 
 // 用户的被关注总数减1
 void metarealnote::sub_num_of_followed(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_followed -= 1;
+        });
+    }
 }
 
 // 用户相册中的条目的总数加1
 void metarealnote::add_num_of_album_items(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_album_items += 1;
+        });
+    }
 }
 
 // 用户相册中的条目的总数减1
 void metarealnote::sub_num_of_album_items(const name& user)
 {
+    auto itr = _user_profiles.find(user.value);
+    if (itr != _user_profiles.end()) {
+        _user_profiles.modify( itr, _self, [&]( auto& item ) {
+            item.num_of_album_items -= 1;
+        });
+    }
 }
 
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
