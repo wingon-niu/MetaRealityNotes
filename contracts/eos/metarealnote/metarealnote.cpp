@@ -421,7 +421,17 @@ uint32_t metarealnote::get_num_of_followed(const name& user)
 // 查询用户相册中的条目总数
 uint32_t metarealnote::get_num_of_album_items(const name& user)
 {
-	return 0;
+    auto index = _albums.get_index<name("byuseritem")>();
+    auto itr = index.lower_bound(uint128_t{user.value}<<64);
+    if (itr == index.end()) {
+    	return 0;
+    }
+    uint32_t num = 0;
+    while(itr != index.end() && itr->user == user) {
+    	num++;
+    	itr++;
+    }
+    return num;
 }
 
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
