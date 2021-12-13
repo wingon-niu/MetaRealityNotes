@@ -389,13 +389,33 @@ uint32_t metarealnote::get_num_of_replies(const name& user)
 // 查询用户关注的用户总数
 uint32_t metarealnote::get_num_of_follow(const name& user)
 {
-	return 0;
+    auto index = _user_relationships.get_index<name("byfllwfllwed")>();
+    auto itr = index.lower_bound(uint128_t{user.value}<<64);
+    if (itr == index.end()) {
+    	return 0;
+    }
+    uint32_t num = 0;
+    while(itr != index.end() && itr->follow_user == user) {
+    	num++;
+    	itr++;
+    }
+    return num;
 }
 
 // 查询用户被关注的总数
 uint32_t metarealnote::get_num_of_followed(const name& user)
 {
-	return 0;
+    auto index = _user_relationships.get_index<name("byfllwedfllw")>();
+    auto itr = index.lower_bound(uint128_t{user.value}<<64);
+    if (itr == index.end()) {
+    	return 0;
+    }
+    uint32_t num = 0;
+    while(itr != index.end() && itr->followed_user == user) {
+    	num++;
+    	itr++;
+    }
+    return num;
 }
 
 // 查询用户相册中的条目总数
