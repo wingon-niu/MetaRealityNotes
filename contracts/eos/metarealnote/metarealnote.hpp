@@ -111,6 +111,36 @@ private:
     // 查询用户相册中的条目总数
     uint32_t get_num_of_album_items(const name& user);
 
+    // 用户的文章总数加1
+    void add_num_of_articles(const name& user);
+
+    // 用户的文章总数减1
+    void sub_num_of_articles(const name& user);
+
+    // 用户的回复总数加1
+    void add_num_of_replies(const name& user);
+
+    // 用户的回复总数减1
+    void sub_num_of_replies(const name& user);
+
+    // 用户的关注用户总数加1
+    void add_num_of_follow(const name& user);
+
+    // 用户的关注用户总数减1
+    void sub_num_of_follow(const name& user);
+
+    // 用户的被关注总数加1
+    void add_num_of_followed(const name& user);
+
+    // 用户的被关注总数减1
+    void sub_num_of_followed(const name& user);
+
+    // 用户相册中的条目的总数加1
+    void add_num_of_album_items(const name& user);
+
+    // 用户相册中的条目的总数减1
+    void sub_num_of_album_items(const name& user);
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // 用户转账信息
