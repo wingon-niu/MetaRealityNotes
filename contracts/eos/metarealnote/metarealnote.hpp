@@ -36,7 +36,7 @@ public:
     ACTION addaccount(const name& user, const asset& quantity);
 
     // 用户注册
-    ACTION userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& avatar_pic_hash, const string& description);
+    ACTION userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& description);
 
     // 用户注销
     ACTION userunregist(const name& user);
@@ -125,7 +125,7 @@ private:
         uint64_t by_num_of_articles() const { return ~num_of_articles; }
     };
     typedef eosio::multi_index<
-        "userprofiles"_n, st_user_profile
+        "userprofiles"_n, st_user_profile,
         indexed_by< "bynumofarts"_n, const_mem_fun<st_user_profile, uint64_t, &st_user_profile::by_num_of_articles> >
     > tb_user_profiles;
 

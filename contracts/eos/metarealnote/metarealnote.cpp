@@ -21,7 +21,7 @@ ACTION metarealnote::addaccount(const name& user, const asset& quantity)
 }
 
 // 用户注册
-ACTION metarealnote::userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& avatar_pic_hash, const string& description)
+ACTION metarealnote::userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& description)
 {
     require_auth( user );
 
@@ -29,31 +29,34 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
     eosio::check( user_family_name.length() <=  100, "user_family_name is too long, max 100" );
     eosio::check( gender.length()           <=  100, "gender is too long, max 100" );
     eosio::check( birthday.length()         <=  100, "birthday is too long, max 100" );
-    eosio::check( avatar_pic_hash.length()  <=  129, "avatar_pic_hash is too long, max 129" );
     eosio::check( description.length()      <= 1000, "description is too long, max 1000" );
 
     auto itr = _user_profiles.find(user.value);
     if( itr == _user_profiles.end() ) {
        itr = _user_profiles.emplace(_self, [&](auto& acnt){
-          acnt.user             = user;
-          acnt.user_name        = "";
-          acnt.user_family_name = "";
-          acnt.gender           = "";
-          acnt.birthday         = "";
-          acnt.avatar_pic_hash  = "";
-          acnt.description      = "";
-          acnt.reg_time         = now();
+          acnt.user                 = user;
+          acnt.user_name            = user_name;
+          acnt.user_family_name     = user_family_name;
+          acnt.gender               = gender;
+          acnt.birthday             = birthday;
+          acnt.avatar_album_item_id = 0;
+          acnt.description          = description;
+          acnt.reg_time             = now();
+          acnt.num_of_articles      = 0;
+          acnt.num_of_replies       = 0;
+          acnt.num_of_follow        = 0;
+          acnt.num_of_followed      = 0;
+          acnt.num_of_album_items   = 0;
+       });
+    } else {
+       _user_profiles.modify( itr, _self, [&]( auto& acnt ) {
+          acnt.user_name            = user_name;
+          acnt.user_family_name     = user_family_name;
+          acnt.gender               = gender;
+          acnt.birthday             = birthday;
+          acnt.description          = description;
        });
     }
-
-    _user_profiles.modify( itr, _self, [&]( auto& acnt ) {
-          acnt.user_name        = user_name;
-          acnt.user_family_name = user_family_name;
-          acnt.gender           = gender;
-          acnt.birthday         = birthday;
-          acnt.avatar_pic_hash  = avatar_pic_hash;
-          acnt.description      = description;
-    });
 }
 
 // 用户注销
