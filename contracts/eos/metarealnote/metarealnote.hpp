@@ -112,13 +112,22 @@ private:
         string       user_family_name;
         string       gender;
         string       birthday;
-        string       avatar_pic_hash;
+        uint64_t     avatar_album_item_id;  // 头像。相册条目的id。  0表示没有设置头像。
         string       description;
         uint32_t     reg_time;
+        uint64_t     num_of_articles;       // 用户发表的文章总数。
+        uint32_t     num_of_replies;        // 用户发表的回复总数。
+        uint32_t     num_of_follow;         // 用户关注的用户总数。
+        uint32_t     num_of_followed;       // 用户被关注的总数。
+        uint32_t     num_of_album_items;    // 用户相册中的条目总数。
 
-        uint64_t primary_key() const { return user.value; }
+        uint64_t primary_key()        const { return user.value; }
+        uint64_t by_num_of_articles() const { return ~num_of_articles; }
     };
-    typedef eosio::multi_index<"userprofiles"_n, st_user_profile> tb_user_profiles;
+    typedef eosio::multi_index<
+        "userprofiles"_n, st_user_profile
+        indexed_by< "bynumofarts"_n, const_mem_fun<st_user_profile, uint64_t, &st_user_profile::by_num_of_articles> >
+    > tb_user_profiles;
 
     // 文章
     TABLE st_article {
