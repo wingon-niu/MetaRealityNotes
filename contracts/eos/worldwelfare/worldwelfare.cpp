@@ -1,6 +1,6 @@
 #include "worldwelfare.hpp"
 
-// ½ÓÊÕÓÃ»§×ªÕË£¬²¢µ÷ÓÃ metarealnote ºÏÔ¼£¬ÎªÓÃ»§ĞÂÔö×ªÕËĞÅÏ¢
+// æ¥æ”¶ç”¨æˆ·è½¬è´¦ï¼Œå¹¶è°ƒç”¨ metarealnote åˆçº¦ï¼Œä¸ºç”¨æˆ·æ–°å¢è½¬è´¦ä¿¡æ¯
 [[eosio::on_notify("eosio.token::transfer")]]
 void worldwelfare::deposit(name from, name to, eosio::asset quantity, std::string memo)
 {
@@ -41,7 +41,7 @@ void worldwelfare::deposit(name from, name to, eosio::asset quantity, std::strin
     }.send();
 }
 
-// ¿Õ ACTION
+// ç©º ACTION
 ACTION worldwelfare::empty()
 {
     require_auth( _self );

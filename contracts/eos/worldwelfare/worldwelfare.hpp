@@ -16,7 +16,7 @@ using namespace eosio;
 using std::string;
 
 // worldwelfare
-// ¹«Òæ»ù½ğ
+// å…¬ç›ŠåŸºé‡‘
 
 CONTRACT worldwelfare : public eosio::contract {
 
@@ -26,10 +26,10 @@ public:
 
     worldwelfare(name self, name first_receiver, datastream<const char*> ds) : contract(self, first_receiver, ds){};
 
-    // ½ÓÊÕÓÃ»§×ªÕË£¬²¢µ÷ÓÃ metarealnote ºÏÔ¼£¬ÎªÓÃ»§ĞÂÔö×ªÕËĞÅÏ¢
+    // æ¥æ”¶ç”¨æˆ·è½¬è´¦ï¼Œå¹¶è°ƒç”¨ metarealnote åˆçº¦ï¼Œä¸ºç”¨æˆ·æ–°å¢è½¬è´¦ä¿¡æ¯
     [[eosio::on_notify("eosio.token::transfer")]]
     void deposit(name from, name to, eosio::asset quantity, std::string memo);
 
-    // ¿Õ ACTION
+    // ç©º ACTION
     ACTION empty();
 };
