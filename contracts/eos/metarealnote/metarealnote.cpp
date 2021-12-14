@@ -2,7 +2,7 @@
 
 //
 
-// ÎªÓÃ»§ĞÂÔö×ªÕËĞÅÏ¢
+// ä¸ºç”¨æˆ·æ–°å¢è½¬è´¦ä¿¡æ¯
 ACTION metarealnote::addaccount(const name& user, const asset& quantity)
 {
     require_auth( "worldwelfare"_n );
@@ -20,7 +20,7 @@ ACTION metarealnote::addaccount(const name& user, const asset& quantity)
     });
 }
 
-// ÓÃ»§×¢²á
+// ç”¨æˆ·æ³¨å†Œ
 ACTION metarealnote::userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& description)
 {
     require_auth( user );
@@ -59,7 +59,7 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
     }
 }
 
-// ÓÃ»§×¢Ïú
+// ç”¨æˆ·æ³¨é”€
 ACTION metarealnote::userunregist(const name& user)
 {
     require_auth( user );
@@ -69,7 +69,7 @@ ACTION metarealnote::userunregist(const name& user)
     _user_profiles.erase(itr);
 }
 
-// ¹Ø×¢ÓÃ»§
+// å…³æ³¨ç”¨æˆ·
 ACTION metarealnote::followuser(const name& follow_user, const name& followed_user)
 {
     require_auth( follow_user );
@@ -90,7 +90,7 @@ ACTION metarealnote::followuser(const name& follow_user, const name& followed_us
     });
 }
 
-// È¡Ïû¹Ø×¢ÓÃ»§
+// å–æ¶ˆå…³æ³¨ç”¨æˆ·
 ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_user)
 {
     require_auth( follow_user );
@@ -104,7 +104,7 @@ ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_
     _user_relationships.erase(itr_pri);
 }
 
-// ·¢±íÎÄÕÂ
+// å‘è¡¨æ–‡ç« 
 ACTION metarealnote::postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id)
 {
     require_auth( user );
@@ -112,7 +112,7 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
 
     auto itr_account = _accounts.find( user.value );
 
-    if (storage_location == 1) { // ÎÄÕÂµÄÄÚÈİÊı¾İ´æ´¢ÔÚ EOS Á´ÉÏ
+    if (storage_location == 1) { // æ–‡ç« çš„å†…å®¹æ•°æ®å­˜å‚¨åœ¨ EOS é“¾ä¸Š
         eosio::check(itr_account != _accounts.end() && itr_account->quantity.amount > 0, "you must transfer tokens to worldwelfare first.");
     }
 
@@ -138,12 +138,12 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
         add_article_forwarded_times(forward_article_id);
     }
 
-    if (storage_location == 1) { // ÎÄÕÂµÄÄÚÈİÊı¾İ´æ´¢ÔÚ EOS Á´ÉÏ
+    if (storage_location == 1) { // æ–‡ç« çš„å†…å®¹æ•°æ®å­˜å‚¨åœ¨ EOS é“¾ä¸Š
         _accounts.erase(itr_account);
     }
 }
 
-// É¾³ıÎÄÕÂ
+// åˆ é™¤æ–‡ç« 
 ACTION metarealnote::rmarticle(const name& user, const uint64_t article_id)
 {
     require_auth( user );
@@ -160,7 +160,7 @@ ACTION metarealnote::rmarticle(const name& user, const uint64_t article_id)
     }
 }
 
-// ·¢±í»Ø¸´
+// å‘è¡¨å›å¤
 ACTION metarealnote::postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id)
 {
     require_auth( user );
@@ -169,7 +169,7 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
 
     auto itr_account = _accounts.find( user.value );
 
-    if (storage_location == 1) { // »Ø¸´µÄÄÚÈİÊı¾İ´æ´¢ÔÚ EOS Á´ÉÏ
+    if (storage_location == 1) { // å›å¤çš„å†…å®¹æ•°æ®å­˜å‚¨åœ¨ EOS é“¾ä¸Š
         eosio::check(itr_account != _accounts.end() && itr_account->quantity.amount > 0, "you must transfer tokens to worldwelfare first.");
     }
 
@@ -197,12 +197,12 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
         add_reply_replied_times(target_reply_id);
     }
 
-    if (storage_location == 1) { // »Ø¸´µÄÄÚÈİÊı¾İ´æ´¢ÔÚ EOS Á´ÉÏ
+    if (storage_location == 1) { // å›å¤çš„å†…å®¹æ•°æ®å­˜å‚¨åœ¨ EOS é“¾ä¸Š
         _accounts.erase(itr_account);
     }
 }
 
-// É¾³ı»Ø¸´
+// åˆ é™¤å›å¤
 ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
 {
     require_auth( user );
@@ -224,7 +224,7 @@ ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
     }
 }
 
-// ÉÏ´«Ïà²áÌõÄ¿
+// ä¸Šä¼ ç›¸å†Œæ¡ç›®
 ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length)
 {
     require_auth( user );
@@ -234,7 +234,7 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
 
     auto itr_account = _accounts.find( user.value );
 
-    if (storage_location == 1) { // Êı¾İ´æ´¢ÔÚ EOS Á´ÉÏ
+    if (storage_location == 1) { // æ•°æ®å­˜å‚¨åœ¨ EOS é“¾ä¸Š
         eosio::check(itr_account != _accounts.end() && itr_account->quantity.amount > 0, "you must transfer tokens to worldwelfare first.");
     }
 
@@ -257,12 +257,12 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
         item.origin_length     = origin_length;
     });
 
-    if (storage_location == 1) { // Êı¾İ´æ´¢ÔÚ EOS Á´ÉÏ
+    if (storage_location == 1) { // æ•°æ®å­˜å‚¨åœ¨ EOS é“¾ä¸Š
         _accounts.erase(itr_account);
     }
 }
 
-// É¾³ıÏà²áÌõÄ¿
+// åˆ é™¤ç›¸å†Œæ¡ç›®
 ACTION metarealnote::rmalbumitem(const name& user, const uint64_t item_id)
 {
     require_auth( user );
@@ -273,7 +273,7 @@ ACTION metarealnote::rmalbumitem(const name& user, const uint64_t item_id)
     _albums.erase(itr);
 }
 
-// ĞŞ¸ÄÏà²áÌõÄ¿µÄÃèÊö
+// ä¿®æ”¹ç›¸å†Œæ¡ç›®çš„æè¿°
 ACTION metarealnote::edititemdesc(const name& user, const uint64_t item_id, const string& description)
 {
     require_auth( user );
@@ -288,7 +288,7 @@ ACTION metarealnote::edititemdesc(const name& user, const uint64_t item_id, cons
     });
 }
 
-// ÎÄÕÂµÄ×ª·¢Êı¼Ó1
+// æ–‡ç« çš„è½¬å‘æ•°åŠ 1
 void metarealnote::add_article_forwarded_times(const uint64_t & article_id)
 {
     auto itr = _articles.find(article_id);
@@ -299,7 +299,7 @@ void metarealnote::add_article_forwarded_times(const uint64_t & article_id)
     }
 }
 
-// ÎÄÕÂµÄ×ª·¢Êı¼õ1
+// æ–‡ç« çš„è½¬å‘æ•°å‡1
 void metarealnote::sub_article_forwarded_times(const uint64_t & article_id)
 {
     auto itr = _articles.find(article_id);
@@ -310,7 +310,7 @@ void metarealnote::sub_article_forwarded_times(const uint64_t & article_id)
     }
 }
 
-// ÎÄÕÂµÄ»Ø¸´Êı¼Ó1
+// æ–‡ç« çš„å›å¤æ•°åŠ 1
 void metarealnote::add_article_replied_times(const uint64_t & article_id)
 {
     auto itr = _articles.find(article_id);
@@ -321,7 +321,7 @@ void metarealnote::add_article_replied_times(const uint64_t & article_id)
     }
 }
 
-// ÎÄÕÂµÄ»Ø¸´Êı¼õ1
+// æ–‡ç« çš„å›å¤æ•°å‡1
 void metarealnote::sub_article_replied_times(const uint64_t & article_id)
 {
     auto itr = _articles.find(article_id);
@@ -332,7 +332,7 @@ void metarealnote::sub_article_replied_times(const uint64_t & article_id)
     }
 }
 
-// »Ø¸´µÄ»Ø¸´Êı¼Ó1
+// å›å¤çš„å›å¤æ•°åŠ 1
 void metarealnote::add_reply_replied_times(const uint64_t & reply_id)
 {
     auto itr = _replies.find(reply_id);
@@ -343,7 +343,7 @@ void metarealnote::add_reply_replied_times(const uint64_t & reply_id)
     }
 }
 
-// »Ø¸´µÄ»Ø¸´Êı¼õ1
+// å›å¤çš„å›å¤æ•°å‡1
 void metarealnote::sub_reply_replied_times(const uint64_t & reply_id)
 {
     auto itr = _replies.find(reply_id);
@@ -354,7 +354,7 @@ void metarealnote::sub_reply_replied_times(const uint64_t & reply_id)
     }
 }
 
-// ²éÑ¯ÓÃ»§·¢±íµÄÎÄÕÂ×ÜÊı
+// æŸ¥è¯¢ç”¨æˆ·å‘è¡¨çš„æ–‡ç« æ€»æ•°
 uint64_t metarealnote::get_num_of_articles(const name& user)
 {
     auto index = _articles.get_index<name("byusrarticle")>();
@@ -370,7 +370,7 @@ uint64_t metarealnote::get_num_of_articles(const name& user)
     return num;
 }
 
-// ²éÑ¯ÓÃ»§·¢±íµÄ»Ø¸´×ÜÊı
+// æŸ¥è¯¢ç”¨æˆ·å‘è¡¨çš„å›å¤æ€»æ•°
 uint32_t metarealnote::get_num_of_replies(const name& user)
 {
     auto index = _replies.get_index<name("byuserreply")>();
@@ -386,7 +386,7 @@ uint32_t metarealnote::get_num_of_replies(const name& user)
     return num;
 }
 
-// ²éÑ¯ÓÃ»§¹Ø×¢µÄÓÃ»§×ÜÊı
+// æŸ¥è¯¢ç”¨æˆ·å…³æ³¨çš„ç”¨æˆ·æ€»æ•°
 uint32_t metarealnote::get_num_of_follow(const name& user)
 {
     auto index = _user_relationships.get_index<name("byfllwfllwed")>();
@@ -402,7 +402,7 @@ uint32_t metarealnote::get_num_of_follow(const name& user)
     return num;
 }
 
-// ²éÑ¯ÓÃ»§±»¹Ø×¢µÄ×ÜÊı
+// æŸ¥è¯¢ç”¨æˆ·è¢«å…³æ³¨çš„æ€»æ•°
 uint32_t metarealnote::get_num_of_followed(const name& user)
 {
     auto index = _user_relationships.get_index<name("byfllwedfllw")>();
@@ -418,7 +418,7 @@ uint32_t metarealnote::get_num_of_followed(const name& user)
     return num;
 }
 
-// ²éÑ¯ÓÃ»§Ïà²áÖĞµÄÌõÄ¿×ÜÊı
+// æŸ¥è¯¢ç”¨æˆ·ç›¸å†Œä¸­çš„æ¡ç›®æ€»æ•°
 uint32_t metarealnote::get_num_of_album_items(const name& user)
 {
     auto index = _albums.get_index<name("byuseritem")>();
@@ -434,7 +434,7 @@ uint32_t metarealnote::get_num_of_album_items(const name& user)
     return num;
 }
 
-// ÓÃ»§µÄÎÄÕÂ×ÜÊı¼Ó1
+// ç”¨æˆ·çš„æ–‡ç« æ€»æ•°åŠ 1
 void metarealnote::add_num_of_articles(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -445,7 +445,7 @@ void metarealnote::add_num_of_articles(const name& user)
     }
 }
 
-// ÓÃ»§µÄÎÄÕÂ×ÜÊı¼õ1
+// ç”¨æˆ·çš„æ–‡ç« æ€»æ•°å‡1
 void metarealnote::sub_num_of_articles(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -456,7 +456,7 @@ void metarealnote::sub_num_of_articles(const name& user)
     }
 }
 
-// ÓÃ»§µÄ»Ø¸´×ÜÊı¼Ó1
+// ç”¨æˆ·çš„å›å¤æ€»æ•°åŠ 1
 void metarealnote::add_num_of_replies(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -467,7 +467,7 @@ void metarealnote::add_num_of_replies(const name& user)
     }
 }
 
-// ÓÃ»§µÄ»Ø¸´×ÜÊı¼õ1
+// ç”¨æˆ·çš„å›å¤æ€»æ•°å‡1
 void metarealnote::sub_num_of_replies(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -478,7 +478,7 @@ void metarealnote::sub_num_of_replies(const name& user)
     }
 }
 
-// ÓÃ»§µÄ¹Ø×¢ÓÃ»§×ÜÊı¼Ó1
+// ç”¨æˆ·çš„å…³æ³¨ç”¨æˆ·æ€»æ•°åŠ 1
 void metarealnote::add_num_of_follow(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -489,7 +489,7 @@ void metarealnote::add_num_of_follow(const name& user)
     }
 }
 
-// ÓÃ»§µÄ¹Ø×¢ÓÃ»§×ÜÊı¼õ1
+// ç”¨æˆ·çš„å…³æ³¨ç”¨æˆ·æ€»æ•°å‡1
 void metarealnote::sub_num_of_follow(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -500,7 +500,7 @@ void metarealnote::sub_num_of_follow(const name& user)
     }
 }
 
-// ÓÃ»§µÄ±»¹Ø×¢×ÜÊı¼Ó1
+// ç”¨æˆ·çš„è¢«å…³æ³¨æ€»æ•°åŠ 1
 void metarealnote::add_num_of_followed(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -511,7 +511,7 @@ void metarealnote::add_num_of_followed(const name& user)
     }
 }
 
-// ÓÃ»§µÄ±»¹Ø×¢×ÜÊı¼õ1
+// ç”¨æˆ·çš„è¢«å…³æ³¨æ€»æ•°å‡1
 void metarealnote::sub_num_of_followed(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -522,7 +522,7 @@ void metarealnote::sub_num_of_followed(const name& user)
     }
 }
 
-// ÓÃ»§Ïà²áÖĞµÄÌõÄ¿µÄ×ÜÊı¼Ó1
+// ç”¨æˆ·ç›¸å†Œä¸­çš„æ¡ç›®çš„æ€»æ•°åŠ 1
 void metarealnote::add_num_of_album_items(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -533,7 +533,7 @@ void metarealnote::add_num_of_album_items(const name& user)
     }
 }
 
-// ÓÃ»§Ïà²áÖĞµÄÌõÄ¿µÄ×ÜÊı¼õ1
+// ç”¨æˆ·ç›¸å†Œä¸­çš„æ¡ç›®çš„æ€»æ•°å‡1
 void metarealnote::sub_num_of_album_items(const name& user)
 {
     auto itr = _user_profiles.find(user.value);
@@ -544,7 +544,7 @@ void metarealnote::sub_num_of_album_items(const name& user)
     }
 }
 
-// Çå³ı multi_index ÖĞµÄËùÓĞÊı¾İ£¬²âÊÔÊ±Ê¹ÓÃ£¬ÉÏÏßÊ±È¥µô
+// æ¸…é™¤ multi_index ä¸­çš„æ‰€æœ‰æ•°æ®ï¼Œæµ‹è¯•æ—¶ä½¿ç”¨ï¼Œä¸Šçº¿æ—¶å»æ‰
 ACTION metarealnote::clearalldata()
 {
     require_auth( _self );

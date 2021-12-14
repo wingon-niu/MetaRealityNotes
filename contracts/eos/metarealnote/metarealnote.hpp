@@ -16,7 +16,7 @@ using namespace eosio;
 using std::string;
 
 // MetaRealityNotes
-// ³¬Ô½ÏÖÊµ±Ê¼Ç
+// è¶…è¶Šç°å®ç¬”è®°
 
 CONTRACT metarealnote : public eosio::contract {
 
@@ -32,118 +32,118 @@ public:
           _user_relationships    (get_self(), get_self().value),
           _albums                (get_self(), get_self().value){};
 
-    // ÎªÓÃ»§ĞÂÔö×ªÕËĞÅÏ¢
+    // ä¸ºç”¨æˆ·æ–°å¢è½¬è´¦ä¿¡æ¯
     ACTION addaccount(const name& user, const asset& quantity);
 
-    // ÓÃ»§×¢²á
+    // ç”¨æˆ·æ³¨å†Œ
     ACTION userregist(const name& user, const string& user_name, const string& user_family_name, const string& gender, const string& birthday, const string& description);
 
-    // ÓÃ»§×¢Ïú
+    // ç”¨æˆ·æ³¨é”€
     ACTION userunregist(const name& user);
 
-    // ¹Ø×¢ÓÃ»§
+    // å…³æ³¨ç”¨æˆ·
     ACTION followuser(const name& follow_user, const name& followed_user);
 
-    // È¡Ïû¹Ø×¢ÓÃ»§
+    // å–æ¶ˆå…³æ³¨ç”¨æˆ·
     ACTION canclefollow(const name& follow_user, const name& followed_user);
 
-    // ·¢±íÎÄÕÂ
+    // å‘è¡¨æ–‡ç« 
     ACTION postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id);
 
-    // É¾³ıÎÄÕÂ
+    // åˆ é™¤æ–‡ç« 
     ACTION rmarticle(const name& user, const uint64_t article_id);
 
-    // ·¢±í»Ø¸´
+    // å‘è¡¨å›å¤
     ACTION postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id);
 
-    // É¾³ı»Ø¸´
+    // åˆ é™¤å›å¤
     ACTION rmreply(const name& user, const uint64_t reply_id);
 
-    // ÉÏ´«Ïà²áÌõÄ¿
+    // ä¸Šä¼ ç›¸å†Œæ¡ç›®
     ACTION postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length);
 
-    // É¾³ıÏà²áÌõÄ¿
+    // åˆ é™¤ç›¸å†Œæ¡ç›®
     ACTION rmalbumitem(const name& user, const uint64_t item_id);
 
-    // ĞŞ¸ÄÏà²áÌõÄ¿µÄÃèÊö
+    // ä¿®æ”¹ç›¸å†Œæ¡ç›®çš„æè¿°
     ACTION edititemdesc(const name& user, const uint64_t item_id, const string& description);
 
-    // Çå³ı multi_index ÖĞµÄËùÓĞÊı¾İ£¬²âÊÔÊ±Ê¹ÓÃ£¬ÉÏÏßÊ±È¥µô
+    // æ¸…é™¤ multi_index ä¸­çš„æ‰€æœ‰æ•°æ®ï¼Œæµ‹è¯•æ—¶ä½¿ç”¨ï¼Œä¸Šçº¿æ—¶å»æ‰
     ACTION clearalldata();
 
 private:
 
-    // ·µ»Øµ±Ç°Ê±¼ä´Á
+    // è¿”å›å½“å‰æ—¶é—´æˆ³
     uint32_t now() const {
         return current_time_point().sec_since_epoch();
     };
 
-    // ÎÄÕÂµÄ×ª·¢Êı¼Ó1
+    // æ–‡ç« çš„è½¬å‘æ•°åŠ 1
     void add_article_forwarded_times(const uint64_t & article_id);
 
-    // ÎÄÕÂµÄ×ª·¢Êı¼õ1
+    // æ–‡ç« çš„è½¬å‘æ•°å‡1
     void sub_article_forwarded_times(const uint64_t & article_id);
 
-    // ÎÄÕÂµÄ»Ø¸´Êı¼Ó1
+    // æ–‡ç« çš„å›å¤æ•°åŠ 1
     void add_article_replied_times(const uint64_t & article_id);
 
-    // ÎÄÕÂµÄ»Ø¸´Êı¼õ1
+    // æ–‡ç« çš„å›å¤æ•°å‡1
     void sub_article_replied_times(const uint64_t & article_id);
 
-    // »Ø¸´µÄ»Ø¸´Êı¼Ó1
+    // å›å¤çš„å›å¤æ•°åŠ 1
     void add_reply_replied_times(const uint64_t & reply_id);
 
-    // »Ø¸´µÄ»Ø¸´Êı¼õ1
+    // å›å¤çš„å›å¤æ•°å‡1
     void sub_reply_replied_times(const uint64_t & reply_id);
 
-    // ²éÑ¯ÓÃ»§·¢±íµÄÎÄÕÂ×ÜÊı
+    // æŸ¥è¯¢ç”¨æˆ·å‘è¡¨çš„æ–‡ç« æ€»æ•°
     uint64_t get_num_of_articles(const name& user);
 
-    // ²éÑ¯ÓÃ»§·¢±íµÄ»Ø¸´×ÜÊı
+    // æŸ¥è¯¢ç”¨æˆ·å‘è¡¨çš„å›å¤æ€»æ•°
     uint32_t get_num_of_replies(const name& user);
 
-    // ²éÑ¯ÓÃ»§¹Ø×¢µÄÓÃ»§×ÜÊı
+    // æŸ¥è¯¢ç”¨æˆ·å…³æ³¨çš„ç”¨æˆ·æ€»æ•°
     uint32_t get_num_of_follow(const name& user);
 
-    // ²éÑ¯ÓÃ»§±»¹Ø×¢µÄ×ÜÊı
+    // æŸ¥è¯¢ç”¨æˆ·è¢«å…³æ³¨çš„æ€»æ•°
     uint32_t get_num_of_followed(const name& user);
 
-    // ²éÑ¯ÓÃ»§Ïà²áÖĞµÄÌõÄ¿×ÜÊı
+    // æŸ¥è¯¢ç”¨æˆ·ç›¸å†Œä¸­çš„æ¡ç›®æ€»æ•°
     uint32_t get_num_of_album_items(const name& user);
 
-    // ÓÃ»§µÄÎÄÕÂ×ÜÊı¼Ó1
+    // ç”¨æˆ·çš„æ–‡ç« æ€»æ•°åŠ 1
     void add_num_of_articles(const name& user);
 
-    // ÓÃ»§µÄÎÄÕÂ×ÜÊı¼õ1
+    // ç”¨æˆ·çš„æ–‡ç« æ€»æ•°å‡1
     void sub_num_of_articles(const name& user);
 
-    // ÓÃ»§µÄ»Ø¸´×ÜÊı¼Ó1
+    // ç”¨æˆ·çš„å›å¤æ€»æ•°åŠ 1
     void add_num_of_replies(const name& user);
 
-    // ÓÃ»§µÄ»Ø¸´×ÜÊı¼õ1
+    // ç”¨æˆ·çš„å›å¤æ€»æ•°å‡1
     void sub_num_of_replies(const name& user);
 
-    // ÓÃ»§µÄ¹Ø×¢ÓÃ»§×ÜÊı¼Ó1
+    // ç”¨æˆ·çš„å…³æ³¨ç”¨æˆ·æ€»æ•°åŠ 1
     void add_num_of_follow(const name& user);
 
-    // ÓÃ»§µÄ¹Ø×¢ÓÃ»§×ÜÊı¼õ1
+    // ç”¨æˆ·çš„å…³æ³¨ç”¨æˆ·æ€»æ•°å‡1
     void sub_num_of_follow(const name& user);
 
-    // ÓÃ»§µÄ±»¹Ø×¢×ÜÊı¼Ó1
+    // ç”¨æˆ·çš„è¢«å…³æ³¨æ€»æ•°åŠ 1
     void add_num_of_followed(const name& user);
 
-    // ÓÃ»§µÄ±»¹Ø×¢×ÜÊı¼õ1
+    // ç”¨æˆ·çš„è¢«å…³æ³¨æ€»æ•°å‡1
     void sub_num_of_followed(const name& user);
 
-    // ÓÃ»§Ïà²áÖĞµÄÌõÄ¿µÄ×ÜÊı¼Ó1
+    // ç”¨æˆ·ç›¸å†Œä¸­çš„æ¡ç›®çš„æ€»æ•°åŠ 1
     void add_num_of_album_items(const name& user);
 
-    // ÓÃ»§Ïà²áÖĞµÄÌõÄ¿µÄ×ÜÊı¼õ1
+    // ç”¨æˆ·ç›¸å†Œä¸­çš„æ¡ç›®çš„æ€»æ•°å‡1
     void sub_num_of_album_items(const name& user);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // ÓÃ»§×ªÕËĞÅÏ¢
+    // ç”¨æˆ·è½¬è´¦ä¿¡æ¯
     TABLE st_account {
         name         user;
         asset        quantity;
@@ -152,21 +152,21 @@ private:
     };
     typedef eosio::multi_index<"accounts"_n, st_account> tb_accounts;
 
-    // ÓÃ»§×ÊÁÏ
+    // ç”¨æˆ·èµ„æ–™
     TABLE st_user_profile {
         name         user;
         string       user_name;
         string       user_family_name;
         string       gender;
         string       birthday;
-        uint64_t     avatar_album_item_id;  // Í·Ïñ¡£Ïà²áÌõÄ¿µÄid¡£  0±íÊ¾Ã»ÓĞÉèÖÃÍ·Ïñ¡£
+        uint64_t     avatar_album_item_id;  // å¤´åƒã€‚ç›¸å†Œæ¡ç›®çš„idã€‚  0è¡¨ç¤ºæ²¡æœ‰è®¾ç½®å¤´åƒã€‚
         string       description;
         uint32_t     reg_time;
-        uint64_t     num_of_articles;       // ÓÃ»§·¢±íµÄÎÄÕÂ×ÜÊı¡£
-        uint32_t     num_of_replies;        // ÓÃ»§·¢±íµÄ»Ø¸´×ÜÊı¡£
-        uint32_t     num_of_follow;         // ÓÃ»§¹Ø×¢µÄÓÃ»§×ÜÊı¡£
-        uint32_t     num_of_followed;       // ÓÃ»§±»¹Ø×¢µÄ×ÜÊı¡£
-        uint32_t     num_of_album_items;    // ÓÃ»§Ïà²áÖĞµÄÌõÄ¿×ÜÊı¡£
+        uint64_t     num_of_articles;       // ç”¨æˆ·å‘è¡¨çš„æ–‡ç« æ€»æ•°ã€‚
+        uint32_t     num_of_replies;        // ç”¨æˆ·å‘è¡¨çš„å›å¤æ€»æ•°ã€‚
+        uint32_t     num_of_follow;         // ç”¨æˆ·å…³æ³¨çš„ç”¨æˆ·æ€»æ•°ã€‚
+        uint32_t     num_of_followed;       // ç”¨æˆ·è¢«å…³æ³¨çš„æ€»æ•°ã€‚
+        uint32_t     num_of_album_items;    // ç”¨æˆ·ç›¸å†Œä¸­çš„æ¡ç›®æ€»æ•°ã€‚
 
         uint64_t primary_key()        const { return user.value; }
         uint64_t by_num_of_articles() const { return ~num_of_articles; }
@@ -176,18 +176,18 @@ private:
         indexed_by< "bynumofarts"_n, const_mem_fun<st_user_profile, uint64_t, &st_user_profile::by_num_of_articles> >
     > tb_user_profiles;
 
-    // ÎÄÕÂ
+    // æ–‡ç« 
     TABLE st_article {
         name         user;
         uint64_t     article_id;
-        string       article_hash;        // ÎÄÕÂµÄÄÚÈİµÄÊı¾İµÄÊ×hash
-        uint64_t     num_of_trns;         // ·¢ËÍÎÄÕÂ½øĞĞµÄ×ªÕË½»Ò×´ÎÊı
-        uint8_t      category;            // 1=ÏÖÊµ±Ê¼Ç£»2=ÃÎÏë±Ê¼Ç
-        uint8_t      type;                // 1=Î¢ÎÄ£»    2=³¤ÎÄ      £¨Çø±ğÔÚÓÚ³¤ÎÄ¿ÉÒÔÓĞ±êÌâ£¬Î¢ÎÄÃ»ÓĞ±êÌâ¡£³¤ÎÄÓëÎ¢ÎÄ¶¼Ã»ÓĞ³¤¶ÈÏŞÖÆ¡££©
-        uint8_t      storage_location;    // 1=EOS£»     2=ETH£»     3=BSC£»    5=BTC£»                    £¨ÎÄÕÂÄÚÈİÊı¾İ´æ´¢ÔÚÄÄÌõÁ´ÉÏ£©
-        uint64_t     forward_article_id;  // ×ª·¢µÄÎÄÕÂµÄid£¬0±íÊ¾Ã»ÓĞ×ª·¢
-        uint32_t     forwarded_times;     // ±»×ª·¢µÄ´ÎÊı
-        uint32_t     replied_times;       // ±»»Ø¸´µÄ´ÎÊı
+        string       article_hash;        // æ–‡ç« çš„å†…å®¹çš„æ•°æ®çš„é¦–hash
+        uint64_t     num_of_trns;         // å‘é€æ–‡ç« è¿›è¡Œçš„è½¬è´¦äº¤æ˜“æ¬¡æ•°
+        uint8_t      category;            // 1=ç°å®ç¬”è®°ï¼›2=æ¢¦æƒ³ç¬”è®°
+        uint8_t      type;                // 1=å¾®æ–‡ï¼›    2=é•¿æ–‡      ï¼ˆåŒºåˆ«åœ¨äºé•¿æ–‡å¯ä»¥æœ‰æ ‡é¢˜ï¼Œå¾®æ–‡æ²¡æœ‰æ ‡é¢˜ã€‚é•¿æ–‡ä¸å¾®æ–‡éƒ½æ²¡æœ‰é•¿åº¦é™åˆ¶ã€‚ï¼‰
+        uint8_t      storage_location;    // 1=EOSï¼›     2=ETHï¼›     3=BSCï¼›    5=BTCï¼›                    ï¼ˆæ–‡ç« å†…å®¹æ•°æ®å­˜å‚¨åœ¨å“ªæ¡é“¾ä¸Šï¼‰
+        uint64_t     forward_article_id;  // è½¬å‘çš„æ–‡ç« çš„idï¼Œ0è¡¨ç¤ºæ²¡æœ‰è½¬å‘
+        uint32_t     forwarded_times;     // è¢«è½¬å‘çš„æ¬¡æ•°
+        uint32_t     replied_times;       // è¢«å›å¤çš„æ¬¡æ•°
         uint32_t     post_time;
 
         uint64_t  primary_key()                const { return article_id; }
@@ -212,16 +212,16 @@ private:
         indexed_by< "byusrarticle"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_article> >
     > tb_articles;
 
-    // »Ø¸´
+    // å›å¤
     TABLE st_reply {
         name         user;
         uint64_t     reply_id;
-        string       reply_hash;          // »Ø¸´µÄÄÚÈİµÄÊı¾İµÄÊ×hash
-        uint32_t     num_of_trns;         // ·¢ËÍ»Ø¸´½øĞĞµÄ×ªÕË½»Ò×´ÎÊı
-        uint8_t      storage_location;    // 1=EOS£»     2=ETH£»     3=BSC£»    5=BTC£»                    £¨»Ø¸´ÄÚÈİÊı¾İ´æ´¢ÔÚÄÄÌõÁ´ÉÏ£©
-        uint64_t     target_article_id;   // Ä¿±êÎÄÕÂµÄid¡£ËùÓĞµÄ»Ø¸´¶¼ÓĞÒ»¸öÄ¿±êÎÄÕÂ¡£
-        uint64_t     target_reply_id;     // Ä¿±ê»Ø¸´µÄid¡£»Ø¸´ÊôÓÚÒ»¸öÄ¿±êÎÄÕÂ£¬Í¬Ê±»Ø¸´»¹¿ÉÒÔÖ¸ÏòÒ»¸ö»Ø¸´£¬Ò²¾ÍÊÇ¶Ô»Ø¸´½øĞĞµÄ»Ø¸´¡£
-        uint16_t     replied_times;       // ×Ô¼º±»»Ø¸´µÄ´ÎÊı
+        string       reply_hash;          // å›å¤çš„å†…å®¹çš„æ•°æ®çš„é¦–hash
+        uint32_t     num_of_trns;         // å‘é€å›å¤è¿›è¡Œçš„è½¬è´¦äº¤æ˜“æ¬¡æ•°
+        uint8_t      storage_location;    // 1=EOSï¼›     2=ETHï¼›     3=BSCï¼›    5=BTCï¼›                    ï¼ˆå›å¤å†…å®¹æ•°æ®å­˜å‚¨åœ¨å“ªæ¡é“¾ä¸Šï¼‰
+        uint64_t     target_article_id;   // ç›®æ ‡æ–‡ç« çš„idã€‚æ‰€æœ‰çš„å›å¤éƒ½æœ‰ä¸€ä¸ªç›®æ ‡æ–‡ç« ã€‚
+        uint64_t     target_reply_id;     // ç›®æ ‡å›å¤çš„idã€‚å›å¤å±äºä¸€ä¸ªç›®æ ‡æ–‡ç« ï¼ŒåŒæ—¶å›å¤è¿˜å¯ä»¥æŒ‡å‘ä¸€ä¸ªå›å¤ï¼Œä¹Ÿå°±æ˜¯å¯¹å›å¤è¿›è¡Œçš„å›å¤ã€‚
+        uint16_t     replied_times;       // è‡ªå·±è¢«å›å¤çš„æ¬¡æ•°
         uint32_t     post_time;
 
         uint64_t  primary_key()      const { return reply_id; }
@@ -242,7 +242,7 @@ private:
         indexed_by< "byuserreply"_n,  const_mem_fun<st_reply, uint128_t, &st_reply::by_user_reply> >
     > tb_replies;
 
-    // ÓÃ»§¹ØÏµ
+    // ç”¨æˆ·å…³ç³»
     TABLE st_user_relationship {
         uint64_t     id;
         name         follow_user;
@@ -263,18 +263,18 @@ private:
         indexed_by< "byfllwedfllw"_n, const_mem_fun<st_user_relationship, uint128_t, &st_user_relationship::by_followed_follow> >
     > tb_user_relationships;
 
-    // Ïà²á
+    // ç›¸å†Œ
     TABLE st_album {
         name         user;
         uint64_t     item_id;
-        uint8_t      item_type;           // 1=Í¼Æ¬£»2=ÊÓÆµ£»
-        uint8_t      storage_location;    // 1=EOS£»     2=ETH£»     3=BSC£»    5=BTC£»                    £¨ÌõÄ¿µÄÊı¾İ´æ´¢ÔÚÄÄÌõÁ´ÉÏ£©
+        uint8_t      item_type;           // 1=å›¾ç‰‡ï¼›2=è§†é¢‘ï¼›
+        uint8_t      storage_location;    // 1=EOSï¼›     2=ETHï¼›     3=BSCï¼›    5=BTCï¼›                    ï¼ˆæ¡ç›®çš„æ•°æ®å­˜å‚¨åœ¨å“ªæ¡é“¾ä¸Šï¼‰
         string       description;
         uint32_t     post_time;
-        string       preview_head_hash;   // preview ´ú±íÍ¼Æ¬µÄËõÂÔÍ¼»òÕßÊÓÆµµÄÊ×»­ÃæµÄËõÂÔÍ¼¡£
+        string       preview_head_hash;   // preview ä»£è¡¨å›¾ç‰‡çš„ç¼©ç•¥å›¾æˆ–è€…è§†é¢‘çš„é¦–ç”»é¢çš„ç¼©ç•¥å›¾ã€‚
         uint64_t     preview_trn_num;
         uint64_t     preview_length;
-        string       origin_head_hash;    // origin  ´ú±íÍ¼Æ¬»òÕßÊÓÆµµÄÔ­Ê¼ÎÄ¼ş¡£
+        string       origin_head_hash;    // origin  ä»£è¡¨å›¾ç‰‡æˆ–è€…è§†é¢‘çš„åŸå§‹æ–‡ä»¶ã€‚
         uint64_t     origin_trn_num;
         uint64_t     origin_length;
 
