@@ -30,7 +30,7 @@ using namespace eosio;
 using std::string;
 
 // pubwelfmedal
-// ¹«ÒæÑ«ÕÂ
+// å…¬ç›Šå‹‹ç« 
 
 CONTRACT pubwelfmedal : public eosio::contract {
 
@@ -41,34 +41,34 @@ public:
     pubwelfmedal(name self, name first_receiver, datastream<const char*> ds) : contract(self, first_receiver, ds),
           _medalnfts              (get_self(), get_self().value){};
 
-    // ·¢ĞĞ¡¢´´½¨Ò»¸ö NFT
+    // å‘è¡Œã€åˆ›å»ºä¸€ä¸ª NFT
     ACTION issue(const string& motto_fixed);
 
-    // NFT ×ªÕË
+    // NFT è½¬è´¦
     ACTION transfer(const name& from, const name& to, uint64_t nft_id, const string& memo);
 
-    // NFT ÀÛ¼Æ¹±Ï×Öµ
+    // NFT ç´¯è®¡è´¡çŒ®å€¼
     ACTION donateaddup(const name& user, const asset& quantity);
 
-    // ÓÃ»§ĞŞ¸Ä×Ô¼ºµÄ NFT µÄ¿ÉÉèÖÃ¸ñÑÔ
+    // ç”¨æˆ·ä¿®æ”¹è‡ªå·±çš„ NFT çš„å¯è®¾ç½®æ ¼è¨€
     ACTION editmotto(const name& user, const uint64_t nft_id, const string& motto_modifiable);
 
-    // Çå³ı multi_index ÖĞµÄËùÓĞÊı¾İ£¬²âÊÔÊ±Ê¹ÓÃ£¬ÉÏÏßÊ±È¥µô
+    // æ¸…é™¤ multi_index ä¸­çš„æ‰€æœ‰æ•°æ®ï¼Œæµ‹è¯•æ—¶ä½¿ç”¨ï¼Œä¸Šçº¿æ—¶å»æ‰
     ACTION clearalldata();
 
 private:
 
-    // ¹«ÒæÑ«ÕÂ NFT
+    // å…¬ç›Šå‹‹ç«  NFT
     TABLE st_medalnft {
         uint64_t     nft_id;
         asset        quantity;
         uint8_t      level;
         string       pic_hash;
-        string       motto_fixed;         // ¸ñÑÔ£¬´´½¨Ê±ÉèÖÃ£¬ÒÔºó¹Ì¶¨²»¿ÉĞŞ¸Ä
-        string       motto_modifiable;    // ¸ñÑÔ£¬ÓÃ»§¿ÉÒÔ×Ô¼ºÉèÖÃ
-        string       reserved_field;      // Ô¤Áô×Ö¶Î
-        name         owner;               // ÓµÓĞÕß
-        uint32_t     time_of_receipt;     // ÊÕµ½ NFT µÄÊ±¼ä
+        string       motto_fixed;         // æ ¼è¨€ï¼Œåˆ›å»ºæ—¶è®¾ç½®ï¼Œä»¥åå›ºå®šä¸å¯ä¿®æ”¹
+        string       motto_modifiable;    // æ ¼è¨€ï¼Œç”¨æˆ·å¯ä»¥è‡ªå·±è®¾ç½®
+        string       reserved_field;      // é¢„ç•™å­—æ®µ
+        name         owner;               // æ‹¥æœ‰è€…
+        uint32_t     time_of_receipt;     // æ”¶åˆ° NFT çš„æ—¶é—´
 
         uint64_t  primary_key()  const { return nft_id; }
         uint128_t by_owner_nft() const {
@@ -87,11 +87,11 @@ private:
 
     tb_medalnfts              _medalnfts;
 
-    // ·µ»Øµ±Ç°Ê±¼ä´Á
+    // è¿”å›å½“å‰æ—¶é—´æˆ³
     uint32_t now() const {
         return current_time_point().sec_since_epoch();
     };
 
-    // ¸ù¾İÊıÖµ¼ÆËã¼¶±ğ
+    // æ ¹æ®æ•°å€¼è®¡ç®—çº§åˆ«
     uint8_t get_level(const uint64_t amount) const;
 };

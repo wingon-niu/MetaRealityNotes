@@ -2,7 +2,7 @@
 
 //
 
-// ·¢ĞĞ¡¢´´½¨Ò»¸ö NFT
+// å‘è¡Œã€åˆ›å»ºä¸€ä¸ª NFT
 ACTION pubwelfmedal::issue(const string& motto_fixed)
 {
     require_auth( ISSUER );
@@ -28,7 +28,7 @@ ACTION pubwelfmedal::issue(const string& motto_fixed)
     });
 }
 
-// NFT ×ªÕË
+// NFT è½¬è´¦
 ACTION pubwelfmedal::transfer(const name& from, const name& to, uint64_t nft_id, const string& memo)
 {
     require_auth( from );
@@ -45,21 +45,21 @@ ACTION pubwelfmedal::transfer(const name& from, const name& to, uint64_t nft_id,
     });
 }
 
-// NFT ÀÛ¼Æ¹±Ï×Öµ
+// NFT ç´¯è®¡è´¡çŒ®å€¼
 ACTION pubwelfmedal::donateaddup(const name& user, const asset& quantity)
 {
     require_auth( ISSUER );
 
-    uint64_t nft_id = 1;                                        // Ä¬ÈÏ½«¹±Ï×ÖµÀÛ¼Æµ½ 1 ºÅ NFT¡£
+    uint64_t nft_id = 1;                                        // é»˜è®¤å°†è´¡çŒ®å€¼ç´¯è®¡åˆ° 1 å· NFTã€‚
 
     auto index = _medalnfts.get_index<name("byownernft")>();
     auto itr = index.lower_bound(uint128_t{user.value}<<64);
-    if ( itr != index.end() && itr->owner == user ) {           // Èç¹ûÓÃ»§ÓµÓĞ NFT£¬ÔòÕÒµ½ÓÃ»§ÓµÓĞµÄµÚÒ»¸ö NFT£¬²¢½«¹±Ï×ÖµÀÛ¼Æ¸øÕâ¸ö NFT¡£
+    if ( itr != index.end() && itr->owner == user ) {           // å¦‚æœç”¨æˆ·æ‹¥æœ‰ NFTï¼Œåˆ™æ‰¾åˆ°ç”¨æˆ·æ‹¥æœ‰çš„ç¬¬ä¸€ä¸ª NFTï¼Œå¹¶å°†è´¡çŒ®å€¼ç´¯è®¡ç»™è¿™ä¸ª NFTã€‚
         nft_id = itr->nft_id;
     }
 
     auto itr_nft = _medalnfts.find( nft_id );
-    if ( itr_nft != _medalnfts.end() ) {                        // ÕÒµ½ÔòÀÛ¼Æ£¬Ã»ÕÒµ½¾ÍÊ²Ã´¶¼²»×ö£¬²»ĞèÒª±¨´í¡£
+    if ( itr_nft != _medalnfts.end() ) {                        // æ‰¾åˆ°åˆ™ç´¯è®¡ï¼Œæ²¡æ‰¾åˆ°å°±ä»€ä¹ˆéƒ½ä¸åšï¼Œä¸éœ€è¦æŠ¥é”™ã€‚
         _medalnfts.modify( itr_nft, _self, [&]( auto& item ) {
             const string s[11] = {"", PIC_HASH_LEVEL_1, PIC_HASH_LEVEL_2, PIC_HASH_LEVEL_3, PIC_HASH_LEVEL_4, PIC_HASH_LEVEL_5, PIC_HASH_LEVEL_6, PIC_HASH_LEVEL_7, PIC_HASH_LEVEL_8, PIC_HASH_LEVEL_9, PIC_HASH_LEVEL_10};
             item.quantity += quantity;
@@ -72,7 +72,7 @@ ACTION pubwelfmedal::donateaddup(const name& user, const asset& quantity)
     }
 }
 
-// ¸ù¾İÊıÖµ¼ÆËã¼¶±ğ
+// æ ¹æ®æ•°å€¼è®¡ç®—çº§åˆ«
 uint8_t pubwelfmedal::get_level(const uint64_t amount) const
 {
     uint8_t i = 1;
@@ -91,7 +91,7 @@ uint8_t pubwelfmedal::get_level(const uint64_t amount) const
     return i;
 }
 
-// ÓÃ»§ĞŞ¸Ä×Ô¼ºµÄ NFT µÄ¿ÉÉèÖÃ¸ñÑÔ
+// ç”¨æˆ·ä¿®æ”¹è‡ªå·±çš„ NFT çš„å¯è®¾ç½®æ ¼è¨€
 ACTION pubwelfmedal::editmotto(const name& user, const uint64_t nft_id, const string& motto_modifiable)
 {
     require_auth( user );
@@ -106,7 +106,7 @@ ACTION pubwelfmedal::editmotto(const name& user, const uint64_t nft_id, const st
     });
 }
 
-// Çå³ı multi_index ÖĞµÄËùÓĞÊı¾İ£¬²âÊÔÊ±Ê¹ÓÃ£¬ÉÏÏßÊ±È¥µô
+// æ¸…é™¤ multi_index ä¸­çš„æ‰€æœ‰æ•°æ®ï¼Œæµ‹è¯•æ—¶ä½¿ç”¨ï¼Œä¸Šçº¿æ—¶å»æ‰
 ACTION pubwelfmedal::clearalldata()
 {
     require_auth( _self );
