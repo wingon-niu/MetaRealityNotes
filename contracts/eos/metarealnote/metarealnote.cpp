@@ -25,11 +25,11 @@ ACTION metarealnote::userregist(const name& user, const string& user_name, const
 {
     require_auth( user );
 
-    eosio::check( user_name.length()        <=  100, "user_name is too long, max 100" );
-    eosio::check( user_family_name.length() <=  100, "user_family_name is too long, max 100" );
-    eosio::check( gender.length()           <=  100, "gender is too long, max 100" );
-    eosio::check( birthday.length()         <=  100, "birthday is too long, max 100" );
-    eosio::check( description.length()      <= 1000, "description is too long, max 1000" );
+    eosio::check( user_name.length()        <=   90, "user_name is too long, max 30" );           // 一个汉字3个字节，utf8编码
+    eosio::check( user_family_name.length() <=   90, "user_family_name is too long, max 30" );    // 一个汉字3个字节，utf8编码
+    eosio::check( gender.length()           <=   90, "gender is too long, max 30" );              // 一个汉字3个字节，utf8编码
+    eosio::check( birthday.length()         <=   90, "birthday is too long, max 30" );            // 一个汉字3个字节，utf8编码
+    eosio::check( description.length()      <=  900, "description is too long, max 300" );        // 一个汉字3个字节，utf8编码
 
     auto itr = _user_profiles.find(user.value);
     if( itr == _user_profiles.end() ) {
@@ -230,7 +230,7 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
     require_auth( user );
     eosio::check( preview_head_hash.length() <= 129, "preview_head_hash is too long, max 129" );
     eosio::check( origin_head_hash.length()  <= 129, "origin_head_hash is too long, max 129" );
-    eosio::check( description.length()       <=  90, "description is too long, max 30" );
+    eosio::check( description.length()       <=  90, "description is too long, max 30" );         // 一个汉字3个字节，utf8编码
 
     auto itr_account = _accounts.find( user.value );
 
@@ -277,7 +277,7 @@ ACTION metarealnote::rmalbumitem(const name& user, const uint64_t item_id)
 ACTION metarealnote::edititemdesc(const name& user, const uint64_t item_id, const string& description)
 {
     require_auth( user );
-    eosio::check( description.length()       <=  90, "description is too long, max 30" );
+    eosio::check( description.length()       <=  90, "description is too long, max 30" );         // 一个汉字3个字节，utf8编码
 
     auto itr = _albums.find( item_id );
     eosio::check(itr != _albums.end(), "item does not exist.");
@@ -360,12 +360,12 @@ uint64_t metarealnote::get_num_of_articles(const name& user)
     auto index = _articles.get_index<name("byusrarticle")>();
     auto itr = index.lower_bound(uint128_t{user.value}<<64);
     if (itr == index.end()) {
-    	return 0;
+        return 0;
     }
     uint64_t num = 0;
     while(itr != index.end() && itr->user == user) {
-    	num++;
-    	itr++;
+        num++;
+        itr++;
     }
     return num;
 }
@@ -376,12 +376,12 @@ uint32_t metarealnote::get_num_of_replies(const name& user)
     auto index = _replies.get_index<name("byuserreply")>();
     auto itr = index.lower_bound(uint128_t{user.value}<<64);
     if (itr == index.end()) {
-    	return 0;
+        return 0;
     }
     uint32_t num = 0;
     while(itr != index.end() && itr->user == user) {
-    	num++;
-    	itr++;
+        num++;
+        itr++;
     }
     return num;
 }
@@ -392,12 +392,12 @@ uint32_t metarealnote::get_num_of_follow(const name& user)
     auto index = _user_relationships.get_index<name("byfllwfllwed")>();
     auto itr = index.lower_bound(uint128_t{user.value}<<64);
     if (itr == index.end()) {
-    	return 0;
+        return 0;
     }
     uint32_t num = 0;
     while(itr != index.end() && itr->follow_user == user) {
-    	num++;
-    	itr++;
+        num++;
+        itr++;
     }
     return num;
 }
@@ -408,12 +408,12 @@ uint32_t metarealnote::get_num_of_followed(const name& user)
     auto index = _user_relationships.get_index<name("byfllwedfllw")>();
     auto itr = index.lower_bound(uint128_t{user.value}<<64);
     if (itr == index.end()) {
-    	return 0;
+        return 0;
     }
     uint32_t num = 0;
     while(itr != index.end() && itr->followed_user == user) {
-    	num++;
-    	itr++;
+        num++;
+        itr++;
     }
     return num;
 }
@@ -424,12 +424,12 @@ uint32_t metarealnote::get_num_of_album_items(const name& user)
     auto index = _albums.get_index<name("byuseritem")>();
     auto itr = index.lower_bound(uint128_t{user.value}<<64);
     if (itr == index.end()) {
-    	return 0;
+        return 0;
     }
     uint32_t num = 0;
     while(itr != index.end() && itr->user == user) {
-    	num++;
-    	itr++;
+        num++;
+        itr++;
     }
     return num;
 }
