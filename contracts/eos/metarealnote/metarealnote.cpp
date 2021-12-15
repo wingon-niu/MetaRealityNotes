@@ -306,6 +306,22 @@ ACTION metarealnote::edititemdesc(const name& user, const uint64_t item_id, cons
     });
 }
 
+// 设置用户头像
+ACTION metarealnote::setavatar(const name& user, const uint64_t avatar_album_item_id)
+{
+    require_auth( user );
+
+    auto itr = _albums.find( avatar_album_item_id );
+    eosio::check(itr != _albums.end(), "album item does not exist.");
+    eosio::check(itr->user == user, "this album item is not belong to you.");
+
+    auto itr_user = _user_profiles.find( user.value );
+    eosio::check(itr_user != _user_profiles.end(), "user does not exist.");
+    _user_profiles.modify( itr_user, _self, [&]( auto& item ) {
+        item.avatar_album_item_id = avatar_album_item_id;
+    });
+}
+
 // 文章的转发数加1
 void metarealnote::add_article_forwarded_times(const uint64_t & article_id)
 {

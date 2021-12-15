@@ -68,6 +68,9 @@ public:
     // 修改相册条目的描述
     ACTION edititemdesc(const name& user, const uint64_t item_id, const string& description);
 
+    // 设置用户头像
+    ACTION setavatar(const name& user, const uint64_t avatar_album_item_id);
+
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
 
