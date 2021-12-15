@@ -88,6 +88,9 @@ ACTION metarealnote::followuser(const name& follow_user, const name& followed_us
         item.followed_user = followed_user;
         item.follow_time   = now();
     });
+
+    add_num_of_follow(follow_user);
+    add_num_of_followed(followed_user);
 }
 
 // 取消关注用户
@@ -102,6 +105,9 @@ ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_
     auto itr_pri = _user_relationships.find( itr->id );
     eosio::check( itr_pri != _user_relationships.end(), "user not been followed or unknown error.");
     _user_relationships.erase(itr_pri);
+
+    sub_num_of_follow(follow_user);
+    sub_num_of_followed(followed_user);
 }
 
 // 发表文章
@@ -141,6 +147,8 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
     if (storage_location == 1) { // 文章的内容数据存储在 EOS 链上
         _accounts.erase(itr_account);
     }
+
+    add_num_of_articles(user);
 }
 
 // 删除文章
@@ -158,6 +166,8 @@ ACTION metarealnote::rmarticle(const name& user, const uint64_t article_id)
     if (forward_article_id > 0) {
         sub_article_forwarded_times(forward_article_id);
     }
+
+    sub_num_of_articles(user);
 }
 
 // 发表回复
@@ -200,6 +210,8 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
     if (storage_location == 1) { // 回复的内容数据存储在 EOS 链上
         _accounts.erase(itr_account);
     }
+
+    add_num_of_replies(user);
 }
 
 // 删除回复
@@ -222,6 +234,8 @@ ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
     if (target_reply_id > 0) {
         sub_reply_replied_times(target_reply_id);
     }
+
+    sub_num_of_replies(user);
 }
 
 // 上传相册条目
@@ -260,6 +274,8 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
     if (storage_location == 1) { // 数据存储在 EOS 链上
         _accounts.erase(itr_account);
     }
+
+    add_num_of_album_items(user);
 }
 
 // 删除相册条目
@@ -271,6 +287,8 @@ ACTION metarealnote::rmalbumitem(const name& user, const uint64_t item_id)
     eosio::check(itr != _albums.end(), "item does not exist.");
     eosio::check(itr->user == user, "this item is not belong to you.");
     _albums.erase(itr);
+
+    sub_num_of_album_items(user);
 }
 
 // 修改相册条目的描述
