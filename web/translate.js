@@ -73,6 +73,11 @@ function change_lang(lang_type)
 			$("#dream").html($.i18n.prop('dream'));
 			$("#create_edit_profile").html($.i18n.prop('create_edit_profile'));
 			$("#delete_profile").html($.i18n.prop('delete_profile'));
+			$(".user_name_span").html($.i18n.prop('user_name_span'));
+			$(".user_family_name_span").html($.i18n.prop('user_family_name_span'));
+			$(".user_gender_span").html($.i18n.prop('user_gender_span'));
+			$(".user_birthday_span").html($.i18n.prop('user_birthday_span'));
+			$(".user_description_span").html($.i18n.prop('user_description_span'));
 
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));
