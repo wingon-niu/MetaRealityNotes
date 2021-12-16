@@ -5,6 +5,7 @@ function create_edit_profile()
 		alert($("#please_login").html());
 		return;
 	}
+	$("#menu_body").offCanvas('close');
 }
 
 function delete_profile()
@@ -13,4 +14,5 @@ function delete_profile()
 		alert($("#please_login").html());
 		return;
 	}
+	$("#menu_body").offCanvas('close');
 }
