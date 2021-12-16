@@ -97,7 +97,7 @@ function delete_profile()
 						permission: account.authority
 					}],
 					data: {
-						user:             account.name
+						user: account.name
 					}
 				}]
 			},{
