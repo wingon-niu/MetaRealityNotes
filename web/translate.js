@@ -80,6 +80,7 @@ function change_lang(lang_type)
 			$(".user_birthday_span").html($.i18n.prop('user_birthday_span'));
 			$(".user_description_span").html($.i18n.prop('user_description_span'));
 			$("#save_profile").html($.i18n.prop('save_profile'));
+			$("#delete_profile_confirm").html($.i18n.prop('delete_profile_confirm'));
 
 			//
 		}

@@ -83,4 +83,6 @@ function delete_profile()
 		return;
 	}
 	$("#menu_body").offCanvas('close');
+	if (! confirm($("#delete_profile_confirm").html()) ) return;
+	//
 }
