@@ -71,6 +71,8 @@ function change_lang(lang_type)
 			$("#reply_to").html($.i18n.prop('reply_to'));
 			$("#real").html($.i18n.prop('real'));
 			$("#dream").html($.i18n.prop('dream'));
+			$("#create_edit_profile").html($.i18n.prop('create_edit_profile'));
+			$("#delete_profile").html($.i18n.prop('delete_profile'));
 
 			//$(".my_close").html($.i18n.prop('my_close'));
 			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));
