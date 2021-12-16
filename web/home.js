@@ -118,6 +118,10 @@ $(document).ready(function () {
 		delete_profile();
 	});
 
+	$("#save_profile").on("click", function() {
+		save_profile();
+	});
+
 	reply_user_map = new Map();
 
 	//

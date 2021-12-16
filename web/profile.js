@@ -9,6 +9,10 @@ function create_edit_profile()
 	$("#menu_body").offCanvas('close');
 }
 
+function save_profile()
+{
+}
+
 function delete_profile()
 {
 	if(current_user_account === "") {
