@@ -51,6 +51,7 @@ function change_lang(lang_type)
 			$(".number_of_trns").html($.i18n.prop('number_of_trns'));
 			$(".my_cancel").html($.i18n.prop('my_cancel'));
 			$(".my_confirm").html($.i18n.prop('my_confirm'));
+			$(".my_close").html($.i18n.prop('my_close'));
 			$("#article_title").html($.i18n.prop('article_title'));
 			$("#article_content").html($.i18n.prop('article_content'));
 			$("#post_article").html($.i18n.prop('post_article'));
@@ -80,14 +81,7 @@ function change_lang(lang_type)
 			$(".user_description_span").html($.i18n.prop('user_description_span'));
 			$("#save_profile").html($.i18n.prop('save_profile'));
 
-			//$(".my_close").html($.i18n.prop('my_close'));
-			//$("#target_private_album_id").html($.i18n.prop('target_private_album_id'));
-			//$("#target_public_album_id").html($.i18n.prop('target_public_album_id'));
-			//if (current_album_type == "public") {
-			//	$("#current_album_type").html($("#tab_public_album").html());
-			//} else {
-			//	$("#current_album_type").html($("#tab_private_album").html());
-			//}
+			//
 		}
 	});
 }
