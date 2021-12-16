@@ -7,6 +7,11 @@ function create_edit_profile()
 		return;
 	}
 	$("#menu_body").offCanvas('close');
+	$('#div_create_edit_profile').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
 }
 
 function save_profile()
