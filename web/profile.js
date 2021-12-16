@@ -11,8 +11,8 @@ function create_edit_profile()
 	const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
 	(async () => {
 		try {
-			var lower_bd  = new BigNumber(eosjsName.nameToUint64(current_user_account));
-			var upper_bd  = new BigNumber(lower_bd + 1);
+			var lower_bd  = new BigNumber( my_eos_name_to_uint64t(current_user_account) );
+			var upper_bd  = new BigNumber( lower_bd.plus(1) );
 			const resp = await rpc.get_table_rows({
 				json:  true,
 				code:  metarealnote_contract,
@@ -26,11 +26,12 @@ function create_edit_profile()
 				reverse: false,
 				show_payer: false
 			});
-			let len = resp.rows.length;
-			if (len === 0) {
-				alert(0);
-			} else {
-				alert(1);
+			if (resp.rows.length === 1) {
+				$("#user_name_input").val           ( resp.rows[0].user_name        );
+				$("#user_family_name_input").val    ( resp.rows[0].user_family_name );
+				$("#user_gender_input").val         ( resp.rows[0].gender           );
+				$("#user_birthday_input").val       ( resp.rows[0].birthday         );
+				$("#user_description_textarea").val ( resp.rows[0].description      );
 			}
 		} catch (e) {
 			alert(e);
