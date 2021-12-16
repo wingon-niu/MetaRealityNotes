@@ -56,3 +56,8 @@ function my_unescapeHTML(safe)
 		.replace(/&quot;/g, '"')
 		.replace(/&#039;/g, "'");
 }
+
+function my_eos_name_to_uint64t(eos_name)
+{
+	return eosjsName.nameToUint64(eos_name);
+}
