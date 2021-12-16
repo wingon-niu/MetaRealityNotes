@@ -110,6 +110,14 @@ $(document).ready(function () {
 		resume_from_break_point_post_reply();
 	});
 
+	$("#create_edit_profile").on("click", function() {
+		create_edit_profile();
+	});
+
+	$("#delete_profile").on("click", function() {
+		delete_profile();
+	});
+
 	reply_user_map = new Map();
 
 	//
