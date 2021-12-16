@@ -83,6 +83,27 @@ function delete_profile()
 		return;
 	}
 	$("#menu_body").offCanvas('close');
+
 	if (! confirm($("#delete_profile_confirm").html()) ) return;
-	//
+
+	send_transaction( function(api, account) {
+		return api.transact(
+			{
+				actions: [{
+					account: metarealnote_contract,
+					name: 'userunregist',
+					authorization: [{
+						actor: account.name,
+						permission: account.authority
+					}],
+					data: {
+						user:             account.name
+					}
+				}]
+			},{
+				blocksBehind: 3,
+				expireSeconds: 60
+			}
+		);
+	});
 }
