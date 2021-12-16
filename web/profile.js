@@ -73,7 +73,6 @@ function save_profile()
 			}
 		);
 	});
-	alert("OK");
 }
 
 function delete_profile()
