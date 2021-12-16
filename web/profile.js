@@ -7,6 +7,36 @@ function create_edit_profile()
 		return;
 	}
 	$("#menu_body").offCanvas('close');
+
+	const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
+	(async () => {
+		try {
+			var lower_bd  = new BigNumber(eosjsName.nameToUint64(current_user_account));
+			var upper_bd  = new BigNumber(lower_bd + 1);
+			const resp = await rpc.get_table_rows({
+				json:  true,
+				code:  metarealnote_contract,
+				scope: metarealnote_contract,
+				table: 'userprofiles',
+				index_position: 1,
+				key_type: 'i64',
+				lower_bound: lower_bd.toFixed(),
+				upper_bound: upper_bd.toFixed(),
+				limit: 1,
+				reverse: false,
+				show_payer: false
+			});
+			let len = resp.rows.length;
+			if (len === 0) {
+				alert(0);
+			} else {
+				alert(1);
+			}
+		} catch (e) {
+			alert(e);
+		}
+	})();
+
 	$('#div_create_edit_profile').modal({
 		relatedTarget: this,
 		onCancel: function() {},
