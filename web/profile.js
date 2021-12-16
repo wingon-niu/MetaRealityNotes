@@ -47,6 +47,33 @@ function save_profile()
 		else                                  alert("Error: Description is too long.");
 		return;
 	}
+
+	send_transaction( function(api, account) {
+		return api.transact(
+			{
+				actions: [{
+					account: metarealnote_contract,
+					name: 'userregist',
+					authorization: [{
+						actor: account.name,
+						permission: account.authority
+					}],
+					data: {
+						user:             account.name,
+						user_name:        user_name,
+						user_family_name: user_family_name,
+						gender:           user_gender,
+						birthday:         user_birthday,
+						description:      user_description
+					}
+				}]
+			},{
+				blocksBehind: 3,
+				expireSeconds: 60
+			}
+		);
+	});
+	alert("OK");
 }
 
 function delete_profile()
