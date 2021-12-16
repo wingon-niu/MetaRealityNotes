@@ -16,6 +16,37 @@ function create_edit_profile()
 
 function save_profile()
 {
+	let user_name        = $("#user_name_input").val();
+	let user_family_name = $("#user_family_name_input").val();
+	let user_gender      = $("#user_gender_input").val();
+	let user_birthday    = $("#user_birthday_input").val();
+	let user_description = $("#user_description_textarea").val();
+
+	if (user_name.length > 30) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：用户的名字长度超出限制。");
+		else                                  alert("Error: User name is too long.");
+		return;
+	}
+	if (user_family_name.length > 30) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：用户的姓长度超出限制。");
+		else                                  alert("Error: User family name is too long.");
+		return;
+	}
+	if (user_gender.length > 30) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：性别长度超出限制。");
+		else                                  alert("Error: Gender is too long.");
+		return;
+	}
+	if (user_birthday.length > 30) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：生日长度超出限制。");
+		else                                  alert("Error: Birthday is too long.");
+		return;
+	}
+	if (user_description.length > 300) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：用户简介长度超出限制。");
+		else                                  alert("Error: Description is too long.");
+		return;
+	}
 }
 
 function delete_profile()
