@@ -7,16 +7,17 @@ function show_user_info()
 	}
 
 	query_user_profile(current_user_account);
+}
+
+function query_user_profile(user)
+{
+	//
 
 	$('#div_view_profile').modal({
 		relatedTarget: this,
 		onCancel: function() {},
 		onConfirm: function() {}
 	});
-}
-
-function query_user_profile(user)
-{
 }
 
 function create_edit_profile()
