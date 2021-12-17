@@ -11,7 +11,7 @@ function show_user_info()
 
 function query_user_profile(user)
 {
-	$("#eos_account_name_label").val(user);
+	$("#eos_account_name_label").html(user);
 
 	const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
 	(async () => {
@@ -37,26 +37,26 @@ function query_user_profile(user)
 				$("#user_gender_input_view").val         ( resp.rows[0].gender                         );
 				$("#user_birthday_input_view").val       ( resp.rows[0].birthday                       );
 				$("#user_description_textarea_view").val ( resp.rows[0].description                    );
-				$("#user_avatar_id_label").val           ( resp.rows[0].avatar_album_item_id           );
-				$("#num_of_articles_label").val          ( resp.rows[0].num_of_articles                );
-				$("#num_of_replies_label").val           ( resp.rows[0].num_of_replies                 );
-				$("#num_of_follow_label").val            ( resp.rows[0].num_of_follow                  );
-				$("#num_of_followed_label").val          ( resp.rows[0].num_of_followed                );
-				$("#num_of_album_items_label").val       ( resp.rows[0].num_of_album_items             );
-				$("#user_reg_time_label").val            ( timestamp_trans_full(resp.rows[0].reg_time) );
+				$("#user_avatar_id_label").html          ( resp.rows[0].avatar_album_item_id           );
+				$("#num_of_articles_label").html         ( resp.rows[0].num_of_articles                );
+				$("#num_of_replies_label").html          ( resp.rows[0].num_of_replies                 );
+				$("#num_of_follow_label").html           ( resp.rows[0].num_of_follow                  );
+				$("#num_of_followed_label").html         ( resp.rows[0].num_of_followed                );
+				$("#num_of_album_items_label").html      ( resp.rows[0].num_of_album_items             );
+				$("#user_reg_time_label").html           ( timestamp_trans_full(resp.rows[0].reg_time) );
 			} else {
 				$("#user_name_input_view").val           ( "N/A" );
 				$("#user_family_name_input_view").val    ( "N/A" );
 				$("#user_gender_input_view").val         ( "N/A" );
 				$("#user_birthday_input_view").val       ( "N/A" );
 				$("#user_description_textarea_view").val ( "N/A" );
-				$("#user_avatar_id_label").val           ( "N/A" );
-				$("#num_of_articles_label").val          ( "N/A" );
-				$("#num_of_replies_label").val           ( "N/A" );
-				$("#num_of_follow_label").val            ( "N/A" );
-				$("#num_of_followed_label").val          ( "N/A" );
-				$("#num_of_album_items_label").val       ( "N/A" );
-				$("#user_reg_time_label").val            ( "N/A" );
+				$("#user_avatar_id_label").html          ( "N/A" );
+				$("#num_of_articles_label").html         ( "N/A" );
+				$("#num_of_replies_label").html          ( "N/A" );
+				$("#num_of_follow_label").html           ( "N/A" );
+				$("#num_of_followed_label").html         ( "N/A" );
+				$("#num_of_album_items_label").html      ( "N/A" );
+				$("#user_reg_time_label").html           ( "N/A" );
 			}
 		} catch (e) {
 			alert(e);
