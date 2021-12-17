@@ -89,6 +89,8 @@ function change_lang(lang_type)
 			$(".num_of_followed_span").html($.i18n.prop('num_of_followed_span'));
 			$(".num_of_album_items_span").html($.i18n.prop('num_of_album_items_span'));
 			$(".user_reg_time_span").html($.i18n.prop('user_reg_time_span'));
+			$("#follow_user").html($.i18n.prop('follow_user'));
+			$("#unfollow_user").html($.i18n.prop('unfollow_user'));
 
 			//
 		}
