@@ -1,6 +1,22 @@
 
 function show_user_info()
 {
+	if(current_user_account === "") {
+		alert($("#please_login").html());
+		return;
+	}
+
+	query_user_profile(current_user_account);
+
+	$('#div_view_profile').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
+}
+
+function query_user_profile(user)
+{
 }
 
 function create_edit_profile()
