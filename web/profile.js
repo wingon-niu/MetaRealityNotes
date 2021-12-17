@@ -32,18 +32,18 @@ function query_user_profile(user)
 				show_payer: false
 			});
 			if (resp.rows.length === 1) {
-				$("#user_name_input_view").val           ( resp.rows[0].user_name                           );
-				$("#user_family_name_input_view").val    ( resp.rows[0].user_family_name                    );
-				$("#user_gender_input_view").val         ( resp.rows[0].gender                              );
-				$("#user_birthday_input_view").val       ( resp.rows[0].birthday                            );
-				$("#user_description_textarea_view").val ( resp.rows[0].description                         );
-				$("#user_avatar_id_label").val           ( my_escapeHTML(resp.rows[0].avatar_album_item_id) );
-				$("#num_of_articles_label").val          ( my_escapeHTML(resp.rows[0].num_of_articles)      );
-				$("#num_of_replies_label").val           ( my_escapeHTML(resp.rows[0].num_of_replies)       );
-				$("#num_of_follow_label").val            ( my_escapeHTML(resp.rows[0].num_of_follow)        );
-				$("#num_of_followed_label").val          ( my_escapeHTML(resp.rows[0].num_of_followed)      );
-				$("#num_of_album_items_label").val       ( my_escapeHTML(resp.rows[0].num_of_album_items)   );
-				$("#user_reg_time_label").val            ( timestamp_trans_full(resp.rows[0].reg_time)      );
+				$("#user_name_input_view").val           ( resp.rows[0].user_name                      );
+				$("#user_family_name_input_view").val    ( resp.rows[0].user_family_name               );
+				$("#user_gender_input_view").val         ( resp.rows[0].gender                         );
+				$("#user_birthday_input_view").val       ( resp.rows[0].birthday                       );
+				$("#user_description_textarea_view").val ( resp.rows[0].description                    );
+				$("#user_avatar_id_label").val           ( resp.rows[0].avatar_album_item_id           );
+				$("#num_of_articles_label").val          ( resp.rows[0].num_of_articles                );
+				$("#num_of_replies_label").val           ( resp.rows[0].num_of_replies                 );
+				$("#num_of_follow_label").val            ( resp.rows[0].num_of_follow                  );
+				$("#num_of_followed_label").val          ( resp.rows[0].num_of_followed                );
+				$("#num_of_album_items_label").val       ( resp.rows[0].num_of_album_items             );
+				$("#user_reg_time_label").val            ( timestamp_trans_full(resp.rows[0].reg_time) );
 			} else {
 				$("#user_name_input_view").val           ( "N/A" );
 				$("#user_family_name_input_view").val    ( "N/A" );
