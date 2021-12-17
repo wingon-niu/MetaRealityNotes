@@ -1,4 +1,6 @@
 
+//utf8编码
+
 function follow_user()
 {
 }
