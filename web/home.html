@@ -60,6 +60,7 @@
 <script src="/postarticle.js"></script>
 <script src="/postreply.js"></script>
 <script src="/profile.js"></script>
+<script src="/follow.js"></script>
 
 
 
@@ -341,6 +342,40 @@
             <input type="text" class="am-modal-prompt-input" id="user_birthday_input" placeholder="" value="" />
             <span class="user_description_span">Description: (Max 300 characters)</span>
             <textarea class="am-modal-prompt-input" rows="12" id="user_description_textarea" placeholder=""></textarea>
+            <div>
+              <a href="##"><span id="save_profile">Save</span></a>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn my_close"  data-am-modal-cancel >Close</span>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  查看个人资料  显示的模态框  -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="div_view_profile">
+    <div class="am-modal-dialog">
+        <div>
+            <span class="eos_account_name_span">EOS Account:</span>&nbsp;<span id="eos_account_name_label">&nbsp;</span>
+            <span class="user_name_span">User name: (Max 30 characters)</span>
+            <input type="text" class="am-modal-prompt-input" id="user_name_input_view" placeholder="" value="" readonly="readonly" />
+            <span class="user_family_name_span">User family name: (Max 30 characters)</span>
+            <input type="text" class="am-modal-prompt-input" id="user_family_name_input_view" placeholder="" value="" readonly="readonly" />
+            <span class="user_gender_span">Gender: (Max 30 characters)</span>
+            <input type="text" class="am-modal-prompt-input" id="user_gender_input_view" placeholder="" value="" readonly="readonly" />
+            <span class="user_birthday_span">Birthday: (Max 30 characters)</span>
+            <input type="text" class="am-modal-prompt-input" id="user_birthday_input_view" placeholder="" value="" readonly="readonly" />
+            <span class="user_description_span">Description: (Max 300 characters)</span>
+            <textarea class="am-modal-prompt-input" rows="12" id="user_description_textarea_view" placeholder="" readonly="readonly"></textarea>
+            <span class="user_avatar_id_span">User avatar id:</span>&nbsp;<span id="user_avatar_id_label">&nbsp;</span>
+            <span class="num_of_articles_span">Num of articles:</span>&nbsp;<span id="num_of_articles_label">&nbsp;</span>
+            <span class="num_of_replies_span">Num of replies:</span>&nbsp;<span id="num_of_replies_label">&nbsp;</span>
+            <span class="num_of_follow_span">Num of follow users:</span>&nbsp;<span id="num_of_follow_label">&nbsp;</span>
+            <span class="num_of_followed_span">Num of followed:</span>&nbsp;<span id="num_of_followed_label">&nbsp;</span>
+            <span class="num_of_album_items_span">Num of album items:</span>&nbsp;<span id="num_of_album_items_label">&nbsp;</span>
+            <span class="user_reg_time_span">User reg time:</span>&nbsp;<span id="user_reg_time_label">&nbsp;</span>
             <div>
               <a href="##"><span id="save_profile">Save</span></a>
             </div>

@@ -81,6 +81,14 @@ function change_lang(lang_type)
 			$(".user_description_span").html($.i18n.prop('user_description_span'));
 			$("#save_profile").html($.i18n.prop('save_profile'));
 			$("#delete_profile_confirm").html($.i18n.prop('delete_profile_confirm'));
+			$(".eos_account_name_span").html($.i18n.prop('eos_account_name_span'));
+			$(".user_avatar_id_span").html($.i18n.prop('user_avatar_id_span'));
+			$(".num_of_articles_span").html($.i18n.prop('num_of_articles_span'));
+			$(".num_of_replies_span").html($.i18n.prop('num_of_replies_span'));
+			$(".num_of_follow_span").html($.i18n.prop('num_of_follow_span'));
+			$(".num_of_followed_span").html($.i18n.prop('num_of_followed_span'));
+			$(".num_of_album_items_span").html($.i18n.prop('num_of_album_items_span'));
+			$(".user_reg_time_span").html($.i18n.prop('user_reg_time_span'));
 
 			//
 		}
