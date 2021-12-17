@@ -122,6 +122,18 @@ $(document).ready(function () {
 		save_profile();
 	});
 
+	$("#user_info_href").on("click", function() {
+		show_user_info();
+	});
+
+	$("#follow_user").on("click", function() {
+		follow_user();
+	});
+
+	$("#unfollow_user").on("click", function() {
+		unfollow_user();
+	});
+
 	reply_user_map = new Map();
 
 	//

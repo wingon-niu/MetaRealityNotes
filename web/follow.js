@@ -1,1 +1,8 @@
-//好的
+
+function follow_user()
+{
+}
+
+function unfollow_user()
+{
+}

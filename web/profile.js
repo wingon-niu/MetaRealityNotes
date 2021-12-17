@@ -1,4 +1,8 @@
 
+function show_user_info()
+{
+}
+
 function create_edit_profile()
 {
 	if(current_user_account === "") {
