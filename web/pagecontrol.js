@@ -43,6 +43,7 @@ function show_my_articles()
 	hide_all_pages();
 	current_page = "my_articles";
 	$("#my_articles_div").show();
+	get_user_articles(current_user_account);
 }
 
 function show_my_replies()

@@ -30,6 +30,13 @@ function get_home_page_articles()
 	}
 }
 
+function get_user_articles(user)
+{
+	let index_position = 3;
+	let key_type       = 'i128';
+
+}
+
 function get_articles(index_position, key_type, lower_bound, upper_bound)
 {
 	$("#my_modal_loading").modal('open');
