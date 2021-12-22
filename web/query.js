@@ -67,6 +67,10 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 				articles = articles + '</table></div><hr />';
 			}
+			// 下一页
+			if (resp.more === true) {
+				articles = articles + '<br /><table width="100%" border="0"><tr><td align="center"><a href="##" onclick="get_articles(' + index_position + ', \'' + key_type + '\', \'' + resp.next_key + '\', \'' + upper_bound + '\'');">' + $("#next_page").html() + '</a></td></tr></table>';
+			}
 			// 以下按照当前页面将所有文章的基本信息赋值过去
 			if (current_page === "home") {
 				if (current_note_category === "real") {
