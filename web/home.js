@@ -17,13 +17,13 @@ $(document).ready(function () {
 	$("#tab_real").on("click", function() {
 		current_note_category = "real";
 		current_article_id = 0;
-		get_real_notes();
+		get_home_page_articles();
 	});
 
 	$("#tab_dream").on("click", function() {
 		current_note_category = "dream";
 		current_article_id = 0;
-		get_dream_notes();
+		get_home_page_articles();
 	});
 
 	$("#article_content_div").hide();
@@ -151,7 +151,7 @@ $(document).ready(function () {
 	ScatterJS.plugins( new ScatterEOS() );
 	setTimeout(
 		function(){
-			get_real_notes()
+			get_home_page_articles()
 	    }, 1000
 	);
 });

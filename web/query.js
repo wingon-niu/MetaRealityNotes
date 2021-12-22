@@ -1,4 +1,8 @@
 
+function get_home_page_articles()
+{
+}
+
 function get_real_notes()
 {
 	if (current_note_category === "real") {
