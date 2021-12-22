@@ -32,9 +32,19 @@ function get_home_page_articles()
 
 function get_user_articles(user)
 {
-	let index_position = 3;
+	let index_position = 5;
 	let key_type       = 'i128';
 
+	let lower_bd  = new BigNumber( my_eos_name_to_uint64t(user) );
+	let upper_bd  = new BigNumber( lower_bd.plus(1) );
+
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	get_articles(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
 }
 
 function get_articles(index_position, key_type, lower_bound, upper_bound)
