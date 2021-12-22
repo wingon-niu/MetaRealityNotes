@@ -215,7 +215,7 @@ function show_article_content_div(article_id)
 					articles = articles + '</table></div><hr />';
 				}
 				$("#article_content_info_div").html(articles);
-				$("#my_modal_loading").modal('close');
+				// 以下查询文章的全文，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
 					let memo        = '';
 					let next_hash   = '';
@@ -242,14 +242,15 @@ function show_article_content_div(article_id)
 					}
 					else {      // 数据存储在其他链上
 					}
-					$("#content_page_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
+					$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 				}
-				//
-				lower_bd  = new BigNumber(article_id);
+				// 以下查询文章的回复
+				lower_bd  = new BigNumber( article_id );
+				upper_bd  = new BigNumber( lower_bd.plus(1) );
+
 				lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 				lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
-				upper_bd  = new BigNumber(article_id + 1);
 				upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 				upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
@@ -272,6 +273,7 @@ function show_article_content_div(article_id)
 				if (len === 0) {
 					replies = '&nbsp;';
 				}
+				// 以下生成回复的基本信息
 				for (i = 0; i < len; i++) {
 					let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].reply_hash + '}\');">id' + resp.rows[i].reply_id + '</a>&nbsp;&nbsp;';
 					if (resp.rows[i].target_reply_id > 0) {
@@ -339,6 +341,7 @@ function show_article_content_div(article_id)
 					}
 				}
 				//
+				$("#my_modal_loading").modal('close');
 				hide_all_pages();
 				$("#article_content_div").show();
 				window.scrollTo(0, 0);
