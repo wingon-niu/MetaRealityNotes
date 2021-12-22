@@ -134,6 +134,12 @@ $(document).ready(function () {
 		unfollow_user();
 	});
 
+	articles_array        = [0];
+	current_article_id    = 0;
+	doc_scroll_top        = 0;
+	current_page          = "home";
+	current_note_category = "real";
+
 	preview_of_article_map = new Map();
 	content_of_article_map = new Map();
 	content_of_reply_map   = new Map();
