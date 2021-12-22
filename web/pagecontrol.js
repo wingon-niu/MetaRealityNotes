@@ -29,6 +29,7 @@ function show_home()
 	hide_all_pages();
 	current_page = "home";
 	$("#all_tabs").show();
+	get_home_page_articles();
 }
 
 function show_my_articles()
