@@ -168,8 +168,8 @@ function show_article_content_div(article_id)
 		$("#my_modal_loading").modal('open');
 
 		var index_pos = 1;
-		var lower_bd  = new BigNumber(article_id);
-		var upper_bd  = new BigNumber(article_id + 1);
+		var lower_bd  = new BigNumber( article_id );
+		var upper_bd  = new BigNumber( lower_bd.plus(1) );
 
 		const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
 		(async () => {
@@ -194,6 +194,7 @@ function show_article_content_div(article_id)
 					if (get_cookie('i18n_lang') === "zh") articles = '<p>文章不存在或者已经被删除。</p>';
 					else                                  articles = '<p>The article does not exist or has been deleted.</p>';
 				}
+				// 以下生成文章的基本信息，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
 					let cate = '';
 					if (resp.rows[i].category === 1) {
@@ -203,7 +204,7 @@ function show_article_content_div(article_id)
 					} else {
 						cate = '';
 					}
-					let f = cate + '<a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].article_hash + '}\');">id' + resp.rows[i].article_id + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+					let f = cate + '<a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].article_hash + '}\');">id' + resp.rows[i].article_id + '</a>&nbsp;&nbsp;&nbsp;';
 					if (resp.rows[i].forward_article_id > 0) {
 						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
