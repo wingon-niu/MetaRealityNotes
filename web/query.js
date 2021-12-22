@@ -114,30 +114,37 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			}
 			// 以下逐个查询文章预览
 			for (i = 0; i < len; i++) {
-				let memo        = '';
-				let next_hash   = '';
-				let content     = '';
-				let transaction = null;
-				if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
-					transaction = await rpc.history_get_transaction(resp.rows[i].article_hash);
-					memo = transaction.trx.trx.actions[0].data.memo;
-					next_hash = memo.slice(0, memo.indexOf('}') + 1);
-					if (next_hash.length > 2) {
-						next_hash = memo.slice(1, memo.indexOf('}'));
-					} else {
-						next_hash = '';
-					}
-					content = memo.slice(memo.indexOf('}') + 1, memo.length);
-					if (resp.rows[i].type === 2) {                                                // 长文
-						transaction = await rpc.history_get_transaction(next_hash);
+				if (preview_of_article_map.has(resp.rows[i].article_id)) {
+					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(preview_of_article_map.get(resp.rows[i].article_id)));
+					console.log("get");
+				} else {
+					let memo        = '';
+					let next_hash   = '';
+					let content     = '';
+					let transaction = null;
+					if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
+						transaction = await rpc.history_get_transaction(resp.rows[i].article_hash);
 						memo = transaction.trx.trx.actions[0].data.memo;
-						content = '        ' + content + '\n';
-						content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+						next_hash = memo.slice(0, memo.indexOf('}') + 1);
+						if (next_hash.length > 2) {
+							next_hash = memo.slice(1, memo.indexOf('}'));
+						} else {
+							next_hash = '';
+						}
+						content = memo.slice(memo.indexOf('}') + 1, memo.length);
+						if (resp.rows[i].type === 2) {                                                // 长文
+							transaction = await rpc.history_get_transaction(next_hash);
+							memo = transaction.trx.trx.actions[0].data.memo;
+							content = '        ' + content + '\n';
+							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+						}
 					}
+					else {      // 数据存储在其他链上
+					}
+					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
+					preview_of_article_map.set(resp.rows[i].article_id, content);
+					console.log("no get");
 				}
-				else {      // 数据存储在其他链上
-				}
-				$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 			}
 			$("#my_modal_loading").modal('close');
 			window.scrollTo(0, 0);
