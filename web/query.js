@@ -317,6 +317,7 @@ function show_article_content_div(article_id)
 						let user = '';
 						if (reply_user_map.has(resp.rows[i].target_reply_id)) {
 							user = reply_user_map.get(resp.rows[i].target_reply_id);
+							//console.log("get");
 						} else {
 							lower_bd  = new BigNumber(resp.rows[i].target_reply_id);
 							upper_bd  = new BigNumber(resp.rows[i].target_reply_id + 1);
@@ -336,6 +337,7 @@ function show_article_content_div(article_id)
 							if (r.rows.length === 1) {
 								user = r.rows[0].user;
 								reply_user_map.set(resp.rows[i].target_reply_id, user);
+								//console.log("no get");
 							}
 						}
 						$(".user_of_reply_" + resp.rows[i].target_reply_id).html(my_escapeHTML(user));
