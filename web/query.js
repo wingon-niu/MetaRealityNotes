@@ -116,7 +116,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			for (i = 0; i < len; i++) {
 				if (preview_of_article_map.has(resp.rows[i].article_id)) {
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(preview_of_article_map.get(resp.rows[i].article_id)));
-					console.log("get");
+					//console.log("get");
 				} else {
 					let memo        = '';
 					let next_hash   = '';
@@ -143,7 +143,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 					}
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 					preview_of_article_map.set(resp.rows[i].article_id, content);
-					console.log("no get");
+					//console.log("no get");
 				}
 			}
 			$("#my_modal_loading").modal('close');
