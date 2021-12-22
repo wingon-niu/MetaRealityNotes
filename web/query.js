@@ -13,7 +13,7 @@ function get_home_page_articles()
 		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
-		get_articles(index_position, key_type, lower_bd, upper_bd);
+		get_articles(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
 		//
 	} else if (current_page === "home" && current_note_category === "dream") {
 		let lower_bd  = new BigNumber(2);
@@ -24,7 +24,7 @@ function get_home_page_articles()
 		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
-		get_articles(index_position, key_type, lower_bd, upper_bd);
+		get_articles(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
 		//
 	} else {
 	}
@@ -32,6 +32,75 @@ function get_home_page_articles()
 
 function get_articles(index_position, key_type, lower_bound, upper_bound)
 {
+	$("#my_modal_loading").modal('open');
+	const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
+	(async () => {
+		try {
+			const resp = await rpc.get_table_rows({
+				json:  true,
+				code:  metarealnote_contract,
+				scope: metarealnote_contract,
+				table: 'articles',
+				index_position: index_position,
+				key_type: key_type,
+				lower_bound: lower_bound,
+				upper_bound: upper_bound,
+				limit: items_per_page,
+				reverse: false,
+				show_payer: false					
+			});
+			let articles = '';
+			let i = 0;
+			let len = resp.rows.length;
+			if (len === 0) {
+				articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+			}
+			for (i = 0; i < len; i++) {
+				let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].article_hash + '}\');">id' + resp.rows[i].article_id + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				if (resp.rows[i].forward_article_id > 0) {
+					f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
+				}
+				articles = articles + '<div><table width="100%" border="0">';
+				articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
+				articles = articles + '<tr>' + '<td>' + f + '<pre id="content_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
+				articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+				articles = articles + '</table></div><hr />';
+			}
+			$("#real_notes_div").html(articles);
+			$("#my_modal_loading").modal('close');
+			for (i = 0; i < len; i++) {
+				let memo        = '';
+				let next_hash   = '';
+				let content     = '';
+				let transaction = null;
+				if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
+					transaction = await rpc.history_get_transaction(resp.rows[i].article_hash);
+					memo = transaction.trx.trx.actions[0].data.memo;
+					next_hash = memo.slice(0, memo.indexOf('}') + 1);
+					if (next_hash.length > 2) {
+						next_hash = memo.slice(1, memo.indexOf('}'));
+					} else {
+						next_hash = '';
+					}
+					content = memo.slice(memo.indexOf('}') + 1, memo.length);
+					if (resp.rows[i].type === 2) {                                                // 长文
+						transaction = await rpc.history_get_transaction(next_hash);
+						memo = transaction.trx.trx.actions[0].data.memo;
+						content = '        ' + content + '\n';
+						content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+					}
+				}
+				else {      // 数据存储在其他链上
+				}
+				$("#content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
+			}
+			//
+		} catch (e) {
+			$("#real_notes_div").html('<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>');
+			$("#my_modal_loading").modal('close');
+			alert(e);
+		}
+	})();
 }
 
 function get_real_notes()
