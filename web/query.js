@@ -309,9 +309,9 @@ function show_article_content_div(article_id)
 					}
 					else {      // 数据存储在其他链上
 					}
-					$("#content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
+					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
 				}
-				//
+				// 以下查询所有目标回复的用户名
 				for (i = 0; i < len; i++) {
 					if (resp.rows[i].target_reply_id > 0) {
 						let user = '';
