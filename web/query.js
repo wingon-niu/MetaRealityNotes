@@ -1,6 +1,37 @@
 
 function get_home_page_articles()
 {
+	let index_position = 3;
+	let key_type       = 'i128';
+
+	if (current_page === "home" && current_note_category === "real") {
+		let lower_bd  = new BigNumber(1);
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		let upper_bd  = new BigNumber(2);
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		get_articles(index_position, key_type, lower_bd, upper_bd);
+		//
+	} else if (current_page === "home" && current_note_category === "dream") {
+		let lower_bd  = new BigNumber(2);
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		let upper_bd  = new BigNumber(3);
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		get_articles(index_position, key_type, lower_bd, upper_bd);
+		//
+	} else {
+	}
+}
+
+function get_articles(index_position, key_type, lower_bound, upper_bound)
+{
 }
 
 function get_real_notes()
