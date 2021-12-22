@@ -319,8 +319,8 @@ function show_article_content_div(article_id)
 							user = reply_user_map.get(resp.rows[i].target_reply_id);
 							//console.log("get");
 						} else {
-							lower_bd  = new BigNumber(resp.rows[i].target_reply_id);
-							upper_bd  = new BigNumber(resp.rows[i].target_reply_id + 1);
+							lower_bd  = new BigNumber( resp.rows[i].target_reply_id );
+							upper_bd  = new BigNumber( lower_bd.plus(1) );
 							var    r  = await rpc.get_table_rows({
 								json:  true,
 								code:  metarealnote_contract,
