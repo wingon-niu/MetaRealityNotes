@@ -55,6 +55,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			if (len === 0) {
 				articles = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 			}
+			// 以下逐个生成文章的基本信息
 			for (i = 0; i < len; i++) {
 				let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].article_hash + '}\');">id' + resp.rows[i].article_id + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 				if (resp.rows[i].forward_article_id > 0) {
@@ -62,12 +63,27 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				}
 				articles = articles + '<div><table width="100%" border="0">';
 				articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><span class="am-icon-user"></span></td>' + '<td>' + resp.rows[i].user + '&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-				articles = articles + '<tr>' + '<td>' + f + '<pre id="content_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
+				articles = articles + '<tr>' + '<td>' + f + '<pre class="preview_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
 				articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 				articles = articles + '</table></div><hr />';
 			}
-			$("#real_notes_div").html(articles);
-			$("#my_modal_loading").modal('close');
+			// 以下按照当前页面将所有文章的基本信息赋值过去
+			if (current_page === "home") {
+				if (current_note_category === "real") {
+					$("#real_notes_div").html(articles);
+				} else if (current_note_category === "dream") {
+					$("#dream_notes_div").html(articles);
+				} else {
+				}
+			} else if (current_page === "my_articles") {
+				$("#my_articles_info_div").html(articles);
+			} else if (current_page === "articles_of_user_i_follow") {
+				$("#articles_of_user_i_follow_info_div").html(articles);
+			} else if (current_page === "articles_of_user_follow_me") {
+				$("#articles_of_user_follow_me_info_div").html(articles);
+			} else {
+			}
+			// 以下逐个查询文章预览
 			for (i = 0; i < len; i++) {
 				let memo        = '';
 				let next_hash   = '';
@@ -92,8 +108,10 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				}
 				else {      // 数据存储在其他链上
 				}
-				$("#content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
+				$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 			}
+			//
+			$("#my_modal_loading").modal('close');
 			//
 		} catch (e) {
 			$("#real_notes_div").html('<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>');
