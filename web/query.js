@@ -219,7 +219,7 @@ function show_article_content_div(article_id)
 				for (i = 0; i < len; i++) {
 					if (content_of_article_map.has(resp.rows[i].article_id)) {
 						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content_of_article_map.get(resp.rows[i].article_id)));
-						console.log("get");
+						//console.log("get");
 					} else {
 						let memo        = '';
 						let next_hash   = '';
@@ -248,7 +248,7 @@ function show_article_content_div(article_id)
 						}
 						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 						content_of_article_map.set(resp.rows[i].article_id, content);
-						console.log("no get");
+						//console.log("no get");
 					}
 				}
 				// 以下查询文章的回复
