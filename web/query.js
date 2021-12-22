@@ -110,11 +110,8 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				}
 				$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 			}
-			//
 			$("#my_modal_loading").modal('close');
-			//
 		} catch (e) {
-			$("#real_notes_div").html('<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>');
 			$("#my_modal_loading").modal('close');
 			alert(e);
 		}
