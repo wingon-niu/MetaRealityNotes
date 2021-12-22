@@ -69,7 +69,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			}
 			// 下一页
 			if (resp.more === true) {
-				articles = articles + '<br /><table width="100%" border="0"><tr><td align="center"><a href="##" onclick="get_articles(' + index_position + ', \'' + key_type + '\', \'' + resp.next_key + '\', \'' + upper_bound + '\'');">' + $("#next_page").html() + '</a></td></tr></table>';
+				articles = articles + '<br /><table width="100%" border="0"><tr><td align="center"><a href="##" onclick="get_articles(' + index_position + ', \'' + key_type + '\', \'' + resp.next_key + '\', \'' + upper_bound + '\');">' + $("#next_page").html() + '</a></td></tr></table>';
 			}
 			// 以下按照当前页面将所有文章的基本信息赋值过去
 			if (current_page === "home") {
