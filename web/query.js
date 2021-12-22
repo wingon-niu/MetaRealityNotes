@@ -217,32 +217,39 @@ function show_article_content_div(article_id)
 				$("#article_content_info_div").html(articles);
 				// 以下查询文章的全文，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
-					let memo        = '';
-					let next_hash   = '';
-					let content     = '';
-					let transaction = null;
-					if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
-						next_hash      = resp.rows[i].article_hash;
-						let first_loop = true;
-						do {
-							transaction = await rpc.history_get_transaction(next_hash);
-							memo = transaction.trx.trx.actions[0].data.memo;
-							next_hash = memo.slice(0, memo.indexOf('}') + 1);
-							if (next_hash.length > 2) {
-								next_hash = memo.slice(1, memo.indexOf('}'));
-							} else {
-								next_hash = '';
-							}
-							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-							if (resp.rows[i].type === 2 && first_loop) {                              // 长文
-								content = '        ' + content + '\n';
-							}
-							first_loop = false;
-						} while (next_hash != '');
+					if (content_of_article_map.has(resp.rows[i].article_id)) {
+						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content_of_article_map.get(resp.rows[i].article_id)));
+						console.log("get");
+					} else {
+						let memo        = '';
+						let next_hash   = '';
+						let content     = '';
+						let transaction = null;
+						if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
+							next_hash      = resp.rows[i].article_hash;
+							let first_loop = true;
+							do {
+								transaction = await rpc.history_get_transaction(next_hash);
+								memo = transaction.trx.trx.actions[0].data.memo;
+								next_hash = memo.slice(0, memo.indexOf('}') + 1);
+								if (next_hash.length > 2) {
+									next_hash = memo.slice(1, memo.indexOf('}'));
+								} else {
+									next_hash = '';
+								}
+								content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+								if (resp.rows[i].type === 2 && first_loop) {                              // 长文
+									content = '        ' + content + '\n';
+								}
+								first_loop = false;
+							} while (next_hash != '');
+						}
+						else {      // 数据存储在其他链上
+						}
+						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
+						content_of_article_map.set(resp.rows[i].article_id, content);
+						console.log("no get");
 					}
-					else {      // 数据存储在其他链上
-					}
-					$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 				}
 				// 以下查询文章的回复
 				lower_bd  = new BigNumber( article_id );
