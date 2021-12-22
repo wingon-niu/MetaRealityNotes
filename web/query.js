@@ -343,7 +343,6 @@ function show_article_content_div(article_id)
 						$(".user_of_reply_" + resp.rows[i].target_reply_id).html(my_escapeHTML(user));
 					}
 				}
-				//
 				$("#my_modal_loading").modal('close');
 				hide_all_pages();
 				$("#article_content_div").show();
