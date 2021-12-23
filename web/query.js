@@ -301,7 +301,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 			let i       = 0;
 			let len     = resp.rows.length;
 			if (len === 0) {
-				replies = '&nbsp;';
+				replies = '<div>&nbsp;</div>';
 			}
 			// 以下生成所有回复的基本信息
 			for (i = 0; i < len; i++) {
