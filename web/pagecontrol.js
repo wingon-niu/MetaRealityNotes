@@ -57,6 +57,7 @@ function show_my_replies()
 	hide_all_pages();
 	current_page = "my_replies";
 	$("#my_replies_div").show();
+	get_user_replies(current_user_account);
 }
 
 function show_users_i_follow()
