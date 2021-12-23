@@ -261,6 +261,8 @@ function show_article_content_div(article_id)
 				upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 				upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
+				get_replies(2, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
+
 				resp = await rpc.get_table_rows({
 					json:  true,
 					code:  metarealnote_contract,
