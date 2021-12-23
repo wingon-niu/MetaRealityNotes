@@ -333,7 +333,16 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				replies = replies + '</table></div><hr />';
 				reply_user_map.set(resp.rows[i].reply_id, resp.rows[i].user);
 			}
-			$("#article_replies_div").html(replies);
+			// 下一页
+			if (resp.more === true) {
+				replies = replies + '<table width="100%" border="0"><tr><td align="center"><a href="##" onclick="get_replies(' + index_position + ', \'' + key_type + '\', \'' + resp.next_key + '\', \'' + upper_bound + '\');">' + $("#next_page").html() + '</a></td></tr></table>';
+			}
+			// 以下按照当前页面将所有回复的基本信息赋值过去
+			if (current_page === "my_replies") {
+				$("#my_replies_info_div").html(replies);
+			} else {
+				$("#article_replies_div").html(replies);
+			}
 			// 以下查询所有回复的全文
 			for (i = 0; i < len; i++) {
 				let memo        = '';
