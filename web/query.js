@@ -365,6 +365,20 @@ function show_article_content_div(article_id)
 	}
 }
 
+function get_replies(index_position, key_type, lower_bound, upper_bound)
+{
+	$("#my_modal_loading").modal('open');
+	const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
+	(async () => {
+		try {
+			$("#my_modal_loading").modal('close');
+		} catch (e) {
+			$("#my_modal_loading").modal('close');
+			alert(e);
+		}
+	})();
+}
+
 
 
 //function show_my_dropdown(index)
