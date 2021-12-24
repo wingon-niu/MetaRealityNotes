@@ -92,6 +92,7 @@ function change_lang(lang_type)
 			$("#follow_user").html($.i18n.prop('follow_user'));
 			$("#unfollow_user").html($.i18n.prop('unfollow_user'));
 			$("#next_page").html($.i18n.prop('next_page'));
+			$("#reply_to_article").html($.i18n.prop('reply_to_article'));
 
 			//
 		}
