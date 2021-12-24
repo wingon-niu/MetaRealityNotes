@@ -351,27 +351,34 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 			}
 			// 以下查询所有回复的全文
 			for (i = 0; i < len; i++) {
-				let memo        = '';
-				let next_hash   = '';
-				let content     = '';
-				let transaction = null;
-				if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
-					next_hash      = resp.rows[i].reply_hash;
-					do {
-						transaction = await rpc.history_get_transaction(next_hash);
-						memo = transaction.trx.trx.actions[0].data.memo;
-						next_hash = memo.slice(0, memo.indexOf('}') + 1);
-						if (next_hash.length > 2) {
-							next_hash = memo.slice(1, memo.indexOf('}'));
-						} else {
-							next_hash = '';
-						}
-						content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-					} while (next_hash != '');
+				if (content_of_reply_map.has(resp.rows[i].reply_id)) {
+					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content_of_reply_map.get(resp.rows[i].reply_id)));
+					console.log("get");
+				} else {
+					let memo        = '';
+					let next_hash   = '';
+					let content     = '';
+					let transaction = null;
+					if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
+						next_hash      = resp.rows[i].reply_hash;
+						do {
+							transaction = await rpc.history_get_transaction(next_hash);
+							memo = transaction.trx.trx.actions[0].data.memo;
+							next_hash = memo.slice(0, memo.indexOf('}') + 1);
+							if (next_hash.length > 2) {
+								next_hash = memo.slice(1, memo.indexOf('}'));
+							} else {
+								next_hash = '';
+							}
+							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+						} while (next_hash != '');
+					}
+					else {      // 数据存储在其他链上
+					}
+					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
+					content_of_reply_map.set(resp.rows[i].reply_id, content);
+					console.log("no get");
 				}
-				else {      // 数据存储在其他链上
-				}
-				$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
 			}
 			// 以下查询所有目标回复的用户名
 			for (i = 0; i < len; i++) {
