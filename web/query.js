@@ -325,6 +325,9 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				let f = '<a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].reply_hash + '}\');">id' + resp.rows[i].reply_id + '</a>&nbsp;&nbsp;';
 				if (current_page === "my_replies") {
 					f = f + $("#reply_to_article").html() + '<a href="##" onclick="show_article_content_div(' + resp.rows[i].target_article_id + ');">id' + resp.rows[i].target_article_id + '</a>';
+					if (resp.rows[i].target_reply_id > 0) {
+						f = f + '<br />';
+					}
 				}
 				if (resp.rows[i].target_reply_id > 0) {
 					f = f + $("#reply_to").html() + '&nbsp;<span class="user_of_reply_' + resp.rows[i].target_reply_id + '">&nbsp;</span>&nbsp;id' + resp.rows[i].target_reply_id;
