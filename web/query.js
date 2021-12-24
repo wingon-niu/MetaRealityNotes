@@ -353,7 +353,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 			for (i = 0; i < len; i++) {
 				if (content_of_reply_map.has(resp.rows[i].reply_id)) {
 					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content_of_reply_map.get(resp.rows[i].reply_id)));
-					console.log("get");
+					//console.log("get");
 				} else {
 					let memo        = '';
 					let next_hash   = '';
@@ -377,7 +377,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 					}
 					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
 					content_of_reply_map.set(resp.rows[i].reply_id, content);
-					console.log("no get");
+					//console.log("no get");
 				}
 			}
 			// 以下查询所有目标回复的用户名
