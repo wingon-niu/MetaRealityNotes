@@ -422,10 +422,30 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 
 function get_users_i_follow()
 {
+	let lower_bd  = new BigNumber( my_eos_name_to_uint64t(current_user_account) );
+	let upper_bd  = new BigNumber( lower_bd.plus(1) );
+
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	get_users(2, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
 }
 
 function get_users_follow_me()
 {
+	let lower_bd  = new BigNumber( my_eos_name_to_uint64t(current_user_account) );
+	let upper_bd  = new BigNumber( lower_bd.plus(1) );
+
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	get_users(3, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
 }
 
 function get_users(index_position, key_type, lower_bound, upper_bound)
