@@ -420,6 +420,18 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 	})();
 }
 
+function get_users_i_follow()
+{
+}
+
+function get_users_follow_me()
+{
+}
+
+function get_users(index_position, key_type, lower_bound, upper_bound)
+{
+}
+
 
 
 //function show_my_dropdown(index)
