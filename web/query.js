@@ -452,6 +452,18 @@ function get_users(index_position, key_type, lower_bound, upper_bound)
 {
 }
 
+function switch_and_get_user_articles(user)
+{
+	if (current_page === "users_i_follow") {
+		show_articles_of_user_i_follow();
+	} else if (current_page === "users_follow_me") {
+		show_articles_of_user_follow_me();
+	} else {
+	}
+
+	get_user_articles(user);
+}
+
 
 
 //function show_my_dropdown(index)
