@@ -450,6 +450,61 @@ function get_users_follow_me()
 
 function get_users(index_position, key_type, lower_bound, upper_bound)
 {
+	$("#my_modal_loading").modal('open');
+	const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
+	(async () => {
+		try {
+			const resp = await rpc.get_table_rows({
+				json:  true,
+				code:  metarealnote_contract,
+				scope: metarealnote_contract,
+				table: 'userelations',
+				index_position: index_position,
+				key_type: key_type,
+				lower_bound: lower_bound,
+				upper_bound: upper_bound,
+				limit: items_per_page,
+				reverse: false,
+				show_payer: false					
+			});
+			let users = '';
+			let i = 0;
+			let len = resp.rows.length;
+			if (len === 0) {
+				users = '<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+			}
+			// 以下逐个生成用户的基本信息
+			let username = '';
+			for (i = 0; i < len; i++) {
+				if (current_page === "users_i_follow") {
+					username = resp.rows[i].followed_user;
+				} else if (current_page === "users_follow_me") {
+					username = resp.rows[i].follow_user;
+				} else {
+					username = '';
+				}
+				users = users + '<div><table width="100%" border="0">';
+				users = users + '<tr>' + '<td width="64" align="center" valign="middle"><a href="##" onclick="query_user_profile(\'' + username + '\');"><span class="am-icon-user"></span></a></td>' + '<td align="left" valign="middle"><a href="##" onclick="switch_and_get_user_articles(\'' + username + '\');">' + username + '</a>' + '</td>' + '</tr>';
+				users = users + '</table></div><hr />';
+			}
+			// 下一页
+			if (resp.more === true) {
+				users = users + '<table width="100%" border="0"><tr><td align="center"><a href="##" onclick="get_users(' + index_position + ', \'' + key_type + '\', \'' + resp.next_key + '\', \'' + upper_bound + '\');">' + $("#next_page").html() + '</a></td></tr></table>';
+			}
+			// 以下按照当前页面将所有用户的基本信息赋值过去
+			if (current_page === "users_i_follow") {
+				$("#users_i_follow_info_div").html(users);
+			} else if (current_page === "users_follow_me") {
+				$("#users_follow_me_info_div").html(users);
+			} else {
+			}
+			$("#my_modal_loading").modal('close');
+			window.scrollTo(0, 0);
+		} catch (e) {
+			$("#my_modal_loading").modal('close');
+			alert(e);
+		}
+	})();
 }
 
 function switch_and_get_user_articles(user)
