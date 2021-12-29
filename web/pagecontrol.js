@@ -71,6 +71,7 @@ function show_users_i_follow()
 	hide_all_pages();
 	current_page = "users_i_follow";
 	$("#users_i_follow_div").show();
+	get_users_i_follow();
 }
 
 function show_users_follow_me()
@@ -84,6 +85,7 @@ function show_users_follow_me()
 	hide_all_pages();
 	current_page = "users_follow_me";
 	$("#users_follow_me_div").show();
+	get_users_follow_me();
 }
 
 function show_articles_of_user_i_follow()
