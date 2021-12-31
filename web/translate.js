@@ -95,6 +95,11 @@ function change_lang(lang_type)
 			$("#reply_to_article").html($.i18n.prop('reply_to_article'));
 
 			//
+
+			if (current_user_account != '') {
+				let s = $("#login").html();
+				$("#login").html( s + ' ' + current_user_account );
+			}
 		}
 	});
 }
