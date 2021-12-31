@@ -40,9 +40,9 @@ function set_login_flag()
 function clear_login_flag()
 {
 	let s = $("#login").html();
-	let i = s.indexOf(" ");
-	if (i > -1) {
-		$("#login").html( s.substring(0, i) );
+	let words = s.split(' ');
+	if (words.length === 3) {
+		$("#login").html( words[0] + ' ' + words[1] );
 	}
 }
 
