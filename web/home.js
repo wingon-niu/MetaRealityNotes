@@ -134,6 +134,10 @@ $(document).ready(function () {
 		unfollow_user();
 	});
 
+	$("#eth_connect_metamask").on("click", function() {
+		eth_connect_metamask();
+	});
+
 	articles_array        = [0];
 	current_article_id    = 0;
 	doc_scroll_top        = 0;
