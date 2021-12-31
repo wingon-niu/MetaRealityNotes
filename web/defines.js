@@ -10,7 +10,7 @@ const my_app_name_eos       = 'metarealnote';
 var eos_chain_id            = null;
 var eos_network             = null;
 
-if (runmode === "prod") { // 生产环境
+if (runmode === "prod") {    // 生产环境
 	eos_chain_id     = '5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191';
 
 	eos_network = {
@@ -20,7 +20,7 @@ if (runmode === "prod") { // 生产环境
 		port: 443,
 		chainId: eos_chain_id
 	}
-} else { // 开发测试环境
+} else {                     // 开发测试环境
 	eos_chain_id     = '8a34ec7df1b8cd06ff4a8abbaa7cc50300823350cadc59ab296cb00d104d2b8f';
 
 	eos_network = {
@@ -55,7 +55,7 @@ var post_reply_write_to_table   = false;
 var post_reply_current_index    = -1;
 
 const eos_per_trn_len     = 63;           // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
-const eth_per_trn_len     = 2000;
+const eth_per_trn_len     = 20;
 const btc_per_trn_len     = 1000;
 
 var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
@@ -69,3 +69,19 @@ var   content_of_article_map = null;
 var   content_of_reply_map   = null;
 var   article_user_map       = null;
 var   reply_user_map         = null;
+
+var eth_worldwelfare_account = '0x3F4D7E42751Ca6461605241525006FA7086F0d92';
+var eth_user_account         = '';
+var eth_http_provider        = '';
+var eth_chain_id             = 0;
+var eth_network_id           = 0;
+
+if (runmode === "prod") {    // 生产环境
+	eth_http_provider = 'https://mainnet.infura.io/v3/PROJECT_ID';
+	eth_chain_id      = 1;
+	eth_network_id    = 1;
+} else {                     // 开发测试环境
+	eth_http_provider = 'https://kovan.infura.io/v3/PROJECT_ID';
+	eth_chain_id      = 42;
+	eth_network_id    = 42;
+}
