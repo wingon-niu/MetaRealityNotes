@@ -138,6 +138,16 @@ $(document).ready(function () {
 		eth_connect_metamask();
 	});
 
+	$("#article_in_eos").on("click", function() {
+		$("#amount_per_trn_article").val('0.0001 EOS');
+	});
+
+	$("#article_in_eth").on("click", function() {
+		$("#amount_per_trn_article").val('0.000000000000000001 ETH');
+		if ( ! check_eth_metamask_installed() ) return;
+		if ( ! check_eth_metamask_connected() ) return;
+	});
+
 	articles_array        = [0];
 	current_article_id    = 0;
 	doc_scroll_top        = 0;
