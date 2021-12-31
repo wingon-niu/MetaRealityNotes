@@ -93,6 +93,9 @@ function change_lang(lang_type)
 			$("#unfollow_user").html($.i18n.prop('unfollow_user'));
 			$("#next_page").html($.i18n.prop('next_page'));
 			$("#reply_to_article").html($.i18n.prop('reply_to_article'));
+			$("#eth_connect_metamask").html($.i18n.prop('eth_connect_metamask'));
+			$("#metamask_not_installed").html($.i18n.prop('metamask_not_installed'));
+			$("#metamask_not_connected").html($.i18n.prop('metamask_not_connected'));
 
 			//
 
