@@ -135,6 +135,7 @@ $(document).ready(function () {
 	});
 
 	$("#eth_connect_metamask").on("click", function() {
+		$("#menu_body").offCanvas('close');
 		eth_connect_metamask();
 	});
 
