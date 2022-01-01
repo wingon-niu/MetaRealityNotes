@@ -55,7 +55,7 @@ var post_reply_write_to_table   = false;
 var post_reply_current_index    = -1;
 
 const eos_per_trn_len     = 63;           // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
-const eth_per_trn_len     = 20;
+const eth_per_trn_len     = 20;           // 一个utf8编码的汉字3个字节，每个交易的备注长度为：(20*3+64+2+2)*2+2=258字节
 const btc_per_trn_len     = 1000;
 
 var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
