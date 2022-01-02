@@ -50,7 +50,15 @@ function view_times_of_txn_article()
 			times_of_txn += 1;                   // 长文的标题单独保存在一个交易的memo里
 		}
 		per_trn_len = eos_per_trn_len;
-	} else {
+	}
+	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+		if (my_type === 2) {                     // 长文
+			let my_title_of_article = $("#title_of_article").val().trim();
+			my_content = '        ' + my_title_of_article + '\n' + my_content;
+		}
+		per_trn_len = eth_per_trn_len;
+	}
+	else {
 		return;
 	}
 
