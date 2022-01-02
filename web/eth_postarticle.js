@@ -24,7 +24,6 @@ function eth_do_post_article(my_category, my_type, my_storage_location, my_forwa
 				});
 				trn_success = true;
 				trn_hash    = result;
-				console.log(trn_hash);
 			}
 			post_article_current_index = -1;
 			alert("OK");
