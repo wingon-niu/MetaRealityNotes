@@ -58,7 +58,7 @@ function view_times_of_txn_article()
 		}
 		per_trn_len = eth_per_trn_len;
 	}
-	else {
+	else {                                       // 内容数据存储在其他链
 		return;
 	}
 
