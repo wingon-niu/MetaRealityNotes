@@ -20,9 +20,9 @@ function check_post_article()
 		}
 	}
 	let my_storage_location = $("input[name='radio12']:checked").val();  // 存储位置
-	if (my_storage_location != "1") { // 不是EOS
-		if (get_cookie('i18n_lang') === "zh") alert("错误：文章内容数据目前只支持存储于EOS链上。");
-		else                                  alert("Error: Only EOS block chain is supported at the moment.");
+	if (my_storage_location != "1" && my_storage_location != "2") {      // 不是EOS和ETH
+		if (get_cookie('i18n_lang') === "zh") alert("错误：文章内容数据目前只支持存储于EOS或者ETH链上。");
+		else                                  alert("Error: Only EOS or ETH block chain is supported at the moment.");
 		return false;
 	}
 	let my_content = $("#content_of_article").val().trim();  // 文章内容
