@@ -23,4 +23,13 @@ function check_eth_metamask_connected()
 
 function eth_connect_metamask()
 {
+	(async () => {
+		try {
+			const accounts   = await ethereum.request({ method: 'eth_requestAccounts' });
+			eth_user_account = accounts[0];
+		} catch (e) {
+			if (typeof e === 'object') alert(e.message);
+			else                       alert(e);
+		}
+	})();
 }
