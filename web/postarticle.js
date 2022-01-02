@@ -201,7 +201,9 @@ function do_post_article()
 			})();
 		});
 	}
-	else {        // 内容数据存储在其他链
+	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+	}
+	else {                                       // 内容数据存储在其他链
 		return;
 	}
 }
