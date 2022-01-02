@@ -107,7 +107,13 @@ function do_post_article()
 		}
 		per_trn_len = eos_per_trn_len;
 	}
-	else {        // 内容数据存储在其他链
+	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+		if (my_type === 2) {                     // 长文
+			my_content = '        ' + my_title_of_article + '\n' + my_content;
+		}
+		per_trn_len = eth_per_trn_len;
+	}
+	else {                                       // 内容数据存储在其他链
 		return;
 	}
 
