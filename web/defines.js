@@ -26,8 +26,8 @@ if (runmode === "prod") {    // 生产环境
 	eos_network = {
 		blockchain: 'eos',
 		protocol: 'http',
-		host: '192.168.135.100',
-		port: 8888,
+		host: '94.74.67.42',
+		port: 8890,
 		chainId: eos_chain_id
 	}
 }
