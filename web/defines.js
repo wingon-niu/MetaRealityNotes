@@ -79,13 +79,13 @@ var eth_gasPrice             = '0x0';
 var eth_gasLimit             = '0x0';
 
 if (runmode === "prod") {    // 生产环境
-	eth_http_provider = 'https://mainnet.infura.io/v3/PROJECT_ID';
+	eth_http_provider = 'https://mainnet.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
 	eth_chain_id      = 1;
 	eth_network_id    = 1;
 	eth_gasPrice      = '0x2540be400'; // 10Gwei
 	eth_gasLimit      = '0x19a28';     // 105000个gas，一般的基本交易只需要21000个gas，5倍
 } else {                     // 开发测试环境
-	eth_http_provider = 'https://kovan.infura.io/v3/PROJECT_ID';
+	eth_http_provider = 'https://kovan.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
 	eth_chain_id      = 42;
 	eth_network_id    = 42;
 	eth_gasPrice      = '0x2540be400'; // 10Gwei
