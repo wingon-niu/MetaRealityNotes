@@ -91,3 +91,6 @@ if (runmode === "prod") {    // 生产环境
 	eth_gasPrice      = '0x2540be400'; // 10Gwei
 	eth_gasLimit      = '0x19a28';     // 105000个gas，一般的基本交易只需要21000个gas，5倍
 }
+
+const eth_article_preview_length = 100;    // 存放在ETH链上的文章在文章列表中显示的预览长度
+

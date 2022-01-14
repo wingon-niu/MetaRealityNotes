@@ -139,6 +139,18 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
 						}
 					}
+					else if (resp.rows[i].storage_location === 2) {                                   // 数据存储在 ETH 链上
+						let my_web3 = new Web3( new Web3.providers.HttpProvider(eth_http_provider) );
+						transaction = await my_web3.eth.getTransaction(resp.rows[i].article_hash);
+						if (true) {
+							memo = Web3.utils.hexToUtf8(transaction.input);
+							content = memo.slice(memo.indexOf('}') + 1, memo.length);
+							if (content.length > eth_article_preview_length) {
+								content = content.slice(0, eth_article_preview_length);
+							}
+						} else {
+						}
+					}
 					else {      // 数据存储在其他链上
 					}
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
