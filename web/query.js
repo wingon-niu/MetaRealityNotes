@@ -143,8 +143,10 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 						let my_web3 = new Web3( new Web3.providers.HttpProvider(eth_http_provider) );
 						transaction = await my_web3.eth.getTransaction(resp.rows[i].article_hash);
 						if (transaction === null) {                                                   // 找不到这个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了
+							content = content + $("#content_chain_interruption_info_1").html() + resp.rows[i].article_hash + $("#content_chain_interruption_info_2").html();
 						}
 						else if (transaction.blockHash === null) {                                    // 交易处在 pending 状态，未被打包进区块
+							content = content + $("#transaction_pending_info_1").html() + resp.rows[i].article_hash + $("#transaction_pending_info_2").html();
 						}
 						else {                                                                        // 正常的交易
 							memo = Web3.utils.hexToUtf8(transaction.input);
@@ -264,7 +266,15 @@ function show_article_content_div(article_id)
 							next_hash   = resp.rows[i].article_hash;
 							do {
 								transaction = await my_web3.eth.getTransaction(next_hash);
-								if (true) {
+								if (transaction === null) {                                                   // 找不到这个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了
+									content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
+									break;
+								}
+								else if (transaction.blockHash === null) {                                    // 交易处在 pending 状态，未被打包进区块
+									content = content + $("#transaction_pending_info_1").html() + next_hash + $("#transaction_pending_info_2").html();
+									break;
+								}
+								else {                                                                        // 正常的交易
 									memo = Web3.utils.hexToUtf8(transaction.input);
 									next_hash = memo.slice(0, memo.indexOf('}') + 1);
 									if (next_hash.length > 2) {
@@ -273,8 +283,6 @@ function show_article_content_div(article_id)
 										next_hash = '';
 									}
 									content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-								} else {
-									break;
 								}
 							} while (next_hash != '');
 						}
