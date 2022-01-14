@@ -256,6 +256,25 @@ function show_article_content_div(article_id)
 								first_loop = false;
 							} while (next_hash != '');
 						}
+						else if (resp.rows[i].storage_location === 2) {                                   // 数据存储在 ETH 链上
+							let my_web3 = new Web3( new Web3.providers.HttpProvider(eth_http_provider) );
+							next_hash   = resp.rows[i].article_hash;
+							do {
+								transaction = await my_web3.eth.getTransaction(next_hash);
+								if (true) {
+									memo = Web3.utils.hexToUtf8(transaction.input);
+									next_hash = memo.slice(0, memo.indexOf('}') + 1);
+									if (next_hash.length > 2) {
+										next_hash = memo.slice(1, memo.indexOf('}'));
+									} else {
+										next_hash = '';
+									}
+									content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+								} else {
+									break;
+								}
+							} while (next_hash != '');
+						}
 						else {      // 数据存储在其他链上
 						}
 						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
