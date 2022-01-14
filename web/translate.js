@@ -96,6 +96,8 @@ function change_lang(lang_type)
 			$("#eth_connect_metamask").html($.i18n.prop('eth_connect_metamask'));
 			$("#metamask_not_installed").html($.i18n.prop('metamask_not_installed'));
 			$("#metamask_not_connected").html($.i18n.prop('metamask_not_connected'));
+			$("#content_chain_interruption_info_1").html($.i18n.prop('content_chain_interruption_info_1'));
+			$("#content_chain_interruption_info_2").html($.i18n.prop('content_chain_interruption_info_2'));
 
 			//
 
