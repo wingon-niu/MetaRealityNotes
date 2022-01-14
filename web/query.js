@@ -142,13 +142,16 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 					else if (resp.rows[i].storage_location === 2) {                                   // 数据存储在 ETH 链上
 						let my_web3 = new Web3( new Web3.providers.HttpProvider(eth_http_provider) );
 						transaction = await my_web3.eth.getTransaction(resp.rows[i].article_hash);
-						if (true) {
+						if (transaction === null) {                                                   // 找不到这个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了
+						}
+						else if (transaction.blockHash === null) {                                    // 交易处在 pending 状态，未被打包进区块
+						}
+						else {                                                                        // 正常的交易
 							memo = Web3.utils.hexToUtf8(transaction.input);
 							content = memo.slice(memo.indexOf('}') + 1, memo.length);
 							if (content.length > eth_article_preview_length) {
 								content = content.slice(0, eth_article_preview_length);
 							}
-						} else {
 						}
 					}
 					else {      // 数据存储在其他链上
