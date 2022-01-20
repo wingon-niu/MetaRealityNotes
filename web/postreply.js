@@ -28,9 +28,9 @@ function check_post_reply()
 		return false;
 	}
 	let my_storage_location = $("input[name='radio20']:checked").val();  // 存储位置
-	if (my_storage_location != "1") { // 不是EOS
-		if (get_cookie('i18n_lang') === "zh") alert("错误：回复内容数据目前只支持存储于EOS链上。");
-		else                                  alert("Error: Only EOS block chain is supported at the moment.");
+	if (my_storage_location != "1" && my_storage_location != "2") {      // 不是EOS和ETH
+		if (get_cookie('i18n_lang') === "zh") alert("错误：回复内容数据目前只支持存储于EOS或者ETH链上。");
+		else                                  alert("Error: Only EOS or ETH block chain is supported at the moment.");
 		return false;
 	}
 	let my_content = $("#content_of_reply").val().trim();  // 回复内容
@@ -54,7 +54,11 @@ function view_times_of_txn_reply()
 
 	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
 		per_trn_len = eos_per_trn_len;
-	} else {
+	}
+	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+		per_trn_len = eth_per_trn_len;
+	}
+	else {
 		return;
 	}
 
