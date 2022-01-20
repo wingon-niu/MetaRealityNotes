@@ -55,7 +55,7 @@ var post_reply_write_to_table   = false;
 var post_reply_current_index    = -1;
 
 const eos_per_trn_len     = 63;           // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
-const eth_per_trn_len     = 20;           // 一个utf8编码的汉字3个字节，每个交易的备注长度为：(20*3+64+2+2)*2+2=258字节
+const eth_per_trn_len     = 60000;        // 一个utf8编码的汉字3个字节，每个交易的备注长度为：(60000*3+64+2+2)*2+2=360138字节，需要使用的gas为：(360138-2)*8+21000=2902088个
 const btc_per_trn_len     = 1000;
 
 var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
@@ -83,13 +83,13 @@ if (runmode === "prod") {    // 生产环境
 	eth_chain_id      = 1;
 	eth_network_id    = 1;
 	eth_gasPrice      = '0x2540be400'; // 10Gwei
-	eth_gasLimit      = '0x19a28';     // 105000个gas，一般的基本交易只需要21000个gas，5倍
+        eth_gasLimit      = '0x588040';    // 5800000个gas
 } else {                     // 开发测试环境
 	eth_http_provider = 'https://kovan.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
 	eth_chain_id      = 42;
 	eth_network_id    = 42;
 	eth_gasPrice      = '0x3e95ba80';  // 1.05Gwei
-	eth_gasLimit      = '0x19a28';     // 105000个gas，一般的基本交易只需要21000个gas，5倍
+	eth_gasLimit      = '0x588040';    // 5800000个gas
 }
 
 const eth_article_preview_length = 100;    // 存放在ETH链上的文章在文章列表中显示的预览长度
