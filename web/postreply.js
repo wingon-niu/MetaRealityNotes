@@ -193,6 +193,7 @@ function do_post_reply()
 		});
 	}
 	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+		eth_do_post_reply(my_storage_location, my_target_article_id, my_target_reply_id, my_quantity, strArray);
 	}
 	else {                                       // 内容数据存储在其他链
 		return;
