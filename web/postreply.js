@@ -58,7 +58,7 @@ function view_times_of_txn_reply()
 	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
 		per_trn_len = eth_per_trn_len;
 	}
-	else {
+	else {                                       // 内容数据存储在其他链
 		return;
 	}
 
@@ -102,7 +102,10 @@ function do_post_reply()
 	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
 		per_trn_len = eos_per_trn_len;
 	}
-	else {        // 内容数据存储在其他链
+	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+		per_trn_len = eth_per_trn_len;
+	}
+	else {                                       // 内容数据存储在其他链
 		return;
 	}
 
