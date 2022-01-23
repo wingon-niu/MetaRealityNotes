@@ -284,21 +284,26 @@ function show_article_content_div(article_id)
 						if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
 							next_hash      = resp.rows[i].article_hash;
 							let first_loop = true;
-							do {
-								transaction = await rpc.history_get_transaction(next_hash);
-								memo = transaction.trx.trx.actions[0].data.memo;
-								next_hash = memo.slice(0, memo.indexOf('}') + 1);
-								if (next_hash.length > 2) {
-									next_hash = memo.slice(1, memo.indexOf('}'));
-								} else {
-									next_hash = '';
-								}
-								content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-								if (resp.rows[i].type === 2 && first_loop) {                              // 长文
-									content = '        ' + content + '\n';
-								}
-								first_loop = false;
-							} while (next_hash != '');
+							try {
+								do {
+									transaction = await rpc.history_get_transaction(next_hash);
+									memo = transaction.trx.trx.actions[0].data.memo;
+									next_hash = memo.slice(0, memo.indexOf('}') + 1);
+									if (next_hash.length > 2) {
+										next_hash = memo.slice(1, memo.indexOf('}'));
+									} else {
+										next_hash = '';
+									}
+									content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+									if (resp.rows[i].type === 2 && first_loop) {                              // 长文
+										content = '        ' + content + '\n';
+									}
+									first_loop = false;
+								} while (next_hash != '');
+							}
+							catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
+								content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
+							}
 						}
 						else if (resp.rows[i].storage_location === 2) {                                   // 数据存储在 ETH 链上
 							let my_web3 = new Web3( new Web3.providers.HttpProvider(eth_http_provider) );
