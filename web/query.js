@@ -1,4 +1,28 @@
 
+function get_home_page_articles()
+{
+	if (articles_sort_by === "article_post_time") {
+		get_home_page_articles_sort_by_article_post_time();
+	}
+	else if (articles_sort_by === "last_replied_time") {
+		get_home_page_articles_sort_by_last_replied_time();
+	}
+	else {
+	}
+}
+
+function get_user_articles(user)
+{
+	if (articles_sort_by === "article_post_time") {
+		get_user_articles_sort_by_article_post_time(user);
+	}
+	else if (articles_sort_by === "last_replied_time") {
+		get_user_articles_sort_by_last_replied_time(user);
+	}
+	else {
+	}
+}
+
 function get_home_page_articles_sort_by_article_post_time()
 {
 	let index_position = 3;
@@ -30,6 +54,10 @@ function get_home_page_articles_sort_by_article_post_time()
 	}
 }
 
+function get_home_page_articles_sort_by_last_replied_time()
+{
+}
+
 function get_user_articles_sort_by_article_post_time(user)
 {
 	let index_position = 5;
@@ -45,6 +73,10 @@ function get_user_articles_sort_by_article_post_time(user)
 	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
 	get_articles(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
+}
+
+function get_user_articles_sort_by_last_replied_time(user)
+{
 }
 
 function get_articles(index_position, key_type, lower_bound, upper_bound)
