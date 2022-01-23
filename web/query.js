@@ -1,5 +1,5 @@
 
-function get_home_page_articles()
+function get_home_page_articles_sort_by_article_post_time()
 {
 	let index_position = 3;
 	let key_type       = 'i128';
@@ -30,7 +30,7 @@ function get_home_page_articles()
 	}
 }
 
-function get_user_articles(user)
+function get_user_articles_sort_by_article_post_time(user)
 {
 	let index_position = 5;
 	let key_type       = 'i128';
