@@ -650,4 +650,15 @@ ACTION metarealnote::clearalldata()
             _albums.erase(itr);
         }
     }
+
+    keysForDeletion.clear();
+    for (auto& item : _pri_keys) {
+        keysForDeletion.push_back(item.table_name.value);
+    }
+    for (uint64_t key : keysForDeletion) {
+        auto itr = _pri_keys.find(key);
+        if (itr != _pri_keys.end()) {
+            _pri_keys.erase(itr);
+        }
+    }
 }
