@@ -578,6 +578,29 @@ void metarealnote::sub_num_of_album_items(const name& user)
     }
 }
 
+// 获取某个表的主键
+uint64_t metarealnote::get_pri_key(const name& table_name)
+{
+    uint64_t key = 1;
+
+    auto itr = _pri_keys.find(table_name.value);
+
+    if( itr == _pri_keys.end() ) {
+        _pri_keys.emplace(_self, [&](auto& item){
+            item.table_name = table_name;
+            item.pri_key    = key;
+        });
+    }
+    else {
+        key = itr->pri_key + 1;
+        _pri_keys.modify( itr, _self, [&]( auto& item ) {
+            item.pri_key    = key;
+        });
+    }
+
+    return key;
+}
+
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
 ACTION metarealnote::clearalldata()
 {
