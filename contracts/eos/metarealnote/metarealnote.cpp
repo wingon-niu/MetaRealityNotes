@@ -123,10 +123,7 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
     }
 
     _articles.emplace(_self, [&](auto& item){
-        auto id = _articles.available_primary_key();
-        if (id == 0) {
-            id = 1;
-        }
+        auto id = get_pri_key(name("articles"));
         item.user               = user;
         item.article_id         = id;
         item.article_hash       = article_hash;
@@ -184,10 +181,7 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
     }
 
     _replies.emplace(_self, [&](auto& item){
-        auto id = _replies.available_primary_key();
-        if (id == 0) {
-            id = 1;
-        }
+        auto id = get_pri_key(name("replies"));
         item.user              = user;
         item.reply_id          = id;
         item.reply_hash        = reply_hash;
@@ -253,10 +247,7 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
     }
 
     _albums.emplace(_self, [&](auto& item){
-        auto id = _albums.available_primary_key();
-        if (id == 0) {
-            id = 1;
-        }
+        auto id = get_pri_key(name("albums"));
         item.user              = user;
         item.item_id           = id;
         item.item_type         = item_type;
