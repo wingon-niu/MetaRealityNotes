@@ -195,6 +195,7 @@ private:
         uint64_t     forward_article_id;  // 转发的文章的id，0表示没有转发
         uint32_t     forwarded_times;     // 被转发的次数
         uint32_t     replied_times;       // 被回复的次数
+        uint32_t     num_of_liked;        // 被点赞的次数
         uint32_t     post_time;
 
         uint64_t  primary_key()                const { return article_id; }
@@ -229,6 +230,7 @@ private:
         uint64_t     target_article_id;   // 目标文章的id。所有的回复都有一个目标文章。
         uint64_t     target_reply_id;     // 目标回复的id。回复属于一个目标文章，同时回复还可以指向一个回复，也就是对回复进行的回复。
         uint16_t     replied_times;       // 自己被回复的次数
+        uint32_t     num_of_liked;        // 被点赞的次数
         uint32_t     post_time;
 
         uint64_t  primary_key()      const { return reply_id; }
@@ -277,6 +279,7 @@ private:
         uint8_t      item_type;           // 1=图片；2=视频；
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （条目的数据存储在哪条链上）
         string       description;
+        uint32_t     num_of_liked;        // 被点赞的次数
         uint32_t     post_time;
         string       preview_head_hash;   // preview 代表图片的缩略图或者视频的首画面的缩略图。
         uint64_t     preview_trn_num;
