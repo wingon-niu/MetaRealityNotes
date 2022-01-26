@@ -30,7 +30,8 @@ public:
           _articles              (get_self(), get_self().value),
           _replies               (get_self(), get_self().value),
           _user_relationships    (get_self(), get_self().value),
-          _albums                (get_self(), get_self().value){};
+          _albums                (get_self(), get_self().value),
+          _pri_keys              (get_self(), get_self().value){};
 
     // 为用户新增转账信息
     ACTION addaccount(const name& user, const asset& quantity);
@@ -143,6 +144,9 @@ private:
 
     // 用户相册中的条目的总数减1
     void sub_num_of_album_items(const name& user);
+
+    // 获取某个表的主键
+    uint64_t get_pri_key(const name& table_name);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -291,10 +295,20 @@ private:
         indexed_by< "byoriginlen"_n, const_mem_fun<st_album, uint64_t,  &st_album::by_origin_length> >
     > tb_albums;
 
+    // 保存各个表的主键的表
+    TABLE st_pri_keys {
+        name      table_name;
+        uint64_t  pri_key;
+
+        uint64_t  primary_key()  const { return table_name.value; }
+    };
+    typedef eosio::multi_index<"prikeys"_n, st_pri_keys> tb_pri_keys;
+
     tb_accounts              _accounts;
     tb_user_profiles         _user_profiles;
     tb_articles              _articles;
     tb_replies               _replies;
     tb_user_relationships    _user_relationships;
     tb_albums                _albums;
+    tb_pri_keys              _pri_keys;
 };
