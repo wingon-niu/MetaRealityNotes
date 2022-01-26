@@ -134,6 +134,7 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
         item.forward_article_id = forward_article_id;
         item.forwarded_times    = 0;
         item.replied_times      = 0;
+        item.num_of_liked       = 0;
         item.post_time          = now();
     });
 
@@ -190,6 +191,7 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
         item.target_article_id = target_article_id;
         item.target_reply_id   = target_reply_id;
         item.replied_times     = 0;
+        item.num_of_liked      = 0;
         item.post_time         = now();
     });
 
@@ -253,6 +255,7 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
         item.item_type         = item_type;
         item.storage_location  = storage_location;
         item.description       = description;
+        item.num_of_liked      = 0;
         item.post_time         = now();
         item.preview_head_hash = preview_head_hash;
         item.preview_trn_num   = preview_trn_num;
