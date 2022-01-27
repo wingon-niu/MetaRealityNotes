@@ -135,6 +135,7 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
         item.forwarded_times    = 0;
         item.replied_times      = 0;
         item.num_of_liked       = 0;
+        item.last_replied_time  = now();
         item.post_time          = now();
     });
 
@@ -208,6 +209,7 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
     }
 
     add_num_of_replies(user);
+    update_last_replied_time_when_post_reply(target_article_id);
 }
 
 // 删除回复
@@ -232,6 +234,7 @@ ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
     }
 
     sub_num_of_replies(user);
+    update_last_replied_time_when_delete_reply(target_article_id);
 }
 
 // 上传相册条目
@@ -598,11 +601,31 @@ uint64_t metarealnote::get_pri_key(const name& table_name)
 // 发表回复时更新文章的最后回复时间
 void metarealnote::update_last_replied_time_when_post_reply(const uint64_t & article_id)
 {
+    auto itr = _articles.find(article_id);
+    if (itr != _articles.end()) {
+        _articles.modify( itr, _self, [&]( auto& item ) {
+            item.last_replied_time = now();
+        });
+    }
 }
 
 // 删除回复时更新文章的最后回复时间
 void metarealnote::update_last_replied_time_when_delete_reply(const uint64_t & article_id)
 {
+    auto itr = _articles.find(article_id);
+    if (itr != _articles.end()) {
+        auto the_time = itr->post_time;
+
+        auto index = _replies.get_index<name("byarticlerep")>();
+        auto itr_reply = index.lower_bound(uint128_t{article_id}<<64);
+        if (itr_reply != index.end()) {
+            the_time = itr_reply->post_time;
+        }
+
+        _articles.modify( itr, _self, [&]( auto& item ) {
+            item.last_replied_time = the_time;
+        });
+    }
 }
 
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
