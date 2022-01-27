@@ -148,6 +148,12 @@ private:
     // 获取某个表的主键
     uint64_t get_pri_key(const name& table_name);
 
+    // 发表回复时更新文章的最后回复时间
+    void update_last_replied_time_when_post_reply(const uint64_t & article_id);
+
+    // 删除回复时更新文章的最后回复时间
+    void update_last_replied_time_when_delete_reply(const uint64_t & article_id);
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // 用户转账信息
@@ -196,6 +202,7 @@ private:
         uint32_t     forwarded_times;     // 被转发的次数
         uint32_t     replied_times;       // 被回复的次数
         uint32_t     num_of_liked;        // 被点赞的次数
+        uint32_t     last_replied_time;
         uint32_t     post_time;
 
         uint64_t  primary_key()                const { return article_id; }
@@ -211,13 +218,21 @@ private:
         uint128_t by_user_article()            const {
             return (uint128_t{user.value}<<64) + uint128_t{~article_id};
         }
+        uint128_t by_category_last_replied_time_article() const {
+            return (uint128_t{category}<<96) + (uint128_t{~last_replied_time}<<64) + uint128_t{~article_id};
+        }
+        uint128_t by_user_last_replied_time_post_time() const {
+            return (uint128_t{user.value}<<64) + (uint128_t{~last_replied_time}<<32) + uint128_t{~post_time};
+        }
     };
     typedef eosio::multi_index<
         "articles"_n, st_article,
         indexed_by< "byusrcatpost"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_category_post_time> >,
         indexed_by< "bycatarticle"_n, const_mem_fun<st_article, uint128_t, &st_article::by_category_article> >,
         indexed_by< "byforwardart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_forward_article> >,
-        indexed_by< "byusrarticle"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_article> >
+        indexed_by< "byusrarticle"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_article> >,
+        indexed_by< "byclrtimeart"_n, const_mem_fun<st_article, uint128_t, &st_article::by_category_last_replied_time_article> >,
+        indexed_by< "byulrteptime"_n, const_mem_fun<st_article, uint128_t, &st_article::by_user_last_replied_time_post_time> >
     > tb_articles;
 
     // 回复
@@ -243,12 +258,20 @@ private:
         uint128_t by_user_reply()    const {
             return (uint128_t{user.value}<<64) + uint128_t{~reply_id};
         }
+        uint128_t by_article_reply_ascending_order() const {
+            return (uint128_t{target_article_id}<<64) + uint128_t{reply_id};
+        }
+        uint128_t by_user_reply_ascending_order()    const {
+            return (uint128_t{user.value}<<64) + uint128_t{reply_id};
+        }
     };
     typedef eosio::multi_index<
         "replies"_n, st_reply,
         indexed_by< "byarticlerep"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_article_reply> >,
         indexed_by< "byreplyreply"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_reply_reply> >,
-        indexed_by< "byuserreply"_n,  const_mem_fun<st_reply, uint128_t, &st_reply::by_user_reply> >
+        indexed_by< "byuserreply"_n,  const_mem_fun<st_reply, uint128_t, &st_reply::by_user_reply> >,
+        indexed_by< "byarascorder"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_article_reply_ascending_order> >,
+        indexed_by< "byurascorder"_n, const_mem_fun<st_reply, uint128_t, &st_reply::by_user_reply_ascending_order> >
     > tb_replies;
 
     // 用户关系
@@ -288,14 +311,16 @@ private:
         uint64_t     origin_trn_num;
         uint64_t     origin_length;
 
-        uint64_t  primary_key()      const { return item_id; }
-        uint128_t by_user_item()     const { return (uint128_t{user.value}<<64) + uint128_t{item_id}; }
-        uint64_t  by_origin_length() const { return ~origin_length; }
+        uint64_t  primary_key()       const { return item_id; }
+        uint128_t by_user_item_asc()  const { return (uint128_t{user.value}<<64) + uint128_t{item_id}; }
+        uint128_t by_user_item_desc() const { return (uint128_t{user.value}<<64) + uint128_t{~item_id}; }
+        uint64_t  by_origin_length()  const { return ~origin_length; }
     };
     typedef eosio::multi_index<
         "albums"_n, st_album,
-        indexed_by< "byuseritem"_n,  const_mem_fun<st_album, uint128_t, &st_album::by_user_item> >,
-        indexed_by< "byoriginlen"_n, const_mem_fun<st_album, uint64_t,  &st_album::by_origin_length> >
+        indexed_by< "byusritemasc"_n,  const_mem_fun<st_album, uint128_t, &st_album::by_user_item_asc> >,
+        indexed_by< "byusritmdesc"_n,  const_mem_fun<st_album, uint128_t, &st_album::by_user_item_desc> >,
+        indexed_by< "byoriginleng"_n,  const_mem_fun<st_album, uint64_t,  &st_album::by_origin_length> >
     > tb_albums;
 
     // 保存各个表的主键的表
