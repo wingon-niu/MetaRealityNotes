@@ -439,6 +439,16 @@ function get_article_replies_sort_by_descending_order(article_id)
 
 function get_article_replies_sort_by_ascending_order(article_id)
 {
+	lower_bd  = new BigNumber( article_id );
+	upper_bd  = new BigNumber( lower_bd.plus(1) );
+
+	lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	get_replies(5, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
 }
 
 function get_user_replies_sort_by_descending_order(user)
@@ -460,6 +470,19 @@ function get_user_replies_sort_by_descending_order(user)
 
 function get_user_replies_sort_by_ascending_order(user)
 {
+	let index_position = 6;
+	let key_type       = 'i128';
+
+	let lower_bd  = new BigNumber( my_eos_name_to_uint64t(user) );
+	let upper_bd  = new BigNumber( lower_bd.plus(1) );
+
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	get_replies(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
 }
 
 function get_replies(index_position, key_type, lower_bound, upper_bound)
