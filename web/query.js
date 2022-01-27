@@ -382,16 +382,7 @@ function show_article_content_div(article_id)
 					}
 				}
 				// 以下查询文章的回复
-				lower_bd  = new BigNumber( article_id );
-				upper_bd  = new BigNumber( lower_bd.plus(1) );
-
-				lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
-				lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
-
-				upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
-				upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
-
-				get_replies(2, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
+				get_article_replies(article_id);
 
 				$("#my_modal_loading").modal('close');
 				hide_all_pages();
@@ -406,6 +397,20 @@ function show_article_content_div(article_id)
 			}
 		})();
 	}
+}
+
+function get_article_replies(article_id)
+{
+	lower_bd  = new BigNumber( article_id );
+	upper_bd  = new BigNumber( lower_bd.plus(1) );
+
+	lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	lower_bd  = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	get_replies(2, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
 }
 
 function get_user_replies(user)
