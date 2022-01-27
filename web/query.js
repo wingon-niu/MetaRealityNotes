@@ -399,6 +399,30 @@ function show_article_content_div(article_id)
 	}
 }
 
+function get_article_replies(article_id)
+{
+	if (replies_sort_by === "ascending_order") {
+		get_article_replies_sort_by_ascending_order(article_id);
+	}
+	else if (replies_sort_by === "descending_order") {
+		get_article_replies_sort_by_descending_order(article_id);
+	}
+	else {
+	}
+}
+
+function get_user_replies(user)
+{
+	if (replies_sort_by === "ascending_order") {
+		get_user_replies_sort_by_ascending_order(user);
+	}
+	else if (replies_sort_by === "descending_order") {
+		get_user_replies_sort_by_descending_order(user);
+	}
+	else {
+	}
+}
+
 function get_article_replies_sort_by_descending_order(article_id)
 {
 	lower_bd  = new BigNumber( article_id );
@@ -411,6 +435,10 @@ function get_article_replies_sort_by_descending_order(article_id)
 	upper_bd  = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
 	get_replies(2, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
+}
+
+function get_article_replies_sort_by_ascending_order(article_id)
+{
 }
 
 function get_user_replies_sort_by_descending_order(user)
@@ -428,6 +456,10 @@ function get_user_replies_sort_by_descending_order(user)
 	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
 
 	get_replies(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
+}
+
+function get_user_replies_sort_by_ascending_order(user)
+{
 }
 
 function get_replies(index_position, key_type, lower_bound, upper_bound)
