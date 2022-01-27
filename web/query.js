@@ -56,6 +56,37 @@ function get_home_page_articles_sort_by_article_post_time()
 
 function get_home_page_articles_sort_by_last_replied_time()
 {
+	let index_position = 6;
+	let key_type       = 'i128';
+
+	if (current_page === "home" && current_note_category === "real") {
+		let lower_bd  = new BigNumber(1);
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		let upper_bd  = new BigNumber(2);
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		get_articles(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
+		//
+	} else if (current_page === "home" && current_note_category === "dream") {
+		let lower_bd  = new BigNumber(2);
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		let upper_bd  = new BigNumber(3);
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+		upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+		get_articles(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
+		//
+	} else {
+	}
 }
 
 function get_user_articles_sort_by_article_post_time(user)
@@ -77,6 +108,19 @@ function get_user_articles_sort_by_article_post_time(user)
 
 function get_user_articles_sort_by_last_replied_time(user)
 {
+	let index_position = 7;
+	let key_type       = 'i128';
+
+	let lower_bd  = new BigNumber( my_eos_name_to_uint64t(user) );
+	let upper_bd  = new BigNumber( lower_bd.plus(1) );
+
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	lower_bd      = lower_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+	upper_bd      = upper_bd.multipliedBy(4294967296); // 4294967296 = 2的32次方，相当于左移32位。
+
+	get_articles(index_position, key_type, lower_bd.toFixed(), upper_bd.toFixed());
 }
 
 function get_articles(index_position, key_type, lower_bound, upper_bound)
