@@ -399,7 +399,7 @@ function show_article_content_div(article_id)
 	}
 }
 
-function get_article_replies(article_id)
+function get_article_replies_sort_by_descending_order(article_id)
 {
 	lower_bd  = new BigNumber( article_id );
 	upper_bd  = new BigNumber( lower_bd.plus(1) );
@@ -413,7 +413,7 @@ function get_article_replies(article_id)
 	get_replies(2, 'i128', lower_bd.toFixed(), upper_bd.toFixed());
 }
 
-function get_user_replies(user)
+function get_user_replies_sort_by_descending_order(user)
 {
 	let index_position = 4;
 	let key_type       = 'i128';
