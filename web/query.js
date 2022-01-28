@@ -629,7 +629,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 							reverse: false,
 							show_payer: false
 						});
-						if (r.rows.length === 1) {
+						if (r.rows.length === 1 && r.rows[0].reply_id === resp.rows[i].target_reply_id ) {
 							user = r.rows[0].user;
 							reply_user_map.set(resp.rows[i].target_reply_id, user);
 							//console.log("no get");
