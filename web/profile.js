@@ -31,7 +31,7 @@ function query_user_profile(user)
 				reverse: false,
 				show_payer: false
 			});
-			if (resp.rows.length === 1) {
+			if (resp.rows.length === 1 && resp.rows[0].user === user) {
 				$("#user_name_input_view").val           ( resp.rows[0].user_name                      );
 				$("#user_family_name_input_view").val    ( resp.rows[0].user_family_name               );
 				$("#user_gender_input_view").val         ( resp.rows[0].gender                         );
@@ -97,7 +97,7 @@ function create_edit_profile()
 				reverse: false,
 				show_payer: false
 			});
-			if (resp.rows.length === 1) {
+			if (resp.rows.length === 1 && resp.rows[0].user === current_user_account) {
 				$("#user_name_input").val           ( resp.rows[0].user_name        );
 				$("#user_family_name_input").val    ( resp.rows[0].user_family_name );
 				$("#user_gender_input").val         ( resp.rows[0].gender           );
