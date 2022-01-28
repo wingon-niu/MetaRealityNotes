@@ -1,0 +1,238 @@
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote articles -l 1 -L 1 -U 1
+{
+  "rows": [{
+      "user": "niuaaaaaaaaa",
+      "article_id": 1,
+      "article_hash": "5efa266cc456a433c90a0f610ccf4ff33ef7a79074c84ea11fe2d7e8e1602fd0",
+      "num_of_trns": 2,
+      "category": 2,
+      "type": 2,
+      "storage_location": 1,
+      "forward_article_id": 0,
+      "forwarded_times": 0,
+      "replied_times": 0,
+      "num_of_liked": 0,
+      "last_replied_time": 1643293718,
+      "post_time": 1643293718
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote articles -l 2 -L 1 -U 2
+{
+  "rows": [{
+      "user": "niuaaaaaaaaa",
+      "article_id": 1,
+      "article_hash": "5efa266cc456a433c90a0f610ccf4ff33ef7a79074c84ea11fe2d7e8e1602fd0",
+      "num_of_trns": 2,
+      "category": 2,
+      "type": 2,
+      "storage_location": 1,
+      "forward_article_id": 0,
+      "forwarded_times": 0,
+      "replied_times": 0,
+      "num_of_liked": 0,
+      "last_replied_time": 1643293718,
+      "post_time": 1643293718
+    },{
+      "user": "niuaaaaaaaaa",
+      "article_id": 2,
+      "article_hash": "820a5b6f15a7f024b2890a7e7a5d6dbf6543c830ef63ed4184c6bed5c94fbbfc",
+      "num_of_trns": 1,
+      "category": 1,
+      "type": 1,
+      "storage_location": 1,
+      "forward_article_id": 0,
+      "forwarded_times": 0,
+      "replied_times": 5,
+      "num_of_liked": 0,
+      "last_replied_time": 1643294488,
+      "post_time": 1643293779
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote articles -l 3 -L 1 -U 3
+{
+  "rows": [{
+      "user": "niuaaaaaaaaa",
+      "article_id": 1,
+      "article_hash": "5efa266cc456a433c90a0f610ccf4ff33ef7a79074c84ea11fe2d7e8e1602fd0",
+      "num_of_trns": 2,
+      "category": 2,
+      "type": 2,
+      "storage_location": 1,
+      "forward_article_id": 0,
+      "forwarded_times": 0,
+      "replied_times": 0,
+      "num_of_liked": 0,
+      "last_replied_time": 1643293718,
+      "post_time": 1643293718
+    },{
+      "user": "niuaaaaaaaaa",
+      "article_id": 2,
+      "article_hash": "820a5b6f15a7f024b2890a7e7a5d6dbf6543c830ef63ed4184c6bed5c94fbbfc",
+      "num_of_trns": 1,
+      "category": 1,
+      "type": 1,
+      "storage_location": 1,
+      "forward_article_id": 0,
+      "forwarded_times": 0,
+      "replied_times": 5,
+      "num_of_liked": 0,
+      "last_replied_time": 1643294488,
+      "post_time": 1643293779
+    },{
+      "user": "niuaaaaaaaaa",
+      "article_id": 3,
+      "article_hash": "62e0695a1f2a233efc7c54b682e8e94b181d7e4ffa33b3ef6b7ca7e2f83eff83",
+      "num_of_trns": 2,
+      "category": 2,
+      "type": 2,
+      "storage_location": 1,
+      "forward_article_id": 0,
+      "forwarded_times": 0,
+      "replied_times": 0,
+      "num_of_liked": 0,
+      "last_replied_time": 1643293878,
+      "post_time": 1643293878
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote replies -l 1 -L 1 -U 1
+{
+  "rows": [{
+      "user": "niubbbbbbbbb",
+      "reply_id": 1,
+      "reply_hash": "254979338840818db6834978286b6792cb8a9fd77f000ce99571e7bf1ef98fff",
+      "num_of_trns": 1,
+      "storage_location": 1,
+      "target_article_id": 2,
+      "target_reply_id": 0,
+      "replied_times": 2,
+      "num_of_liked": 0,
+      "post_time": 1643294365
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote replies -l 2 -L 1 -U 2
+{
+  "rows": [{
+      "user": "niubbbbbbbbb",
+      "reply_id": 1,
+      "reply_hash": "254979338840818db6834978286b6792cb8a9fd77f000ce99571e7bf1ef98fff",
+      "num_of_trns": 1,
+      "storage_location": 1,
+      "target_article_id": 2,
+      "target_reply_id": 0,
+      "replied_times": 2,
+      "num_of_liked": 0,
+      "post_time": 1643294365
+    },{
+      "user": "niubbbbbbbbb",
+      "reply_id": 2,
+      "reply_hash": "25e79c4439721c88f2fdd2fc407d9bd47a4365aaa4e427548fe31d968f705437",
+      "num_of_trns": 1,
+      "storage_location": 1,
+      "target_article_id": 2,
+      "target_reply_id": 1,
+      "replied_times": 0,
+      "num_of_liked": 0,
+      "post_time": 1643294392
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote replies -l 3 -L 1 -U 3
+{
+  "rows": [{
+      "user": "niubbbbbbbbb",
+      "reply_id": 1,
+      "reply_hash": "254979338840818db6834978286b6792cb8a9fd77f000ce99571e7bf1ef98fff",
+      "num_of_trns": 1,
+      "storage_location": 1,
+      "target_article_id": 2,
+      "target_reply_id": 0,
+      "replied_times": 2,
+      "num_of_liked": 0,
+      "post_time": 1643294365
+    },{
+      "user": "niubbbbbbbbb",
+      "reply_id": 2,
+      "reply_hash": "25e79c4439721c88f2fdd2fc407d9bd47a4365aaa4e427548fe31d968f705437",
+      "num_of_trns": 1,
+      "storage_location": 1,
+      "target_article_id": 2,
+      "target_reply_id": 1,
+      "replied_times": 0,
+      "num_of_liked": 0,
+      "post_time": 1643294392
+    },{
+      "user": "niubbbbbbbbb",
+      "reply_id": 3,
+      "reply_hash": "ec0592e4e55e062a921369e4534126aa10b59f4cc4caeaf4e2621de33e6406d9",
+      "num_of_trns": 1,
+      "storage_location": 1,
+      "target_article_id": 2,
+      "target_reply_id": 0,
+      "replied_times": 1,
+      "num_of_liked": 0,
+      "post_time": 1643294415
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote userelations -l 1 -L 1 -U 1
+{
+  "rows": [{
+      "id": 1,
+      "follow_user": "niubbbbbbbbb",
+      "followed_user": "niuaaaaaaaaa",
+      "follow_time": 1643294282
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote# cleoslocal get table metarealnote metarealnote userelations -l 2 -L 1 -U 2
+{
+  "rows": [{
+      "id": 1,
+      "follow_user": "niubbbbbbbbb",
+      "followed_user": "niuaaaaaaaaa",
+      "follow_time": 1643294282
+    },{
+      "id": 2,
+      "follow_user": "niuaaaaaaaaa",
+      "followed_user": "niubbbbbbbbb",
+      "follow_time": 1643294632
+    }
+  ],
+  "more": false,
+  "next_key": "",
+  "next_key_bytes": ""
+}
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
+root@niu-server:~/eosio/work/MetaRealityNotes/contracts/eos/metarealnote#
