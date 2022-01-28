@@ -290,9 +290,15 @@ function show_article_content_div(article_id)
 				let articles = '';
 				let i = 0;
 				let len = resp.rows.length;
-				if (len === 0) {
+				if ( len === 0 || ( len === 1 && resp.rows[0].article_id != article_id ) ) {
 					if (get_cookie('i18n_lang') === "zh") articles = '<p>文章不存在或者已经被删除。</p>';
 					else                                  articles = '<p>The article does not exist or has been deleted.</p>';
+					$("#article_content_info_div").html(articles);
+					$("#my_modal_loading").modal('close');
+					hide_all_pages();
+					$("#article_content_div").show();
+					window.scrollTo(0, 0);
+					return;
 				}
 				// 以下生成文章的基本信息，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
