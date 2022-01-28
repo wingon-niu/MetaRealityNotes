@@ -618,7 +618,7 @@ void metarealnote::update_last_replied_time_when_delete_reply(const uint64_t & a
 
         auto index = _replies.get_index<name("byarticlerep")>();
         auto itr_reply = index.lower_bound(uint128_t{article_id}<<64);
-        if (itr_reply != index.end()) {
+        if (itr_reply != index.end() && itr_reply->target_article_id == article_id) {
             the_time = itr_reply->post_time;
         }
 
