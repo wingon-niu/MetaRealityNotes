@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 
-#define  MAIN_SYMBOL     symbol(symbol_code("EOS"), 4)
+#define  MAIN_SYMBOL     symbol(symbol_code("SYS"), 4)
 #define  ZERO_FEE        asset((int64_t)0, MAIN_SYMBOL)   // 0 EOS
 
 #define  MAX_SUPPLY      210000
@@ -53,10 +53,10 @@ public:
     // 用户修改自己的 NFT 的可设置格言
     ACTION editmotto(const name& user, const uint64_t nft_id, const string& motto_modifiable);
 
-/***
+///***
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
-***/
+//***/
 
 private:
 

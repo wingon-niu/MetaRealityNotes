@@ -9,7 +9,7 @@
 #include <vector>
 #include <string>
 
-#define  MAIN_SYMBOL     symbol(symbol_code("EOS"), 4)
+#define  MAIN_SYMBOL     symbol(symbol_code("SYS"), 4)
 #define  ZERO_FEE        asset((int64_t)0, MAIN_SYMBOL)   // 0 EOS
 
 using namespace eosio;
