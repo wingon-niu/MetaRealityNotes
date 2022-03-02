@@ -106,6 +106,7 @@ ACTION pubwelfmedal::editmotto(const name& user, const uint64_t nft_id, const st
     });
 }
 
+/***
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
 ACTION pubwelfmedal::clearalldata()
 {
@@ -124,3 +125,4 @@ ACTION pubwelfmedal::clearalldata()
         }
     }
 }
+***/
