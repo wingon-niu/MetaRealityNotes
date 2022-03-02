@@ -2,4 +2,4 @@
 
 Meta Reality Notes
 
-超越现实笔记
+梦想现实笔记
