@@ -13,6 +13,28 @@
 
 2. Community use norms
 
+    When using this DAPP system, users must abide by the following rules:
+    2.1 It is not allowed to publish content that violates the relevant laws and regulations of all countries in the world. It is not allowed to publish content that violates relevant international treaties or rules.
+    2.2 It is not allowed to publish content that contains racial discrimination, religious discrimination, false, fraudulent, leaking of others' privacy, pornography, obscene, violent and bloody content. It is not allowed to publish any other illegal or unethical content.
+    2.3 It is not allowed to publish garbage content without any practical significance for the purpose of consuming the RAM of EOS public blockchain.
+
+    If the content posted by the user violates the above rules, we will delete the catalog data of these illegal content from the RAM of the EOS public blockchain. Users will not be able to access these illegal contents through this DAPP system. All illegal data stored in the RAM of the EOS public blockchain will be deleted.
+
+3. Environment dependency: EOS RAM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
