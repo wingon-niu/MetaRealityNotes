@@ -1,1 +1,18 @@
-好的好的
+          Must Read and Agreement for Community Users
+
+1. Basic description of system functions
+
+    Users can use this DAPP system to publish articles, replies, pictures, and videos; they can create personal data; they can follow other users.
+    All these data are stored in two locations:
+    1. Articles, replies, pictures, videos, their own data will be stored in the blocks of BTC, ETH, EOS and other public blockchains in the form of remarks of blockchain transfer transactions, and cannot be modified Or deleted, it will be permanently saved on the public blockchain. If the public blockchain can survive forever, these data will also survive forever.
+    2. Articles, replies, pictures, videos, their catalog data are all stored in the RAM of the EOS public blockchain. The user's profile data and the data that users follow each other are also stored in the RAM of the EOS public blockchain.
+
+    The role of two different location data:
+    1. The data stored in the blocks of BTC, ETH, EOS and other public blockchains are static, unmodifiable, and undeletable.
+    2. The catalog data, user profile data, and the data that users follow each other stored in the RAM of the EOS public blockchain provide users with an entry for query and access.
+
+2. Community use norms
+
+
+
+
