@@ -42,7 +42,7 @@
     If there is no public query API service provided by relevant nodes or service providers, users will not be able to easily and quickly access the data in the DAPP system, but can only use the initial method to manually query through the blockchain browser. All data can be found, but the efficiency may be very low.
     In the future, if conditions permit, we will establish a corresponding public query API service to provide users with convenient and fast query services.
 
-5. Function implementation principle of long data saved into blocks of public blockchain
+5. Function implementation principle of long data stored into blocks of public blockchain
 
     Assume that the length of an article is 100,000 bytes, which exceeds the maximum length allowed by the remarks of blockchain transfer transactions.
     First: split this article into 1000 segments of 100 bytes each. Number the 1000 segments from 1 to 1000.
@@ -69,12 +69,23 @@
     Then query the transaction corresponding to HASH1000. Its transaction remark is as follows: {}the 1000th segment of the article.
     In the above query process, if one remark of transaction is started with {}, it means that the remark of transaction correspond to the last segment of the article, and the query process can be stopped accordingly.
 
+    The process of long data stored into blocks is shown as follows: (from TOP to BOTTOM)
 
+    {empty here}the 1000th segment of the article        --->  HASH1000        (The last segment of the article)
+    { HASH 1000}the  999th segment of the article        --->  HASH 999
+    { HASH  999}the  998th segment of the article        --->  HASH 998
+    { HASH  998}the  997th segment of the article        --->  HASH 997
+    { HASH  997}the  996th segment of the article        --->  HASH 996
+    ......
+    ......
+    ......
+    { HASH    6}the    5th segment of the article        --->  HASH   5
+    { HASH    5}the    4th segment of the article        --->  HASH   4
+    { HASH    4}the  third segment of the article        --->  HASH   3
+    { HASH    3}the second segment of the article        --->  HASH   2
+    { HASH    2}the  first segment of the article        --->  HASH   1        (The first segment of the article, store the HASH1 into EOS RAM as HEAD HASH)
 
+    The query process is from BOTTOM to TOP. You just have to get HEAD HASH from EOS RAM, then you can query transaction one by one, and finally get the content of the whole article.
 
-
-
-
-
-
+    The method of long data stored into blocks of public blockchain, we call it as "decentralized reverse chained storage method". Using this method, data of any length can be distributed and stored into multiple blocks in the form of blockchain transfer transaction remarks. Just save the HEAD HASH in another convenient query location, and you can query all the data of this long data through the blockchain browser at any time.
 
