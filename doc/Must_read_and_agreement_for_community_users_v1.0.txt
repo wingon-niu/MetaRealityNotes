@@ -57,6 +57,17 @@
     At this point, the content of all 1000 segments of the article has been saved into blocks of public blockchain.
     Save HASH1 and some other related data to EOS RAM to form the catalog of this article. The DAPP system calls HASH1 as the HEAD HASH.
 
+    When viewing the content of this article, users only need to know the HEAD HASH, that is, HASH1.
+    Query the transaction corresponding to HASH1 through the blockchain browser. Its transaction remark is as follows: {HASH2}the first segment of the article.
+    Then query the transaction corresponding to HASH2. Its transaction remark is as follows: {HASH3}the second segment of the article.
+    Then query the transaction corresponding to HASH3. Its transaction remark is as follows: {HASH4}the third segment of the article.
+    Then query the transaction corresponding to HASH4. Its transaction remark is as follows: {HASH5}the 4th segment of the article.
+    Then query the transaction corresponding to HASH5. Its transaction remark is as follows: {HASH6}the 5th segment of the article.
+    ...... and so on ......
+    Then query the transaction corresponding to HASH998. Its transaction remark is as follows: {HASH999}the 998th segment of the article.
+    Then query the transaction corresponding to HASH999. Its transaction remark is as follows: {HASH1000}the 999th segment of the article.
+    Then query the transaction corresponding to HASH1000. Its transaction remark is as follows: {}the 1000th segment of the article.
+    In the above query process, if one remark of transaction is started with {}, it means that the remark of transaction correspond to the last segment of the article, and the query process can be stopped accordingly.
 
 
 
