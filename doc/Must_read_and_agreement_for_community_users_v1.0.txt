@@ -32,11 +32,15 @@
 4. Environment dependency: Full node of public blockchain, Public query API service
 
 4.1 Full node of public blockchain
-    
+    There are generally two types of nodes that make up a public blockchain network: full nodes and light nodes. The difference between the two is that the full node saves all historical block data from the genesis block to the latest block. The light node may only save the blocks in the most recent period, but not all the historical blocks.
+    The data of articles, replies, pictures, and videos published by users through this DAPP system are scattered and stored in many historical blocks. If only light nodes are left running in the network of a certain public blockchain in the future, and there are no full nodes keep running, the data saved by users may be lost. Of course, this is very unlikely to happen.
+    Therefore, the data stored in the blocks of public blockchain by the user through this DAPP system will not be lost, depend on that the public blockchain must have a certain number of full nodes.
 
-
-
-
+4.2 Public query API service
+    The method for users to query the data stored in the blocks of public blockchain through the DAPP system is to query through the transaction hash of each transaction, and they need to use the public query API service provided by relevant nodes or service providers.
+    Users query the data stored in EOS RAM through the DAPP system, also need to use the public query API service provided by relevant nodes or service providers.
+    If there is no public query API service provided by relevant nodes or service providers, users will not be able to easily and quickly access the data in the DAPP system, but can only use the initial method to manually query through the blockchain browser. All data can be found, but the efficiency may be very low.
+    In the future, if conditions permit, we will establish a corresponding public query API service to provide users with convenient and fast query services.
 
 
 
