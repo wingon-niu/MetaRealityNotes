@@ -25,7 +25,7 @@
     Since the RAM resources of the EOS public blockchain are limited and expensive, the EOS RAM owned by this DAPP system may be used up one day in the future. If this happens, in order for users to continue to use the functions of posting articles, replies, pictures, and videos, there will be three ways:
     3.1 When users perform operations that require EOS RAMs consumption, they should purchase the required EOS RAMs by themselves.
     3.2 The project team purchases more EOS RAMs for this DAPP system.
-    3.3 Cancel the function of users to create profile data and cancel the function of users following each other. Existing user profile data and user followed data will be deleted to free up EOS RAMs. The released EOS RAMs is used to save the catalog data of new articles, new replies, new pictures, and new videos published by users.
+    3.3 Cancel the function of users to create profile data and cancel the function of users following each other. Existing user profile data and user followed data will be deleted to free up EOS RAMs. The released EOS RAMs will be used to save the catalog data of new articles, new replies, new pictures, and new videos published by users.
 
     Which way to be used depends on the situation at that time, each way is possible.
 
