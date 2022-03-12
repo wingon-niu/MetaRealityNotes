@@ -11,8 +11,11 @@ active
 EOS6Y4yuhf3DJWTXHDgDw1XAiwFneDJnBuC6Xk3fe9FNzc8LpfgeK
 
 
-
 假设metarealnote合约中所有的表，每个表有一条记录，计为一个单位。则5万1千个单位，占用大约100M内存。
 1万个公益勋章需要大约6.68M内存。
+
+
+发送60000个汉字，需要0.06个ETH，大约150U。ETH价格大约2500U。
+
 
 
