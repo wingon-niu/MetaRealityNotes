@@ -11,13 +11,13 @@ var eos_chain_id            = null;
 var eos_network             = null;
 
 if (runmode === "prod") {    // 生产环境
-	eos_chain_id     = '5fff1dae8dc8e2fc4d5b23b2c7665c97f9e9d8edf2b6485a86ba311c25639191';
+	eos_chain_id     = 'aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906';
 
 	eos_network = {
 		blockchain: 'eos',
-		protocol: 'https',
-		host: 'api-kylin.eosasia.one',
-		port: 443,
+		protocol: 'http',
+		host: 'eos.greymass.com',
+		port: 80,
 		chainId: eos_chain_id
 	}
 } else {                     // 开发测试环境
@@ -62,7 +62,7 @@ var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users
 var articles_array = [0];    // 数组，保存所有打开的文章的ID，因为从文章中可以打开别的文章，所以可能会有多个打开的文章，用于点击后退按钮功能时从一个文章后退到前一个文章，逐个进行后退
 
 const storage_locations = ['WHO', 'EOS', 'ETH', 'BSC', 'HECO', 'BTC'];
-const items_per_page    = 3; // 每页显示条数
+const items_per_page    = 10; // 每页显示条数
 
 var   preview_of_article_map = null;
 var   content_of_article_map = null;
@@ -83,7 +83,7 @@ if (runmode === "prod") {    // 生产环境
 	eth_chain_id      = 1;
 	eth_network_id    = 1;
 	eth_gasPrice      = '0x2540be400'; // 10Gwei
-        eth_gasLimit      = '0x588040';    // 5800000个gas
+	eth_gasLimit      = '0x588040';    // 5800000个gas
 } else {                     // 开发测试环境
 	eth_http_provider = 'https://kovan.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
 	eth_chain_id      = 42;
@@ -96,3 +96,5 @@ const eth_article_preview_length = 100;    // 存放在ETH链上的文章在文�
 
 const articles_sort_by = "last_replied_time";    // 文章在文章列表中的排序方式： article_post_time/last_replied_time
 const replies_sort_by  = "ascending_order";      // 回复在回复列表中的排序方式： ascending_order/descending_order
+
+
