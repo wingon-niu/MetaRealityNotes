@@ -97,4 +97,3 @@ const eth_article_preview_length = 100;    // 存放在ETH链上的文章在文�
 const articles_sort_by = "last_replied_time";    // 文章在文章列表中的排序方式： article_post_time/last_replied_time
 const replies_sort_by  = "ascending_order";      // 回复在回复列表中的排序方式： ascending_order/descending_order
 
-
