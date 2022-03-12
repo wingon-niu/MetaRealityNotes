@@ -82,7 +82,7 @@ if (runmode === "prod") {    // 生产环境
 	eth_http_provider = 'https://mainnet.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
 	eth_chain_id      = 1;
 	eth_network_id    = 1;
-	eth_gasPrice      = '0x2540be400'; // 10Gwei
+	eth_gasPrice      = '0x37e11d600'; // 15Gwei
 	eth_gasLimit      = '0x588040';    // 5800000个gas
 } else {                     // 开发测试环境
 	eth_http_provider = 'https://kovan.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
