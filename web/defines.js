@@ -15,9 +15,9 @@ if (runmode === "prod") {    // 生产环境
 
 	eos_network = {
 		blockchain: 'eos',
-		protocol: 'http',
+		protocol: 'https',
 		host: 'eos.greymass.com',
-		port: 80,
+		port: 443,
 		chainId: eos_chain_id
 	}
 } else {                     // 开发测试环境
