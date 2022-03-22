@@ -114,4 +114,4 @@ if (runmode === "prod") {    // 生产环境
 	amount_per_trn_reply_conf_eth   = '0.000000000000000001 ETH';
 }
 
-const storage_locations_supported_conf = 'EOS, ETH';      //   'EOS, ETH, BSC, HECO, BTC'
+const storage_locations_supported_conf = 'ETH';      //   'EOS, ETH, BSC, HECO, BTC'
