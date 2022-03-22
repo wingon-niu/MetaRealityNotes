@@ -26,8 +26,8 @@ if (runmode === "prod") {    // 生产环境
 	eos_network = {
 		blockchain: 'eos',
 		protocol: 'http',
-		host: '94.74.67.42',
-		port: 8890,
+		host: '192.168.135.100',
+		port: 8888,
 		chainId: eos_chain_id
 	}
 }
@@ -97,3 +97,7 @@ const eth_article_preview_length = 100;    // 存放在ETH链上的文章在文�
 const articles_sort_by = "last_replied_time";    // 文章在文章列表中的排序方式： article_post_time/last_replied_time
 const replies_sort_by  = "ascending_order";      // 回复在回复列表中的排序方式： ascending_order/descending_order
 
+if (runmode === "prod") {    // 生产环境
+	//
+} else {                     // 开发测试环境
+}
