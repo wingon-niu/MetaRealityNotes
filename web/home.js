@@ -140,21 +140,25 @@ $(document).ready(function () {
 	});
 
 	$("#article_in_eos").on("click", function() {
-		$("#amount_per_trn_article").val('0.0001 EOS');
+		$("#amount_per_trn_article").val(amount_per_trn_article_conf_eos);
+		$("#amount_per_trn_article").attr("readonly", false);
 	});
 
 	$("#article_in_eth").on("click", function() {
-		$("#amount_per_trn_article").val('0.000000000000000001 ETH');
+		$("#amount_per_trn_article").val(amount_per_trn_article_conf_eth);
+		$("#amount_per_trn_article").attr("readonly", true);
 		if ( ! check_eth_metamask_installed() ) return;
 		if ( ! check_eth_metamask_connected() ) return;
 	});
 
 	$("#reply_in_eos").on("click", function() {
-		$("#amount_per_trn_reply").val('0.0001 EOS');
+		$("#amount_per_trn_reply").val(amount_per_trn_reply_conf_eos);
+		$("#amount_per_trn_reply").attr("readonly", false);
 	});
 
 	$("#reply_in_eth").on("click", function() {
-		$("#amount_per_trn_reply").val('0.000000000000000001 ETH');
+		$("#amount_per_trn_reply").val(amount_per_trn_reply_conf_eth);
+		$("#amount_per_trn_reply").attr("readonly", true);
 		if ( ! check_eth_metamask_installed() ) return;
 		if ( ! check_eth_metamask_connected() ) return;
 	});
