@@ -28,9 +28,9 @@ function check_post_reply()
 		return false;
 	}
 	let my_storage_location = $("input[name='radio20']:checked").val();  // 存储位置
-	if (my_storage_location != "1" && my_storage_location != "2") {      // 不是EOS和ETH
-		if (get_cookie('i18n_lang') === "zh") alert("错误：回复内容数据目前只支持存储于EOS或者ETH链上。");
-		else                                  alert("Error: Only EOS or ETH block chain is supported at the moment.");
+	if ( storage_locations_supported_conf.indexOf(storage_locations[Number(my_storage_location)]) === -1 ) { // 不支持当前选择
+		if (get_cookie('i18n_lang') === "zh") alert("错误：回复内容数据目前只支持存储于：" + storage_locations_supported_conf + "。");
+		else                                  alert("Error: Supported block chain at the moment: " + storage_locations_supported_conf + ".");
 		return false;
 	}
 	let my_content = $("#content_of_reply").val().trim();  // 回复内容
