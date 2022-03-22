@@ -1,5 +1,5 @@
 
-const runmode               = "prod";                    // prod or dev
+const runmode               = "dev";                    // prod or dev
 
 const worldwelfare_contract = 'worldwelfare';
 const metarealnote_contract = 'metarealnote';
@@ -115,3 +115,4 @@ if (runmode === "prod") {    // 生产环境
 }
 
 const storage_locations_supported_conf = 'ETH';      //   'EOS, ETH, BSC, HECO, BTC'
+
