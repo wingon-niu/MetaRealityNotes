@@ -26,8 +26,8 @@ if (runmode === "prod") {    // 生产环境
 	eos_network = {
 		blockchain: 'eos',
 		protocol: 'http',
-		host: '94.74.67.42',
-		port: 8890,
+		host: '192.168.135.100',
+		port: 8888,
 		chainId: eos_chain_id
 	}
 }
@@ -82,8 +82,8 @@ if (runmode === "prod") {    // 生产环境
 	eth_http_provider = 'https://mainnet.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
 	eth_chain_id      = 1;
 	eth_network_id    = 1;
-	eth_gasPrice      = '0x37e11d600'; // 15Gwei
-	eth_gasLimit      = '0x588040';    // 5800000个gas
+	eth_gasPrice      = '0x9502f9000'; // 40Gwei
+	eth_gasLimit      = '0x2dc6c0';    // 3000000个gas
 } else {                     // 开发测试环境
 	eth_http_provider = 'https://kovan.infura.io/v3/8867675a02a94c3b85a00caad19bbe32';
 	eth_chain_id      = 42;
@@ -97,3 +97,21 @@ const eth_article_preview_length = 100;    // 存放在ETH链上的文章在文�
 const articles_sort_by = "last_replied_time";    // 文章在文章列表中的排序方式： article_post_time/last_replied_time
 const replies_sort_by  = "ascending_order";      // 回复在回复列表中的排序方式： ascending_order/descending_order
 
+var amount_per_trn_article_conf_eos = '';
+var amount_per_trn_article_conf_eth = '';
+var amount_per_trn_reply_conf_eos   = '';
+var amount_per_trn_reply_conf_eth   = '';
+
+if (runmode === "prod") {    // 生产环境
+	amount_per_trn_article_conf_eos = '0.0001 EOS';
+	amount_per_trn_article_conf_eth = '0.0005 ETH';
+	amount_per_trn_reply_conf_eos   = '0.0001 EOS';
+	amount_per_trn_reply_conf_eth   = '0.0005 ETH';
+} else {                     // 开发测试环境
+	amount_per_trn_article_conf_eos = '0.0001 EOS';
+	amount_per_trn_article_conf_eth = '0.000000000000000001 ETH';
+	amount_per_trn_reply_conf_eos   = '0.0001 EOS';
+	amount_per_trn_reply_conf_eth   = '0.000000000000000001 ETH';
+}
+
+const storage_locations_supported_conf = 'ETH';      //   'EOS, ETH, BSC, HECO, BTC'
