@@ -163,6 +163,11 @@ $(document).ready(function () {
 		if ( ! check_eth_metamask_connected() ) return;
 	});
 
+	$("#user_must_read").on("click", function() {
+		$("#menu_body").offCanvas('close');
+		alert($("#user_must_read_and_agreement_info").html());
+	});
+
 	articles_array        = [0];
 	current_article_id    = 0;
 	doc_scroll_top        = 0;
