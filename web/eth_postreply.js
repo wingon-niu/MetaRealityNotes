@@ -13,7 +13,7 @@ function eth_do_post_reply(my_storage_location, my_target_article_id, my_target_
 					method: 'eth_sendTransaction',
 					params: [{
 						nonce:    '0x00',           // ignored by MetaMask
-						gasPrice: eth_gasPrice,     // customizable by user during MetaMask confirmation.
+						//gasPrice: eth_gasPrice,   // customizable by user during MetaMask confirmation.
 						gas:      eth_gasLimit,     // customizable by user during MetaMask confirmation.
 						to:       eth_worldwelfare_account,
 						from:     eth_user_account,

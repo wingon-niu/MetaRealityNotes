@@ -100,6 +100,7 @@ function change_lang(lang_type)
 			$("#content_chain_interruption_info_2").html($.i18n.prop('content_chain_interruption_info_2'));
 			$("#transaction_pending_info_1").html($.i18n.prop('transaction_pending_info_1'));
 			$("#transaction_pending_info_2").html($.i18n.prop('transaction_pending_info_2'));
+			$("#user_must_read_and_agreement_info").html($.i18n.prop('user_must_read_and_agreement_info'));
 
 			//
 
