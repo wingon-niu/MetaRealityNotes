@@ -89,3 +89,19 @@
 
     The method of long data stored into blocks of public blockchain, we call it as "decentralized reverse chained storage method". Using this method, data of any length can be distributed and stored into multiple blocks in the form of blockchain transfer transaction remarks. Just save the HEAD HASH in another convenient query location, and you can query all the data of this long data through the blockchain browser at any time.
 
+------------------------------------------------------------------------------------------
+
+Supplementary notes to the above article:
+
+    1. The right to interpret this user agreement is owned by the project team.
+
+    2. The data stored in the EOS RAM mentioned in above article, the EOS RAM here refers to the EOS RAM owned by the EOS smart contract of this DAPP system.
+
+    3. Speak in a civilized manner and don't quarrel or swear. Don't let people after 1000 years laugh at the quality of our ancestors...
+
+    4. When selecting the ETH public chain as the storage location, assuming that a transaction sends 10008 bytes, about 10K, the amount of GAS to be consumed is: (10008+64+2+2)*68+21000=706168 GAS. Assuming that the price of each GAS is 100Gwei, the amount of ETH that this transaction needs to spend is: 100Gwei*706168=0.0706168ETH.
+
+    5. The shorter the length of the article, the less the amount of GAS consumed; the larger the length of the article, the greater the amount of GAS consumed. When a user sends a transaction, the amount of ETH to be spent displayed on the MetaMask page is calculated by consuming 1,080,000 GAS, and the actual transaction will not consume so much GAS. When a transaction is sent to the blockchain for execution, it will consume the correct amount of gas, charge the correct fee, and neither overcharge nor undercharge.
+
+    6. In order not to impose too much burden on the blockchain, this DAPP system only supports publishing pictures with a size of no more than 300KB, and no longer supports publishing video files. When users publish pictures, please use picture editing software to adjust the picture size to the allowable range before publishing. Assuming that an image with a size of 300KB is published, about 30 transfer transactions of ETH need to be sent. Assuming that the GAS price is 100Gwei, the amount of ETH that needs to be spent is 2.1ETH.
+
