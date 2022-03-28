@@ -1,1 +1,9 @@
-英文版
+1. Project Info
+
+    project repo:        https://github.com/wingon-niu/MetaRealityNotes
+    website:             https://dreamrealnotes.netlify.app/home.html
+    contacts(telegram):  https://t.me/wingon_niu
+    community(telegram): https://t.me/DreamRealNotes
+
+
+
