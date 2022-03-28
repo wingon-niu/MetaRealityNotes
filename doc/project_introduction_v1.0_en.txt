@@ -5,5 +5,76 @@
     contacts(telegram):  https://t.me/wingon_niu
     community(telegram): https://t.me/DreamRealNotes
 
+2. Project Introduction
 
+    The DreamRealNotes DApp, Web3.0 social application, the content of articles published by users can be permanently stored in the blocks of the blockchain, and users can record reality and dreams. This DApp system has social functions similar to Twitter. Users can publish articles, reply to, forward articles, create personal profile, follow other users, and so on. Articles published by users can also be understood as different NFTs.
+
+    We researched and implemented a method for storing data of any length into the blocks of the blockchain. The specific technical implementation principle is shown in part 5 below.
+
+    At present, the DApp system has realized the storage of article content of any length in the blocks of EOS public blockchain and ETH public blockchain. The catalog data of the article is stored in the smart contract of EOS public blockchain.
+
+    Since there are currently no nodes or service providers on the EOS public blockchain that provide public query API services for querying historical transactions, the data stored in the EOS public blockchain blocks cannot be queried. Therefore, this DApp system is only open to store the content of articles in ETH public blockchain. In the future, there will be service providers like infura.io on the ETH public blockchain on the EOS public blockchain, and then the function of storing data in the EOS public blockchain blocks will be opened.
+
+    Therefore, at present, the DApp system needs to jointly use the EOS public blockchain and the ETH public blockchain. The smart contract of the EOS public blockchain is responsible for storing the article catalog, and the block of the ETH public blockchain is responsible for storing the article content.
+
+3. Next step plan
+
+    In the coming months, the following features will be implemented:
+
+    3.1 Store pictures of appropriate size into blocks of blockchain.
+
+    3.2 Issue NFTs, or issue Tokens, to users of this DApp system.
+
+4. Use environment requirements
+
+    In order to use this DApp system normally, it is recommended to use a personal computer, Google Chrome browser, Scatter, MetaMask.
+
+    Whether other devices such as mobile phones or browsers can normally use this DApp system has not been verified.
+
+5. Technical implementation principle: How to store long data into blocks of public blockchain
+
+    Assume that the length of an article is 100,000 bytes, which exceeds the maximum length allowed by the remark of blockchain transfer transaction.
+    First: split this article into 1000 segments of 100 bytes each. Number the 1000 segments from 1 to 1000.
+    Send the first blockchain transfer transaction: take the last segment of the article, which is the 1000th segment, as the remark of this transfer transaction, in the form of "{}the 1000th segment of the article", submit it to the chain, and then get The HASH of this transfer transaction, which is recorded as HASH1000.
+    Send the second blockchain transfer transaction: connect the content of the penultimate segment of the article, that is, segment 999, with the HASH1000 obtained above, take the form of "{HASH1000}the 999th segment of the article" as the remark of the transfer transaction, submit it to the chain, and then obtain the hash of the transfer transaction, which is recorded as HASH999.
+    Send the third blockchain transfer transaction: connect the content of the third segment from last of the article, that is, segment 998, with the HASH999 obtained above, take the form of "{HASH999}the 998th segment of the article" as the remark of the transfer transaction, submit it to the chain, and then obtain the hash of the transfer transaction, which is recorded as HASH998.
+    ......
+    ......
+    ......
+    By analogy, the 1000 segments of the article are sent in reverse order, starting from the last segment, and sending transfer transaction one by one until the first segment of the article is sent. Here is the last transaction:
+    Send the 1000th blockchain transfer transaction: connect the content of segment 1 of the article with the HASH2 obtained from the previous transfer transaction, take the form of "{HASH2}the first segment of the article" as the remark of this transfer transaction, submit it to the chain, and then obtain the hash of this transfer transaction, which is recorded as HASH1.
+    At this point, the content of all 1000 segments of the article has been saved into blocks of public blockchain.
+    Save HASH1 and some other related data to EOS RAM to form the catalog of this article. The DAPP system calls HASH1 as the HEAD HASH.
+
+    When viewing the content of this article, users only need to know the HEAD HASH, that is, HASH1.
+    Query the transaction corresponding to HASH1 through the blockchain browser. Its transaction remark is as follows: {HASH2}the first segment of the article.
+    Then query the transaction corresponding to HASH2. Its transaction remark is as follows: {HASH3}the second segment of the article.
+    Then query the transaction corresponding to HASH3. Its transaction remark is as follows: {HASH4}the third segment of the article.
+    Then query the transaction corresponding to HASH4. Its transaction remark is as follows: {HASH5}the 4th segment of the article.
+    Then query the transaction corresponding to HASH5. Its transaction remark is as follows: {HASH6}the 5th segment of the article.
+    ...... and so on ......
+    Then query the transaction corresponding to HASH998. Its transaction remark is as follows: {HASH999}the 998th segment of the article.
+    Then query the transaction corresponding to HASH999. Its transaction remark is as follows: {HASH1000}the 999th segment of the article.
+    Then query the transaction corresponding to HASH1000. Its transaction remark is as follows: {}the 1000th segment of the article.
+    In the above query process, if one remark of transaction is started with {}, it means that the remark of transaction correspond to the last segment of the article, and the query process can be stopped accordingly.
+
+    The process of long data stored into blocks is shown as follows: (from TOP to BOTTOM)
+
+    {empty here}the 1000th segment of the article        --->  HASH1000        (The last segment of the article)
+    { HASH 1000}the  999th segment of the article        --->  HASH 999
+    { HASH  999}the  998th segment of the article        --->  HASH 998
+    { HASH  998}the  997th segment of the article        --->  HASH 997
+    { HASH  997}the  996th segment of the article        --->  HASH 996
+    ......
+    ......
+    ......
+    { HASH    6}the    5th segment of the article        --->  HASH   5
+    { HASH    5}the    4th segment of the article        --->  HASH   4
+    { HASH    4}the  third segment of the article        --->  HASH   3
+    { HASH    3}the second segment of the article        --->  HASH   2
+    { HASH    2}the  first segment of the article        --->  HASH   1        (The first segment of the article, store the HASH1 into EOS RAM as HEAD HASH)
+
+    The query process is from BOTTOM to TOP. You just have to get HEAD HASH from EOS RAM, then you can query transaction one by one, and finally get the content of the whole article.
+
+    The method of long data stored into blocks of public blockchain, we call it as "decentralized reverse chained storage method". Using this method, data of any length can be distributed and stored into multiple blocks in the form of blockchain transfer transaction remarks. Just save the HEAD HASH in another convenient query location, and you can query all the data of this long data through the blockchain browser at any time.
 
