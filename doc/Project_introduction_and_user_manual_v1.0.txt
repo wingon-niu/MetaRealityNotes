@@ -1,7 +1,7 @@
 
 A. Project Introduction
 
-
+    The DreamRealNotes DApp, web3.0 social application, the content of articles published by users can be permanently stored in the blocks of the blockchain, and users can record reality and dreams.
 
 ------------------------------
 
