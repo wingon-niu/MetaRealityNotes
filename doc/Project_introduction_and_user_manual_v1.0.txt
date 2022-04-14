@@ -7,6 +7,10 @@ A. Project Introduction
     Brief summary:
     The social function of Twitter + the permanent storage function of articles in Mirror = This DApp
 
+    DApp website:     https://dreamrealnotes.netlify.app/home.html
+
+    At present, this DApp system has realized that the content of articles of any length can be stored in the blocks of the ETH public chain. The catalog data of the article is stored in the smart contract of the EOS public chain.
+
 ------------------------------
 
 A. 项目介绍
