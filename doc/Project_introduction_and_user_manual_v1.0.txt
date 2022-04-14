@@ -10,6 +10,7 @@ A. Project Introduction
     DApp website:     https://dreamrealnotes.netlify.app/home.html
 
     At present, this DApp system has realized that the content of articles of any length can be stored in the blocks of the ETH public chain. The catalog data of the article is stored in the smart contract of the EOS public chain.
+    Therefore, at present, the DApp system needs to jointly use the ETH public chain and the EOS public chain. The block of the ETH public chain is responsible for storing the article content, and the smart contract of the EOS public chain is responsible for storing the article catalog.
 
 ------------------------------
 
