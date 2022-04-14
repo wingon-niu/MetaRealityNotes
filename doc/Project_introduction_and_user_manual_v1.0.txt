@@ -13,6 +13,7 @@ A. Project Introduction
     Therefore, at present, the DApp system needs to jointly use the ETH public chain and the EOS public chain. The block of the ETH public chain is responsible for storing the article content, and the smart contract of the EOS public chain is responsible for storing the article catalog.
 
     Using the mobile wallet App to access this DApp system, you can only browse and view articles, and cannot perform other operations. Because existing mobile wallet Apps cannot operate on two blockchains at the same time.
+    In order to use the full functionality of this DApp system, it is recommended to use a Personal Computer, Google Chrome, Scatter, MetaMask.
 
 ------------------------------
 
