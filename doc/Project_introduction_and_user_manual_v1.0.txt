@@ -15,6 +15,8 @@ A. Project Introduction
     Using the mobile wallet App to access this DApp system, you can only browse and view articles, and cannot perform other operations. Because existing mobile wallet Apps cannot operate on two blockchains at the same time.
     In order to use the full functionality of this DApp system, it is recommended to use a Personal Computer, Google Chrome, Scatter, MetaMask.
 
+    In the coming months, the following features will be implemented:
+
 ------------------------------
 
 A. 项目介绍
