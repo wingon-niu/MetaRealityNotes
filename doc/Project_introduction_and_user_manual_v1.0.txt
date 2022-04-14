@@ -2,8 +2,10 @@
 A. Project Introduction
 
     The DreamRealNotes DApp, web3.0 social application, the content of articles published by users can be permanently stored in the blocks of the blockchain, and users can record reality and dreams.
-    This DApp system has social functions similar to twitter. Users can post articles, reply to, forward articles, create personal profile, follow other users, and so on.
+    This DApp system has social functions similar to Twitter. Users can post articles, reply to, forward articles, create personal profile, follow other users, and so on.
     Articles published by users can also be understood as different NFTs.
+    Brief summary:
+    The social function of Twitter + the permanent storage function of articles in Mirror = This DApp
 
 ------------------------------
 
