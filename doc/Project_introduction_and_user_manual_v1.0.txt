@@ -16,6 +16,7 @@ A. Project Introduction
     In order to use the full functionality of this DApp system, it is recommended to use a Personal Computer, Google Chrome, Scatter, MetaMask.
 
     In the coming months, the following features will be implemented:
+    1. Added support for Arweave, users can choose to store articles or pictures in the Arweave blockchain.
 
 ------------------------------
 
