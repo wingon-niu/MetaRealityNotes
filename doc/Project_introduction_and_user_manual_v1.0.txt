@@ -17,6 +17,8 @@ A. Project Introduction
 
     In the coming months, the following features will be implemented:
     1. Added support for Arweave, users can choose to store articles or pictures in the Arweave blockchain.
+    2. Realize the functions of liking and rewarding articles and replies.
+    3. Issue NFTs to users of this DApp system.
 
 ------------------------------
 
