@@ -105,7 +105,15 @@ https://dreamrealnotes.netlify.app/home.html
 7.2 项目介绍和用户手册
 https://mirror.xyz/0x9bbFd58099883b109011e45dc52AB0B756b0837e/WdgJIAQJpPlrjC0JGRcAMVuNgabLTGjg7Lgsb0JiEQY
 
-8. 
+8. 下一步开发计划
 
-看一看上一版白皮书，还需要写些什么内容。
+实现本DApp系统的以下功能：
+8.1 增加对Arweave的支持，用户可以选择将文章或者图片存储进Arweave区块链。
+8.2 实现对文章、回复进行点赞、打赏的功能。
+8.3 实现NFT交易功能。
+
+9. 团队介绍
+
+创始人简介：wingon_niu，具有20年以上的软件开发经验，在云计算与大数据方面具有10年行业经验，曾经担任华为公有云/云存储业务高端5级技术顾问。有3年区块链方面的开发经验，熟悉ETH、EOS智能合约以及Web前端的开发、部署、运营。
+
 
