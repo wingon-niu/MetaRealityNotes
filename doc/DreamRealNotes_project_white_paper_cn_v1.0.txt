@@ -80,7 +80,6 @@ EOS智能合约未来会使用多签的形式进行权限管理，并且使用DA
 6.1 技术实现原理：如何将长数据存储到区块链的区块之中。
 
 见下面的Github链接，查阅时请点击页面右上方的“Raw”按钮，方便阅读。
-
 https://github.com/wingon-niu/MetaRealityNotes/blob/main/doc/technical_implementation_principle_cn.txt
 
 6.2 清晰的所有权，NFT作品的原创主人或者后续主人都拥有清晰的所有权。
@@ -108,7 +107,7 @@ https://mirror.xyz/0x9bbFd58099883b109011e45dc52AB0B756b0837e/WdgJIAQJpPlrjC0JGR
 8. 下一步开发计划
 
 实现本DApp系统的以下功能：
-8.1 增加对Arweave的支持，用户可以选择将文章或者图片存储进Arweave区块链。
+8.1 增加对Arweave的支持，用户可以选择将文章或者图片、视频存储进Arweave区块链。
 8.2 实现对文章、回复进行点赞、打赏的功能。
 8.3 实现NFT交易功能。
 
