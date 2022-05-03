@@ -5,9 +5,12 @@ function arweave_do_post_article(my_category, my_type, my_storage_location, my_f
 {
 	(async () => {
 		try {
+			$("#my_modal_loading").modal('open');
 			for (let j = post_article_current_index; j >= 0; j--) {
 				post_article_current_index = j;
 				let transaction = await arweave.createTransaction({ data: '{' + trn_hash + '}' + strArray[j] });
+				transaction.addTag('Content-Type', 'text/html');
+				transaction.addTag('App-Name', 'DreamRealNotes');
 				await arweave.transactions.sign(transaction);
 				let response = await arweave.transactions.post(transaction);
 				if (response.status === 200) {        // HTTP response codes (200 - server received the transaction, 4XX - invalid transaction, 5XX - error)
@@ -15,6 +18,7 @@ function arweave_do_post_article(my_category, my_type, my_storage_location, my_f
 					trn_hash    = transaction.id;
 				} else {
 					trn_success = false;
+					$("#my_modal_loading").modal('close');
 					alert('An error has occurred, please resume from break point.');
 					return;
 				}
@@ -51,10 +55,12 @@ function arweave_do_post_article(my_category, my_type, my_storage_location, my_f
 				if (typeof(eos_result) === 'object' && eos_result.transaction_id != "") {
 					trn_success                 = true;
 					post_article_write_to_table = true;
-				} else { trn_failed(); return; }
+				} else { trn_failed(); $("#my_modal_loading").modal('close'); return; }
 			}
+			$("#my_modal_loading").modal('close');
 			alert("OK");
 		} catch (e) {
+			$("#my_modal_loading").modal('close');
 			trn_success = false;
 			if (typeof e === 'object') alert(e.message);
 			else                       alert(e);
