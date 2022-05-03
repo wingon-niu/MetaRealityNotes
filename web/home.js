@@ -187,6 +187,7 @@ $(document).ready(function () {
 
 	//
 
+	arweave = Arweave.init(arweave_initialisation_options);
 	ScatterJS.plugins( new ScatterEOS() );
 	setTimeout(
 		function(){

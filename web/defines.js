@@ -118,3 +118,13 @@ if (runmode === "prod") {    // 生产环境
 
 const storage_locations_supported_conf = 'ETH, Arweave';      //   'EOS, ETH, BSC, HECO, BTC, Arweave'
 
+const arweave_initialisation_options = {
+	host:     'arweave.net',  // Hostname or IP address for a Arweave host
+	port:     443,            // Port
+	protocol: 'https',        // Network protocol http or https
+	timeout:  30000,          // Network request timeouts in milliseconds
+	logging:  false           // Enable network request logging
+}
+
+var arweave = null;
+
