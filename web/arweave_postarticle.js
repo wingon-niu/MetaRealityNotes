@@ -7,7 +7,7 @@ function arweave_do_post_article(my_category, my_type, my_storage_location, my_f
 		try {
 			for (let j = post_article_current_index; j >= 0; j--) {
 				post_article_current_index = j;
-				let transaction = await arweave.createTransaction({ data: Buffer.from('{' + trn_hash + '}' + strArray[j], 'utf8') });
+				let transaction = await arweave.createTransaction({ data: '{' + trn_hash + '}' + strArray[j] });
 				await arweave.transactions.sign(transaction);
 				let response = await arweave.transactions.post(transaction);
 				if (response.status === 200) {        // HTTP response codes (200 - server received the transaction, 4XX - invalid transaction, 5XX - error)
