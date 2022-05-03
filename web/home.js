@@ -151,6 +151,11 @@ $(document).ready(function () {
 		if ( ! check_eth_metamask_connected() ) return;
 	});
 
+	$("#article_in_arweave").on("click", function() {
+		$("#amount_per_trn_article").val('N/A');
+		$("#amount_per_trn_article").attr("readonly", true);
+	});
+
 	$("#reply_in_eos").on("click", function() {
 		$("#amount_per_trn_reply").val(amount_per_trn_reply_conf_eos);
 		$("#amount_per_trn_reply").attr("readonly", false);
