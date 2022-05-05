@@ -12,16 +12,12 @@ function arweave_do_post_article(my_category, my_type, my_storage_location, my_f
 				transaction.addTag('Content-Type', 'text/html');
 				transaction.addTag('App-Name', 'DreamRealNotes');
 				await arweave.transactions.sign(transaction);
-				let response = await arweave.transactions.post(transaction);
-				if (response.status === 200) {        // HTTP response codes (200 - server received the transaction, 4XX - invalid transaction, 5XX - error)
-					trn_success = true;
-					trn_hash    = transaction.id;
-				} else {
-					trn_success = false;
-					$("#my_modal_loading").modal('close');
-					alert('An error has occurred, please resume from break point.');
-					return;
+				let uploader = await arweave.transactions.getUploader(transaction);
+				while (!uploader.isComplete) {
+					await uploader.uploadChunk();
 				}
+				trn_success = true;
+				trn_hash    = transaction.id;
 			}
 			post_article_current_index = -1;
 			if (post_article_write_to_table === false) {
