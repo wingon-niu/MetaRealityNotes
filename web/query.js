@@ -239,6 +239,18 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 							}
 						}
 					}
+					else if (resp.rows[i].storage_location === 6) {                                   // 数据存储在 Arweave 链上
+						try {
+							memo = await arweave.transactions.getData(resp.rows[i].article_hash, {decode: true, string: true});
+							content = memo.slice(memo.indexOf('}') + 1, memo.length);
+							if (content.length > arweave_article_preview_length) {
+								content = content.slice(0, arweave_article_preview_length);
+							}
+						}
+						catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
+							content = content + $("#content_chain_interruption_info_1").html() + resp.rows[i].article_hash + $("#content_chain_interruption_info_2").html();
+						}
+					}
 					else {      // 数据存储在其他链上
 					}
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
