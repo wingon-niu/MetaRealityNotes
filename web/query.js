@@ -241,7 +241,8 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 					}
 					else if (resp.rows[i].storage_location === 6) {                                   // 数据存储在 Arweave 链上
 						try {
-							memo = await arweave.transactions.getData(resp.rows[i].article_hash, {decode: true, string: true});
+							let ar_response = await fetch(arweave_endpoint + resp.rows[i].article_hash);
+							memo = await ar_response.text();
 							content = memo.slice(memo.indexOf('}') + 1, memo.length);
 							if (content.length > arweave_article_preview_length) {
 								content = content.slice(0, arweave_article_preview_length);
@@ -396,7 +397,8 @@ function show_article_content_div(article_id)
 							try {
 								next_hash   = resp.rows[i].article_hash;
 								do {
-									memo = await arweave.transactions.getData(next_hash, {decode: true, string: true});
+									let ar_response = await fetch(arweave_endpoint + next_hash);
+									memo = await ar_response.text();
 									next_hash = memo.slice(0, memo.indexOf('}') + 1);
 									if (next_hash.length > 2) {
 										next_hash = memo.slice(1, memo.indexOf('}'));
