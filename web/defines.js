@@ -126,5 +126,6 @@ const arweave_initialisation_options = {
 	logging:  false           // Enable network request logging
 }
 
-var arweave = null;
+const arweave_endpoint = arweave_initialisation_options.protocol + '://' + arweave_initialisation_options.host + ':' + arweave_initialisation_options.port + '/';
+var   arweave          = null;
 
