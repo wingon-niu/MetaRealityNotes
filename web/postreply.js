@@ -58,6 +58,9 @@ function view_times_of_txn_reply()
 	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
 		per_trn_len = eth_per_trn_len;
 	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		per_trn_len = arweave_per_trn_len;
+	}
 	else {                                       // 内容数据存储在其他链
 		return;
 	}
@@ -104,6 +107,9 @@ function do_post_reply()
 	}
 	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
 		per_trn_len = eth_per_trn_len;
+	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		per_trn_len = arweave_per_trn_len;
 	}
 	else {                                       // 内容数据存储在其他链
 		return;
@@ -194,6 +200,9 @@ function do_post_reply()
 	}
 	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
 		eth_do_post_reply(my_storage_location, my_target_article_id, my_target_reply_id, my_quantity, strArray);
+	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		arweave_do_post_reply(my_storage_location, my_target_article_id, my_target_reply_id, my_quantity, strArray);
 	}
 	else {                                       // 内容数据存储在其他链
 		return;
