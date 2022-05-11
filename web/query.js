@@ -631,6 +631,25 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 							}
 						} while (next_hash != '');
 					}
+					else if (resp.rows[i].storage_location === 6) {                                   // 数据存储在 Arweave 链上
+						try {
+							next_hash   = resp.rows[i].reply_hash;
+							do {
+								let ar_response = await fetch(arweave_endpoint + next_hash);
+								memo = await ar_response.text();
+								next_hash = memo.slice(0, memo.indexOf('}') + 1);
+								if (next_hash.length > 2) {
+									next_hash = memo.slice(1, memo.indexOf('}'));
+								} else {
+									next_hash = '';
+								}
+								content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+							} while (next_hash != '');
+						}
+						catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
+							content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
+						}
+					}
 					else {      // 数据存储在其他链上
 					}
 					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
