@@ -168,6 +168,11 @@ $(document).ready(function () {
 		if ( ! check_eth_metamask_connected() ) return;
 	});
 
+	$("#reply_in_arweave").on("click", function() {
+		$("#amount_per_trn_reply").val('N/A');
+		$("#amount_per_trn_reply").attr("readonly", true);
+	});
+
 	$("#user_must_read").on("click", function() {
 		$("#menu_body").offCanvas('close');
 		alert($("#user_must_read_and_agreement_info").html());
