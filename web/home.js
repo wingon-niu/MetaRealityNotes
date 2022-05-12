@@ -26,6 +26,12 @@ $(document).ready(function () {
 		get_home_page_articles();
 	});
 
+	$("#tab_album").on("click", function() {
+		current_note_category = "album";
+		current_article_id = 0;
+		get_home_page_album_items();
+	});
+
 	$("#article_content_div").hide();
 	$("#my_articles_div").hide();
 	$("#my_replies_div").hide();
