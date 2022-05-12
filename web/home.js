@@ -84,6 +84,14 @@ $(document).ready(function () {
 		write_an_article_show_modal();
 	});
 
+	$("#link_post_picture").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_picture_show_modal();
+	});
+
 	$("#view_times_of_txn_article").on("click", function() {
 		view_times_of_txn_article();
 	});
