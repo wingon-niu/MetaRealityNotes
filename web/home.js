@@ -187,6 +187,11 @@ $(document).ready(function () {
 		$("#amount_per_trn_reply").attr("readonly", true);
 	});
 
+	$("#post_pic_in_arweave").on("click", function() {
+		$("#amount_per_trn_post_pic").val('N/A');
+		$("#amount_per_trn_post_pic").attr("readonly", true);
+	});
+
 	$("#user_must_read").on("click", function() {
 		$("#menu_body").offCanvas('close');
 		alert($("#user_must_read_and_agreement_info").html());
