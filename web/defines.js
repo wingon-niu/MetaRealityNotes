@@ -117,6 +117,7 @@ if (runmode === "prod") {    // 生产环境
 }
 
 const storage_locations_supported_conf = 'ETH, Arweave';      //   'EOS, ETH, BSC, HECO, BTC, Arweave'
+const storage_locations_supported_conf_post_pic = 'Arweave';  //   'EOS, ETH, BSC, HECO, BTC, Arweave'
 
 const arweave_initialisation_options = {
 	host:     'arweave.net',  // Hostname or IP address for a Arweave host
@@ -128,4 +129,7 @@ const arweave_initialisation_options = {
 
 const arweave_endpoint = arweave_initialisation_options.protocol + '://' + arweave_initialisation_options.host + ':' + arweave_initialisation_options.port + '/';
 var   arweave          = null;
+
+var origin_data_of_pic = '';
+var origin_size_of_pic = 0;
 

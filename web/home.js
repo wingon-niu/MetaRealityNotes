@@ -213,6 +213,7 @@ $(document).ready(function () {
 
 	arweave = Arweave.init(arweave_initialisation_options);
 	ScatterJS.plugins( new ScatterEOS() );
+	init_post_picture();
 	setTimeout(
 		function(){
 			get_home_page_articles()
