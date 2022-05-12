@@ -124,6 +124,18 @@ $(document).ready(function () {
 		resume_from_break_point_post_reply();
 	});
 
+	$("#view_times_of_txn_post_pic").on("click", function() {
+		view_times_of_txn_post_picture();
+	});
+
+	$("#post_pic").on("click", function() {
+		post_picture();
+	});
+
+	$("#resume_from_break_point_post_pic").on("click", function() {
+		resume_from_break_point_post_picture();
+	});
+
 	$("#create_edit_profile").on("click", function() {
 		create_edit_profile();
 	});
