@@ -39,6 +39,7 @@ function change_lang(lang_type)
 			$("#logoff").html($.i18n.prop('logoff'));
 			$("#tab_real").html($.i18n.prop('tab_real'));
 			$("#tab_dream").html($.i18n.prop('tab_dream'));
+			$("#tab_album").html($.i18n.prop('tab_album'));
 			$("#write_an_article").html($.i18n.prop('write_an_article'));
 			$("#user_info").html($.i18n.prop('user_info'));
 			$("#category_1").html($.i18n.prop('category_1'));
