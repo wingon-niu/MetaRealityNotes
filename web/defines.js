@@ -138,4 +138,5 @@ var album_item_loaded_ok = false;
 var origin_data_of_item = '';
 var origin_size_of_item = 0;
 
+const album_item_data_preview_length = 100;
 

@@ -26,12 +26,16 @@ function init_post_item()
 				$("#div_post_item_file_content").html('<img src="' + this.result + '" alt="" style="width:auto; height:auto; max-width:100%; max-height:100%;" />');
 			}
 			else if (album_item_type === 2) {
+				$("#div_post_item_file_content").html('<video src="' + this.result + '" controls style="width:auto; height:auto; max-width:100%; max-height:100%;">HTML5 Video is required.</video>');
 			}
 			else if (album_item_type === 3) {
+				$("#div_post_item_file_content").html('<audio src="' + this.result + '" controls>HTML5 Audio is required.</audio>');
 			}
 			else if (album_item_type === 5) {
+				$("#div_post_item_file_content").html(this.result.slice(0, album_item_data_preview_length) + '......');
 			}
 			else {
+				$("#div_post_item_file_content").html('N/A');
 			}
 			album_item_loaded_ok = true;
 			origin_data_of_item  = this.result;
