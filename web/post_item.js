@@ -20,7 +20,7 @@ function check_post_item()
 {
 	let my_storage_location = $("input[name='radio_post_item']:checked").val();  // 存储位置
 	if ( storage_locations_supported_conf_post_item.indexOf(storage_locations[Number(my_storage_location)]) === -1 ) { // 不支持当前选择
-		if (get_cookie('i18n_lang') === "zh") alert("错误：图片目前只支持存储于：" + storage_locations_supported_conf_post_item + "。");
+		if (get_cookie('i18n_lang') === "zh") alert("错误：目前只支持存储于：" + storage_locations_supported_conf_post_item + "。");
 		else                                  alert("Error: Supported block chain at the moment: " + storage_locations_supported_conf_post_item + ".");
 		return false;
 	}
