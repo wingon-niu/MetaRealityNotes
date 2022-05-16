@@ -8,6 +8,29 @@ function init_post_item()
 
 	origin_data_of_item = '';
 	origin_size_of_item = 0;
+
+	$("#post_item_open_file").on("change", function() {
+		album_item_loaded_ok = false;
+		origin_data_of_item  = '';
+		origin_size_of_item  = 0;
+
+		let fileReader = new FileReader();
+		let fileType   = this.files[0].type;
+		fileReader.onload = function(e) {
+			if (album_item_type === 1) {
+				$("#div_post_item_file_content").html('<img src="' + this.result + '" alt="" />');
+			}
+			else if (album_item_type === 2) {
+			}
+			else if (album_item_type === 3) {
+			}
+			else if (album_item_type === 5) {
+			}
+			else {
+			}
+		}
+		fileReader.readAsDataURL(this.files[0]);
+	});
 }
 
 function post_picture_show_modal()
