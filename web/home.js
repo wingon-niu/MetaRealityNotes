@@ -124,16 +124,16 @@ $(document).ready(function () {
 		resume_from_break_point_post_reply();
 	});
 
-	$("#view_times_of_txn_post_pic").on("click", function() {
-		view_times_of_txn_post_picture();
+	$("#view_times_of_txn_post_item").on("click", function() {
+		view_times_of_txn_post_item();
 	});
 
-	$("#post_pic").on("click", function() {
-		post_picture();
+	$("#post_item").on("click", function() {
+		post_item();
 	});
 
-	$("#resume_from_break_point_post_pic").on("click", function() {
-		resume_from_break_point_post_picture();
+	$("#resume_from_break_point_post_item").on("click", function() {
+		resume_from_break_point_post_item();
 	});
 
 	$("#create_edit_profile").on("click", function() {
@@ -199,9 +199,9 @@ $(document).ready(function () {
 		$("#amount_per_trn_reply").attr("readonly", true);
 	});
 
-	$("#post_pic_in_arweave").on("click", function() {
-		$("#amount_per_trn_post_pic").val('N/A');
-		$("#amount_per_trn_post_pic").attr("readonly", true);
+	$("#post_item_in_arweave").on("click", function() {
+		$("#amount_per_trn_post_item").val('N/A');
+		$("#amount_per_trn_post_item").attr("readonly", true);
 	});
 
 	$("#user_must_read").on("click", function() {
@@ -225,7 +225,7 @@ $(document).ready(function () {
 
 	arweave = Arweave.init(arweave_initialisation_options);
 	ScatterJS.plugins( new ScatterEOS() );
-	init_post_picture();
+	init_post_item();
 	setTimeout(
 		function(){
 			get_home_page_articles()

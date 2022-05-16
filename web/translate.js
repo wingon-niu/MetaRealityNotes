@@ -103,9 +103,9 @@ function change_lang(lang_type)
 			$("#transaction_pending_info_2").html($.i18n.prop('transaction_pending_info_2'));
 			$("#user_must_read_and_agreement_info").html($.i18n.prop('user_must_read_and_agreement_info'));
 			$("#link_post_picture").html($.i18n.prop('link_post_picture'));
-			$("#span_post_pic_description").html($.i18n.prop('span_post_pic_description'));
-			$("#post_pic").html($.i18n.prop('post_pic'));
-			$("#resume_from_break_point_post_pic").html($.i18n.prop('resume_from_break_point_post_pic'));
+			$("#span_post_item_description").html($.i18n.prop('span_post_item_description'));
+			$("#post_item").html($.i18n.prop('post_item'));
+			$("#resume_from_break_point_post_item").html($.i18n.prop('resume_from_break_point_post_item'));
 
 			//
 

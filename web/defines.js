@@ -59,7 +59,7 @@ const eth_per_trn_len     = 3336;         // 一个utf8编码的汉字3个字节
 const arweave_per_trn_len = 100000;       // 一个utf8编码的汉字3个字节，100000汉字*3=300000字节，300000字节/1024=292.96875 KB
 const btc_per_trn_len     = 1000;
 
-const arweave_per_trn_len_post_pic = 102400; // 1024*1024*8=8388608=8MB
+const arweave_per_trn_len_post_item = 102400; // 1024*1024*8=8388608=8MB
 
 var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
 var articles_array = [0];    // 数组，保存所有打开的文章的ID，因为从文章中可以打开别的文章，所以可能会有多个打开的文章，用于点击后退按钮功能时从一个文章后退到前一个文章，逐个进行后退
@@ -119,7 +119,7 @@ if (runmode === "prod") {    // 生产环境
 }
 
 const storage_locations_supported_conf = 'ETH, Arweave';      //   'EOS, ETH, BSC, HECO, BTC, Arweave'
-const storage_locations_supported_conf_post_pic = 'Arweave';  //   'EOS, ETH, BSC, HECO, BTC, Arweave'
+const storage_locations_supported_conf_post_item = 'Arweave'; //   'EOS, ETH, BSC, HECO, BTC, Arweave'
 
 const arweave_initialisation_options = {
 	host:     'arweave.net',  // Hostname or IP address for a Arweave host
@@ -132,6 +132,6 @@ const arweave_initialisation_options = {
 const arweave_endpoint = arweave_initialisation_options.protocol + '://' + arweave_initialisation_options.host + ':' + arweave_initialisation_options.port + '/';
 var   arweave          = null;
 
-var origin_data_of_pic = '';
-var origin_size_of_pic = 0;
+var origin_data_of_item = '';
+var origin_size_of_item = 0;
 
