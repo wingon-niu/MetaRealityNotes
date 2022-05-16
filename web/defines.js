@@ -132,6 +132,10 @@ const arweave_initialisation_options = {
 const arweave_endpoint = arweave_initialisation_options.protocol + '://' + arweave_initialisation_options.host + ':' + arweave_initialisation_options.port + '/';
 var   arweave          = null;
 
+var album_item_type      = 1;          // 1：图片   2：视频   3：音频   5：其他
+var album_item_loaded_ok = false;
+
 var origin_data_of_item = '';
 var origin_size_of_item = 0;
+
 

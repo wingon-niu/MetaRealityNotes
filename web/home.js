@@ -92,6 +92,30 @@ $(document).ready(function () {
 		post_picture_show_modal();
 	});
 
+	$("#link_post_video").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_video_show_modal();
+	});
+
+	$("#link_post_audio").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_audio_show_modal();
+	});
+
+	$("#link_post_other_file").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_other_file_show_modal();
+	});
+
 	$("#view_times_of_txn_article").on("click", function() {
 		view_times_of_txn_article();
 	});
@@ -224,8 +248,11 @@ $(document).ready(function () {
 	//
 
 	arweave = Arweave.init(arweave_initialisation_options);
+
 	ScatterJS.plugins( new ScatterEOS() );
+
 	init_post_item();
+
 	setTimeout(
 		function(){
 			get_home_page_articles()

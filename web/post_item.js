@@ -3,12 +3,50 @@
 
 function init_post_item()
 {
+	album_item_type      = 1;
+	album_item_loaded_ok = false;
+
 	origin_data_of_item = '';
 	origin_size_of_item = 0;
 }
 
 function post_picture_show_modal()
 {
+	album_item_type = 1;
+
+	$('#div_post_an_item').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
+}
+
+function post_video_show_modal()
+{
+	album_item_type = 2;
+
+	$('#div_post_an_item').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
+}
+
+function post_audio_show_modal()
+{
+	album_item_type = 3;
+
+	$('#div_post_an_item').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
+}
+
+function post_other_file_show_modal()
+{
+	album_item_type = 5;
+
 	$('#div_post_an_item').modal({
 		relatedTarget: this,
 		onCancel: function() {},
@@ -28,6 +66,11 @@ function check_post_item()
 	if (my_description.length > 30) {
 		if (get_cookie('i18n_lang') === "zh") alert("错误：描述长度超出限制。");
 		else                                  alert("Error: Description is too long.");
+		return false;
+	}
+	if (album_item_loaded_ok === false) {      // 文件没有读取完毕
+		if (get_cookie('i18n_lang') === "zh") alert("错误：文件正在读取中，请稍等一会。");
+		else                                  alert("Error: The file is loading, please wait a moment.");
 		return false;
 	}
 	if (origin_data_of_item === '') {  // 没有读取到文件的数据
