@@ -13,12 +13,17 @@ function init_post_item()
 		album_item_loaded_ok = false;
 		origin_data_of_item  = '';
 		origin_size_of_item  = 0;
+		$("#div_post_item_file_content").html('');
 
-		let fileReader = new FileReader();
-		let fileType   = this.files[0].type;
+		if (typeof(this) === 'undefined' || typeof(this.files) === 'undefined' || typeof(this.files[0]) === 'undefined') {  // 用户点了取消按钮
+			return;
+		}
+		let fileReader      = new FileReader();
+		let fileType        = this.files[0].type;
+		origin_size_of_item = this.files[0].size;
 		fileReader.onload = function(e) {
 			if (album_item_type === 1) {
-				$("#div_post_item_file_content").html('<img src="' + this.result + '" alt="" />');
+				$("#div_post_item_file_content").html('<img src="' + this.result + '" alt="" style="width:auto; height:auto; max-width:100%; max-height:100%;" />');
 			}
 			else if (album_item_type === 2) {
 			}
@@ -28,6 +33,8 @@ function init_post_item()
 			}
 			else {
 			}
+			album_item_loaded_ok = true;
+			origin_data_of_item  = this.result;
 		}
 		fileReader.readAsDataURL(this.files[0]);
 	});
