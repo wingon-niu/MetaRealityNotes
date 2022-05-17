@@ -176,6 +176,7 @@ function do_post_reply()
 										user:              account.name,
 										reply_hash:        trn_hash,
 										num_of_trns:       strArray.length,
+										content_sha3_hash: generate_sha3_hash_string(strArray),
 										storage_location:  my_storage_location,
 										target_article_id: my_target_article_id,
 										target_reply_id:   my_target_reply_id

@@ -191,6 +191,7 @@ function do_post_article()
 										user:               account.name,
 										article_hash:       trn_hash,
 										num_of_trns:        strArray.length,
+										content_sha3_hash:  generate_sha3_hash_string(strArray),
 										category:           my_category,
 										type:               my_type,
 										storage_location:   my_storage_location,
