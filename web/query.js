@@ -414,6 +414,10 @@ function show_article_content_div(article_id)
 						}
 						else {      // 数据存储在其他链上
 						}
+						if (resp.rows[i].content_sha3_hash !== Web3.utils.sha3(content).slice(2)) {      // 内容的Sha3 Hash不一致
+							if (get_cookie('i18n_lang') === "zh") alert("错误：文章的内容的Sha3 Hash不一致。文章id=" + resp.rows[i].article_id + "。");
+							else                                  alert("Error: The sha3 hash of content of the article is not matched. Article id=" + resp.rows[i].article_id + ".");
+						}
 						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 						content_of_article_map.set(resp.rows[i].article_id, content);
 						//console.log("no get");
@@ -651,6 +655,10 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 						}
 					}
 					else {      // 数据存储在其他链上
+					}
+					if (resp.rows[i].content_sha3_hash !== Web3.utils.sha3(content).slice(2)) {      // 内容的Sha3 Hash不一致
+						if (get_cookie('i18n_lang') === "zh") alert("错误：回复的内容的Sha3 Hash不一致。回复id=" + resp.rows[i].reply_id + "。");
+						else                                  alert("Error: The sha3 hash of content of the reply is not matched. Reply id=" + resp.rows[i].reply_id + ".");
 					}
 					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
 					content_of_reply_map.set(resp.rows[i].reply_id, content);
