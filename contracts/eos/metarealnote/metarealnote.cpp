@@ -111,10 +111,11 @@ ACTION metarealnote::canclefollow(const name& follow_user, const name& followed_
 }
 
 // 发表文章
-ACTION metarealnote::postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id)
+ACTION metarealnote::postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const string& content_sha3_hash, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id)
 {
     require_auth( user );
     eosio::check( article_hash.length()  <=  129, "article_hash is too long, max 129" );
+    eosio::check( content_sha3_hash.length()  <=  64, "content_sha3_hash is too long, max 64" );
 
     auto itr_account = _accounts.find( user.value );
 
@@ -128,6 +129,7 @@ ACTION metarealnote::postarticle(const name& user, const string& article_hash, c
         item.article_id         = id;
         item.article_hash       = article_hash;
         item.num_of_trns        = num_of_trns;
+        item.content_sha3_hash  = content_sha3_hash;
         item.category           = category;
         item.type               = type;
         item.storage_location   = storage_location;
@@ -170,11 +172,12 @@ ACTION metarealnote::rmarticle(const name& user, const uint64_t article_id)
 }
 
 // 发表回复
-ACTION metarealnote::postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id)
+ACTION metarealnote::postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const string& content_sha3_hash, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id)
 {
     require_auth( user );
     eosio::check( reply_hash.length()  <=  129, "reply_hash is too long, max 129" );
     eosio::check( target_article_id    >     0, "you must reply to an article.");
+    eosio::check( content_sha3_hash.length()  <=  64, "content_sha3_hash is too long, max 64" );
 
     auto itr_account = _accounts.find( user.value );
 
@@ -188,6 +191,7 @@ ACTION metarealnote::postreply(const name& user, const string& reply_hash, const
         item.reply_id          = id;
         item.reply_hash        = reply_hash;
         item.num_of_trns       = num_of_trns;
+        item.content_sha3_hash = content_sha3_hash;
         item.storage_location  = storage_location;
         item.target_article_id = target_article_id;
         item.target_reply_id   = target_reply_id;
@@ -238,12 +242,14 @@ ACTION metarealnote::rmreply(const name& user, const uint64_t reply_id)
 }
 
 // 上传相册条目
-ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length)
+ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& preview_sha3_hash, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length, const string& origin_sha3_hash)
 {
     require_auth( user );
     eosio::check( preview_head_hash.length() <= 129, "preview_head_hash is too long, max 129" );
     eosio::check( origin_head_hash.length()  <= 129, "origin_head_hash is too long, max 129" );
     eosio::check( description.length()       <=  90, "description is too long, max 30" );         // 一个汉字3个字节，utf8编码
+    eosio::check( preview_sha3_hash.length() <=  64, "preview_sha3_hash is too long, max 64" );
+    eosio::check( origin_sha3_hash.length()  <=  64, "origin_sha3_hash is too long, max 64" );
 
     auto itr_account = _accounts.find( user.value );
 
@@ -263,9 +269,11 @@ ACTION metarealnote::postalbumitm(const name& user, const uint8_t item_type, con
         item.preview_head_hash = preview_head_hash;
         item.preview_trn_num   = preview_trn_num;
         item.preview_length    = preview_length;
+        item.preview_sha3_hash = preview_sha3_hash;
         item.origin_head_hash  = origin_head_hash;
         item.origin_trn_num    = origin_trn_num;
         item.origin_length     = origin_length;
+        item.origin_sha3_hash  = origin_sha3_hash;
     });
 
     if (storage_location == 1) { // 数据存储在 EOS 链上
