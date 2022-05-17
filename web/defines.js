@@ -112,9 +112,9 @@ if (runmode === "prod") {    // 生产环境
 	amount_per_trn_reply_conf_eos   = '0.0001 EOS';
 	amount_per_trn_reply_conf_eth   = '0.0005 ETH';
 } else {                     // 开发测试环境
-	amount_per_trn_article_conf_eos = '0.0001 EOS';
+	amount_per_trn_article_conf_eos = '0.0001 SYS';
 	amount_per_trn_article_conf_eth = '0.000000000000000001 ETH';
-	amount_per_trn_reply_conf_eos   = '0.0001 EOS';
+	amount_per_trn_reply_conf_eos   = '0.0001 SYS';
 	amount_per_trn_reply_conf_eth   = '0.000000000000000001 ETH';
 }
 

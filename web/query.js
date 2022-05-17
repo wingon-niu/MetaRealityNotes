@@ -214,7 +214,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 								tmp_hash = next_hash;
 								transaction = await rpc.history_get_transaction(next_hash);
 								memo = transaction.trx.trx.actions[0].data.memo;
-								content = '        ' + content + '\n';
+								//content = '        ' + content + '\n';                                  // 修改了发送时的处理逻辑，此处无需操作。
 								content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
 							}
 						}
@@ -359,7 +359,7 @@ function show_article_content_div(article_id)
 									}
 									content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
 									if (resp.rows[i].type === 2 && first_loop) {                              // 长文
-										content = '        ' + content + '\n';
+										//content = '        ' + content + '\n';                              // 修改了发送时的处理逻辑，此处无需操作。
 									}
 									first_loop = false;
 								} while (next_hash != '');

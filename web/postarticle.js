@@ -110,7 +110,7 @@ function do_post_article()
 
 	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
 		if (my_type === 2) {                     // 长文
-			strArray.push(my_title_of_article);  // 长文的标题单独保存在一个交易的memo里
+			strArray.push('        ' + my_title_of_article + '\n');  // 长文的标题单独保存在一个交易的memo里
 		}
 		per_trn_len = eos_per_trn_len;
 	}
