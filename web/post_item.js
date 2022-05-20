@@ -29,6 +29,7 @@ function bind_file_onchange()
 		let fileReader      = new FileReader();
 		let fileType        = this.files[0].type;
 		origin_size_of_item = this.files[0].size;
+		$("#file_name_of_post_item").val(this.files[0].name);
 		fileReader.onload = function(e) {
 			if (album_item_type === 1) {
 				$("#div_post_item_file_content").html('<img src="' + this.result + '" alt="" style="width:auto; height:auto; max-width:100%; max-height:100%;" />');
@@ -46,7 +47,7 @@ function bind_file_onchange()
 				$("#div_post_item_file_content").html('N/A');
 			}
 			album_item_loaded_ok = true;
-			origin_data_of_item  = this.result;
+			origin_data_of_item  = 'FileName:' + CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse($("#file_name_of_post_item").val())) + '.FileContent:' + this.result;
 		}
 		fileReader.readAsDataURL(this.files[0]);
 	});
