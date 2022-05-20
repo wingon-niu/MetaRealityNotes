@@ -54,6 +54,12 @@ var post_reply_first_time       = true;
 var post_reply_write_to_table   = false;
 var post_reply_current_index    = -1;
 
+var post_item_preview_data_first_time    = true;
+var post_item_preview_data_current_index = -1;
+var post_item_origin_data_first_time     = true;
+var post_item_origin_data_current_index  = -1;
+var post_item_write_to_table             = false;
+
 const eos_per_trn_len     = 63;           // 一个utf8编码的汉字3个字节，63*3+64+2=255，刚好可以放进eos交易的memo中
 const eth_per_trn_len     = 3336;         // 一个utf8编码的汉字3个字节，每个交易的备注长度为：3336*3+64+2+2=10076字节，需要使用的gas数量为：10076*68+21000=706168个
 const arweave_per_trn_len = 100000;       // 一个utf8编码的汉字3个字节，100000汉字*3=300000字节，300000字节/1024=292.96875 KB

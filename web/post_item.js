@@ -173,8 +173,62 @@ function view_times_of_txn_post_item()
 
 function post_item()
 {
+	post_item_origin_data_first_time = true;
+	do_post_item();
 }
 
 function resume_from_break_point_post_item()
 {
+	if (post_item_origin_data_first_time || trn_success) {
+		if (get_cookie('i18n_lang') === "zh") alert("只有在交易发送过程中产生错误而中止，才可以使用断点续传功能。");
+		else                                  alert("This function can only be used if the transaction is aborted due to an error in the sending process.");
+	} else {
+		do_post_item();
+	}
+}
+
+function do_post_item()
+{
+	if (check_post_item() === false) return;
+
+	let my_storage_location   = Number($("input[name='radio_post_item']:checked").val());
+	let my_quantity           = $("#amount_per_trn_post_item").val().trim();
+	let my_description        = $("#description_of_post_item").val();
+
+	let per_trn_len = 10;     // 每个交易memo存放的数据长度，不同的链设置不同的值
+	let strArray    = [];
+
+	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
+	}
+	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		per_trn_len = arweave_per_trn_len_post_item;
+	}
+	else {                                       // 内容数据存储在其他链
+		return;
+	}
+
+	let my_len = origin_data_of_item.length;
+	for (let i = 0; i < my_len; i += per_trn_len) {           // 按照长度将内容分割存入字符串数组
+		strArray.push(origin_data_of_item.slice(i, i + per_trn_len));
+	}
+
+	if (post_item_origin_data_first_time) {                   // 如果是第一次发送
+		post_item_origin_data_first_time     = false;
+		trn_hash                             = "";
+		post_item_write_to_table             = false;
+		post_item_origin_data_current_index  = strArray.length - 1;
+	}
+
+	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
+	}
+	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
+	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		arweave_do_post_item(my_storage_location, my_quantity, my_description, strArray);
+	}
+	else {                                       // 内容数据存储在其他链
+		return;
+	}
 }
