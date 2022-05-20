@@ -1,19 +1,21 @@
 
 // utf8 编码
 
+function clear_post_item_status()
+{
+	album_item_loaded_ok = false;
+	origin_data_of_item  = '';
+	origin_size_of_item  = 0;
+	$("#div_post_item_file_content").html('');
+}
+
 function init_post_item()
 {
-	album_item_type      = 1;
-	album_item_loaded_ok = false;
-
-	origin_data_of_item = '';
-	origin_size_of_item = 0;
+	album_item_type = 1;
+	clear_post_item_status();
 
 	$("#post_item_open_file").on("change", function() {
-		album_item_loaded_ok = false;
-		origin_data_of_item  = '';
-		origin_size_of_item  = 0;
-		$("#div_post_item_file_content").html('');
+		clear_post_item_status();
 
 		if (typeof(this) === 'undefined' || typeof(this.files) === 'undefined' || typeof(this.files[0]) === 'undefined') {  // 用户点了取消按钮
 			return;
@@ -47,6 +49,7 @@ function init_post_item()
 function post_picture_show_modal()
 {
 	album_item_type = 1;
+	clear_post_item_status();
 
 	$('#div_post_an_item').modal({
 		relatedTarget: this,
@@ -58,6 +61,7 @@ function post_picture_show_modal()
 function post_video_show_modal()
 {
 	album_item_type = 2;
+	clear_post_item_status();
 
 	$('#div_post_an_item').modal({
 		relatedTarget: this,
@@ -69,6 +73,7 @@ function post_video_show_modal()
 function post_audio_show_modal()
 {
 	album_item_type = 3;
+	clear_post_item_status();
 
 	$('#div_post_an_item').modal({
 		relatedTarget: this,
@@ -80,6 +85,7 @@ function post_audio_show_modal()
 function post_other_file_show_modal()
 {
 	album_item_type = 5;
+	clear_post_item_status();
 
 	$('#div_post_an_item').modal({
 		relatedTarget: this,
