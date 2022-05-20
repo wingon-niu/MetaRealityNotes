@@ -270,7 +270,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 
 function show_article_content_div(article_id)
 {
-	if (current_note_category === "real" || current_note_category === "dream") {
+	if (current_note_category === "real" || current_note_category === "dream" || current_note_category === "album") {
 		if (articles_array.length === 1) {
 			doc_scroll_top = get_doc_scroll_top();
 		}
