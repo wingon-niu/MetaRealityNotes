@@ -60,10 +60,10 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 			}
 			// 以下生成所有条目的基本信息
 			for (i = 0; i < len; i++) {
-				album_items = album_items + '<div class="am-u-sm-6 am-u-md-4 am-u-lg-2">';
-				album_items = album_items + '<div id="album_item_div_' + resp.rows[i].item_id + '" style="width:168px; height:168px;">';
+				album_items = album_items + '<div class="am-u-sm-6 am-u-md-4 am-u-lg-2" style="border:1px solid #2B65EC">';
+				album_items = album_items + '<div id="album_item_div_' + resp.rows[i].item_id + '" style="width:160px; height:160px;">';
 				if (resp.rows[i].item_type === 1) {                                       // 图片
-					album_items = album_items + '<img id="album_item_img_' + resp.rows[i].item_id + '" src="" alt="loading..." style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
+					album_items = album_items + '<img id="album_item_img_' + resp.rows[i].item_id + '" src="" alt="image loading..." style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
 				}
 				else if (resp.rows[i].item_type === 2) {                                  // 视频
 					album_items = album_items + 'Video';
@@ -80,14 +80,14 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 				album_items = album_items + '</div>';
 				album_items = album_items + '<div><a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].origin_head_hash + '}\');">id' + resp.rows[i].item_id + '</a>&nbsp;</div>';
 				album_items = album_items + '<div>' + timestamp_trans_full(resp.rows[i].post_time) + '</div>';
-				album_items = album_items + '<div id="album_item_file_name_' + resp.rows[i].item_id + '"></div>';
+				album_items = album_items + '<div id="album_item_file_name_' + resp.rows[i].item_id + '">&nbsp;</div>';
 				album_items = album_items + '<div><pre>' + my_escapeHTML(resp.rows[i].description) + '</pre></div>';
 				album_items = album_items + '<div>此处放操作下拉框</div>';
 				album_items = album_items + '</div>';
 			}
 			// 下一页
 			if (resp.more === true) {
-				album_items = album_items + '<table width="100%" border="0"><tr><td align="center"><a href="##" onclick="get_album_items(' + index_position + ', \'' + key_type + '\', \'' + resp.next_key + '\', \'' + upper_bound + '\');">' + $("#next_page").html() + '</a></td></tr></table>';
+				album_items = album_items + '<table width="100%" border="0"><tr><td align="center">&nbsp;</td></tr><tr><td align="center">&nbsp;</td></tr><tr><td align="center"><a href="##" onclick="get_album_items(' + index_position + ', \'' + key_type + '\', \'' + resp.next_key + '\', \'' + upper_bound + '\');">' + $("#next_page").html() + '</a></td></tr></table>';
 			}
 			// 显示
 			$("#album_items_div").html(album_items);
