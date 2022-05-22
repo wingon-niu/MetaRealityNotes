@@ -104,8 +104,9 @@ if (runmode === "prod") {    // 生产环境
 const eth_article_preview_length     = 100;      // 存放在ETH链上的文章在文章列表中显示的预览长度
 const arweave_article_preview_length = 100;      // 存放在Arweave链上的文章在文章列表中显示的预览长度
 
-const articles_sort_by = "last_replied_time";    // 文章在文章列表中的排序方式： article_post_time/last_replied_time
-const replies_sort_by  = "ascending_order";      // 回复在回复列表中的排序方式： ascending_order/descending_order
+var articles_sort_by    = "last_replied_time";    // 文章在文章列表中的排序方式： article_post_time/last_replied_time
+var replies_sort_by     = "ascending_order";      // 回复在回复列表中的排序方式： ascending_order/descending_order
+var album_items_sort_by = "asc";                  // 相册条目的排序方式：         asc/desc
 
 var amount_per_trn_article_conf_eos = '';
 var amount_per_trn_article_conf_eth = '';
