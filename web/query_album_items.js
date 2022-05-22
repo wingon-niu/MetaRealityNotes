@@ -93,47 +93,57 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 			$("#album_items_div").html(album_items);
 			// 以下查询所有图片的内容
 			for (i = 0; i < len; i++) {
-				//if (content_of_reply_map.has(resp.rows[i].reply_id)) {
-				//	$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content_of_reply_map.get(resp.rows[i].reply_id)));
-				//	//console.log("get");
-				//} else {
-				//	let memo        = '';
-				//	let next_hash   = '';
-				//	let content     = '';
-				//	let transaction = null;
-				//	if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
-				//	}
-				//	else if (resp.rows[i].storage_location === 2) {                                   // 数据存储在 ETH 链上
-				//	}
-				//	else if (resp.rows[i].storage_location === 6) {                                   // 数据存储在 Arweave 链上
-				//		try {
-				//			next_hash   = resp.rows[i].reply_hash;
-				//			do {
-				//				let ar_response = await fetch(arweave_endpoint + next_hash);
-				//				memo = await ar_response.text();
-				//				next_hash = memo.slice(0, memo.indexOf('}') + 1);
-				//				if (next_hash.length > 2) {
-				//					next_hash = memo.slice(1, memo.indexOf('}'));
-				//				} else {
-				//					next_hash = '';
-				//				}
-				//				content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-				//			} while (next_hash != '');
-				//		}
-				//		catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
-				//			content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
-				//		}
-				//	}
-				//	else {      // 数据存储在其他链上
-				//	}
-				//	if (resp.rows[i].content_sha3_hash !== Web3.utils.sha3(content).slice(2)) {      // 内容的Sha3 Hash不一致
-				//		if (get_cookie('i18n_lang') === "zh") alert("错误：回复的内容的Sha3 Hash不一致。回复id=" + resp.rows[i].reply_id + "。");
-				//		else                                  alert("Error: The sha3 hash of content of the reply is not matched. Reply id=" + resp.rows[i].reply_id + ".");
-				//	}
-				//	$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
-				//	content_of_reply_map.set(resp.rows[i].reply_id, content);
-				//	//console.log("no get");
-				//}
+				if (resp.rows[i].item_type === 1) {  // 图片
+					if (content_of_image_map.has(resp.rows[i].item_id)) {
+						let str_all = content_of_image_map.get(resp.rows[i].item_id);
+						let str1    = 'FileName:';
+						let str2    = '.FileContent:';
+						$(".album_item_file_name_" + resp.rows[i].item_id).html( CryptoJS.enc.Base64.parse( str_all.slice( str_all.indexOf(str1) + str1.length(), str_all.indexOf(str2) ) ).toString(CryptoJS.enc.Utf8) );
+						$(".album_item_img_"       + resp.rows[i].item_id).src =                            str_all.slice( str_all.indexOf(str2) + str2.length() );
+						console.log("get");
+					} else {
+						let memo        = '';
+						let next_hash   = '';
+						let content     = '';
+						let transaction = null;
+						if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
+						}
+						else if (resp.rows[i].storage_location === 2) {                                   // 数据存储在 ETH 链上
+						}
+						else if (resp.rows[i].storage_location === 6) {                                   // 数据存储在 Arweave 链上
+							try {
+								next_hash   = resp.rows[i].origin_head_hash;
+								do {
+									let ar_response = await fetch(arweave_endpoint + next_hash);
+									memo = await ar_response.text();
+									next_hash = memo.slice(0, memo.indexOf('}') + 1);
+									if (next_hash.length > 2) {
+										next_hash = memo.slice(1, memo.indexOf('}'));
+									} else {
+										next_hash = '';
+									}
+									content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+								} while (next_hash != '');
+							}
+							catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
+								content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
+							}
+						}
+						else {      // 数据存储在其他链上
+						}
+						if (resp.rows[i].origin_sha3_hash !== Web3.utils.sha3(content).slice(2)) {      // 内容的Sha3 Hash不一致
+							if (get_cookie('i18n_lang') === "zh") alert("错误：图片的Sha3 Hash不一致。图片id=" + resp.rows[i].item_id + "。");
+							else                                  alert("Error: The sha3 hash of content of the picture is not matched. Picture id=" + resp.rows[i].item_id + ".");
+						}
+						content_of_image_map.set(resp.rows[i].item_id, content);
+						let str_all = content;
+						let str1    = 'FileName:';
+						let str2    = '.FileContent:';
+						$(".album_item_file_name_" + resp.rows[i].item_id).html( CryptoJS.enc.Base64.parse( str_all.slice( str_all.indexOf(str1) + str1.length(), str_all.indexOf(str2) ) ).toString(CryptoJS.enc.Utf8) );
+						$(".album_item_img_"       + resp.rows[i].item_id).src =                            str_all.slice( str_all.indexOf(str2) + str2.length() );
+						console.log("no get");
+					}
+				}
 			}
 			$("#my_modal_loading").modal('close');
 		} catch (e) {

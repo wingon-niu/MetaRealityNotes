@@ -242,6 +242,7 @@ $(document).ready(function () {
 	preview_of_article_map = new Map();
 	content_of_article_map = new Map();
 	content_of_reply_map   = new Map();
+	content_of_image_map   = new Map();
 	article_user_map       = new Map();
 	reply_user_map         = new Map();
 

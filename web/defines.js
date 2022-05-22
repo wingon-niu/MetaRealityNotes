@@ -78,6 +78,7 @@ var album_items_per_page = 3;  // 相册条目每页显示数量
 var   preview_of_article_map = null;
 var   content_of_article_map = null;
 var   content_of_reply_map   = null;
+var   content_of_image_map   = null;
 var   article_user_map       = null;
 var   reply_user_map         = null;
 
