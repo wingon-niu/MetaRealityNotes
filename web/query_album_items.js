@@ -61,7 +61,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 			// 以下生成所有条目的基本信息
 			for (i = 0; i < len; i++) {
 				album_items = album_items + '<div class="am-u-sm-6 am-u-md-4 am-u-lg-2" style="border:1px solid #2B65EC">';
-				album_items = album_items + '<div class="album_item_div_' + resp.rows[i].item_id + '" style="width:160px; height:160px;">';
+				album_items = album_items + '<div class="album_item_div_' + resp.rows[i].item_id + '" style="width:150px; height:150px;">';
 				if (resp.rows[i].item_type === 1) {                                       // 图片
 					album_items = album_items + '<img class="album_item_img_' + resp.rows[i].item_id + '" src="" alt="image loading..." style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
 				}
@@ -81,6 +81,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 				album_items = album_items + '<div><a href="##" onclick="alert(\'' + $("#head_hash").html() + storage_locations[resp.rows[i].storage_location] + '{' + resp.rows[i].origin_head_hash + '}\');">id' + resp.rows[i].item_id + '</a>&nbsp;</div>';
 				album_items = album_items + '<div>' + timestamp_trans_full(resp.rows[i].post_time) + '</div>';
 				album_items = album_items + '<div class="album_item_file_name_' + resp.rows[i].item_id + '">&nbsp;</div>';
+				album_items = album_items + '<div>' + resp.rows[i].origin_length + ' bytes</div>';
 				album_items = album_items + '<div><pre>' + my_escapeHTML(resp.rows[i].description) + '</pre></div>';
 				album_items = album_items + '<div>此处放操作下拉框</div>';
 				album_items = album_items + '</div>';
@@ -100,7 +101,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 						let str2    = '.FileContent:';
 						$(".album_item_file_name_" + resp.rows[i].item_id).html( CryptoJS.enc.Base64.parse( str_all.slice( str_all.indexOf(str1) + str1.length, str_all.indexOf(str2) ) ).toString(CryptoJS.enc.Utf8) );
 						$(".album_item_img_"       + resp.rows[i].item_id).attr( "src",                     str_all.slice( str_all.indexOf(str2) + str2.length ) );
-						console.log("get");
+						//console.log("get");
 					} else {
 						let memo        = '';
 						let next_hash   = '';
@@ -141,7 +142,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 						let str2    = '.FileContent:';
 						$(".album_item_file_name_" + resp.rows[i].item_id).html( CryptoJS.enc.Base64.parse( str_all.slice( str_all.indexOf(str1) + str1.length, str_all.indexOf(str2) ) ).toString(CryptoJS.enc.Utf8) );
 						$(".album_item_img_"       + resp.rows[i].item_id).attr( "src",                     str_all.slice( str_all.indexOf(str2) + str2.length ) );
-						console.log("no get");
+						//console.log("no get");
 					}
 				}
 			}

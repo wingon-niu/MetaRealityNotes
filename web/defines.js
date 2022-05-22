@@ -65,7 +65,7 @@ const eth_per_trn_len     = 3336;         // 一个utf8编码的汉字3个字节
 const arweave_per_trn_len = 100000;       // 一个utf8编码的汉字3个字节，100000汉字*3=300000字节，300000字节/1024=292.96875 KB
 const btc_per_trn_len     = 1000;
 
-const arweave_per_trn_len_post_item = 102400; // 1024*1024*8=8388608=8MB
+const arweave_per_trn_len_post_item = 8388608; // 1024*1024*8=8388608=8MB
 
 var current_page   = "home"; // 当前页面：home/my_articles/my_replies/users_i_follow/users_follow_me/articles_of_user_i_follow/articles_of_user_follow_me
 var articles_array = [0];    // 数组，保存所有打开的文章的ID，因为从文章中可以打开别的文章，所以可能会有多个打开的文章，用于点击后退按钮功能时从一个文章后退到前一个文章，逐个进行后退
@@ -73,7 +73,7 @@ var articles_array = [0];    // 数组，保存所有打开的文章的ID，因�
 const storage_locations = ['WHO', 'EOS', 'ETH', 'BSC', 'HECO', 'BTC', 'Arweave'];
 
 var items_per_page       = 10; // 每页显示数量
-var album_items_per_page = 3;  // 相册条目每页显示数量
+var album_items_per_page = 6;  // 相册条目每页显示数量
 
 var   preview_of_article_map = null;
 var   content_of_article_map = null;
