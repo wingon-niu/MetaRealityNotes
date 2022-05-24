@@ -61,7 +61,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 			// 以下生成所有条目的基本信息
 			for (i = 0; i < len; i++) {
 				album_items = album_items + '<div class="am-u-sm-6 am-u-md-4 am-u-lg-2" style="border:1px solid #2B65EC">';
-				album_items = album_items + '<div class="album_item_div_' + resp.rows[i].item_id + '" style="width:150px; height:150px;">';
+				album_items = album_items + '<div class="album_item_div_' + resp.rows[i].item_id + '" style="width:150px; height:150px; word-wrap:break-word; word-break:break-all;">';
 				if (resp.rows[i].item_type === 1) {                                       // 图片
 					album_items = album_items + '<img class="album_item_img_' + resp.rows[i].item_id + '" src="" alt="image loading..." style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
 				}
@@ -82,7 +82,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 				album_items = album_items + '<div>' + timestamp_trans_full(resp.rows[i].post_time) + '</div>';
 				album_items = album_items + '<div class="album_item_file_name_' + resp.rows[i].item_id + '">&nbsp;</div>';
 				album_items = album_items + '<div>' + resp.rows[i].origin_length + ' bytes</div>';
-				album_items = album_items + '<div><pre>' + my_escapeHTML(resp.rows[i].description) + '</pre></div>';
+				album_items = album_items + '<textarea class="am-modal-prompt-input album_item_description_' + resp.rows[i].item_id + '" rows="3" readonly="readonly"></textarea>';
 				album_items = album_items + '<div><input type="hidden" class="album_item_hidden_input_' + resp.rows[i].item_id + '" value="" /></div>';
 				album_items = album_items + '<div>此处放操作下拉框</div>';
 				album_items = album_items + '</div>';
@@ -93,6 +93,10 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 			}
 			// 显示
 			$("#album_items_div").html(album_items);
+			// 将所有条目的描述赋值上去
+			for (i = 0; i < len; i++) {
+				$(".album_item_description_" + resp.rows[i].item_id).val(resp.rows[i].description);
+			}
 			// 以下查询所有图片的内容
 			for (i = 0; i < len; i++) {
 				if (resp.rows[i].item_type === 1) {  // 图片
