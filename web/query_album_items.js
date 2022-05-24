@@ -66,13 +66,13 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 					album_items = album_items + '<img class="album_item_img_' + resp.rows[i].item_id + '" src="" alt="image loading..." style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
 				}
 				else if (resp.rows[i].item_type === 2) {                                  // 视频
-					album_items = album_items + '<br />&nbsp;&nbsp;&nbsp;' + $("#video_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="album_items_load_file();">' + $("#load_file").html() + '</a>';
+					album_items = album_items + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#video_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="album_items_load_file(' + resp.rows[i].item_id + ', ' + resp.rows[i].item_type + ', ' + resp.rows[i].storage_location + ', \'' + resp.rows[i].origin_head_hash + '\', \'' + resp.rows[i].origin_sha3_hash + '\');">' + $("#load_file").html() + '</a>';
 				}
 				else if (resp.rows[i].item_type === 3) {                                  // 音频
-					album_items = album_items + 'Audio';
+					album_items = album_items + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#audio_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="album_items_load_file(' + resp.rows[i].item_id + ', ' + resp.rows[i].item_type + ', ' + resp.rows[i].storage_location + ', \'' + resp.rows[i].origin_head_hash + '\', \'' + resp.rows[i].origin_sha3_hash + '\');">' + $("#load_file").html() + '</a>';
 				}
 				else if (resp.rows[i].item_type === 5) {                                  // 其他
-					album_items = album_items + 'Other';
+					album_items = album_items + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#other_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="album_items_load_file(' + resp.rows[i].item_id + ', ' + resp.rows[i].item_type + ', ' + resp.rows[i].storage_location + ', \'' + resp.rows[i].origin_head_hash + '\', \'' + resp.rows[i].origin_sha3_hash + '\');">' + $("#load_file").html() + '</a>';
 				}
 				else {
 					album_items = album_items + '';
@@ -154,6 +154,6 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 	})();
 }
 
-function album_items_load_file()
+function album_items_load_file(item_id, item_type, storage_location, origin_head_hash, origin_sha3_hash)
 {
 }
