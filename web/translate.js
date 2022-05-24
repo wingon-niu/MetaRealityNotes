@@ -109,6 +109,10 @@ function change_lang(lang_type)
 			$("#span_post_item_description").html($.i18n.prop('span_post_item_description'));
 			$("#post_item").html($.i18n.prop('post_item'));
 			$("#resume_from_break_point_post_item").html($.i18n.prop('resume_from_break_point_post_item'));
+			$("#video_file").html($.i18n.prop('video_file'));
+			$("#audio_file").html($.i18n.prop('audio_file'));
+			$("#other_file").html($.i18n.prop('other_file'));
+			$("#load_file").html($.i18n.prop('load_file'));
 
 			//
 

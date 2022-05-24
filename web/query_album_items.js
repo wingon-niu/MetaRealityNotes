@@ -66,7 +66,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 					album_items = album_items + '<img class="album_item_img_' + resp.rows[i].item_id + '" src="" alt="image loading..." style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
 				}
 				else if (resp.rows[i].item_type === 2) {                                  // 视频
-					album_items = album_items + 'Video';
+					album_items = album_items + '<br />&nbsp;&nbsp;&nbsp;' + $("#video_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="album_items_load_file();">' + $("#load_file").html() + '</a>';
 				}
 				else if (resp.rows[i].item_type === 3) {                                  // 音频
 					album_items = album_items + 'Audio';
@@ -152,4 +152,8 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 			alert(e);
 		}
 	})();
+}
+
+function album_items_load_file()
+{
 }
