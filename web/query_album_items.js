@@ -83,6 +83,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 				album_items = album_items + '<div class="album_item_file_name_' + resp.rows[i].item_id + '">&nbsp;</div>';
 				album_items = album_items + '<div>' + resp.rows[i].origin_length + ' bytes</div>';
 				album_items = album_items + '<div><pre>' + my_escapeHTML(resp.rows[i].description) + '</pre></div>';
+				album_items = album_items + '<div><input type="hidden" class="album_item_hidden_input_' + resp.rows[i].item_id + '" value="" /></div>';
 				album_items = album_items + '<div>此处放操作下拉框</div>';
 				album_items = album_items + '</div>';
 			}
@@ -156,4 +157,75 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 
 function album_items_load_file(item_id, item_type, storage_location, origin_head_hash, origin_sha3_hash)
 {
+	$("#my_modal_loading").modal('open');
+	const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
+	(async () => {
+		try {
+			let memo        = '';
+			let next_hash   = '';
+			let content     = '';
+			let transaction = null;
+
+			// 获取文件的数据
+			if (false) {              // 有缓存
+			}
+			else {                    // 无缓存
+				if (storage_location === 1) {                                        // 数据存储在 EOS 链上
+				}
+				else if (storage_location === 2) {                                   // 数据存储在 ETH 链上
+				}
+				else if (storage_location === 6) {                                   // 数据存储在 Arweave 链上
+					try {
+						next_hash   = origin_head_hash;
+						do {
+							let ar_response = await fetch(arweave_endpoint + next_hash);
+							memo = await ar_response.text();
+							next_hash = memo.slice(0, memo.indexOf('}') + 1);
+							if (next_hash.length > 2) {
+								next_hash = memo.slice(1, memo.indexOf('}'));
+							} else {
+								next_hash = '';
+							}
+							content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+						} while (next_hash != '');
+					}
+					catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
+						content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
+					}
+				}
+				else {      // 数据存储在其他链上
+				}
+				if (origin_sha3_hash !== Web3.utils.sha3(content).slice(2)) {      // 内容的Sha3 Hash不一致
+					if (get_cookie('i18n_lang') === "zh") alert("错误：文件的Sha3 Hash不一致。id=" + item_id + "。");
+					else                                  alert("Error: The sha3 hash of content of the file is not matched. id=" + item_id + ".");
+				}
+				//console.log("no get");
+			}
+			// 将文件的名称赋值到对应的位置
+			let str_all = content;
+			let str1    = 'FileName:';
+			let str2    = '.FileContent:';
+			$(".album_item_file_name_" + item_id).html( CryptoJS.enc.Base64.parse( str_all.slice( str_all.indexOf(str1) + str1.length, str_all.indexOf(str2) ) ).toString(CryptoJS.enc.Utf8) );
+			let file_content =                                                     str_all.slice( str_all.indexOf(str2) + str2.length );
+			// 将文件的内容赋值到对应的位置
+			if (item_type === 1) {                                       // 图片
+			}
+			else if (item_type === 2) {                                  // 视频
+				$(".album_item_div_" + item_id).html('<video src="' + file_content + '" controls style="width:auto; height:auto; max-width:100%; max-height:100%;">HTML5 Video is required.</video>');
+			}
+			else if (item_type === 3) {                                  // 音频
+				$(".album_item_div_" + item_id).html('<audio src="' + file_content + '" controls>HTML5 Audio is required.</audio>');
+			}
+			else if (item_type === 5) {                                  // 其他
+				$(".album_item_div_"          + item_id).html(file_content.slice(0, album_item_data_preview_length) + '......');
+				$(".album_item_hidden_input_" + item_id).val(file_content);
+			}
+			else {
+			}
+			$("#my_modal_loading").modal('close');
+		} catch (e) {
+			$("#my_modal_loading").modal('close');
+			alert(e);
+		}
+	})();
 }
