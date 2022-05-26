@@ -113,6 +113,9 @@ function change_lang(lang_type)
 			$("#audio_file").html($.i18n.prop('audio_file'));
 			$("#other_file").html($.i18n.prop('other_file'));
 			$("#load_file").html($.i18n.prop('load_file'));
+			$("#user_actions").html($.i18n.prop('user_actions'));
+			$("#set_as_avatar").html($.i18n.prop('set_as_avatar'));
+			$("#copy_link").html($.i18n.prop('copy_link'));
 
 			//
 
