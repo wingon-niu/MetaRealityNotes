@@ -63,7 +63,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 				album_items = album_items + '<div class="am-u-sm-6 am-u-md-4 am-u-lg-2" style="border:1px solid #2B65EC">';
 				album_items = album_items + '<div class="album_item_div_' + resp.rows[i].item_id + '" style="width:150px; height:150px; word-wrap:break-word; word-break:break-all;">';
 				if (resp.rows[i].item_type === 1) {                                       // 图片
-					album_items = album_items + '<img class="album_item_img_' + resp.rows[i].item_id + '" src="" alt="image loading..." style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
+					album_items = album_items + '<img id="little_img_id_' + resp.rows[i].item_id + '" class="album_item_img_' + resp.rows[i].item_id + '" src="" alt="image loading..." onclick="show_big_picture_modal_dialog(' + resp.rows[i].item_id + ');" style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
 				}
 				else if (resp.rows[i].item_type === 2) {                                  // 视频
 					album_items = album_items + '<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#video_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="album_items_load_file(' + resp.rows[i].item_id + ', ' + resp.rows[i].item_type + ', ' + resp.rows[i].storage_location + ', \'' + resp.rows[i].origin_head_hash + '\', \'' + resp.rows[i].origin_sha3_hash + '\');">' + $("#load_file").html() + '</a>';
@@ -232,4 +232,28 @@ function album_items_load_file(item_id, item_type, storage_location, origin_head
 			alert(e);
 		}
 	})();
+}
+
+function show_big_picture_modal_dialog(little_img_id)
+{
+	let w1 = $(window).width()  * 0.9;
+	let h1 = $(window).height() * 0.9;
+	let w2 = Math.floor(w1);
+	let h2 = Math.floor(h1);
+	let my_width  = w2 + 'px'; 
+	let my_height = h2 + 'px';
+	$("#div_big_picture").width(my_width).height(my_height);
+
+	$("#img_big_picture").attr("src", $("#little_img_id_" + little_img_id)[0].src);
+
+	$('#div_show_big_picture_modal_dialog').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
+}
+
+function close_big_picture_modal_dialog()
+{
+	$("#div_show_big_picture_modal_dialog").modal('close');
 }
