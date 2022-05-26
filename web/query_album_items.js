@@ -84,7 +84,13 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 				album_items = album_items + '<div>' + resp.rows[i].origin_length + ' bytes</div>';
 				album_items = album_items + '<textarea class="am-modal-prompt-input album_item_description_' + resp.rows[i].item_id + '" rows="3" readonly="readonly"></textarea>';
 				album_items = album_items + '<div><input type="hidden" class="album_item_hidden_input_' + resp.rows[i].item_id + '" value="" /></div>';
-				album_items = album_items + '<div>此处放操作下拉框</div>';
+				album_items = album_items + '<div class="am-dropdown am-dropdown-up" id="album_item_dropdown_' + resp.rows[i].item_id + '" data-am-dropdown>';
+				album_items = album_items + '<button class="am-btn am-btn-success am-round am-dropdown-toggle" onclick="show_album_item_dropdown(' + resp.rows[i].item_id + ');" data-am-dropdown-toggle>' + $("#user_actions").html() + ' <span class="am-icon-caret-up"></span></button><ul class="am-dropdown-content">';
+				if (resp.rows[i].item_type === 1) {                                       // 图片
+					album_items = album_items + '<li><a href="##" onclick="set_picture_as_avatar(' + resp.rows[i].item_id + ');">' + $("#set_as_avatar").html() + '</a></li>';
+				}
+				album_items = album_items + '<li><a href="##" onclick="copy_album_item_link(' + resp.rows[i].item_id + ', ' + resp.rows[i].item_type + ', ' + resp.rows[i].storage_location + ', \'' + resp.rows[i].origin_head_hash + '\', \'' + resp.rows[i].origin_sha3_hash + '\');">' + $("#copy_link").html() + '</a></li>';
+				album_items = album_items + '</ul></div>';
 				album_items = album_items + '</div>';
 			}
 			// 下一页
@@ -256,4 +262,31 @@ function show_big_picture_modal_dialog(little_img_id)
 function close_big_picture_modal_dialog()
 {
 	$("#div_show_big_picture_modal_dialog").modal('close');
+}
+
+function show_album_item_dropdown(item_id)
+{
+	$("#album_item_dropdown_" + item_id).dropdown('open');
+}
+
+function set_picture_as_avatar(item_id)
+{
+	$("#album_item_dropdown_" + item_id).dropdown('close');
+
+	console.log('avatar: ' + item_id);
+}
+
+function copy_album_item_link(item_id, item_type, storage_location, origin_head_hash, origin_sha3_hash)
+{
+	$("#album_item_dropdown_" + item_id).dropdown('close');
+
+	let item_link = '[[[DreamRealNotes:::Link###' + '{ii:' + item_id + ', it:' + item_type + ', sl:' + storage_location + ', ohh:~' + origin_head_hash + '~, osh:~' + origin_sha3_hash + '~}' + '###DreamRealNotes:::Link]]]';
+
+	let temp = $(".album_item_description_" + item_id).val();
+			   $(".album_item_description_" + item_id).val(item_link);
+			   $(".album_item_description_" + item_id).select();
+	document.execCommand("Copy");
+	alert('OK');
+			   $(".album_item_description_" + item_id).val(temp);
+	///////////////////////////////////////////////////////////////////////////////////////////
 }
