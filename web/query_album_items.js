@@ -326,7 +326,6 @@ function get_user_avatar(user)
 					console.log("no get");
 					let lower_bd  = new BigNumber( my_eos_name_to_uint64t(user) );
 					let upper_bd  = new BigNumber( lower_bd.plus(1) );
-					console.log("before userprofiles");
 					var resp = await rpc.get_table_rows({
 						json:  true,
 						code:  metarealnote_contract,
@@ -340,7 +339,6 @@ function get_user_avatar(user)
 						reverse: false,
 						show_payer: false
 					});
-					console.log("after userprofiles");
 					if ( resp.rows.length === 1 && resp.rows[0].user === user && resp.rows[0].avatar_album_item_id > 0 ) {
 						let img_id = resp.rows[0].avatar_album_item_id;
 						lower_bd  = new BigNumber( img_id );
@@ -397,7 +395,7 @@ function get_user_avatar(user)
 								let str1         = 'FileName:';
 								let str2         = '.FileContent:';
 								let file_content = content.slice( content.indexOf(str2) + str2.length );
-								let avatar_image = '<img src="' + file_content + '" style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
+								let avatar_image = '<img class="am-circle" src="' + file_content + '" style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
 								user_avatar_map.set(user, avatar_image);
 								resolve(avatar_image);
 							}
