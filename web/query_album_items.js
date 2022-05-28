@@ -316,13 +316,96 @@ function get_user_avatar(user)
 	return new Promise( (resolve, reject) => {
 		(async () => {
 			try {
+				let user_has_no_avatar = '<span class="am-icon-user"></span>';
 				if (user_avatar_map.has(user)) {
 					console.log("get");
 					resolve( user_avatar_map.get(user) );
 				}
 				else {
 					console.log("no get");
-					//
+					let lower_bd  = new BigNumber( my_eos_name_to_uint64t(user) );
+					let upper_bd  = new BigNumber( lower_bd.plus(1) );
+					var resp = await rpc.get_table_rows({
+						json:  true,
+						code:  metarealnote_contract,
+						scope: metarealnote_contract,
+						table: 'userprofiles',
+						index_position: 1,
+						key_type: 'i64',
+						lower_bound: lower_bd.toFixed(),
+						upper_bound: upper_bd.toFixed(),
+						limit: 1,
+						reverse: false,
+						show_payer: false					
+					});
+					if ( resp.rows.length === 1 && resp.rows[0].user === user && resp.rows[0].avatar_album_item_id > 0 ) {
+						let img_id = resp.rows[0].avatar_album_item_id;
+						lower_bd  = new BigNumber( img_id );
+						upper_bd  = new BigNumber( lower_bd.plus(1) );
+						resp = await rpc.get_table_rows({
+							json:  true,
+							code:  metarealnote_contract,
+							scope: metarealnote_contract,
+							table: 'albums',
+							index_position: 1,
+							key_type: 'i64',
+							lower_bound: lower_bd.toFixed(),
+							upper_bound: upper_bd.toFixed(),
+							limit: 1,
+							reverse: false,
+							show_payer: false					
+						});
+						if ( resp.rows.length === 1 && resp.rows[0].item_id === img_id && resp.rows[0].item_type === 1 ) {
+							let memo        = '';
+							let next_hash   = '';
+							let content     = '';
+							let transaction = null;
+							if (resp.rows[0].storage_location === 1) {                                        // 数据存储在 EOS 链上
+							}
+							else if (resp.rows[0].storage_location === 2) {                                   // 数据存储在 ETH 链上
+							}
+							else if (resp.rows[0].storage_location === 6) {                                   // 数据存储在 Arweave 链上
+								try {
+									next_hash = resp.rows[0].origin_head_hash;
+									do {
+										let ar_response = await fetch(arweave_endpoint + next_hash);
+										memo = await ar_response.text();
+										next_hash = memo.slice(0, memo.indexOf('}') + 1);
+										if (next_hash.length > 2) {
+											next_hash = memo.slice(1, memo.indexOf('}'));
+										} else {
+											next_hash = '';
+										}
+										content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+									} while (next_hash != '');
+								}
+								catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
+									content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
+								}
+							}
+							else {      // 数据存储在其他链上
+							}
+							if (resp.rows[0].origin_sha3_hash !== Web3.utils.sha3(content).slice(2)) {      // 内容的Sha3 Hash不一致
+								if (get_cookie('i18n_lang') === "zh") { alert("错误：用户头像文件的Sha3 Hash不一致。user=" + user + "。"); }
+								else                                  { alert("Error: The sha3 hash of file of the user avatar is not matched. user=" + user + "."); }
+								resolve(user_has_no_avatar);
+							}
+							else {
+								let str1         = 'FileName:';
+								let str2         = '.FileContent:';
+								let file_content = content.slice( content.indexOf(str2) + str2.length );
+								let avatar_image = '<img src="' + file_content + '" style="width:auto; height:auto; max-width:100%; max-height:100%;" />';
+								user_avatar_map.set(user, avatar_image);
+								resolve(avatar_image);
+							}
+						}
+						else {
+							resolve(user_has_no_avatar);
+						}
+					}
+					else {
+						resolve(user_has_no_avatar);
+					}
 				}
 			} catch (e) {
 			}
