@@ -162,7 +162,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				if (resp.rows[i].forward_article_id > 0) {
 					f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 				}
-				articles = articles + '<div><table width="100%" border="1">';
+				articles = articles + '<div><table width="100%" border="0">';
 				articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 				articles = articles + '<tr>' + '<td>' + f + '<pre class="preview_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
 				articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
