@@ -273,7 +273,27 @@ function set_picture_as_avatar(item_id)
 {
 	$("#album_item_dropdown_" + item_id).dropdown('close');
 
-	console.log('avatar: ' + item_id);
+	send_transaction( function(api, account) {
+		return api.transact(
+			{
+				actions: [{
+					account: metarealnote_contract,
+					name: 'setavatar',
+					authorization: [{
+						actor: account.name,
+						permission: account.authority
+					}],
+					data: {
+						user:                 account.name,
+						avatar_album_item_id: item_id
+					}
+				}]
+			},{
+				blocksBehind: 3,
+				expireSeconds: 60
+			}
+		);
+	});
 }
 
 function copy_album_item_link(item_id, item_type, storage_location, origin_head_hash, origin_sha3_hash)
@@ -286,7 +306,7 @@ function copy_album_item_link(item_id, item_type, storage_location, origin_head_
 			   $(".album_item_description_" + item_id).val(item_link);
 			   $(".album_item_description_" + item_id).select();
 	document.execCommand("Copy");
-	alert('OK');
+	alert(item_link + '\n\nOK');
 			   $(".album_item_description_" + item_id).val(temp);
 	///////////////////////////////////////////////////////////////////////////////////////////
 }
