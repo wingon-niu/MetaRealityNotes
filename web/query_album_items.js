@@ -310,3 +310,22 @@ function copy_album_item_link(item_id, item_type, storage_location, origin_head_
 			   $(".album_item_description_" + item_id).val(temp);
 	///////////////////////////////////////////////////////////////////////////////////////////
 }
+
+function get_user_avatar(user)
+{
+	return new Promise( (resolve, reject) => {
+		(async () => {
+			try {
+				if (user_avatar_map.has(user)) {
+					console.log("get");
+					resolve( user_avatar_map.get(user) );
+				}
+				else {
+					console.log("no get");
+					//
+				}
+			} catch (e) {
+			}
+		})();
+	});
+}

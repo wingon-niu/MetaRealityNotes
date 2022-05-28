@@ -162,8 +162,8 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				if (resp.rows[i].forward_article_id > 0) {
 					f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 				}
-				articles = articles + '<div><table width="100%" border="0">';
-				articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');"><span class="am-icon-user"></span></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
+				articles = articles + '<div><table width="100%" border="1">';
+				articles = articles + '<tr>' + '<td rowspan="3" width="70" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 				articles = articles + '<tr>' + '<td>' + f + '<pre class="preview_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
 				articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 				articles = articles + '</table></div><hr />';
@@ -258,6 +258,11 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 					preview_of_article_map.set(resp.rows[i].article_id, content);
 					//console.log("no get");
 				}
+			}
+			// 以下逐个查询用户头像
+			for (i = 0; i < len; i++) {
+				let avatar = await get_user_avatar(resp.rows[i].user);
+				$(".div_user_avatar_" + resp.rows[i].user).html(avatar);
 			}
 			$("#my_modal_loading").modal('close');
 			window.scrollTo(0, 0);
@@ -803,21 +808,3 @@ function switch_and_get_user_articles(user)
 
 	get_user_articles(user);
 }
-
-
-
-//function show_my_dropdown(index)
-//{
-//	$("#my_dropdown_" + index).dropdown('open');
-//}
-//
-//function show_pic_dropdown(index)
-//{
-//	$("#pic_dropdown_" + index).dropdown('open');
-//}
-//
-//function show_pic_detail(detail_base64)
-//{
-//	$("#view_pic_detail").val(CryptoJS.enc.Base64.parse(detail_base64).toString(CryptoJS.enc.Utf8));
-//	$("#div_view_pic_detail").modal('open');
-//}

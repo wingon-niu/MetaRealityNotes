@@ -245,6 +245,7 @@ $(document).ready(function () {
 	content_of_image_map   = new Map();
 	article_user_map       = new Map();
 	reply_user_map         = new Map();
+	user_avatar_map        = new Map();
 
 	//
 

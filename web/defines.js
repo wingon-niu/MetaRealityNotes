@@ -81,6 +81,7 @@ var   content_of_reply_map   = null;
 var   content_of_image_map   = null;
 var   article_user_map       = null;
 var   reply_user_map         = null;
+var   user_avatar_map        = null;
 
 var eth_worldwelfare_account = '0x3F4D7E42751Ca6461605241525006FA7086F0d92';
 var eth_user_account         = '';
