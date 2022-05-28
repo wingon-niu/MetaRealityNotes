@@ -316,6 +316,7 @@ function get_user_avatar(user)
 	return new Promise( (resolve, reject) => {
 		(async () => {
 			try {
+				const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
 				let user_has_no_avatar = '<span class="am-icon-user"></span>';
 				if (user_avatar_map.has(user)) {
 					console.log("get");
@@ -325,6 +326,7 @@ function get_user_avatar(user)
 					console.log("no get");
 					let lower_bd  = new BigNumber( my_eos_name_to_uint64t(user) );
 					let upper_bd  = new BigNumber( lower_bd.plus(1) );
+					console.log("before userprofiles");
 					var resp = await rpc.get_table_rows({
 						json:  true,
 						code:  metarealnote_contract,
@@ -336,8 +338,9 @@ function get_user_avatar(user)
 						upper_bound: upper_bd.toFixed(),
 						limit: 1,
 						reverse: false,
-						show_payer: false					
+						show_payer: false
 					});
+					console.log("after userprofiles");
 					if ( resp.rows.length === 1 && resp.rows[0].user === user && resp.rows[0].avatar_album_item_id > 0 ) {
 						let img_id = resp.rows[0].avatar_album_item_id;
 						lower_bd  = new BigNumber( img_id );
