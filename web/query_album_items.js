@@ -319,11 +319,11 @@ function get_user_avatar(user)
 				const rpc = new eosjs_jsonrpc.JsonRpc(current_endpoint);
 				let user_has_no_avatar = '<span class="am-icon-user"></span>';
 				if (user_avatar_map.has(user)) {
-					console.log("get");
+					//console.log("get");
 					resolve( user_avatar_map.get(user) );
 				}
 				else {
-					console.log("no get");
+					//console.log("no get");
 					let lower_bd  = new BigNumber( my_eos_name_to_uint64t(user) );
 					let upper_bd  = new BigNumber( lower_bd.plus(1) );
 					var resp = await rpc.get_table_rows({
