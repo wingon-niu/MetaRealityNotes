@@ -259,7 +259,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 					//console.log("no get");
 				}
 			}
-			// 以下逐个查询用户头像
+			// 以下逐个查询文章的用户头像
 			for (i = 0; i < len; i++) {
 				let avatar = await get_user_avatar(resp.rows[i].user);
 				$(".div_user_avatar_" + resp.rows[i].user).html(avatar);
@@ -332,13 +332,18 @@ function show_article_content_div(article_id)
 					if (resp.rows[i].forward_article_id > 0) {
 						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
-					articles = articles + '<div><table width="100%" border="0">';
-					articles = articles + '<tr>' + '<td rowspan="3" width="64" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');"><span class="am-icon-user"></span></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
+					articles = articles + '<div><table width="100%" border="1">';
+					articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 					articles = articles + '<tr>' + '<td>' + f + '<pre class="content_of_article_' + resp.rows[i].article_id + '">&nbsp;</pre></td>' + '</tr>';
 					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
 				$("#article_content_info_div").html(articles);
+				// 以下逐个查询文章的用户头像，实际只有一条记录，循环只会执行一次
+				for (i = 0; i < len; i++) {
+					let avatar = await get_user_avatar(resp.rows[i].user);
+					$(".div_user_avatar_" + resp.rows[i].user).html(avatar);
+				}
 				// 以下查询文章的全文，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
 					if (content_of_article_map.has(resp.rows[i].article_id)) {
@@ -569,8 +574,8 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				if (resp.rows[i].target_reply_id > 0) {
 					f = f + $("#reply_to").html() + '&nbsp;<span class="user_of_reply_' + resp.rows[i].target_reply_id + '">&nbsp;</span>&nbsp;id' + resp.rows[i].target_reply_id;
 				}
-				replies = replies + '<div><table width="100%" border="0">';
-				replies = replies + '<tr>' + '<td rowspan="3" width="30" align="center" valign="top">&nbsp;</td>' + '<td rowspan="3" width="64" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');"><span class="am-icon-user"></span></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
+				replies = replies + '<div><table width="100%" border="1">';
+				replies = replies + '<tr>' + '<td rowspan="3" width="30" align="center" valign="top">&nbsp;</td>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 				replies = replies + '<tr>' + '<td>' + f + '<pre class="content_of_reply_' + resp.rows[i].reply_id + '">&nbsp;</pre></td>' + '</tr>';
 				replies = replies + '<tr>' + '<td align="right"><a href="##" onclick="reply_an_article(' + current_article_id + ', ' + resp.rows[i].reply_id + ');">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 				replies = replies + '</table></div><hr />';
@@ -585,6 +590,11 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				$("#my_replies_info_div").html(replies);
 			} else {
 				$("#article_replies_div").html(replies);
+			}
+			// 以下逐个查询回复的用户头像
+			for (i = 0; i < len; i++) {
+				let avatar = await get_user_avatar(resp.rows[i].user);
+				$(".div_user_avatar_" + resp.rows[i].user).html(avatar);
 			}
 			// 以下查询所有回复的全文
 			for (i = 0; i < len; i++) {
@@ -773,8 +783,8 @@ function get_users(index_position, key_type, lower_bound, upper_bound)
 				} else {
 					username = '';
 				}
-				users = users + '<div><table width="100%" border="0">';
-				users = users + '<tr>' + '<td width="64" align="center" valign="middle"><a href="##" onclick="query_user_profile(\'' + username + '\');"><span class="am-icon-user"></span></a></td>' + '<td align="left" valign="middle"><a href="##" onclick="switch_and_get_user_articles(\'' + username + '\');">' + username + '</a>' + '</td>' + '</tr>';
+				users = users + '<div><table width="100%" border="1">';
+				users = users + '<tr>' + '<td width="71" align="center" valign="middle"><a href="##" onclick="query_user_profile(\'' + username + '\');">' + '<div class="div_user_avatar_' + username + '" style="width:64px; height:64px;"></div></a></td>' + '<td align="left" valign="middle"><a href="##" onclick="switch_and_get_user_articles(\'' + username + '\');">' + username + '</a>' + '</td>' + '</tr>';
 				users = users + '</table></div><hr />';
 			}
 			// 下一页
@@ -787,6 +797,11 @@ function get_users(index_position, key_type, lower_bound, upper_bound)
 			} else if (current_page === "users_follow_me") {
 				$("#users_follow_me_info_div").html(users);
 			} else {
+			}
+			// 以下逐个查询用户头像
+			for (i = 0; i < len; i++) {
+				let avatar = await get_user_avatar(username);
+				$(".div_user_avatar_" + username).html(avatar);
 			}
 			$("#my_modal_loading").modal('close');
 			window.scrollTo(0, 0);
