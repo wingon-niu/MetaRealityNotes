@@ -332,7 +332,7 @@ function show_article_content_div(article_id)
 					if (resp.rows[i].forward_article_id > 0) {
 						f = f + '<span>' + $("#forward_article").html() + '</span>&nbsp;<a href="##" onclick="show_article_content_div(' + resp.rows[i].forward_article_id + ');">id' + resp.rows[i].forward_article_id + '</a>';
 					}
-					articles = articles + '<div><table width="100%" border="1">';
+					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 					articles = articles + '<tr>' + '<td>' + f + '<pre class="content_of_article_' + resp.rows[i].article_id + '">&nbsp;</pre></td>' + '</tr>';
 					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
@@ -574,7 +574,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				if (resp.rows[i].target_reply_id > 0) {
 					f = f + $("#reply_to").html() + '&nbsp;<span class="user_of_reply_' + resp.rows[i].target_reply_id + '">&nbsp;</span>&nbsp;id' + resp.rows[i].target_reply_id;
 				}
-				replies = replies + '<div><table width="100%" border="1">';
+				replies = replies + '<div><table width="100%" border="0">';
 				replies = replies + '<tr>' + '<td rowspan="3" width="30" align="center" valign="top">&nbsp;</td>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 				replies = replies + '<tr>' + '<td>' + f + '<pre class="content_of_reply_' + resp.rows[i].reply_id + '">&nbsp;</pre></td>' + '</tr>';
 				replies = replies + '<tr>' + '<td align="right"><a href="##" onclick="reply_an_article(' + current_article_id + ', ' + resp.rows[i].reply_id + ');">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
@@ -783,8 +783,8 @@ function get_users(index_position, key_type, lower_bound, upper_bound)
 				} else {
 					username = '';
 				}
-				users = users + '<div><table width="100%" border="1">';
-				users = users + '<tr>' + '<td width="71" align="center" valign="middle"><a href="##" onclick="query_user_profile(\'' + username + '\');">' + '<div class="div_user_avatar_' + username + '" style="width:64px; height:64px;"></div></a></td>' + '<td align="left" valign="middle"><a href="##" onclick="switch_and_get_user_articles(\'' + username + '\');">' + username + '</a>' + '</td>' + '</tr>';
+				users = users + '<div><table width="100%" border="0">';
+				users = users + '<tr>' + '<td width="71" align="center" valign="middle"><a href="##" onclick="query_user_profile(\'' + username + '\');">' + '<div class="div_user_avatar_' + username + '" style="width:64px; height:64px; vertical-align:middle; display:table-cell; text-align:center;"></div></a></td>' + '<td align="left" valign="middle"><a href="##" onclick="switch_and_get_user_articles(\'' + username + '\');">' + username + '</a>' + '</td>' + '</tr>';
 				users = users + '</table></div><hr />';
 			}
 			// 下一页
@@ -800,6 +800,13 @@ function get_users(index_position, key_type, lower_bound, upper_bound)
 			}
 			// 以下逐个查询用户头像
 			for (i = 0; i < len; i++) {
+				if (current_page === "users_i_follow") {
+					username = resp.rows[i].followed_user;
+				} else if (current_page === "users_follow_me") {
+					username = resp.rows[i].follow_user;
+				} else {
+					username = '';
+				}
 				let avatar = await get_user_avatar(username);
 				$(".div_user_avatar_" + username).html(avatar);
 			}
