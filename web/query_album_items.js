@@ -419,7 +419,7 @@ function get_user_avatar(user)
 function content_process_1(content)
 {
 	try {
-		var str_array  = ['str'];
+		let str_array  = ['str'];
 		let my_content = content;
 		let link_begin = '[[[DreamRealNotes:::Link###';
 		let link_end   = '###DreamRealNotes:::Link]]]';
@@ -445,7 +445,23 @@ function content_process_1(content)
 				break;
 			}
 		}
-		//
+		let  str_result = '';
+		let  i = 1;
+		for (i = 1; i < str_array.length; i++) {
+			pos_begin = str_array[i].indexOf(link_begin);
+			pos_end   = str_array[i].indexOf(link_end);
+			if (pos_begin >= 0 && pos_end > pos_begin) {
+				let str_json = str_array[i].slice(pos_begin + link_begin.length, pos_end);
+				str_json = str_json.replace(/~/g, '"');
+				let json = ( new Function("return " + str_json) )();
+				str_result = str_result + '<div class="div_content_album_item_' + json.ii + '"></div>';
+			}
+			else {
+				str_result = str_result + '<div><pre>' + str_array[i] + '</pre></div>';
+			}
+		}
+		console.log(str_result);
+		return str_result;
 	} catch (e) {
 		alert(e);
 		return '';
