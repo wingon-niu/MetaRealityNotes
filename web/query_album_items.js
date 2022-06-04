@@ -419,6 +419,32 @@ function get_user_avatar(user)
 function content_process_1(content)
 {
 	try {
+		var str_array  = ['str'];
+		let my_content = content;
+		let link_begin = '[[[DreamRealNotes:::Link###';
+		let link_end   = '###DreamRealNotes:::Link]]]';
+		let pos_begin  = -1;
+		let pos_end    = -1;
+		while(true) {
+			pos_begin = my_content.indexOf(link_begin);
+			pos_end   = my_content.indexOf(link_end);
+			if (pos_begin >= 0 && pos_end > pos_begin) {
+				if (pos_begin > 0) {
+					str_array.push(my_content.slice(0, pos_begin));
+				}
+				str_array.push(my_content.slice(pos_begin, pos_end + link_end.length));
+				if (pos_end + link_end.length < my_content.length) {
+					my_content = my_content.slice(pos_end + link_end.length);
+				}
+				else {
+					break;
+				}
+			}
+			else {
+				str_array.push(my_content);
+				break;
+			}
+		}
 		//
 	} catch (e) {
 		alert(e);
