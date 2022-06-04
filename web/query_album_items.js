@@ -409,6 +409,8 @@ function get_user_avatar(user)
 					}
 				}
 			} catch (e) {
+				alert(e);
+				resolve(user_has_no_avatar);
 			}
 		})();
 	});
@@ -430,8 +432,10 @@ function content_process_2(content)
 		(async () => {
 			try {
 				//
+				resolve('OK');
 			} catch (e) {
 				alert(e);
+				resolve('Error');
 			}
 		})();
 	});
