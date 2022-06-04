@@ -334,7 +334,7 @@ function show_article_content_div(article_id)
 					}
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-					articles = articles + '<tr>' + '<td>' + f + '<pre class="content_of_article_' + resp.rows[i].article_id + '">&nbsp;</pre></td>' + '</tr>';
+					articles = articles + '<tr>' + '<td>' + f + '<div class="content_of_article_' + resp.rows[i].article_id + '">&nbsp;</div></td>' + '</tr>';
 					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
@@ -347,9 +347,13 @@ function show_article_content_div(article_id)
 				// 以下查询文章的全文，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
 					if (content_of_article_map.has(resp.rows[i].article_id)) {
-						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content_of_article_map.get(resp.rows[i].article_id)));
-						//console.log("get");
+						console.log("article get");
+						let ec_content = my_escapeHTML(content_of_article_map.get(resp.rows[i].article_id));
+						let content_1  = content_process_1(ec_content);
+						$(".content_of_article_" + resp.rows[i].article_id).html(content_1);
+						let str2 = await content_process_2(ec_content);
 					} else {
+						console.log("article no get");
 						let memo        = '';
 						let next_hash   = '';
 						let content     = '';
@@ -428,9 +432,11 @@ function show_article_content_div(article_id)
 							if (get_cookie('i18n_lang') === "zh") alert("错误：文章的内容的Sha3 Hash不一致。文章id=" + resp.rows[i].article_id + "。");
 							else                                  alert("Error: The sha3 hash of content of the article is not matched. Article id=" + resp.rows[i].article_id + ".");
 						}
-						$(".content_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 						content_of_article_map.set(resp.rows[i].article_id, content);
-						//console.log("no get");
+						let ec_content = my_escapeHTML(content);
+						let content_1  = content_process_1(ec_content);
+						$(".content_of_article_" + resp.rows[i].article_id).html(content_1);
+						let str2 = await content_process_2(ec_content);
 					}
 				}
 				// 以下查询文章的回复

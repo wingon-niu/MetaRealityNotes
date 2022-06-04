@@ -413,3 +413,26 @@ function get_user_avatar(user)
 		})();
 	});
 }
+
+function content_process_1(content)
+{
+	try {
+		//
+	} catch (e) {
+		alert(e);
+		return '';
+	}
+}
+
+function content_process_2(content)
+{
+	return new Promise( (resolve, reject) => {
+		(async () => {
+			try {
+				//
+			} catch (e) {
+				alert(e);
+			}
+		})();
+	});
+}
