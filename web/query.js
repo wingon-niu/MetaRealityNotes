@@ -582,7 +582,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				}
 				replies = replies + '<div><table width="100%" border="0">';
 				replies = replies + '<tr>' + '<td rowspan="3" width="30" align="center" valign="top">&nbsp;</td>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-				replies = replies + '<tr>' + '<td>' + f + '<pre class="content_of_reply_' + resp.rows[i].reply_id + '">&nbsp;</pre></td>' + '</tr>';
+				replies = replies + '<tr>' + '<td>' + f + '<div class="content_of_reply_' + resp.rows[i].reply_id + '">&nbsp;</div></td>' + '</tr>';
 				replies = replies + '<tr>' + '<td align="right"><a href="##" onclick="reply_an_article(' + current_article_id + ', ' + resp.rows[i].reply_id + ');">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 				replies = replies + '</table></div><hr />';
 				reply_user_map.set(resp.rows[i].reply_id, resp.rows[i].user);
@@ -605,9 +605,13 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 			// 以下查询所有回复的全文
 			for (i = 0; i < len; i++) {
 				if (content_of_reply_map.has(resp.rows[i].reply_id)) {
-					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content_of_reply_map.get(resp.rows[i].reply_id)));
-					//console.log("get");
+					console.log("reply get");
+					let ec_content = my_escapeHTML(content_of_reply_map.get(resp.rows[i].reply_id));
+					let content_1  = content_process_1(ec_content);
+					$(".content_of_reply_" + resp.rows[i].reply_id).html(content_1);
+					let str2 = await content_process_2(ec_content);
 				} else {
+					console.log("reply no get");
 					let memo        = '';
 					let next_hash   = '';
 					let content     = '';
@@ -681,9 +685,11 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 						if (get_cookie('i18n_lang') === "zh") alert("错误：回复的内容的Sha3 Hash不一致。回复id=" + resp.rows[i].reply_id + "。");
 						else                                  alert("Error: The sha3 hash of content of the reply is not matched. Reply id=" + resp.rows[i].reply_id + ".");
 					}
-					$(".content_of_reply_" + resp.rows[i].reply_id).html(my_escapeHTML(content));
 					content_of_reply_map.set(resp.rows[i].reply_id, content);
-					//console.log("no get");
+					let ec_content = my_escapeHTML(content);
+					let content_1  = content_process_1(ec_content);
+					$(".content_of_reply_" + resp.rows[i].reply_id).html(content_1);
+					let str2 = await content_process_2(ec_content);
 				}
 			}
 			// 以下查询所有目标回复的用户名
