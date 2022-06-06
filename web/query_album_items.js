@@ -445,6 +445,9 @@ function content_process_1(content)
 				break;
 			}
 		}
+		let  w1 = $(window).width() * 0.8;
+		let  w2 = Math.floor(w1);
+		let  my_width = w2 + 'px'; 
 		let  str_result = '';
 		let  i = 1;
 		for (i = 1; i < str_array.length; i++) {
@@ -454,7 +457,7 @@ function content_process_1(content)
 				let str_json = str_array[i].slice(pos_begin + link_begin.length, pos_end);
 				str_json = str_json.replace(/~/g, '"');
 				let json = ( new Function("return " + str_json) )();
-				str_result = str_result + '<div class="div_content_album_item_' + json.ii + '" style="vertical-align:middle; display:table-cell; text-align:center; word-wrap:break-word; word-break:break-all;"></div>';
+				str_result = str_result + '<div class="div_content_album_item_' + json.ii + '" style="width:' + my_width + '; display:table-cell; text-align:center; word-wrap:break-word; word-break:break-all; border:1px solid #2B65EC;"></div>';
 			}
 			else {
 				str_result = str_result + '<div><pre>' + str_array[i] + '</pre></div>';
@@ -507,13 +510,13 @@ function content_process_2(content)
 							$(".div_content_album_item_" + json.ii).html('<img id="little_img_id_' + json.ii + '" class="content_album_item_img_' + json.ii + '" src="" alt="image loading..." onclick="show_big_picture_modal_dialog(' + json.ii + ');" style="width:auto; height:auto; max-width:100%; max-height:100%;" />');
 						}
 						else if (json.it === 2) {                                  // 视频
-							$(".div_content_album_item_" + json.ii).html('<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#video_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a>');
+							$(".div_content_album_item_" + json.ii).html($("#video_file").html() + '<br />&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a><br />');
 						}
 						else if (json.it === 3) {                                  // 音频
-							$(".div_content_album_item_" + json.ii).html('<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#audio_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a>');
+							$(".div_content_album_item_" + json.ii).html($("#audio_file").html() + '<br />&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a><br />');
 						}
 						else if (json.it === 5) {                                  // 其他
-							$(".div_content_album_item_" + json.ii).html('<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#other_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a>');
+							$(".div_content_album_item_" + json.ii).html($("#other_file").html() + '<br />&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a><br />');
 						}
 						else {
 							$(".div_content_album_item_" + json.ii).html('');
