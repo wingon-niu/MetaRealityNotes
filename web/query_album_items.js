@@ -460,7 +460,7 @@ function content_process_1(content)
 				str_result = str_result + '<div><pre>' + str_array[i] + '</pre></div>';
 			}
 		}
-		console.log(str_result);
+		//console.log(str_result);
 		return str_result;
 	} catch (e) {
 		alert(e);
