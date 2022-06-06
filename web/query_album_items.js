@@ -454,7 +454,7 @@ function content_process_1(content)
 				let str_json = str_array[i].slice(pos_begin + link_begin.length, pos_end);
 				str_json = str_json.replace(/~/g, '"');
 				let json = ( new Function("return " + str_json) )();
-				str_result = str_result + '<div class="div_content_album_item_' + json.ii + '"></div>';
+				str_result = str_result + '<div class="div_content_album_item_' + json.ii + '" style="vertical-align:middle; display:table-cell; text-align:center; word-wrap:break-word; word-break:break-all;"></div>';
 			}
 			else {
 				str_result = str_result + '<div><pre>' + str_array[i] + '</pre></div>';
@@ -473,7 +473,112 @@ function content_process_2(content)
 	return new Promise( (resolve, reject) => {
 		(async () => {
 			try {
-				//
+				let str_array  = ['str'];
+				let my_content = content;
+				let link_begin = '[[[DreamRealNotes:::Link###';
+				let link_end   = '###DreamRealNotes:::Link]]]';
+				let pos_begin  = -1;
+				let pos_end    = -1;
+				while(true) {
+					pos_begin = my_content.indexOf(link_begin);
+					pos_end   = my_content.indexOf(link_end);
+					if (pos_begin >= 0 && pos_end > pos_begin) {
+						str_array.push(my_content.slice(pos_begin, pos_end + link_end.length));
+						if (pos_end + link_end.length < my_content.length) {
+							my_content = my_content.slice(pos_end + link_end.length);
+						}
+						else {
+							break;
+						}
+					}
+					else {
+						break;
+					}
+				}
+				let  i = 1;
+				for (i = 1; i < str_array.length; i++) {
+					pos_begin = str_array[i].indexOf(link_begin);
+					pos_end   = str_array[i].indexOf(link_end);
+					if (pos_begin >= 0 && pos_end > pos_begin) {
+						let str_json = str_array[i].slice(pos_begin + link_begin.length, pos_end);
+						str_json = str_json.replace(/~/g, '"');
+						let json = ( new Function("return " + str_json) )();
+						if (json.it === 1) {                                       // 图片
+							$(".div_content_album_item_" + json.ii).html('<img id="little_img_id_' + json.ii + '" class="content_album_item_img_' + json.ii + '" src="" alt="image loading..." onclick="show_big_picture_modal_dialog(' + json.ii + ');" style="width:auto; height:auto; max-width:100%; max-height:100%;" />');
+						}
+						else if (json.it === 2) {                                  // 视频
+							$(".div_content_album_item_" + json.ii).html('<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#video_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a>');
+						}
+						else if (json.it === 3) {                                  // 音频
+							$(".div_content_album_item_" + json.ii).html('<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#audio_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a>');
+						}
+						else if (json.it === 5) {                                  // 其他
+							$(".div_content_album_item_" + json.ii).html('<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + $("#other_file").html() + '<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + '<a href="##" onclick="content_album_items_load_file(' + json.ii + ', ' + json.it + ', ' + json.sl + ', \'' + json.ohh + '\', \'' + json.osh + '\');">' + $("#load_file").html() + '</a>');
+						}
+						else {
+							$(".div_content_album_item_" + json.ii).html('');
+						}
+					}
+				}
+				// 以下查询所有图片的内容
+				for (i = 1; i < str_array.length; i++) {
+					pos_begin = str_array[i].indexOf(link_begin);
+					pos_end   = str_array[i].indexOf(link_end);
+					if (pos_begin >= 0 && pos_end > pos_begin) {
+						let str_json = str_array[i].slice(pos_begin + link_begin.length, pos_end);
+						str_json = str_json.replace(/~/g, '"');
+						let json = ( new Function("return " + str_json) )();
+						if (json.it === 1) {  // 图片
+							if (content_of_image_map.has(json.ii)) {
+								console.log("image get");
+								let str_all = content_of_image_map.get(json.ii);
+								let str1    = 'FileName:';
+								let str2    = '.FileContent:';
+								$(".content_album_item_img_" + json.ii).attr( "src", str_all.slice( str_all.indexOf(str2) + str2.length ) );
+							} else {
+								console.log("image no get");
+								let memo        = '';
+								let next_hash   = '';
+								let content     = '';
+								let transaction = null;
+								if (json.sl === 1) {                                        // 数据存储在 EOS 链上
+								}
+								else if (json.sl === 2) {                                   // 数据存储在 ETH 链上
+								}
+								else if (json.sl === 6) {                                   // 数据存储在 Arweave 链上
+									try {
+										next_hash   = json.ohh;
+										do {
+											let ar_response = await fetch(arweave_endpoint + next_hash);
+											memo = await ar_response.text();
+											next_hash = memo.slice(0, memo.indexOf('}') + 1);
+											if (next_hash.length > 2) {
+												next_hash = memo.slice(1, memo.indexOf('}'));
+											} else {
+												next_hash = '';
+											}
+											content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
+										} while (next_hash != '');
+									}
+									catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
+										content = content + $("#content_chain_interruption_info_1").html() + next_hash + $("#content_chain_interruption_info_2").html();
+									}
+								}
+								else {      // 数据存储在其他链上
+								}
+								if (json.osh !== Web3.utils.sha3(content).slice(2)) {      // 内容的Sha3 Hash不一致
+									if (get_cookie('i18n_lang') === "zh") alert("错误：图片的Sha3 Hash不一致。图片id=" + json.ii + "。");
+									else                                  alert("Error: The sha3 hash of content of the picture is not matched. Picture id=" + json.ii + ".");
+								}
+								content_of_image_map.set(json.ii, content);
+								let str_all = content;
+								let str1    = 'FileName:';
+								let str2    = '.FileContent:';
+								$(".content_album_item_img_" + json.ii).attr( "src", str_all.slice( str_all.indexOf(str2) + str2.length ) );
+							}
+						}
+					}
+				}
 				resolve('OK');
 			} catch (e) {
 				alert(e);
