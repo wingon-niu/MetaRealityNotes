@@ -457,10 +457,10 @@ function content_process_1(content)
 				let str_json = str_array[i].slice(pos_begin + link_begin.length, pos_end);
 				str_json = str_json.replace(/~/g, '"');
 				let json = ( new Function("return " + str_json) )();
-				str_result = str_result + '<div class="div_content_album_item_' + json.ii + '" style="width:' + my_width + '; display:table-cell; text-align:center; word-wrap:break-word; word-break:break-all; border:1px solid #2B65EC;"></div>';
+				str_result = str_result + '<div class="div_content_album_item_' + json.ii + '" style="width:' + my_width + '; display:table-cell; text-align:center; word-wrap:break-word; word-break:break-all; border:0px solid #2B65EC;"></div>';
 			}
 			else {
-				str_result = str_result + '<div><pre>' + str_array[i] + '</pre></div>';
+				str_result = str_result + '<div><pre style="background-color:transparent; border:0px solid #2B65EC;">' + str_array[i] + '</pre></div>';
 			}
 		}
 		//console.log(str_result);
