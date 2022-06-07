@@ -1,4 +1,6 @@
 
+// utf8ç¼–ç 
+
 function timestamp_trans(timestamp)
 {
 	var date = new Date(timestamp*1000);
@@ -68,5 +70,18 @@ function generate_sha3_hash_string(strArray)
 	for (let i = 0; i < strArray.length; i++) {
 		str = str + strArray[i];
 	}
-	return Web3.utils.sha3(str).slice(2);  // sha3Ö®ºóµÃµ½Ò»¸öÒÔ0x¿ªÍ·µÄ66¸ö×Ö½ÚµÄ×Ö·û´®£¬Ö»·µ»Ø0xºóÃæµÄ²¿·Ö£¬64¸ö×Ö½ÚµÄ×Ö·û´®¡£
+	return Web3.utils.sha3(str).slice(2);  // sha3ä¹‹åå¾—åˆ°ä¸€ä¸ªä»¥0xå¼€å¤´çš„66ä¸ªå­—èŠ‚çš„å­—ç¬¦ä¸²ï¼Œåªè¿”å›0xåé¢çš„éƒ¨åˆ†ï¼Œ64ä¸ªå­—èŠ‚çš„å­—ç¬¦ä¸²ã€‚
+}
+
+function getUrlQueryVariable(variable)
+{
+	let query = window.location.search.substring(1);
+	let vars  = query.split("&");
+	for (let i = 0; i < vars.length; i++) {
+		let pair = vars[i].split("=");
+		if(pair[0] === variable) {
+			return pair[1];
+		}
+	}
+	return '';
 }

@@ -266,6 +266,17 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			}
 			$("#my_modal_loading").modal('close');
 			window.scrollTo(0, 0);
+			// 以下处理直接进入某一篇文章的情况
+			let go_directly_to_article = getUrlQueryVariable('article');
+			if (go_directly_to_article !== '') {
+				let str_tmp = window.location.href.toString();
+				history.pushState('', '', str_tmp.slice(0, str_tmp.indexOf('?')));
+				setTimeout(
+					function(){
+						show_article_content_div( Number(go_directly_to_article) )
+					}, 200
+				);
+			}
 		} catch (e) {
 			$("#my_modal_loading").modal('close');
 			alert(e);

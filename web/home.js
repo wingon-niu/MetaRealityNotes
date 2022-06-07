@@ -258,6 +258,6 @@ $(document).ready(function () {
 	setTimeout(
 		function(){
 			get_home_page_articles()
-	    }, 1000
+		}, 1000
 	);
 });
