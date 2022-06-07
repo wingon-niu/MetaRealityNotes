@@ -347,13 +347,13 @@ function show_article_content_div(article_id)
 				// 以下查询文章的全文，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
 					if (content_of_article_map.has(resp.rows[i].article_id)) {
-						console.log("article get");
+						//console.log("article get");
 						let ec_content = my_escapeHTML(content_of_article_map.get(resp.rows[i].article_id));
 						let content_1  = content_process_1(ec_content);
 						$(".content_of_article_" + resp.rows[i].article_id).html(content_1);
 						let str2 = await content_process_2(ec_content);
 					} else {
-						console.log("article no get");
+						//console.log("article no get");
 						let memo        = '';
 						let next_hash   = '';
 						let content     = '';
@@ -605,13 +605,13 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 			// 以下查询所有回复的全文
 			for (i = 0; i < len; i++) {
 				if (content_of_reply_map.has(resp.rows[i].reply_id)) {
-					console.log("reply get");
+					//console.log("reply get");
 					let ec_content = my_escapeHTML(content_of_reply_map.get(resp.rows[i].reply_id));
 					let content_1  = content_process_1(ec_content);
 					$(".content_of_reply_" + resp.rows[i].reply_id).html(content_1);
 					let str2 = await content_process_2(ec_content);
 				} else {
-					console.log("reply no get");
+					//console.log("reply no get");
 					let memo        = '';
 					let next_hash   = '';
 					let content     = '';

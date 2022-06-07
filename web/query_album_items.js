@@ -178,6 +178,7 @@ function album_items_load_file(item_id, item_type, storage_location, origin_head
 
 			// 获取文件的数据
 			if (false) {              // 有缓存
+				//console.log("get");
 			}
 			else {                    // 无缓存
 				if (storage_location === 1) {                                        // 数据存储在 EOS 链上
@@ -533,13 +534,13 @@ function content_process_2(content)
 						let json = ( new Function("return " + str_json) )();
 						if (json.it === 1) {  // 图片
 							if (content_of_image_map.has(json.ii)) {
-								console.log("image get");
+								//console.log("image get");
 								let str_all = content_of_image_map.get(json.ii);
 								let str1    = 'FileName:';
 								let str2    = '.FileContent:';
 								$(".content_album_item_img_" + json.ii).attr( "src", str_all.slice( str_all.indexOf(str2) + str2.length ) );
 							} else {
-								console.log("image no get");
+								//console.log("image no get");
 								let memo        = '';
 								let next_hash   = '';
 								let content     = '';
@@ -603,10 +604,10 @@ function content_album_items_load_file(item_id, item_type, storage_location, ori
 
 			// 获取文件的数据
 			if (false) {              // 有缓存
-				console.log("file get");
+				//console.log("file get");
 			}
 			else {                    // 无缓存
-				console.log("file no get");
+				//console.log("file no get");
 				if (storage_location === 1) {                                        // 数据存储在 EOS 链上
 				}
 				else if (storage_location === 2) {                                   // 数据存储在 ETH 链上
