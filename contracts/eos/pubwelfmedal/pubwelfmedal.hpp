@@ -9,7 +9,15 @@
 #include <vector>
 #include <string>
 
+#define  DREAM_REAL_NOTES_VERSION_DEV              // DREAM_REAL_NOTES_VERSION_DEV             or DREAM_REAL_NOTES_VERSION_PROD
+#define  DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES  // DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES or DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_NO
+
+#ifdef   DREAM_REAL_NOTES_VERSION_DEV
 #define  MAIN_SYMBOL     symbol(symbol_code("SYS"), 4)
+#else
+#define  MAIN_SYMBOL     symbol(symbol_code("EOS"), 4)
+#endif
+
 #define  ZERO_FEE        asset((int64_t)0, MAIN_SYMBOL)   // 0 EOS
 
 #define  MAX_SUPPLY      210000
@@ -53,10 +61,10 @@ public:
     // 用户修改自己的 NFT 的可设置格言
     ACTION editmotto(const name& user, const uint64_t nft_id, const string& motto_modifiable);
 
-///***
+#ifdef DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
-//***/
+#endif
 
 private:
 

@@ -9,7 +9,15 @@
 #include <vector>
 #include <string>
 
+#define  DREAM_REAL_NOTES_VERSION_DEV              // DREAM_REAL_NOTES_VERSION_DEV             or DREAM_REAL_NOTES_VERSION_PROD
+#define  DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES  // DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES or DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_NO
+
+#ifdef   DREAM_REAL_NOTES_VERSION_DEV
 #define  MAIN_SYMBOL     symbol(symbol_code("SYS"), 4)
+#else
+#define  MAIN_SYMBOL     symbol(symbol_code("EOS"), 4)
+#endif
+
 #define  ZERO_FEE        asset((int64_t)0, MAIN_SYMBOL)   // 0 EOS
 
 using namespace eosio;
@@ -72,10 +80,10 @@ public:
     // 设置用户头像
     ACTION setavatar(const name& user, const uint64_t avatar_album_item_id);
 
-///***
+#ifdef DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
-//***/
+#endif
 
 private:
 

@@ -636,7 +636,8 @@ void metarealnote::update_last_replied_time_when_delete_reply(const uint64_t & a
     }
 }
 
-///***
+#ifdef DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES
+
 // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
 ACTION metarealnote::clearalldata()
 {
@@ -721,4 +722,5 @@ ACTION metarealnote::clearalldata()
         }
     }
 }
-//***/
+
+#endif
