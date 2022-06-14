@@ -1,24 +1,16 @@
 
 A. Project Introduction
 
-    The DreamRealNotes DApp, web3.0 social application, the content of articles published by users can be permanently stored in the blocks of the blockchain, and users can record reality and dreams.
-    This DApp system has social functions similar to Twitter. Users can post articles, reply to, forward articles, create personal profile, follow other users, and so on.
-    Articles published by users can also be understood as different NFTs.
-    Brief summary:
-    The social function of Twitter + the permanent storage function of articles in Mirror = This DApp
+    The DreamRealNotes DApp, a completely decentralized Web3.0 social media platform based on blockchain technology. Articles, pictures and other data published by users can be permanently stored and exist forever.
+    Users can publish articles, replies, pictures, videos, audios, etc. of any length in this DApp system.
+    The above types of content posted by users automatically become a different NFT.
+    This DApp system has social functions similar to Twitter. Users can post articles, post replies, forward articles, create personal profiles, follow other users, like, give rewards, and so on.
 
     DApp website:     https://dreamrealnotes.netlify.app/home.html
 
-    At present, this DApp system has realized that the content of articles of any length can be stored in the blocks of the ETH public chain. The catalog data of the article is stored in the smart contract of the EOS public chain.
-    Therefore, at present, the DApp system needs to jointly use the ETH public chain and the EOS public chain. The block of the ETH public chain is responsible for storing the article content, and the smart contract of the EOS public chain is responsible for storing the article catalog.
-
-    Using the mobile wallet App to access this DApp system, you can only browse and view articles, and cannot perform other operations. Because existing mobile wallet Apps cannot operate on two blockchains at the same time.
-    In order to use the full functionality of this DApp system, it is recommended to use a Personal Computer, Google Chrome, Scatter, MetaMask.
-
-    In the coming months, the following features will be implemented:
-    1. Added support for Arweave, users can choose to store articles or pictures in the Arweave blockchain.
-    2. Realize the functions of liking and rewarding articles and replies.
-    3. Issue NFTs to users of this DApp system.
+    This DApp system needs to use the three blockchains of ETH, Arweave, and EOS at the same time. Among them, ETH and Arweave are responsible for storing the content data of articles, pictures, videos, and audios, and the EOS smart contract is responsible for storing their catalog and index data.
+    When using the mobile wallet App to access this DApp system, you can only perform browsing and viewing operations, and cannot perform other operations. Because the existing mobile wallet App does not support operations on multiple blockchains at the same time.
+    In order to use the full functionality of this DApp system, it is recommended to use a personal computer, Google Chrome, MetaMask plug-in wallet, ArConnect plug-in wallet, and Scatter desktop wallet.
 
 ------------------------------
 
@@ -31,7 +23,7 @@ A. 项目介绍
 
     项目网址：        https://dreamrealnotes.netlify.app/home.html
 
-    本DApp系统需要同时使用ETH、Arweave、EOS三个区块链，其中ETH和Arweave负责存储文章、图片、视频、音频的内容数据，EOS智能合约负责存储它们的目录和索引数据。
+    本DApp系统需要同时联合使用ETH、Arweave、EOS三个区块链，其中ETH和Arweave负责存储文章、图片、视频、音频的内容数据，EOS智能合约负责存储它们的目录和索引数据。
     使用手机钱包App访问本DApp系统，只能进行浏览和查看的操作，不能进行其他操作。因为现有的手机钱包App不支持同时在多个区块链上进行操作。
     为了使用本DApp系统的完整功能，建议使用个人电脑、谷歌浏览器、MetaMask插件钱包、ArConnect插件钱包、Scatter桌面版钱包。
 
@@ -171,11 +163,12 @@ B. 用户手册
 
 25. 如果用户在发送文章时选择的是其它的存储位置，操作过程基本上是一样的。
 
-C. 
+C. Notes on Using ArConnect Wallet
 
+    ArConnect is a Google Chrome plug-in wallet for the Arweave blockchain. The installation and use method is similar to MetaMask. One difference is that when using the ArConnect wallet to send transactions, it should be noted that the user does not need to click an authorization or confirmation button for each transaction to be sent.
+    When users use this DApp system to upload articles, pictures, videos, audios, etc. to the Arweave blockchain, the confirmation window of ArConnect may not pop up after clicking the post button. At this point, please wait patiently for a while. When ArConnect completes the transaction signature and sends the transaction, the entire posting process will continue automatically.
 
-
-C. 关于ArConnect钱包的使用注意事项
+C. 关于使用ArConnect钱包的注意事项
 
     ArConnect是Arweave区块链的谷歌浏览器插件钱包，安装使用方法和MetaMask类似。有一点不同的是，在使用ArConnect钱包发送交易时，不是发送每个交易都需要用户点击一次授权或者确认按钮，这一点要注意。
     用户使用本DApp系统将文章、图片、视频、音频等等上传到Arweave区块链的时候，点了发送按钮之后，可能不会弹出ArConnect的确认窗口，此时用户请耐心等待一会，当ArConnect完成交易签名并将交易发送完成之后，整个发送流程会自动继续进行。
