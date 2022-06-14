@@ -264,11 +264,9 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				let avatar = await get_user_avatar(resp.rows[i].user);
 				$(".div_user_avatar_" + resp.rows[i].user).html(avatar);
 			}
-			$("#my_modal_loading").modal('close');
-			window.scrollTo(0, 0);
 			// 以下处理直接进入某一篇文章的情况
 			let go_directly_to_article = getUrlQueryVariable('article');
-			if (go_directly_to_article !== '') {
+			if (go_directly_to_article !== '') {                          // 直接进入某一篇文章
 				let str_tmp = window.location.href.toString();
 				history.pushState('', '', str_tmp.slice(0, str_tmp.indexOf('?')));
 				setTimeout(
@@ -276,6 +274,10 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 						show_article_content_div( Number(go_directly_to_article) )
 					}, 200
 				);
+			}
+			else {                                                        // 不直接进入某一篇文章，而是显示文章列表
+				$("#my_modal_loading").modal('close');
+				window.scrollTo(0, 0);
 			}
 		} catch (e) {
 			$("#my_modal_loading").modal('close');
@@ -345,10 +347,11 @@ function show_article_content_div(article_id)
 					}
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-					articles = articles + '<tr>' + '<td>' + f + '<div class="content_of_article_' + resp.rows[i].article_id + '">&nbsp;</div></td>' + '</tr>';
+					articles = articles + '<tr>' + '<td>' + f + '<div class="content_of_article_' + resp.rows[i].article_id + '" style="border:1px solid #B6B6B6;">&nbsp;</div></td>' + '</tr>';
 					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
+				// 将文章的基本信息赋值过去
 				$("#article_content_info_div").html(articles);
 				// 以下逐个查询文章的用户头像，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
@@ -453,7 +456,7 @@ function show_article_content_div(article_id)
 				// 以下查询文章的回复
 				get_article_replies(article_id);
 
-				$("#my_modal_loading").modal('close');
+				//$("#my_modal_loading").modal('close');                  // 此处不需要关闭进度框。在查询回复列表完成的时候，会在那里关闭。
 				hide_all_pages();
 				$("#article_content_div").show();
 				window.scrollTo(0, 0);
@@ -593,7 +596,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				}
 				replies = replies + '<div><table width="100%" border="0">';
 				replies = replies + '<tr>' + '<td rowspan="3" width="30" align="center" valign="top">&nbsp;</td>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + resp.rows[i].user + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
-				replies = replies + '<tr>' + '<td>' + f + '<div class="content_of_reply_' + resp.rows[i].reply_id + '">&nbsp;</div></td>' + '</tr>';
+				replies = replies + '<tr>' + '<td>' + f + '<div class="content_of_reply_' + resp.rows[i].reply_id + '" style="border:1px solid #B6B6B6;">&nbsp;</div></td>' + '</tr>';
 				replies = replies + '<tr>' + '<td align="right"><a href="##" onclick="reply_an_article(' + current_article_id + ', ' + resp.rows[i].reply_id + ');">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
 				replies = replies + '</table></div><hr />';
 				reply_user_map.set(resp.rows[i].reply_id, resp.rows[i].user);
