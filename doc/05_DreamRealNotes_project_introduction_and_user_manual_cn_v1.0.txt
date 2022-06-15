@@ -1,3 +1,5 @@
+          DreamRealNotes Project Introduction and User Manual v1.0
+          梦想现实笔记项目介绍和用户手册 v1.0
 
 A. Project Introduction
 
@@ -11,6 +13,16 @@ A. Project Introduction
     This DApp system needs to use the three blockchains of ETH, Arweave, and EOS at the same time. Among them, ETH and Arweave are responsible for storing the content data of articles, pictures, videos, and audios, and the EOS smart contract is responsible for storing their catalog and index data.
     When using the mobile wallet App to access this DApp system, you can only perform browsing and viewing operations, and cannot perform other operations. Because the existing mobile wallet App does not support operations on multiple blockchains at the same time.
     In order to use the full functionality of this DApp system, it is recommended to use a personal computer, Google Chrome, MetaMask plug-in wallet, ArConnect plug-in wallet, and Scatter desktop wallet.
+
+    The main functions that this DApp system has implemented so far are:
+    (1) Users can post articles, replies, pictures, videos, and audios.
+    (2) Users can create profiles.
+    (3) Users can follow other users or unfollow them, view articles published by following users, and so on.
+
+    The main functions that will be implemented in the next step are as follows (Q3 2022) :
+    (1) Issue incentive Token and NFT.
+    (2) Realize the function of liking and rewarding articles and replies.
+    (3) Realize the NFT transaction function.
 
 ------------------------------
 
@@ -26,6 +38,16 @@ A. 项目介绍
     本DApp系统需要同时联合使用ETH、Arweave、EOS三个区块链，其中ETH和Arweave负责存储文章、图片、视频、音频的内容数据，EOS智能合约负责存储它们的目录和索引数据。
     使用手机钱包App访问本DApp系统，只能进行浏览和查看的操作，不能进行其他操作。因为现有的手机钱包App不支持同时在多个区块链上进行操作。
     为了使用本DApp系统的完整功能，建议使用个人电脑、谷歌浏览器、MetaMask插件钱包、ArConnect插件钱包、Scatter桌面版钱包。
+
+    本DApp系统目前已经实现的主要功能有：
+    (1) 用户可以发布文章、回复、图片、视频、音频。
+    (2) 用户可以创建个人资料。
+    (3) 用户可以关注别的用户或者取消关注，查看关注用户发表的文章，等等。
+
+    下一步将要实现的主要功能如下（2022年第3季度）：
+    (1) 发行激励Token和NFT。
+    (2) 实现对文章、回复进行点赞、打赏的功能。
+    (3) 实现NFT交易功能。
 
 ------------------------------
 
