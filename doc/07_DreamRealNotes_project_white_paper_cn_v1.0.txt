@@ -109,6 +109,7 @@ EOS智能合约未来会使用多签的形式进行权限管理，并且使用DA
 8.1 技术实现原理：如何将长数据存储到区块链的区块之中。
 
 见链接：
+
 https://dreamrealnotes.netlify.app/home.html?article=1
 
 8.2 清晰的所有权，NFT作品的原创主人或者后续主人都拥有清晰的所有权。
@@ -128,9 +129,11 @@ https://dreamrealnotes.netlify.app/home.html?article=1
 9. 项目相关信息
 
 9.1 项目网址
+
 https://dreamrealnotes.netlify.app/home.html
 
 9.2 项目介绍和用户手册
+
 https://dreamrealnotes.netlify.app/home.html?article=5
 
 10. 技术路线图

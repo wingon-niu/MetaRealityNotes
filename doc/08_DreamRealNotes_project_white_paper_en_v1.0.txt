@@ -100,12 +100,56 @@ A scenario of DAO governance in this DApp system may be that when a user publish
 
 The EOS smart contract itself of this DApp system will use the form of multi-signature for authority management, and delegate the management authority to 21 BP nodes.
 
+7. Real Users
 
+In order to prevent some bad users from using a large number of fake robot accounts to obtain Token and NFT incentives, this DApp system will adopt a mechanism to identify real users and add real user accounts to a whitelist. Only users in the whitelist can get Token and NFT incentives.
 
+8. Technical Aspects
 
+8.1 Technical implementation principle: How to store long data into blocks of public blockchain
 
+See link:
 
+https://dreamrealnotes.netlify.app/home.html?article=2
 
+8.2 Clear ownership, the original owner or subsequent owners of NFT works have clear ownership.
 
+When users use this DApp system, they need to operate on multiple blockchains. When performing operations on each blockchain, users are required to use their own private keys to sign transactions or operations. Doing so ensures that users have undisputed ownership of their data.
+
+When a user buys NFT works from another user, all operations are on-chain operations, and all transaction processes are left on the blockchain. In this way, the new owner of NFT can also prove that he has undisputed ownership of NFT works.
+
+8.3 Costs and Operational Thresholds
+
+When users use this DApp system, they need to pay for the permanent storage of data on the blockchain, and there is a certain cost.
+
+Users also need to conduct on-chain transactions or operations on several blockchains at the same time, which requires certain skills and certain technical thresholds. Therefore, within a certain period of time, the system is more suitable for professional users.
+
+There are pros and cons to this situation. The disadvantage is that it is not very friendly to novice users. The advantage is that because users need to pay fees and cross a certain operating threshold, it is natural to filter out some bad users who spam spam or low-quality content. Dealing with such bad users is an important thing for social media platforms.
+
+9. Project related information
+
+9.1 Project URL
+
+https://dreamrealnotes.netlify.app/home.html
+
+9.2 Project Introduction and User Manual
+
+https://dreamrealnotes.netlify.app/home.html?article=6
+
+10. Technology Roadmap
+
+The main functions that this DApp system has implemented so far are:
+(1) Users can post articles, replies, pictures, videos, and audios.
+(2) Users can create profiles.
+(3) Users can follow other users or unfollow them, view articles published by following users, and so on.
+
+The main features that will be implemented in the next steps are as follows (Q3 2022):
+(1) Issue incentive Token and NFT.
+(2) Realize the function of liking and rewarding articles and replies.
+(3) Realize the NFT transaction function.
+
+11. Team Introduction
+
+Founder profile: Wingon Niu, former high-end level 5 technical consultant of Huawei's public cloud/cloud storage business, has more than 10 years of industry experience in cloud computing and big data. Has rich experience in blockchain development and is familiar with the development, deployment and operation of ETH, EOS smart contracts and web front-end.
 
 
