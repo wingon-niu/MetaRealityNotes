@@ -152,4 +152,3 @@ The main features that will be implemented in the next steps are as follows (Q3 
 
 Founder profile: Wingon Niu, former high-end level 5 technical consultant of Huawei's public cloud/cloud storage business, has more than 10 years of industry experience in cloud computing and big data. Has rich experience in blockchain development and is familiar with the development, deployment and operation of ETH, EOS smart contracts and web front-end.
 
-

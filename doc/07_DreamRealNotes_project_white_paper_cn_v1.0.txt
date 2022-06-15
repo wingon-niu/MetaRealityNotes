@@ -152,4 +152,3 @@ https://dreamrealnotes.netlify.app/home.html?article=5
 
 创始人简介：Wingon Niu，前华为公有云/云存储业务高端5级技术顾问，拥有10年以上云计算与大数据方面的行业经验。拥有丰富的区块链方面的开发经验，熟悉ETH、EOS智能合约以及Web前端的开发、部署、运营。
 
-
