@@ -1,0 +1,154 @@
+          DreamRealNotes DApp Project White Paper v1.0
+
+1. System Introduction
+
+DreamRealNotes DApp, a completely decentralized Web3.0 social media platform based on blockchain technology, the articles, replies, pictures, videos, audios and other data published by users can be permanently stored and exist forever.
+
+2. System Features
+
+The data published by the user is permanently stored and exists forever.
+
+A fully decentralized Web3.0 social media platform, governed by DAO, multi-chain aggregation.
+
+An NFT creation and trading platform that combines social functions.
+
+Users can publish articles, replies, pictures, videos, audios, etc. of any length in this DApp system.
+
+The above types of content posted by users automatically become a different NFT.
+
+This DApp system has social functions similar to Twitter. Users can post articles, post replies, forward articles, create personal profiles, follow other users, like, give rewards, and so on.
+
+3. System Architecture
+
+(img)
+
+3.1 Content data permanent storage layer and NFT own data permanent storage layer
+
+Articles, replies, pictures, videos, and audios published by users in this DApp system, the content data of which is the data of the NFT itself, will be stored in the blocks of the public blockchain in two ways. Method 1: The data is directly stored in the blocks of the Arweave blockchain. Method 2: The data is stored in the blocks of ETH, EOS, BTC and other mainstream public blockchains in the form of remarks of blockchain transfer transactions among. The data stored in the block in these two ways is unmodifiable and undeletable, and can be perpetuated with the perpetuity of the public blockchain.
+
+This DApp system supports users to store data into the blocks of ETH, Arweave, EOS, BTC, and other mainstream public blockchains.
+
+Since these content data are stored in the blocks of the public blockchain, decentralization is achieved at the content data storage level.
+
+3.2 Catalog/Indexes Permanent Storage Layer and NFT Metadata Permanent Storage Layer
+
+Articles, replies, pictures, videos, and audios published by users in this DApp system, their catalog data and index data, and metadata of NFT are stored in the smart contracts of the EOS public blockchain.
+
+The reason for using EOS smart contract is that it has a data structure called "multi index table", which can add, delete, modify and query data like traditional relational databases, and use multiple indexes to query data. After using this function, the centralized database server can no longer be used to store and query data.
+
+Among the current mainstream public blockchains, only EOS and its derivative chains such as Telos, WAX, etc. have this function, and other blockchains do not have this function. Therefore, in order to no longer use the centralized database server, now we can only choose to use the EOS public blockchain or its derivative chain. When other public blockchains have this function in the future, we will also support such public blockchains.
+
+In the future, EOS smart contracts will use the form of multi-signature for authority management, and use the form of DAO for governance. Therefore, the management authority of EOS smart contracts will be mastered by a DAO, that is, a decentralized autonomous organization, and will not be mastered by a single person or a private organization.
+
+To sum up, this DApp system does not use a centralized database server to store and query data. EOS smart contracts are also governed by the DAO. Both aspects are decentralised.
+
+3.3 Web front-end service layer
+
+The web front-end page of this DApp system is composed of static html and js files, as well as some image font resource files, etc. All files are static files. Anyone can download all the web front-end pages of this DApp system, put them on the web server they build, and they can run normally.
+
+At present, the web front-end page of this DApp system is directly placed on the server of Netlify, a professional third-party static web page hosting provider. The development and operation team of this DApp system does not build and run a web server by itself.
+
+When the functions of this DApp system are fully developed and run stably in the future, we will also build the web front-end page in the web front-end environment provided by third parties such as IPFS or Arweave. Other individuals or teams can also build the web front-end server of this DApp system in their own way.
+
+Therefore, the web front-end service of this DApp system is also decentralized.
+
+3.4 Summary
+
+After the above description, it can be seen that at all levels of this DApp system, there is no centralized server that depends on the development and operation team. The smart contracts that need to be governed are also governed in the form of DAOs. Assuming that the development and operation team completely withdraws from the project in the future, it will not affect the normal operation of this DApp system.
+
+Therefore, we can see that this DApp system has achieved complete decentralization.
+
+4. User Incentives and Economic Model
+
+This DApp system will issue Tokens and NFTs for user incentives and governance. Early users will be incentivized by generous airdrops and more shares.
+
+4.1 Ordinary Articles
+
+Users publish ordinary articles, and both authors and readers can get Token incentives. Authors are incentivized when they publish articles. Readers are incentivized when they like or reply to articles.
+
+4.2 Advertising Section
+
+There will be an advertising promotion section on the homepage of this DApp system. After users pay Tokens, they can add their own articles or articles published by other users to this section and display them in this section. Readers who like or reply to articles in this section can receive tokens paid by the publisher. After all the tokens is collected by the reader, the article will be removed from this section and will no longer be displayed in this section.
+
+4.3 Like and Reward
+
+Users can like or reward high-quality articles, replies, and NFT works. Rewards can be made using this DApp system token or mainstream token such as BTC, ETH, EOS, AR, etc. This will bring a certain amount of income to the author.
+
+4.4 NFT Trading Platform
+
+This DApp system comes with an NFT trading platform, where authors can sell their NFT works and earn income.
+
+When an NFT work is sold, the rewards received by the NFT work in the future or the proceeds from re-sale, or other potential future income, will be owned by the new owner. This provides buyers of NFT works with the opportunity to obtain income in the future. In addition, for each transaction of NFT works, the original author will receive a certain percentage of the share.
+
+4.5 High-quality content aggregation function
+
+This DApp system has a built-in high-quality content aggregation function. For example, if the number of comments and replies of an article or NFT work reaches a certain value, it can enter the essence area. This function helps new users of this DApp system to find hot spots to participate. At the same time, NFT works entering the essence area may generate higher transaction prices. It helps authors to obtain higher income, and also helps buyers to buy popular works.
+
+5. An NFT creation and trading platform that combines social functions
+
+This is one of the features that distinguish the NFT platform of this DApp system from other NFT platforms. The author's original NFT works, including various types of NFT works, have a comment function after they are published. The author can interact with the audience in the form of comments and replies, and these comments and replies will also become part of the NFT and exist forever. The author can explain the meaning and significance of the work, tell the story of the work well, and be recognized by the audience. The resulting excellent works and popular works can easily be sold at higher prices. Buyers can buy popular and excellent works, and as the popularity and popularity of the authors increase in the future, the appreciation space of these works will also increase.
+
+The DApp system will charge a certain percentage of transaction fees.
+
+6. DAO Governance
+
+This DApp system uses the form of DAO to manage smart contracts. The token obtained by the user during the token incentive also has the function of participating in the DAO governance voting. In addition, this DApp system will also issue an NFT, which also has both incentive and governance functions. Users who meet certain conditions can get NFT incentives.
+
+In order to increase the difficulty of artificial manipulation of DAO governance voting, the DAO governance of this DApp system adopts a two-tier voting system, similar to the upper house and lower house of parliament, or the Senate and the House of Representatives. The House of Representatives uses tokens to vote to decide whether to pass the proposal. The Senate uses NFT votes to decide whether to reject the proposal. When a user proposes a proposal, there are two stages of voting. The first stage is the token voting in the House of Representatives. If the number of tokens voted in favor reaches a certain percentage, the proposal will be preliminarily passed, otherwise the proposal will be rejected directly. If the proposal is preliminarily passed, and then enters the second stage, the NFT vote in the Senate, if a certain percentage of NFT votes against it, then the proposal will be finally rejected, otherwise the proposal will be finally passed.
+
+A scenario of DAO governance in this DApp system may be that when a user publishes a controversial article, if it arouses strong disgust from other users, these users may propose a motion to delete the catalog and index of the disputed article . In this case, the community can vote using the above two-tier voting system.
+
+The EOS smart contract itself of this DApp system will use the form of multi-signature for authority management, and delegate the management authority to 21 BP nodes.
+
+7. Real Users
+
+In order to prevent some bad users from using a large number of fake robot accounts to obtain Token and NFT incentives, this DApp system will adopt a mechanism to identify real users and add real user accounts to a whitelist. Only users in the whitelist can get Token and NFT incentives.
+
+8. Technical Aspects
+
+8.1 Technical implementation principle: How to store long data into blocks of public blockchain
+
+See link:
+
+https://dreamrealnotes.netlify.app/home.html?article=2
+
+8.2 Clear ownership, the original owner or subsequent owners of NFT works have clear ownership.
+
+When users use this DApp system, they need to operate on multiple blockchains. When performing operations on each blockchain, users are required to use their own private keys to sign transactions or operations. Doing so ensures that users have undisputed ownership of their data.
+
+When a user buys NFT works from another user, all operations are on-chain operations, and all transaction processes are left on the blockchain. In this way, the new owner of NFT can also prove that he has undisputed ownership of NFT works.
+
+8.3 Costs and Operational Thresholds
+
+When users use this DApp system, they need to pay for the permanent storage of data on the blockchain, and there is a certain cost.
+
+Users also need to conduct on-chain transactions or operations on several blockchains at the same time, which requires certain skills and certain technical thresholds. Therefore, within a certain period of time, the system is more suitable for professional users.
+
+There are pros and cons to this situation. The disadvantage is that it is not very friendly to novice users. The advantage is that because users need to pay fees and cross a certain operating threshold, it is natural to filter out some bad users who spam spam or low-quality content. Dealing with such bad users is an important thing for social media platforms.
+
+9. Project related information
+
+9.1 Project URL
+
+https://dreamrealnotes.netlify.app/home.html
+
+9.2 Project Introduction and User Manual
+
+https://dreamrealnotes.netlify.app/home.html?article=6
+
+10. Technology Roadmap
+
+The main functions that this DApp system has implemented so far are:
+(1) Users can post articles, replies, pictures, videos, and audios.
+(2) Users can create profiles.
+(3) Users can follow other users or unfollow them, view articles published by following users, and so on.
+
+The main features that will be implemented in the next steps are as follows (Q3 2022):
+(1) Issue incentive Token and NFT.
+(2) Realize the function of liking and rewarding articles and replies.
+(3) Realize the NFT transaction function.
+
+11. Team Introduction
+
+Founder profile: Wingon Niu, former high-end level 5 technical consultant of Huawei's public cloud/cloud storage business, has more than 10 years of industry experience in cloud computing and big data. Has rich experience in blockchain development and is familiar with the development, deployment and operation of ETH, EOS smart contracts and web front-end.
+

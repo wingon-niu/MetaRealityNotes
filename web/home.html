@@ -51,12 +51,14 @@
 <script src="/js/web3.min.js"></script>
 <script src="/assets/js/base64/core-min.js"></script>
 <script src="/assets/js/base64/enc-base64-min.js"></script>
+<script src="/js/arweave/bundles/web.bundle.min.js"></script>
 <script src="/defines.js"></script>
 <script src="/utils.js"></script>
 <script src="/translate.js"></script>
 <script src="/trn.js"></script>
 <script src="/home.js"></script>
 <script src="/query.js"></script>
+<script src="/query_album_items.js"></script>
 <script src="/pagecontrol.js"></script>
 <script src="/postarticle.js"></script>
 <script src="/postreply.js"></script>
@@ -65,6 +67,10 @@
 <script src="/eth_trn.js"></script>
 <script src="/eth_postarticle.js"></script>
 <script src="/eth_postreply.js"></script>
+<script src="/arweave_postarticle.js"></script>
+<script src="/arweave_postreply.js"></script>
+<script src="/post_item.js"></script>
+<script src="/arweave_post_item.js"></script>
 
 
 
@@ -146,6 +152,7 @@
     <ul class="am-tabs-nav am-cf">
         <li class="am-active"><a href="[data-tab-panel-0]" id="tab_real" >Real Notes</a></li>
         <li class="">         <a href="[data-tab-panel-1]" id="tab_dream">Dream Notes</a></li>
+        <li class="">         <a href="[data-tab-panel-2]" id="tab_album">Album</a></li>
     </ul>
     <div class="am-tabs-bd">
         <div data-tab-panel-0 class="am-tab-panel am-active">
@@ -157,6 +164,21 @@
         </div>
         <div data-tab-panel-1 class="am-tab-panel">
             <div class="am-g" id="dream_notes_div">
+                <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+            </div>
+            <div>&nbsp;</div>
+            <div>&nbsp;</div>
+        </div>
+        <div data-tab-panel-2 class="am-tab-panel">
+            <div class="" id="album_div">
+                <p>
+                    <a href="##" class="" id="link_post_picture">Post Picture</a>
+                    <a href="##" class="" id="link_post_video">| Post Video</a>
+                    <a href="##" class="" id="link_post_audio">| Post Audio</a>
+                    <a href="##" class="" id="link_post_other_file">| Post Other File</a>
+                </p>
+                <div class="am-g" id="album_items_div">
+                </div>
                 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
             </div>
             <div>&nbsp;</div>
@@ -295,6 +317,9 @@
               <label class="am-radio-inline">
                 <input type="radio" name="radio12" value="5" data-am-ucheck         id="article_in_btc">BTC
               </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio12" value="6" data-am-ucheck         id="article_in_arweave">Arweave
+              </label>
             </div>
             <span class="trn_tip">Transfer amount per transaction:</span>
             <input type="text" class="am-modal-prompt-input" id="amount_per_trn_article" placeholder="" value="0.0001 EOS" />
@@ -339,6 +364,9 @@
               <label class="am-radio-inline">
                 <input type="radio" name="radio20" value="5" data-am-ucheck         id="reply_in_btc">BTC
               </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio20" value="6" data-am-ucheck         id="reply_in_arweave">Arweave
+              </label>
             </div>
             <span class="trn_tip">Transfer amount per transaction:</span>
             <input type="text" class="am-modal-prompt-input" id="amount_per_trn_reply" placeholder="" value="0.0001 EOS" />
@@ -352,6 +380,63 @@
         </div>
         <div class="am-modal-footer">
             <span class="am-modal-btn my_cancel"  data-am-modal-cancel >Cancel</span>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  上传相册条目  显示的模态框  -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="div_post_an_item">
+    <div class="am-modal-dialog">
+        <div>
+            <div><input type="hidden" id="file_name_of_post_item" value="" /></div>
+            <div class="am-form-group">
+              <span class="storage_location">Select storage block chain:</span>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_post_item" value="1" data-am-ucheck checked id="post_item_in_eos">EOS
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_post_item" value="2" data-am-ucheck         id="post_item_in_eth">ETH
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_post_item" value="3" data-am-ucheck         id="post_item_in_bsc">BSC
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_post_item" value="4" data-am-ucheck         id="post_item_in_heco">HECO
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_post_item" value="5" data-am-ucheck         id="post_item_in_btc">BTC
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_post_item" value="6" data-am-ucheck         id="post_item_in_arweave">Arweave
+              </label>
+            </div>
+            <span class="trn_tip">Transfer amount per transaction:</span>
+            <input type="text" class="am-modal-prompt-input" id="amount_per_trn_post_item" placeholder="" value="0.0001 EOS" />
+            <input type="file" id="post_item_open_file" name="post_item_open_file" />
+            <div id="div_post_item_file_content" style="width: 198px;height: 198px;"></div>
+            <span id="span_post_item_description">Description: (Max 30 characters)</span>
+            <textarea class="am-modal-prompt-input" rows="3" id="description_of_post_item" placeholder=""></textarea>
+            <div>
+              <a href="##"><span class="number_of_trns" id="view_times_of_txn_post_item">View times of txn</span></a>&nbsp;&nbsp;&nbsp;
+              <a href="##"><span                        id="post_item">Post</span></a><br />
+              <a href="##"><span                        id="resume_from_break_point_post_item">Resume from break point</span></a>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn my_cancel"  data-am-modal-cancel >Cancel</span>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  放大显示图片  显示的模态框  -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="div_show_big_picture_modal_dialog">
+    <div class="am-modal-dialog">
+        <div id="div_big_picture" style="width:100px; height:100px; vertical-align:middle; display:table-cell; text-align:center;">
+            <img id="img_big_picture" src="" alt="big picture" onclick="close_big_picture_modal_dialog();" style="width:auto; height:auto; max-width:100%; max-height:100%;" />
         </div>
     </div>
 </div>
@@ -467,6 +552,13 @@
     <span id="transaction_pending_info_1">Info: the transaction is pending. The pending transaction hash is: </span>
     <span id="transaction_pending_info_2">If the transaction was just sent, please try query again later.</span>
     <span id="user_must_read_and_agreement_info">Please check the article with id 2 in the Real Notes, thank you!</span>
+    <span id="video_file">Video File</span>
+    <span id="audio_file">Audio File</span>
+    <span id="other_file">Other File</span>
+    <span id="load_file">Load</span>
+    <span id="user_actions">Actions</span>
+    <span id="set_as_avatar">Set as Avatar</span>
+    <span id="copy_link">Copy link</span>
 </div>
 
 

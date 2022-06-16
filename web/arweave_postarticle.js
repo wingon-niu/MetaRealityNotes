@@ -1,29 +1,23 @@
 
 // utf8编码
 
-function eth_do_post_article(my_category, my_type, my_storage_location, my_forward_article_id, my_quantity, strArray)
+function arweave_do_post_article(my_category, my_type, my_storage_location, my_forward_article_id, my_quantity, strArray)
 {
 	(async () => {
 		try {
-			var result = null;
-	
+			$("#my_modal_loading").modal('open');
 			for (let j = post_article_current_index; j >= 0; j--) {
 				post_article_current_index = j;
-				result = await ethereum.request({
-					method: 'eth_sendTransaction',
-					params: [{
-						nonce:    '0x00',           // ignored by MetaMask
-						//gasPrice: eth_gasPrice,   // customizable by user during MetaMask confirmation.
-						gas:      eth_gasLimit,     // customizable by user during MetaMask confirmation.
-						to:       eth_worldwelfare_account,
-						from:     eth_user_account,
-						value:    Web3.utils.numberToHex( Web3.utils.toWei( my_quantity.substring(0, my_quantity.indexOf(' ')), "ether" ) ),
-						data:     Web3.utils.utf8ToHex( '{' + trn_hash + '}' + strArray[j] ),
-						chainId:  Web3.utils.numberToHex(eth_chain_id),
-					}],
-				});
+				let transaction = await arweave.createTransaction({ data: '{' + trn_hash + '}' + strArray[j] });
+				transaction.addTag('Content-Type', 'text/html');
+				transaction.addTag('App-Name', 'DreamRealNotes');
+				await arweave.transactions.sign(transaction);
+				let uploader = await arweave.transactions.getUploader(transaction);
+				while (!uploader.isComplete) {
+					await uploader.uploadChunk();
+				}
 				trn_success = true;
-				trn_hash    = result;
+				trn_hash    = transaction.id;
 			}
 			post_article_current_index = -1;
 			if (post_article_write_to_table === false) {
@@ -58,10 +52,12 @@ function eth_do_post_article(my_category, my_type, my_storage_location, my_forwa
 				if (typeof(eos_result) === 'object' && eos_result.transaction_id != "") {
 					trn_success                 = true;
 					post_article_write_to_table = true;
-				} else { trn_failed(); return; }
+				} else { trn_failed(); $("#my_modal_loading").modal('close'); return; }
 			}
+			$("#my_modal_loading").modal('close');
 			alert("OK");
 		} catch (e) {
+			$("#my_modal_loading").modal('close');
 			trn_success = false;
 			if (typeof e === 'object') alert(e.message);
 			else                       alert(e);

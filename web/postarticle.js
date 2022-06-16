@@ -58,6 +58,13 @@ function view_times_of_txn_article()
 		}
 		per_trn_len = eth_per_trn_len;
 	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		if (my_type === 2) {                     // 长文
+			let my_title_of_article = $("#title_of_article").val().trim();
+			my_content = '        ' + my_title_of_article + '\n' + my_content;
+		}
+		per_trn_len = arweave_per_trn_len;
+	}
 	else {                                       // 内容数据存储在其他链
 		return;
 	}
@@ -103,7 +110,7 @@ function do_post_article()
 
 	if (my_storage_location === 1) {             // 内容数据存储在 EOS 链
 		if (my_type === 2) {                     // 长文
-			strArray.push(my_title_of_article);  // 长文的标题单独保存在一个交易的memo里
+			strArray.push('        ' + my_title_of_article + '\n');  // 长文的标题单独保存在一个交易的memo里
 		}
 		per_trn_len = eos_per_trn_len;
 	}
@@ -112,6 +119,12 @@ function do_post_article()
 			my_content = '        ' + my_title_of_article + '\n' + my_content;
 		}
 		per_trn_len = eth_per_trn_len;
+	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		if (my_type === 2) {                     // 长文
+			my_content = '        ' + my_title_of_article + '\n' + my_content;
+		}
+		per_trn_len = arweave_per_trn_len;
 	}
 	else {                                       // 内容数据存储在其他链
 		return;
@@ -178,6 +191,7 @@ function do_post_article()
 										user:               account.name,
 										article_hash:       trn_hash,
 										num_of_trns:        strArray.length,
+										content_sha3_hash:  generate_sha3_hash_string(strArray),
 										category:           my_category,
 										type:               my_type,
 										storage_location:   my_storage_location,
@@ -203,6 +217,9 @@ function do_post_article()
 	}
 	else if (my_storage_location === 2) {        // 内容数据存储在 ETH 链
 		eth_do_post_article(my_category, my_type, my_storage_location, my_forward_article_id, my_quantity, strArray);
+	}
+	else if (my_storage_location === 6) {        // 内容数据存储在 Arweave 链
+		arweave_do_post_article(my_category, my_type, my_storage_location, my_forward_article_id, my_quantity, strArray);
 	}
 	else {                                       // 内容数据存储在其他链
 		return;

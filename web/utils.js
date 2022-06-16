@@ -1,4 +1,6 @@
 
+// utf8编码
+
 function timestamp_trans(timestamp)
 {
 	var date = new Date(timestamp*1000);
@@ -60,4 +62,26 @@ function my_unescapeHTML(safe)
 function my_eos_name_to_uint64t(eos_name)
 {
 	return eosjsName.nameToUint64(eos_name);
+}
+
+function generate_sha3_hash_string(strArray)
+{
+	let str = '';
+	for (let i = 0; i < strArray.length; i++) {
+		str = str + strArray[i];
+	}
+	return Web3.utils.sha3(str).slice(2);  // sha3之后得到一个以0x开头的66个字节的字符串，只返回0x后面的部分，64个字节的字符串。
+}
+
+function getUrlQueryVariable(variable)
+{
+	let query = window.location.search.substring(1);
+	let vars  = query.split("&");
+	for (let i = 0; i < vars.length; i++) {
+		let pair = vars[i].split("=");
+		if(pair[0] === variable) {
+			return pair[1];
+		}
+	}
+	return '';
 }

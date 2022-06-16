@@ -1,0 +1,62 @@
+          Must Read and Agreement for Community Users
+
+1. Basic description of system functions
+
+    Users can use this DAPP system to publish articles, replies, pictures, and videos; they can create profile data; they can follow other users.
+    All these data are stored in two locations:
+    1. Articles, replies, pictures, videos, their own data will be stored in the blocks of BTC, ETH, EOS and other public blockchains in the form of remarks of blockchain transfer transactions, and cannot be modified or deleted, it will be permanently saved on the public blockchain. If the public blockchain can survive forever, these data will also survive forever.
+    2. Articles, replies, pictures, videos, their catalog data are all stored in the RAM of the EOS public blockchain. The user's profile data and the data that users follow each other are also stored in the RAM of the EOS public blockchain.
+
+    The role of two different location data:
+    1. The data stored in the blocks of BTC, ETH, EOS and other public blockchains are static, unmodifiable, and undeletable.
+    2. The catalog data, user profile data, and the data that users follow each other stored in the RAM of the EOS public blockchain provide users with an entry for query and access.
+
+2. Community use norms
+
+    When using this DAPP system, users must abide by the following rules:
+    2.1 It is not allowed to publish content that violates the relevant laws and regulations of all countries in the world. It is not allowed to publish content that violates relevant international treaties or rules.
+    2.2 It is not allowed to publish content that contains racial discrimination, religious discrimination, false, fraudulent, leaking of others' privacy, pornography, obscene, violent and bloody content. It is not allowed to publish any other illegal or unethical content.
+    2.3 It is not allowed to publish garbage content without any practical significance for the purpose of consuming the RAM of EOS public blockchain.
+
+    If the content posted by the user violates the above rules, we will delete the catalog data of these illegal content from the RAM of the EOS public blockchain. Users will not be able to access these illegal contents through this DAPP system. All illegal data stored in the RAM of the EOS public blockchain will be deleted.
+
+3. Environment dependency: EOS RAM
+
+    Since the RAM resources of the EOS public blockchain are limited and expensive, the EOS RAM owned by this DAPP system may be used up one day in the future. If this happens, in order for users to continue to use the functions of posting articles, replies, pictures, and videos, there will be two ways:
+    3.1 When users perform operations that require EOS RAMs consumption, they should purchase the required EOS RAMs by themselves.
+    3.2 The project team purchases more EOS RAMs for this DAPP system.
+
+    Which way to be used depends on the situation at that time, each way is possible.
+
+4. Environment dependency: Full node of public blockchain, Public query API service
+
+4.1 Full node of public blockchain
+    There are generally two types of nodes that make up a public blockchain network: full nodes and light nodes. The difference between the two is that the full node saves all historical block data from the genesis block to the latest block. The light node may only save the blocks in the most recent period, but not all the historical blocks.
+    The data of articles, replies, pictures, and videos published by users through this DAPP system are scattered and stored in many historical blocks. If only light nodes are left running in the network of a certain public blockchain in the future, and there are no full nodes keep running, the data saved by users may be lost. Of course, this is very unlikely to happen.
+    Therefore, the data stored in the blocks of public blockchain by the user through this DAPP system will not be lost, depend on that the public blockchain must have a certain number of full nodes.
+
+4.2 Public query API service
+    The method for users to query the data stored in the blocks of public blockchain through the DAPP system is to query through the transaction hash of each transaction, and they need to use the public query API service provided by relevant nodes or service providers.
+    Users query the data stored in EOS RAM through the DAPP system, also need to use the public query API service provided by relevant nodes or service providers.
+    If there is no public query API service provided by relevant nodes or service providers, users will not be able to easily and quickly access the data in the DAPP system, but can only use the initial method to manually query through the blockchain browser. All data can be found, but the efficiency may be very low.
+
+------------------------------------------------------------------------------------------
+
+Supplementary notes to the above article:
+
+    1. The right to interpret this user agreement is owned by the project team.
+
+    2. The data stored in the EOS RAM mentioned in above article, the EOS RAM here refers to the EOS RAM owned by the EOS smart contract of this DAPP system.
+
+    3. Speak in a civilized manner and don't quarrel or swear. Don't let people after 1000 years laugh at the quality of our ancestors...
+
+    4. When selecting the ETH public chain as the storage location, assuming that a transaction sends 10008 bytes, about 10K, the amount of GAS to be consumed is: (10008+64+2+2)*68+21000=706168 GAS. Assuming that the price of each GAS is 100Gwei, the amount of ETH that this transaction needs to spend is: 100Gwei*706168=0.0706168ETH.
+
+    5. The shorter the length of the article, the less the amount of GAS consumed; the larger the length of the article, the greater the amount of GAS consumed. When a user sends a transaction, the amount of ETH to be spent displayed on the MetaMask page is calculated by consuming 1,080,000 GAS, and the actual transaction will not consume so much GAS. When a transaction is sent to the blockchain for execution, it will consume the correct amount of gas, charge the correct fee, and neither overcharge nor undercharge.
+
+------------------------------------------------------------------------------------------
+
+Supplementary notes to the above article:
+
+    The head hash of the previous version of this agreement is: ETH{0x3edc354525d91b458f3fb4e5546ca21ca9ece338ef68c71ea3150a0fe7d7b691}.
+

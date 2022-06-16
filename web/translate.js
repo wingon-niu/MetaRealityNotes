@@ -39,6 +39,7 @@ function change_lang(lang_type)
 			$("#logoff").html($.i18n.prop('logoff'));
 			$("#tab_real").html($.i18n.prop('tab_real'));
 			$("#tab_dream").html($.i18n.prop('tab_dream'));
+			$("#tab_album").html($.i18n.prop('tab_album'));
 			$("#write_an_article").html($.i18n.prop('write_an_article'));
 			$("#user_info").html($.i18n.prop('user_info'));
 			$("#category_1").html($.i18n.prop('category_1'));
@@ -101,6 +102,20 @@ function change_lang(lang_type)
 			$("#transaction_pending_info_1").html($.i18n.prop('transaction_pending_info_1'));
 			$("#transaction_pending_info_2").html($.i18n.prop('transaction_pending_info_2'));
 			$("#user_must_read_and_agreement_info").html($.i18n.prop('user_must_read_and_agreement_info'));
+			$("#link_post_picture").html($.i18n.prop('link_post_picture'));
+			$("#link_post_video").html($.i18n.prop('link_post_video'));
+			$("#link_post_audio").html($.i18n.prop('link_post_audio'));
+			$("#link_post_other_file").html($.i18n.prop('link_post_other_file'));
+			$("#span_post_item_description").html($.i18n.prop('span_post_item_description'));
+			$("#post_item").html($.i18n.prop('post_item'));
+			$("#resume_from_break_point_post_item").html($.i18n.prop('resume_from_break_point_post_item'));
+			$("#video_file").html($.i18n.prop('video_file'));
+			$("#audio_file").html($.i18n.prop('audio_file'));
+			$("#other_file").html($.i18n.prop('other_file'));
+			$("#load_file").html($.i18n.prop('load_file'));
+			$("#user_actions").html($.i18n.prop('user_actions'));
+			$("#set_as_avatar").html($.i18n.prop('set_as_avatar'));
+			$("#copy_link").html($.i18n.prop('copy_link'));
 
 			//
 

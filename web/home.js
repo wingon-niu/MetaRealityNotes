@@ -26,6 +26,12 @@ $(document).ready(function () {
 		get_home_page_articles();
 	});
 
+	$("#tab_album").on("click", function() {
+		current_note_category = "album";
+		current_article_id = 0;
+		get_home_page_album_items();
+	});
+
 	$("#article_content_div").hide();
 	$("#my_articles_div").hide();
 	$("#my_replies_div").hide();
@@ -78,6 +84,38 @@ $(document).ready(function () {
 		write_an_article_show_modal();
 	});
 
+	$("#link_post_picture").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_picture_show_modal();
+	});
+
+	$("#link_post_video").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_video_show_modal();
+	});
+
+	$("#link_post_audio").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_audio_show_modal();
+	});
+
+	$("#link_post_other_file").on("click", function() {
+		if(current_user_account === "") {
+			alert($("#please_login").html());
+			return;
+		}
+		post_other_file_show_modal();
+	});
+
 	$("#view_times_of_txn_article").on("click", function() {
 		view_times_of_txn_article();
 	});
@@ -108,6 +146,18 @@ $(document).ready(function () {
 
 	$("#resume_from_break_point_post_reply").on("click", function() {
 		resume_from_break_point_post_reply();
+	});
+
+	$("#view_times_of_txn_post_item").on("click", function() {
+		view_times_of_txn_post_item();
+	});
+
+	$("#post_item").on("click", function() {
+		post_item();
+	});
+
+	$("#resume_from_break_point_post_item").on("click", function() {
+		resume_from_break_point_post_item();
 	});
 
 	$("#create_edit_profile").on("click", function() {
@@ -151,6 +201,11 @@ $(document).ready(function () {
 		if ( ! check_eth_metamask_connected() ) return;
 	});
 
+	$("#article_in_arweave").on("click", function() {
+		$("#amount_per_trn_article").val('N/A');
+		$("#amount_per_trn_article").attr("readonly", true);
+	});
+
 	$("#reply_in_eos").on("click", function() {
 		$("#amount_per_trn_reply").val(amount_per_trn_reply_conf_eos);
 		$("#amount_per_trn_reply").attr("readonly", false);
@@ -161,6 +216,16 @@ $(document).ready(function () {
 		$("#amount_per_trn_reply").attr("readonly", true);
 		if ( ! check_eth_metamask_installed() ) return;
 		if ( ! check_eth_metamask_connected() ) return;
+	});
+
+	$("#reply_in_arweave").on("click", function() {
+		$("#amount_per_trn_reply").val('N/A');
+		$("#amount_per_trn_reply").attr("readonly", true);
+	});
+
+	$("#post_item_in_arweave").on("click", function() {
+		$("#amount_per_trn_post_item").val('N/A');
+		$("#amount_per_trn_post_item").attr("readonly", true);
 	});
 
 	$("#user_must_read").on("click", function() {
@@ -177,15 +242,22 @@ $(document).ready(function () {
 	preview_of_article_map = new Map();
 	content_of_article_map = new Map();
 	content_of_reply_map   = new Map();
+	content_of_image_map   = new Map();
 	article_user_map       = new Map();
 	reply_user_map         = new Map();
+	user_avatar_map        = new Map();
 
 	//
 
+	arweave = Arweave.init(arweave_initialisation_options);
+
 	ScatterJS.plugins( new ScatterEOS() );
+
+	init_post_item();
+
 	setTimeout(
 		function(){
 			get_home_page_articles()
-	    }, 1000
+		}, 1000
 	);
 });

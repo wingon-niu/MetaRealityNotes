@@ -9,7 +9,15 @@
 #include <vector>
 #include <string>
 
+#define  DREAM_REAL_NOTES_VERSION_DEV              // DREAM_REAL_NOTES_VERSION_DEV             or DREAM_REAL_NOTES_VERSION_PROD
+#define  DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES  // DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES or DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_NO
+
+#ifdef   DREAM_REAL_NOTES_VERSION_DEV
 #define  MAIN_SYMBOL     symbol(symbol_code("SYS"), 4)
+#else
+#define  MAIN_SYMBOL     symbol(symbol_code("EOS"), 4)
+#endif
+
 #define  ZERO_FEE        asset((int64_t)0, MAIN_SYMBOL)   // 0 EOS
 
 using namespace eosio;
@@ -49,19 +57,19 @@ public:
     ACTION canclefollow(const name& follow_user, const name& followed_user);
 
     // 发表文章
-    ACTION postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id);
+    ACTION postarticle(const name& user, const string& article_hash, const uint64_t num_of_trns, const string& content_sha3_hash, const uint8_t category, const uint8_t type, const uint8_t storage_location, const uint64_t forward_article_id);
 
     // 删除文章
     ACTION rmarticle(const name& user, const uint64_t article_id);
 
     // 发表回复
-    ACTION postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id);
+    ACTION postreply(const name& user, const string& reply_hash, const uint32_t num_of_trns, const string& content_sha3_hash, const uint8_t storage_location, const uint64_t target_article_id, const uint64_t target_reply_id);
 
     // 删除回复
     ACTION rmreply(const name& user, const uint64_t reply_id);
 
     // 上传相册条目
-    ACTION postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length);
+    ACTION postalbumitm(const name& user, const uint8_t item_type, const uint8_t storage_location, const string& description, const string& preview_head_hash, const uint64_t preview_trn_num, const uint64_t preview_length, const string& preview_sha3_hash, const string& origin_head_hash, const uint64_t origin_trn_num, const uint64_t origin_length, const string& origin_sha3_hash);
 
     // 删除相册条目
     ACTION rmalbumitem(const name& user, const uint64_t item_id);
@@ -72,10 +80,10 @@ public:
     // 设置用户头像
     ACTION setavatar(const name& user, const uint64_t avatar_album_item_id);
 
-///***
+#ifdef DREAM_REAL_NOTES_WITH_CLEAR_FUNCTION_YES
     // 清除 multi_index 中的所有数据，测试时使用，上线时去掉
     ACTION clearalldata();
-//***/
+#endif
 
 private:
 
@@ -197,6 +205,7 @@ private:
         uint64_t     article_id;
         string       article_hash;        // 文章的内容的数据的首hash
         uint64_t     num_of_trns;         // 发送文章进行的转账交易次数
+        string       content_sha3_hash;   // 文章内容的Sha3 Hash字符串，64个字节
         uint8_t      category;            // 1=现实笔记；2=梦想笔记
         uint8_t      type;                // 1=微文；    2=长文      （区别在于长文可以有标题，微文没有标题。长文与微文都没有长度限制。）
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （文章内容数据存储在哪条链上）
@@ -243,6 +252,7 @@ private:
         uint64_t     reply_id;
         string       reply_hash;          // 回复的内容的数据的首hash
         uint32_t     num_of_trns;         // 发送回复进行的转账交易次数
+        string       content_sha3_hash;   // 回复内容的Sha3 Hash字符串，64个字节
         uint8_t      storage_location;    // 1=EOS；     2=ETH；     3=BSC；    5=BTC；                    （回复内容数据存储在哪条链上）
         uint64_t     target_article_id;   // 目标文章的id。所有的回复都有一个目标文章。
         uint64_t     target_reply_id;     // 目标回复的id。回复属于一个目标文章，同时回复还可以指向一个回复，也就是对回复进行的回复。
@@ -309,9 +319,11 @@ private:
         string       preview_head_hash;   // preview 代表图片的缩略图或者视频的首画面的缩略图。
         uint64_t     preview_trn_num;
         uint64_t     preview_length;
+        string       preview_sha3_hash;   // preview的Sha3 Hash字符串，64个字节
         string       origin_head_hash;    // origin  代表图片或者视频的原始文件。
         uint64_t     origin_trn_num;
         uint64_t     origin_length;
+        string       origin_sha3_hash;    // origin的Sha3 Hash字符串，64个字节
 
         uint64_t  primary_key()       const { return item_id; }
         uint128_t by_user_item_asc()  const { return (uint128_t{user.value}<<64) + uint128_t{item_id}; }
