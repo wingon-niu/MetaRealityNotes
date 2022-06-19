@@ -90,5 +90,5 @@ function getUrlQueryVariable(variable)
 function convert_dot_to_underline(eos_name)
 {
 	let str = eos_name;
-	return str.replace(/./g, '_');
+	return str.replace(/\./g, '_');
 }
