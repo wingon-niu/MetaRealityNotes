@@ -20,7 +20,7 @@
 
 3. 系统架构
 
-(img)
+[[[DreamRealNotes:::Link###{ii:2, it:1, sl:6, ohh:~TwcWogioW1pmUgTSpfuHAL60lM9RoIuWJu6J3f2MZTE~, osh:~b19040c8035caea82682828687623ba719adcd7ff24f00c9d715ad544cefd0f0~}###DreamRealNotes:::Link]]]
 
 3.1 内容数据永久存储层和NFT本身数据永久存储层
 

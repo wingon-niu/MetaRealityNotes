@@ -20,7 +20,7 @@ This DApp system has social functions similar to Twitter. Users can post article
 
 3. System Architecture
 
-(img)
+[[[DreamRealNotes:::Link###{ii:3, it:1, sl:6, ohh:~5I-xEwbm1b292SGLxwjvbKatLnFvSPviZERJj79OnmI~, osh:~50b1840a9064fed09c7346ad7db2ea4c3b353e1b2d8d9a1edae56dbb76fa6638~}###DreamRealNotes:::Link]]]
 
 3.1 Content data permanent storage layer and NFT own data permanent storage layer
 
