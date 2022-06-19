@@ -2,7 +2,7 @@
 
 1. System Introduction
 
-DreamRealNotes DApp, a completely decentralized Web3.0 social media platform based on blockchain technology, the articles, replies, pictures, videos, audios and other data published by users can be permanently stored and exist forever.
+DreamRealNotes DApp, a completely decentralized Web3.0 social media platform, the articles, replies, pictures, videos, audios and other data published by users can be permanently stored and exist forever.
 
 2. System Features
 
@@ -20,7 +20,7 @@ This DApp system has social functions similar to Twitter. Users can post article
 
 3. System Architecture
 
-(img)
+[[[DreamRealNotes:::Link###{ii:3, it:1, sl:6, ohh:~5I-xEwbm1b292SGLxwjvbKatLnFvSPviZERJj79OnmI~, osh:~50b1840a9064fed09c7346ad7db2ea4c3b353e1b2d8d9a1edae56dbb76fa6638~}###DreamRealNotes:::Link]]]
 
 3.1 Content data permanent storage layer and NFT own data permanent storage layer
 
@@ -143,7 +143,7 @@ The main functions that this DApp system has implemented so far are:
 (2) Users can create profiles.
 (3) Users can follow other users or unfollow them, view articles published by following users, and so on.
 
-The main features that will be implemented in the next steps are as follows (Q3 2022):
+The main features that will be implemented in the next steps are as follows (Q3 and Q4 2022):
 (1) Issue incentive Token and NFT.
 (2) Realize the function of liking and rewarding articles and replies.
 (3) Realize the NFT transaction function.
