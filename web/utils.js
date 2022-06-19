@@ -85,3 +85,10 @@ function getUrlQueryVariable(variable)
 	}
 	return '';
 }
+
+// 在页面设置用户的头像时，用的是class。如果用户名带有点，就会设置失败。所以把点替换成下划线。
+function convert_dot_to_underline(eos_name)
+{
+	let str = eos_name;
+	return str.replace(/./g, '_');
+}
