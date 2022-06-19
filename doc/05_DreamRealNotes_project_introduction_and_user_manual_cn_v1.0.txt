@@ -3,7 +3,7 @@
 
 A. Project Introduction
 
-    The DreamRealNotes DApp, a completely decentralized Web3.0 social media platform based on blockchain technology. Articles, replies, pictures, videos, audios and other data published by users can be permanently stored and exist forever.
+    The DreamRealNotes DApp, a completely decentralized Web3.0 social media platform. Articles, replies, pictures, videos, audios and other data published by users can be permanently stored and exist forever.
     Users can publish articles, replies, pictures, videos, audios, etc. of any length in this DApp system.
     The above types of content posted by users automatically become a different NFT.
     This DApp system has social functions similar to Twitter. Users can post articles, post replies, forward articles, create personal profiles, follow other users, like, give rewards, and so on.
@@ -19,7 +19,7 @@ A. Project Introduction
     (2) Users can create profiles.
     (3) Users can follow other users or unfollow them, view articles published by following users, and so on.
 
-    The main functions that will be implemented in the next step are as follows (Q3 2022) :
+    The main functions that will be implemented in the next step are as follows (Q3 and Q4 2022) :
     (1) Issue incentive Token and NFT.
     (2) Realize the function of liking and rewarding articles and replies.
     (3) Realize the NFT transaction function.
@@ -28,7 +28,7 @@ A. Project Introduction
 
 A. 项目介绍
 
-    梦想现实笔记DApp，基于区块链技术实现的完全去中心化的Web3.0社交媒体平台，用户发布的文章、回复、图片、视频、音频等等数据可以永久存储、永远存在。
+    梦想现实笔记DApp，完全去中心化的Web3.0社交媒体平台，用户发布的文章、回复、图片、视频、音频等等数据可以永久存储、永远存在。
     用户可以在本DApp系统发布任意长度的文章、回复、图片、视频、音频等等。
     用户发布的以上类型的内容都自动成为一个一个互不相同的NFT。
     本DApp系统拥有和微博、推特相似的社交功能，用户可以发布文章、发布回复、转发文章、创建个人资料、关注其他用户、点赞、打赏，等等。
@@ -44,7 +44,7 @@ A. 项目介绍
     (2) 用户可以创建个人资料。
     (3) 用户可以关注别的用户或者取消关注，查看关注用户发表的文章，等等。
 
-    下一步将要实现的主要功能如下（2022年第3季度）：
+    下一步将要实现的主要功能如下（2022年第3季度和第4季度）：
     (1) 发行激励Token和NFT。
     (2) 实现对文章、回复进行点赞、打赏的功能。
     (3) 实现NFT交易功能。
