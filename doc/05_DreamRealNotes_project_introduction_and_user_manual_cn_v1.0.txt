@@ -58,31 +58,31 @@ B. 用户手册
 
 1. 访问梦想现实笔记DApp，打开链接：https://dreamrealnotes.netlify.app/home.html，进入首页，如下图所示：
 
-(Img A)
+[[[DreamRealNotes:::Link###{ii:4, it:1, sl:6, ohh:~cieZSnN4RI7DA2hEHSUJBvogLAqIXQcHNwYcJq7P6c4~, osh:~ccc00697cc45ff0820e84c0ce14ca7890607b33d0a3d0baae74b82c7208316e4~}###DreamRealNotes:::Link]]]
 
 2. Click the small icon in the upper right corner of the home page, a pop-up menu will appear, as shown below:
 
 2. 点击首页右上角的小图标，出现弹出菜单，如下图：
 
-(Img B)
+[[[DreamRealNotes:::Link###{ii:5, it:1, sl:6, ohh:~jYko78CudxRKW_UHrjbBVQuratGImZvd7sMWKUS0kYU~, osh:~3e0b793ef0abfbca7cff42e36506b42c4f2ebef309275b841fbe4b702628638b~}###DreamRealNotes:::Link]]]
 
 3. Click "EOS login" in the above picture, the Scatter login page will appear, as shown below, and then click the "Login" button to log in to your EOS account.
 
 3. 点击上图中的“EOS登录”，出现Scatter登录页面，如下图，然后点击“Login”按钮进行EOS帐户登录。
 
-(Img C)
+[[[DreamRealNotes:::Link###{ii:6, it:1, sl:6, ohh:~UcFr7gJrB_VbAlOESoP8lWps_33GoYqdeVzHzV1vvX8~, osh:~d125a6825aeeae80163709baec49f423f7a56c51d0eaa52253b4c0f5a03c2c47~}###DreamRealNotes:::Link]]]
 
 4. Click the small icon in the upper right corner of the home page, a pop-up menu will appear, click "ETH Connect MetaMask" in it, as shown in the figure below, and then confirm the connection with this DApp in MetaMask.
 
 4. 点击首页右上角的小图标，出现弹出菜单，点击里面的“ETH连接MetaMask”，如下图，然后在MetaMask中确认与本DApp进行连接。
 
-(Img D)
+[[[DreamRealNotes:::Link###{ii:7, it:1, sl:6, ohh:~0RDwSgthYdShx1UyA3S0BUcSN8d2VgWl5Ww6tLWI-08~, osh:~3ff04fdbbddfd389ca847bb72bfbfca8f022f1cdb7b2409d21344e67331da58f~}###DreamRealNotes:::Link]]]
 
 5. Click the "Write an article" button in the lower left corner of the home page, and the following window will appear:
 
 5. 点击首页左下角的“写文章”按钮，出现如下窗口：
 
-(Img E)
+[[[DreamRealNotes:::Link###{ii:8, it:1, sl:6, ohh:~5yjRD_2BE0_H-RpXA42ej1VJzPmDVx4h2zDYLxph_CQ~, osh:~76116127fb408a781ab20d16d3e4628d82e69694da5e00dccd9578f0eac20611~}###DreamRealNotes:::Link]]]
 
 6. In this window, select the article type, category, storage location, and fill in the article title and article content. Currently the storage location only supports ETH. When sending an ETH transfer transaction in the following steps, it is to transfer to the ETH account of the development team, and each transfer is 0.0005ETH (fixed value, cannot be modified, and may be adjusted in the future).
 
@@ -92,7 +92,7 @@ B. 用户手册
 
 7. 点击本窗口中的“查看交易次数”按钮，出现提示窗口：
 
-(Img F)
+[[[DreamRealNotes:::Link###{ii:9, it:1, sl:6, ohh:~Kk--jxGfAMsJuWV2_mVkes5zfq_3f9832o3zlvWYfKU~, osh:~da9bd339993bdf373b3e7fde9afd7e9e0c75d23a5cd293811a59132ce773e233~}###DreamRealNotes:::Link]]]
 
 8. The prompt in the above figure means that a total of 2 transactions need to be sent, the first one is an ETH transfer transaction, and the last one is an EOS on-chain transaction. If the displayed number is 3, it means that the first two transactions are ETH transfer transactions, and the last one is an EOS on-chain transaction. If the displayed number is 10, it means that the first 9 transactions are ETH transfer transactions, and the last one is an EOS on-chain transaction. The larger the length of the article, the higher this number will be. The current setting is that each ETH transfer transaction can send up to 3336 characters. The entire article will be automatically split into multiple parts according to this length, and each transfer transaction sends one of these parts.
 
@@ -102,19 +102,19 @@ B. 用户手册
 
 9. 在第5步的弹出窗口中点击“发送”按钮，开始进行文章发送，会弹出MetaMask交易界面，如下图：
 
-(Img G)
+[[[DreamRealNotes:::Link###{ii:10, it:1, sl:6, ohh:~sQ2I70S832WEIvS_2oQErN_m7KpwUhg5y-NuqBTVUYE~, osh:~277e53ea5e1ffc1d33f64050f6fd77694703f8804795f572628700e3e058fdb7~}###DreamRealNotes:::Link]]]
 
 10. Click the "Edit" button in this interface, the following interface will appear, select the priority as high, which can speed up the execution and confirmation of the transaction, and then click the "Save" button.
 
 10. 在本界面中点击“编辑”按钮，出现如下界面，选择优先级为高，这样可以加快交易的执行和确认速度，然后点击“保存”按钮。
 
-(Img H)
+[[[DreamRealNotes:::Link###{ii:11, it:1, sl:6, ohh:~3ZZpEKOBcgqLn8Dwt7uMxuE4POPrpuFs5E7u1Do045M~, osh:~b7c17cda72783b7453c1fff8f90958dedb06e8f45bf9fa001b7571f7e56159bb~}###DreamRealNotes:::Link]]]
 
 11. After the previous operation, it will automatically return to the previous interface, as shown in the figure below, click the "Confirm" button to send the ETH transfer transaction.
 
 11. 上一步操作后，自动返回上一个界面，如下图，点“确认”按钮，发送ETH转账交易。
 
-(Img I)
+[[[DreamRealNotes:::Link###{ii:12, it:1, sl:6, ohh:~FUTPS6jIJSCbBw_s98XuOZjViNFEBBRS8AzjRtjasHQ~, osh:~01ff7acb60e24edfecef5a20f2b0691f1bfd39935ddb480c532feef4d6c49beb~}###DreamRealNotes:::Link]]]
 
 12. If the article is long and you need to send multiple ETH transfer transactions, the DApp will automatically pop up the interface for each ETH transfer transaction, just follow the above method to send the transaction.
 
@@ -124,13 +124,13 @@ B. 用户手册
 
 13. 当所有的ETH转账交易都发送完毕后，DApp会自动弹出EOS上链交易的Scatter授权界面，如下图：
 
-(Img J)
+[[[DreamRealNotes:::Link###{ii:13, it:1, sl:6, ohh:~506vT2gc4aot5aeVG-jxEzNiaIlrVty2lgZbmnOJAWE~, osh:~5b00a18a37be5fce8fbefe9fd3d0062b7ab40d9d81c474ad87eac126dadf0116~}###DreamRealNotes:::Link]]]
 
 14. You can click the "Details" tab in the image above to view the details of the transaction, as shown below:
 
 14. 可以点击上图中的“Details”页签，查看交易的细节，如下图：
 
-(Img K)
+[[[DreamRealNotes:::Link###{ii:14, it:1, sl:6, ohh:~kfXlTEM9XsQb8G8JOgqC6m0_eDLOTRvtf3lK03KMnR8~, osh:~dadd5aa4253666799fa1192c28b9c26d8f41cc7bec9158cbd24317869ac59864~}###DreamRealNotes:::Link]]]
 
 15. Click the "Sign" button in the image above to authorize.
 
@@ -140,7 +140,7 @@ B. 用户手册
 
 16. 授权完毕后，会弹出如下提示窗口，表示交易全部发送完成，点“确定”按钮。
 
-(Img L)
+[[[DreamRealNotes:::Link###{ii:15, it:1, sl:6, ohh:~6O0ikjzVoQOqfrFBfpAWXHFsUn4Y_kzEmp3730un8Ug~, osh:~367f86ecd83895544c28912c4dbf1f6e1f152b9be6a12adafd303b3f01d9b852~}###DreamRealNotes:::Link]]]
 
 17. If there is a transaction failure error message during the process of sending the transaction, such as insufficient ETH balance, insufficient EOS CPU resources, etc., do not refresh the DApp page at this time, but use another wallet or tool to solve the error in the error prompt. Once the error is solved, then click the "Resume from break point" button on the DApp page to continue sending the transaction from the place where the error occurred.
 
@@ -150,13 +150,13 @@ B. 用户手册
 
 18. 所有交易成功发送完毕后，稍等几分钟，在DApp首页点击顶部的另一个Tab页，然后再点击回来，这样可以刷新现实笔记和梦想笔记中的文章列表。在对应的Tab页中就可以看到刚才发布的新文章了。如下图：
 
-(Img M)
+[[[DreamRealNotes:::Link###{ii:16, it:1, sl:6, ohh:~-9_j2ohPN0OE9mTGpvr9unLSaNPgWYKx5e5pnbDRcAo~, osh:~4908da55b68da78eb8d1fa265d3fd828ddc0fa1a1036be35235bd904efc50d59~}###DreamRealNotes:::Link]]]
 
 19. You can go to the ETH blockchain browser to verify whether the content of the article is stored in ETH. Click the article id above the article preview in the image above, and a prompt box will pop up, as shown below:
 
 19. 可以到ETH区块链浏览器验证一下文章内容是否存储到ETH上了。点击上图中文章预览上方的文章id，弹出提示框，如下图：
 
-(Img N)
+[[[DreamRealNotes:::Link###{ii:17, it:1, sl:6, ohh:~4KttiefHwZNvEZYtpIYwBwVFqmsUf-Vj-F8cyqc1fc4~, osh:~d9b2fa3d296a0bf0c90dc526113e07b38af568ed50a53155dfd51c321a2908b5~}###DreamRealNotes:::Link]]]
 
 20. Double-click the long hash string displayed in the above prompt box with the mouse to select the hash string and copy it to the clipboard. Note that there may be a bug in Google Chrome. Sometimes when you double-click the hash string with the mouse, it shows that the hash string is not completely selected, only a part of it is selected, and some letters are not selected. If this is the case, ignore it, the hash string has been completely and correctly selected.
 
@@ -166,8 +166,9 @@ B. 用户手册
 
 21. 访问ETH区块链浏览器，链接为：https://etherscan.io，将上一步复制的hash字符串粘贴进搜索框，进行搜索，出现如下页面：
 
-(Img O)
-(Img P)
+[[[DreamRealNotes:::Link###{ii:18, it:1, sl:6, ohh:~INva9V7DsQNpU8jUT0xXkD93VPbAu1rqPWaNW5dwFXg~, osh:~24cc10229dab6591e153da1ce145c0f729c56b9302532d48cca1462bd2bd60cd~}###DreamRealNotes:::Link]]]
+
+[[[DreamRealNotes:::Link###{ii:19, it:1, sl:6, ohh:~17o1GL5aRztezFS7c54JyBi_SGFqRxBPp6OoTMxTimU~, osh:~dab49801fa0dc47f4835599c896258e3c480575108776378580b8ceb039e4c57~}###DreamRealNotes:::Link]]]
 
 22. In the Input Data section at the bottom of the page, select "View As UTF8" to see the content of the article. If the {} at the beginning contains a hash string, continue to search for the hash string, and the next part of the article will be searched. Repeat this process until you find one starting with {}, then this is the last part of the article.
 
