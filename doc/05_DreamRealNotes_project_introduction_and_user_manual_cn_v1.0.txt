@@ -1,30 +1,4 @@
-          DreamRealNotes Project Introduction and User Manual v1.0
           梦想现实笔记项目介绍和用户手册 v1.0
-
-A. Project Introduction
-
-    The DreamRealNotes DApp, a completely decentralized Web3.0 social media platform. Articles, replies, pictures, videos, audios and other data published by users can be permanently stored and exist forever.
-    Users can publish articles, replies, pictures, videos, audios, etc. of any length in this DApp system.
-    The above types of content posted by users automatically become a different NFT.
-    This DApp system has social functions similar to Twitter. Users can post articles, post replies, forward articles, create personal profiles, follow other users, like, give rewards, and so on.
-
-    DApp website:     https://dreamrealnotes.netlify.app/home.html
-
-    This DApp system needs to use the three blockchains of ETH, Arweave, and EOS at the same time. Among them, ETH and Arweave are responsible for storing the content data of articles, pictures, videos, and audios, and the EOS smart contract is responsible for storing their catalog and index data.
-    When using the mobile wallet App to access this DApp system, you can only perform browsing and viewing operations, and cannot perform other operations. Because the existing mobile wallet App does not support operations on multiple blockchains at the same time.
-    In order to use the full functionality of this DApp system, it is recommended to use a personal computer, Google Chrome, MetaMask plug-in wallet, ArConnect plug-in wallet, and Scatter desktop wallet.
-
-    The main functions that this DApp system has implemented so far are:
-    (1) Users can post articles, replies, pictures, videos, and audios.
-    (2) Users can create profiles.
-    (3) Users can follow other users or unfollow them, view articles published by following users, and so on.
-
-    The main functions that will be implemented in the next step are as follows (Q3 and Q4 2022) :
-    (1) Issue incentive Token and NFT.
-    (2) Realize the function of liking and rewarding articles and replies.
-    (3) Realize the NFT transaction function.
-
-------------------------------
 
 A. 项目介绍
 
@@ -49,120 +23,77 @@ A. 项目介绍
     (2) 实现对文章、回复进行点赞、打赏的功能。
     (3) 实现NFT交易功能。
 
-------------------------------
 
-B. User Manual
+
 B. 用户手册
-
-1. Visit the DreamRealNotes DApp, open the link: https://dreamrealnotes.netlify.app/home.html, enter the home page, as shown in the figure below:
 
 1. 访问梦想现实笔记DApp，打开链接：https://dreamrealnotes.netlify.app/home.html，进入首页，如下图所示：
 
 [[[DreamRealNotes:::Link###{ii:4, it:1, sl:6, ohh:~cieZSnN4RI7DA2hEHSUJBvogLAqIXQcHNwYcJq7P6c4~, osh:~ccc00697cc45ff0820e84c0ce14ca7890607b33d0a3d0baae74b82c7208316e4~}###DreamRealNotes:::Link]]]
 
-2. Click the small icon in the upper right corner of the home page, a pop-up menu will appear, as shown below:
-
 2. 点击首页右上角的小图标，出现弹出菜单，如下图：
 
 [[[DreamRealNotes:::Link###{ii:5, it:1, sl:6, ohh:~jYko78CudxRKW_UHrjbBVQuratGImZvd7sMWKUS0kYU~, osh:~3e0b793ef0abfbca7cff42e36506b42c4f2ebef309275b841fbe4b702628638b~}###DreamRealNotes:::Link]]]
-
-3. Click "EOS login" in the above picture, the Scatter login page will appear, as shown below, and then click the "Login" button to log in to your EOS account.
 
 3. 点击上图中的“EOS登录”，出现Scatter登录页面，如下图，然后点击“Login”按钮进行EOS帐户登录。
 
 [[[DreamRealNotes:::Link###{ii:6, it:1, sl:6, ohh:~UcFr7gJrB_VbAlOESoP8lWps_33GoYqdeVzHzV1vvX8~, osh:~d125a6825aeeae80163709baec49f423f7a56c51d0eaa52253b4c0f5a03c2c47~}###DreamRealNotes:::Link]]]
 
-4. Click the small icon in the upper right corner of the home page, a pop-up menu will appear, click "ETH Connect MetaMask" in it, as shown in the figure below, and then confirm the connection with this DApp in MetaMask.
-
 4. 点击首页右上角的小图标，出现弹出菜单，点击里面的“ETH连接MetaMask”，如下图，然后在MetaMask中确认与本DApp进行连接。
 
 [[[DreamRealNotes:::Link###{ii:7, it:1, sl:6, ohh:~0RDwSgthYdShx1UyA3S0BUcSN8d2VgWl5Ww6tLWI-08~, osh:~3ff04fdbbddfd389ca847bb72bfbfca8f022f1cdb7b2409d21344e67331da58f~}###DreamRealNotes:::Link]]]
-
-5. Click the "Write an article" button in the lower left corner of the home page, and the following window will appear:
 
 5. 点击首页左下角的“写文章”按钮，出现如下窗口：
 
 [[[DreamRealNotes:::Link###{ii:8, it:1, sl:6, ohh:~5yjRD_2BE0_H-RpXA42ej1VJzPmDVx4h2zDYLxph_CQ~, osh:~76116127fb408a781ab20d16d3e4628d82e69694da5e00dccd9578f0eac20611~}###DreamRealNotes:::Link]]]
 
-6. In this window, select the article type, category, storage location, and fill in the article title and article content. Currently the storage location only supports ETH. When sending an ETH transfer transaction in the following steps, it is to transfer to the ETH account of the development team, and each transfer is 0.0005ETH (fixed value, cannot be modified, and may be adjusted in the future).
-
 6. 在本窗口中选择文章类型、类别、存储位置，填写文章标题、文章内容。目前存储位置只支持ETH。在后面的步骤中发送ETH转账交易时，是向开发团队的ETH账号进行转账，每次转账0.0005ETH（固定值，不可修改，未来可能会调整）。
-
-7. Click the "View number of txns" button in this window, and a prompt window will appear:
 
 7. 点击本窗口中的“查看交易次数”按钮，出现提示窗口：
 
 [[[DreamRealNotes:::Link###{ii:9, it:1, sl:6, ohh:~Kk--jxGfAMsJuWV2_mVkes5zfq_3f9832o3zlvWYfKU~, osh:~da9bd339993bdf373b3e7fde9afd7e9e0c75d23a5cd293811a59132ce773e233~}###DreamRealNotes:::Link]]]
 
-8. The prompt in the above figure means that a total of 2 transactions need to be sent, the first one is an ETH transfer transaction, and the last one is an EOS on-chain transaction. If the displayed number is 3, it means that the first two transactions are ETH transfer transactions, and the last one is an EOS on-chain transaction. If the displayed number is 10, it means that the first 9 transactions are ETH transfer transactions, and the last one is an EOS on-chain transaction. The larger the length of the article, the higher this number will be. The current setting is that each ETH transfer transaction can send up to 3336 characters. The entire article will be automatically split into multiple parts according to this length, and each transfer transaction sends one of these parts.
-
 8. 上图的提示意思是总共需要发送2次交易，前面1次是ETH转账交易，最后1次是EOS上链交易。如果显示的数字是3，则表示前面2次是ETH转账交易，最后1次是EOS上链交易。如果显示的数字是10，则表示前面9次是ETH转账交易，最后1次是EOS上链交易。文章的长度越大，这个数字就越大。目前的设置是每次ETH转账交易最多可以发送3336个汉字。整篇文章会自动按照这个长度拆分成多个部分，每个转账交易发送其中的一个部分。
-
-9. Click the "Post" button in the window in step 5 to start sending the article, and the MetaMask trading interface will pop up, as shown below:
 
 9. 在第5步的弹出窗口中点击“发送”按钮，开始进行文章发送，会弹出MetaMask交易界面，如下图：
 
 [[[DreamRealNotes:::Link###{ii:10, it:1, sl:6, ohh:~sQ2I70S832WEIvS_2oQErN_m7KpwUhg5y-NuqBTVUYE~, osh:~277e53ea5e1ffc1d33f64050f6fd77694703f8804795f572628700e3e058fdb7~}###DreamRealNotes:::Link]]]
 
-10. Click the "Edit" button in this interface, the following interface will appear, select the priority as high, which can speed up the execution and confirmation of the transaction, and then click the "Save" button.
-
 10. 在本界面中点击“编辑”按钮，出现如下界面，选择优先级为高，这样可以加快交易的执行和确认速度，然后点击“保存”按钮。
 
 [[[DreamRealNotes:::Link###{ii:11, it:1, sl:6, ohh:~3ZZpEKOBcgqLn8Dwt7uMxuE4POPrpuFs5E7u1Do045M~, osh:~b7c17cda72783b7453c1fff8f90958dedb06e8f45bf9fa001b7571f7e56159bb~}###DreamRealNotes:::Link]]]
-
-11. After the previous operation, it will automatically return to the previous interface, as shown in the figure below, click the "Confirm" button to send the ETH transfer transaction.
 
 11. 上一步操作后，自动返回上一个界面，如下图，点“确认”按钮，发送ETH转账交易。
 
 [[[DreamRealNotes:::Link###{ii:12, it:1, sl:6, ohh:~FUTPS6jIJSCbBw_s98XuOZjViNFEBBRS8AzjRtjasHQ~, osh:~01ff7acb60e24edfecef5a20f2b0691f1bfd39935ddb480c532feef4d6c49beb~}###DreamRealNotes:::Link]]]
 
-12. If the article is long and you need to send multiple ETH transfer transactions, the DApp will automatically pop up the interface for each ETH transfer transaction, just follow the above method to send the transaction.
-
 12. 如果文章比较长，需要发送多次ETH转账交易，DApp会自动弹出每笔ETH转账交易的界面，只需按照如上的方法发送交易即可。
-
-13. When all ETH transfer transactions are sent, the DApp will automatically pop up the Scatter authorization interface for EOS on-chain transaction, as shown below:
 
 13. 当所有的ETH转账交易都发送完毕后，DApp会自动弹出EOS上链交易的Scatter授权界面，如下图：
 
 [[[DreamRealNotes:::Link###{ii:13, it:1, sl:6, ohh:~506vT2gc4aot5aeVG-jxEzNiaIlrVty2lgZbmnOJAWE~, osh:~5b00a18a37be5fce8fbefe9fd3d0062b7ab40d9d81c474ad87eac126dadf0116~}###DreamRealNotes:::Link]]]
 
-14. You can click the "Details" tab in the image above to view the details of the transaction, as shown below:
-
 14. 可以点击上图中的“Details”页签，查看交易的细节，如下图：
 
 [[[DreamRealNotes:::Link###{ii:14, it:1, sl:6, ohh:~kfXlTEM9XsQb8G8JOgqC6m0_eDLOTRvtf3lK03KMnR8~, osh:~dadd5aa4253666799fa1192c28b9c26d8f41cc7bec9158cbd24317869ac59864~}###DreamRealNotes:::Link]]]
 
-15. Click the "Sign" button in the image above to authorize.
-
 15. 点击上图中的“Sign”按钮，进行授权。
-
-16. After the authorization is completed, the following prompt window will pop up, indicating that all transactions have been sent, click the "OK" button.
 
 16. 授权完毕后，会弹出如下提示窗口，表示交易全部发送完成，点“确定”按钮。
 
 [[[DreamRealNotes:::Link###{ii:15, it:1, sl:6, ohh:~6O0ikjzVoQOqfrFBfpAWXHFsUn4Y_kzEmp3730un8Ug~, osh:~367f86ecd83895544c28912c4dbf1f6e1f152b9be6a12adafd303b3f01d9b852~}###DreamRealNotes:::Link]]]
 
-17. If there is a transaction failure error message during the process of sending the transaction, such as insufficient ETH balance, insufficient EOS CPU resources, etc., do not refresh the DApp page at this time, but use another wallet or tool to solve the error in the error prompt. Once the error is solved, then click the "Resume from break point" button on the DApp page to continue sending the transaction from the place where the error occurred.
-
 17. 如果在发送交易的过程中出现交易失败的错误提示，比如ETH余额不足、EOS的CPU资源不足等等，此时不要刷新DApp页面，而是使用别的钱包或者工具，将错误提示中的错误解决掉，然后点击DApp页面中的“断点续传”按钮，就可以从发生错误的地方继续进行交易的发送。
-
-18. After all transactions are successfully sent, wait for a few minutes, click another Tab page at the top of the DApp home page, and then click back, which can refresh the list of articles in the Real Notes and Dream Notes. In the corresponding Tab page, you can see the new article just published. As shown below:
 
 18. 所有交易成功发送完毕后，稍等几分钟，在DApp首页点击顶部的另一个Tab页，然后再点击回来，这样可以刷新现实笔记和梦想笔记中的文章列表。在对应的Tab页中就可以看到刚才发布的新文章了。如下图：
 
 [[[DreamRealNotes:::Link###{ii:16, it:1, sl:6, ohh:~-9_j2ohPN0OE9mTGpvr9unLSaNPgWYKx5e5pnbDRcAo~, osh:~4908da55b68da78eb8d1fa265d3fd828ddc0fa1a1036be35235bd904efc50d59~}###DreamRealNotes:::Link]]]
 
-19. You can go to the ETH blockchain browser to verify whether the content of the article is stored in ETH. Click the article id above the article preview in the image above, and a prompt box will pop up, as shown below:
-
 19. 可以到ETH区块链浏览器验证一下文章内容是否存储到ETH上了。点击上图中文章预览上方的文章id，弹出提示框，如下图：
 
 [[[DreamRealNotes:::Link###{ii:17, it:1, sl:6, ohh:~4KttiefHwZNvEZYtpIYwBwVFqmsUf-Vj-F8cyqc1fc4~, osh:~d9b2fa3d296a0bf0c90dc526113e07b38af568ed50a53155dfd51c321a2908b5~}###DreamRealNotes:::Link]]]
 
-20. Double-click the long hash string displayed in the above prompt box with the mouse to select the hash string and copy it to the clipboard. Note that there may be a bug in Google Chrome. Sometimes when you double-click the hash string with the mouse, it shows that the hash string is not completely selected, only a part of it is selected, and some letters are not selected. If this is the case, ignore it, the hash string has been completely and correctly selected.
-
 20. 在上面的提示框中用鼠标双击显示的长长的hash字符串，就可以选中这个hash字符串，然后复制到剪贴板。注意，这里可能有个谷歌浏览器的bug，有时候用鼠标双击hash字符串的时候，显示出hash字符串没有被完全选中，只选中了一部分，有几个字母没有被选中。如果遇到这种情况，不用理会，hash字符串已经被完全并且正确选中了。
-
-21. Visit the ETH blockchain browser, the link is: https://etherscan.io, paste the hash string copied in the previous step into the search box, search, and the following page appears:
 
 21. 访问ETH区块链浏览器，链接为：https://etherscan.io，将上一步复制的hash字符串粘贴进搜索框，进行搜索，出现如下页面：
 
@@ -170,26 +101,15 @@ B. 用户手册
 
 [[[DreamRealNotes:::Link###{ii:19, it:1, sl:6, ohh:~17o1GL5aRztezFS7c54JyBi_SGFqRxBPp6OoTMxTimU~, osh:~dab49801fa0dc47f4835599c896258e3c480575108776378580b8ceb039e4c57~}###DreamRealNotes:::Link]]]
 
-22. In the Input Data section at the bottom of the page, select "View As UTF8" to see the content of the article. If the {} at the beginning contains a hash string, continue to search for the hash string, and the next part of the article will be searched. Repeat this process until you find one starting with {}, then this is the last part of the article.
-
 22. 在页面底部的Input Data部分，选择“View As UTF8”，就可以看到文章的内容。如果开头的{}中含有一个hash字符串，则继续搜索这个hash字符串，将会搜索到文章的下一部分。重复这个过程，直到搜索到一个以{}开头的，那么这个就是文章的最后一部分。
-
-23. In the Gas Limit & Usage by Txn section, you can see the actual amount of Gas consumed by the transaction, which is only about 25% of the estimated amount in article "Must Read and Agreement for Community Users".
 
 23. 在Gas Limit & Usage by Txn部分，可以看到交易实际消耗的Gas数量，只有“社区用户必读和用户协议”这篇文章中估算的25%左右。
 
-24. At this point, the verification is completed, and the content of the article has indeed been stored in the ETH block.
-
 24. 到此，验证完毕，文章内容确实被存储进了ETH的区块之中。
-
-25. If the user chooses another storage location when sending the article, the operation process is basically the same.
 
 25. 如果用户在发送文章时选择的是其它的存储位置，操作过程基本上是一样的。
 
-C. Notes on Using ArConnect Wallet
 
-    ArConnect is a Google Chrome plug-in wallet for the Arweave blockchain. The installation and use method is similar to MetaMask. One difference is that when using the ArConnect wallet to send transactions, it should be noted that the user does not need to click an authorization or confirmation button for each transaction to be sent.
-    When users use this DApp system to upload articles, pictures, videos, audios, etc. to the Arweave blockchain, the confirmation window of ArConnect may not pop up after clicking the post button. At this point, please wait patiently for a while. When ArConnect completes the transaction signature and sends the transaction, the entire posting process will continue automatically.
 
 C. 关于使用ArConnect钱包的注意事项
 
