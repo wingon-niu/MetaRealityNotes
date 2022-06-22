@@ -1,0 +1,25 @@
+在文章或者回复中显示图片/视频/音频的示例
+
+发送方法：
+
+1. 将图片/视频/音频上传到相册里面。
+
+2. 在相册里面复制图片/视频/音频的链接。
+
+3. 将链接粘贴到文章或者回复中。
+
+4. 发送文章或者回复。
+
+5. 完成。
+
+
+图片示例：海滨风景 （82KB）
+[[[DreamRealNotes:::Link###{ii:29, it:1, sl:6, ohh:~vRn_UuZaOMiNoaD3vjTlJwUz3pWCs0SaNvTW3t7De50~, osh:~b17f961dc5a2ae45fa79a86138d610c0b4f6885502f139deaca36ca5159bfe9f~}###DreamRealNotes:::Link]]]
+
+视频示例：熊猫玩耍 （26MB）
+[[[DreamRealNotes:::Link###{ii:30, it:2, sl:6, ohh:~7aX5N_BNR4zfBmDGk4J4-xp0DkhkPZemDCPskVq6foI~, osh:~019a9b29057f03c41152fa221b813f1c554c39d616bc8fccf54f53153b5fd29b~}###DreamRealNotes:::Link]]]
+
+音频示例：简单音频 （260KB）
+[[[DreamRealNotes:::Link###{ii:27, it:3, sl:6, ohh:~Fw9pi5C7YiFSD3FfdrbqEnLWZwO7ZeIkLZ2uzo_EhBQ~, osh:~7ae6ea7bc6b8eb311efe0bb20fb701bbaafa059911cd48dd0f4c58c11faf6b82~}###DreamRealNotes:::Link]]]
+
+
