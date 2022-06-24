@@ -12640,7 +12640,7 @@ tbody.am-collapse.am-in {
   transition: all .3s;
 }
 .am-menu-offcanvas1 .am-menu-nav > .am-parent > a:after {
-  content: "\f104";
+  content: "\f105";
   position: absolute;
   right: 1.5rem;
   top: 1.3rem;
