@@ -72,8 +72,8 @@ var articles_array = [0];    // 数组，保存所有打开的文章的ID，因�
 
 const storage_locations = ['WHO', 'EOS', 'ETH', 'BSC', 'HECO', 'BTC', 'Arweave'];
 
-var items_per_page       = 10; // 每页显示数量
-var album_items_per_page = 10; // 相册条目每页显示数量
+var items_per_page       = 20; // 每页显示数量
+var album_items_per_page = 20; // 相册条目每页显示数量
 
 var   preview_of_article_map = null;
 var   content_of_article_map = null;
