@@ -79,6 +79,8 @@ function view_times_of_txn_article()
 
 function post_article()
 {
+	if (! confirm($("#post_confirm").html()) ) return;
+
 	post_article_first_time = true;
 	do_post_article();
 }

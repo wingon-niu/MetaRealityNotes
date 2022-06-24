@@ -121,6 +121,7 @@ function change_lang(lang_type)
 			$("#project_introduction_and_user_manual").html($.i18n.prop('project_introduction_and_user_manual'));
 			$("#technical_implementation_principle").html($.i18n.prop('technical_implementation_principle'));
 			$("#management_operations").html($.i18n.prop('management_operations'));
+			$("#post_confirm").html($.i18n.prop('post_confirm'));
 
 			//
 
