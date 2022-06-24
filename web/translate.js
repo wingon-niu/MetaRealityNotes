@@ -116,6 +116,11 @@ function change_lang(lang_type)
 			$("#user_actions").html($.i18n.prop('user_actions'));
 			$("#set_as_avatar").html($.i18n.prop('set_as_avatar'));
 			$("#copy_link").html($.i18n.prop('copy_link'));
+			$("#directions_documents").html($.i18n.prop('directions_documents'));
+			$("#project_white_paper").html($.i18n.prop('project_white_paper'));
+			$("#project_introduction_and_user_manual").html($.i18n.prop('project_introduction_and_user_manual'));
+			$("#technical_implementation_principle").html($.i18n.prop('technical_implementation_principle'));
+			$("#management_operations").html($.i18n.prop('management_operations'));
 
 			//
 
