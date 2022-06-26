@@ -274,6 +274,10 @@ $(document).ready(function () {
 
 	init_post_item();
 
+	$("#div_article_posting").hide();
+	$("#div_reply_posting").hide();
+	$("#div_item_posting").hide();
+
 	setTimeout(
 		function(){
 			get_home_page_articles()
