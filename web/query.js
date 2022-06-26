@@ -191,10 +191,10 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			// 以下逐个查询文章预览
 			for (i = 0; i < len; i++) {
 				if (preview_of_article_map.has(resp.rows[i].article_id)) {
-					console.log("article preview get");
+					//console.log("article preview get");
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(preview_of_article_map.get(resp.rows[i].article_id)));
 				} else {
-					console.log("article preview no get");
+					//console.log("article preview no get");
 					let memo        = '';
 					let next_hash   = '';
 					let content     = '';
@@ -360,13 +360,13 @@ function show_article_content_div(article_id)
 				// 以下查询文章的全文，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
 					if (content_of_article_map.has(resp.rows[i].article_id)) {
-						console.log("article get");
+						//console.log("article get");
 						let ec_content = my_escapeHTML(content_of_article_map.get(resp.rows[i].article_id));
 						let content_1  = content_process_1(ec_content);
 						$(".content_of_article_" + resp.rows[i].article_id).html(content_1);
 						let str2 = await content_process_2(ec_content);
 					} else {
-						console.log("article no get");
+						//console.log("article no get");
 						let memo        = '';
 						let next_hash   = '';
 						let content     = '';
