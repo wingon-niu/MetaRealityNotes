@@ -165,7 +165,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				articles = articles + '<div><table width="100%" border="0">';
 				articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + convert_dot_to_underline(resp.rows[i].user) + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 				articles = articles + '<tr>' + '<td>' + f + '<pre class="preview_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
-				articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="copy_article_link_to_clipboard(' + resp.rows[i].article_id + ');">' + $("#copy_link_only").html() + '</a>&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+				articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="copy_article_link_to_clipboard(' + resp.rows[i].article_id + ');">' + $("#copy_link_only").html() + '</a>&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;</td>' + '</tr>';
 				articles = articles + '</table></div><hr />';
 			}
 			// 下一页
@@ -347,7 +347,7 @@ function show_article_content_div(article_id)
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + convert_dot_to_underline(resp.rows[i].user) + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 					articles = articles + '<tr>' + '<td>' + f + '<div class="content_of_article_' + resp.rows[i].article_id + '" style="border:1px solid #B6B6B6;">&nbsp;</div></td>' + '</tr>';
-					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" onclick="copy_article_link_to_clipboard(' + resp.rows[i].article_id + ');">' + $("#copy_link_only").html() + '</a>&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;<a href="##" onclick="copy_article_link_to_clipboard(' + resp.rows[i].article_id + ');">' + $("#copy_link_only").html() + '</a>&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
 				// 将文章的基本信息赋值过去
@@ -853,6 +853,12 @@ function switch_and_get_user_articles(user)
 
 function copy_article_link_to_clipboard(article_id)
 {
+	$('#div_copy_article_link').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
+
 	if (get_cookie('i18n_lang') === "zh") {
 		$("#span_the_link_of_article_is").html("文章的链接为：");
 		$("#span_the_link_of_article_has_been_copied_to_the_clipboard").html("已经复制到剪贴板。");
@@ -869,14 +875,9 @@ function copy_article_link_to_clipboard(article_id)
 	if (str_tmp.indexOf('?') >= 0) {
 		str_tmp = str_tmp.slice(0, str_tmp.indexOf('?'));
 	}
+
 	str_tmp = str_tmp + '?article=' + article_id;
 	$("#input_the_link_of_article").val(str_tmp);
 	$("#input_the_link_of_article").select();
 	document.execCommand("Copy");
-
-	$('#div_copy_article_link').modal({
-		relatedTarget: this,
-		onCancel: function() {},
-		onConfirm: function() {}
-	});
 }
