@@ -357,7 +357,7 @@ function get_user_avatar(user)
 							reverse: false,
 							show_payer: false					
 						});
-						if ( resp.rows.length === 1 && resp.rows[0].item_id === img_id && resp.rows[0].item_type === 1 ) {
+						if ( resp.rows.length === 1 && resp.rows[0].item_id === img_id && resp.rows[0].item_type === 1 && resp.rows[0].origin_length <= 819200 ) {  // 头像图片必须小于800KB
 							let memo        = '';
 							let next_hash   = '';
 							let content     = '';
