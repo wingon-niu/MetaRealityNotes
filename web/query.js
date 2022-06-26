@@ -191,9 +191,10 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			// 以下逐个查询文章预览
 			for (i = 0; i < len; i++) {
 				if (preview_of_article_map.has(resp.rows[i].article_id)) {
+					console.log("article preview get");
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(preview_of_article_map.get(resp.rows[i].article_id)));
-					//console.log("get");
 				} else {
+					console.log("article preview no get");
 					let memo        = '';
 					let next_hash   = '';
 					let content     = '';
@@ -214,7 +215,6 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 								tmp_hash = next_hash;
 								transaction = await rpc.history_get_transaction(next_hash);
 								memo = transaction.trx.trx.actions[0].data.memo;
-								//content = '        ' + content + '\n';                                  // 修改了发送时的处理逻辑，此处无需操作。
 								content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
 							}
 						}
@@ -256,7 +256,6 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 					}
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 					preview_of_article_map.set(resp.rows[i].article_id, content);
-					//console.log("no get");
 				}
 			}
 			// 以下逐个查询文章的用户头像
@@ -361,20 +360,19 @@ function show_article_content_div(article_id)
 				// 以下查询文章的全文，实际只有一条记录，循环只会执行一次
 				for (i = 0; i < len; i++) {
 					if (content_of_article_map.has(resp.rows[i].article_id)) {
-						//console.log("article get");
+						console.log("article get");
 						let ec_content = my_escapeHTML(content_of_article_map.get(resp.rows[i].article_id));
 						let content_1  = content_process_1(ec_content);
 						$(".content_of_article_" + resp.rows[i].article_id).html(content_1);
 						let str2 = await content_process_2(ec_content);
 					} else {
-						//console.log("article no get");
+						console.log("article no get");
 						let memo        = '';
 						let next_hash   = '';
 						let content     = '';
 						let transaction = null;
 						if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
 							next_hash      = resp.rows[i].article_hash;
-							let first_loop = true;
 							try {
 								do {
 									transaction = await rpc.history_get_transaction(next_hash);
@@ -386,10 +384,6 @@ function show_article_content_div(article_id)
 										next_hash = '';
 									}
 									content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-									if (resp.rows[i].type === 2 && first_loop) {                              // 长文
-										//content = '        ' + content + '\n';                              // 修改了发送时的处理逻辑，此处无需操作。
-									}
-									first_loop = false;
 								} while (next_hash != '');
 							}
 							catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
