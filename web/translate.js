@@ -123,6 +123,7 @@ function change_lang(lang_type)
 			$("#management_operations").html($.i18n.prop('management_operations'));
 			$("#post_confirm").html($.i18n.prop('post_confirm'));
 			$("#copy_link_only").html($.i18n.prop('copy_link_only'));
+			$("#settings").html($.i18n.prop('settings'));
 
 			//
 

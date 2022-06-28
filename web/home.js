@@ -252,6 +252,11 @@ $(document).ready(function () {
 		else                                  show_article_content_div(2);
 	});
 
+	$("#settings").on("click", function() {
+		$("#menu_body").offCanvas('close');
+		edit_settings();
+	});
+
 	articles_array        = [0];
 	current_article_id    = 0;
 	doc_scroll_top        = 0;
@@ -273,6 +278,7 @@ $(document).ready(function () {
 	ScatterJS.plugins( new ScatterEOS() );
 
 	init_post_item();
+	init_settings();
 
 	$("#div_article_posting").hide();
 	$("#div_reply_posting").hide();
