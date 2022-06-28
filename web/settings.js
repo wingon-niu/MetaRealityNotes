@@ -79,32 +79,32 @@ function edit_settings()
 
 function do_edit_settings()
 {
-	let article_num = Number($("#input_article_num_per_page").val(article_num_per_page));
-	let reply_num   = Number($("#input_reply_num_per_page").val(reply_num_per_page));
-	let user_num    = Number($("#input_user_num_per_page").val(user_num_per_page));
-	let item_num    = Number($("#input_item_num_per_page").val(item_num_per_page));
+	let article_num = Math.floor(Number($("#input_article_num_per_page").val()));
+	let reply_num   = Math.floor(Number($("#input_reply_num_per_page").val()));
+	let user_num    = Math.floor(Number($("#input_user_num_per_page").val()));
+	let item_num    = Math.floor(Number($("#input_item_num_per_page").val()));
 
-	if (article_num > 20) {
-		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个文章。");
-		else                                  alert("Error: Up to 20 articles per page.");
+	if (article_num < 1 || article_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页可以显示 1 - 20 个文章。");
+		else                                  alert("Error: 1 - 20 articles per page.");
 		return;
 	}
 
-	if (reply_num > 20) {
-		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个回复。");
-		else                                  alert("Error: Up to 20 replies per page.");
+	if (reply_num < 1 || reply_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页可以显示 1 - 20 个回复。");
+		else                                  alert("Error: 1 - 20 replies per page.");
 		return;
 	}
 
-	if (user_num > 20) {
-		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个用户。");
-		else                                  alert("Error: Up to 20 users per page.");
+	if (user_num < 1 || user_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页可以显示 1 - 20 个用户。");
+		else                                  alert("Error: 1 - 20 users per page.");
 		return;
 	}
 
-	if (item_num > 20) {
-		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个相册内容。");
-		else                                  alert("Error: Up to 20 album items per page.");
+	if (item_num < 1 || item_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页可以显示 1 - 20 个相册内容。");
+		else                                  alert("Error: 1 - 20 album items per page.");
 		return;
 	}
 

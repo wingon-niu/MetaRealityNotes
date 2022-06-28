@@ -75,10 +75,10 @@ const storage_locations = ['WHO', 'EOS', 'ETH', 'BSC', 'HECO', 'BTC', 'Arweave']
 var items_per_page       = 20; // 每页显示数量
 var album_items_per_page = 20; // 相册条目每页显示数量
 
-var article_num_per_page = 7;  // 每页显示文章数量
-var reply_num_per_page   = 8;  // 每页显示回复数量
-var user_num_per_page    = 9;  // 每页显示用户数量
-var item_num_per_page    = 10; // 每页显示相册条目数量
+var article_num_per_page = 20;  // 每页显示文章数量
+var reply_num_per_page   = 20;  // 每页显示回复数量
+var user_num_per_page    = 20;  // 每页显示用户数量
+var item_num_per_page    = 20; // 每页显示相册条目数量
 
 var   preview_of_article_map = null;
 var   content_of_article_map = null;
