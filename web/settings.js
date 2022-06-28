@@ -38,6 +38,38 @@ function edit_settings()
 		$("#span_desc").html("Descending by posted time");
 	}
 
+	$("#input_article_num_per_page").val(article_num_per_page);
+	$("#input_reply_num_per_page").val(reply_num_per_page);
+	$("#input_user_num_per_page").val(user_num_per_page);
+	$("#input_item_num_per_page").val(item_num_per_page);
+
+	if (articles_sort_by === "article_post_time") {
+		$("#radio_article_post_time").attr("checked", "checked");
+		$("#radio_last_replied_time").removeAttr("checked");
+	}
+	else if (articles_sort_by === "last_replied_time") {
+		$("#radio_last_replied_time").attr("checked", "checked");
+		$("#radio_article_post_time").removeAttr("checked");
+	}
+
+	if (replies_sort_by === "ascending_order") {
+		$("#radio_ascending_order").attr("checked", "checked");
+		$("#radio_descending_order").removeAttr("checked");
+	}
+	else if (replies_sort_by === "descending_order") {
+		$("#radio_descending_order").attr("checked", "checked");
+		$("#radio_ascending_order").removeAttr("checked");
+	}
+
+	if (album_items_sort_by === "asc") {
+		$("#radio_asc").attr("checked", "checked");
+		$("#radio_desc").removeAttr("checked");
+	}
+	else if (album_items_sort_by === "desc") {
+		$("#radio_desc").attr("checked", "checked");
+		$("#radio_asc").removeAttr("checked");
+	}
+
 	$('#div_settings').modal({
 		relatedTarget: this,
 		onCancel: function() {},
@@ -47,5 +79,41 @@ function edit_settings()
 
 function do_edit_settings()
 {
-	console.log("in do_edit_settings()");
+	let article_num = Number($("#input_article_num_per_page").val(article_num_per_page));
+	let reply_num   = Number($("#input_reply_num_per_page").val(reply_num_per_page));
+	let user_num    = Number($("#input_user_num_per_page").val(user_num_per_page));
+	let item_num    = Number($("#input_item_num_per_page").val(item_num_per_page));
+
+	if (article_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个文章。");
+		else                                  alert("Error: Up to 20 articles per page.");
+		return;
+	}
+
+	if (reply_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个回复。");
+		else                                  alert("Error: Up to 20 replies per page.");
+		return;
+	}
+
+	if (user_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个用户。");
+		else                                  alert("Error: Up to 20 users per page.");
+		return;
+	}
+
+	if (item_num > 20) {
+		if (get_cookie('i18n_lang') === "zh") alert("错误：每页最多显示20个相册内容。");
+		else                                  alert("Error: Up to 20 album items per page.");
+		return;
+	}
+
+	article_num_per_page = article_num;
+	reply_num_per_page   = reply_num;
+	user_num_per_page    = user_num;
+	item_num_per_page    = item_num;
+
+	articles_sort_by    = $("input[name='radio_articles_sort_by']:checked").val();
+	replies_sort_by     = $("input[name='radio_replies_sort_by']:checked").val();
+	album_items_sort_by = $("input[name='radio_album_items_sort_by']:checked").val();
 }
