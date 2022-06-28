@@ -5,7 +5,7 @@ function arweave_do_post_article(my_category, my_type, my_storage_location, my_f
 {
 	(async () => {
 		try {
-			$("#my_modal_loading").modal('open');
+			$("#div_article_posting").show();
 			for (let j = post_article_current_index; j >= 0; j--) {
 				post_article_current_index = j;
 				let transaction = await arweave.createTransaction({ data: '{' + trn_hash + '}' + strArray[j] });
@@ -54,10 +54,10 @@ function arweave_do_post_article(my_category, my_type, my_storage_location, my_f
 					post_article_write_to_table = true;
 				} else { trn_failed(); $("#my_modal_loading").modal('close'); return; }
 			}
-			$("#my_modal_loading").modal('close');
+			$("#div_article_posting").hide();
 			alert("OK");
 		} catch (e) {
-			$("#my_modal_loading").modal('close');
+			$("#div_article_posting").hide();
 			trn_success = false;
 			if (typeof e === 'object') alert(e.message);
 			else                       alert(e);

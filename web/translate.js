@@ -6,13 +6,30 @@ function set_lang_cookie(lang_type)
 	document.cookie = "i18n_lang=" + escape(lang_type) + "^;expires=" + exdate.toGMTString() + ";path=/";
 }
 
+// 尽管document.cookie看上去就像一个属性，可以赋不同的值。但它和一般的属性不一样，改变它的赋值并不意味着丢失原来的值，例如连续执行下面两条语句： 
+// document.cookie="userId=828"; 
+// document.cookie="userName=hulk";
+// 这时浏览器将维护两个cookie，分别是userId和userName，因此给document.cookie赋值更像执行类似这样的语句： 
+// document.addCookie("userId=828"); 
+// document.addCookie("userName=hulk");
+// 事实上，浏览器就是按照这样的方式来设置cookie的，如果要改变一个cookie的值，只需重新赋值，例如： 
+// document.cookie="userId=929"; 
+// 这样就将名为userId的cookie值设置为了929。
+
+function set_cookie(c_name, c_value)
+{
+	var exdate = new Date();
+	exdate.setDate(exdate.getDate() + 30000);
+	document.cookie = c_name + "=" + escape(c_value) + "^;expires=" + exdate.toGMTString() + ";path=/";
+}
+
 function get_cookie(c_name)
 {
 	if (document.cookie && document.cookie != '') {
-		c_start = document.cookie.indexOf(c_name + "=");
+		let c_start = document.cookie.indexOf(c_name + "=");
 		if (c_start != -1) { 
 			c_start = c_start + c_name.length + 1;
-			c_end = document.cookie.indexOf("^", c_start);
+			let c_end = document.cookie.indexOf("^", c_start);
 			if (c_end == -1) c_end = document.cookie.length;
 			return unescape(document.cookie.substring(c_start, c_end));
 		}
@@ -116,6 +133,14 @@ function change_lang(lang_type)
 			$("#user_actions").html($.i18n.prop('user_actions'));
 			$("#set_as_avatar").html($.i18n.prop('set_as_avatar'));
 			$("#copy_link").html($.i18n.prop('copy_link'));
+			$("#directions_documents").html($.i18n.prop('directions_documents'));
+			$("#project_white_paper").html($.i18n.prop('project_white_paper'));
+			$("#project_introduction_and_user_manual").html($.i18n.prop('project_introduction_and_user_manual'));
+			$("#technical_implementation_principle").html($.i18n.prop('technical_implementation_principle'));
+			$("#management_operations").html($.i18n.prop('management_operations'));
+			$("#post_confirm").html($.i18n.prop('post_confirm'));
+			$("#copy_link_only").html($.i18n.prop('copy_link_only'));
+			$("#settings").html($.i18n.prop('settings'));
 
 			//
 

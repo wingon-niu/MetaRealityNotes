@@ -228,9 +228,33 @@ $(document).ready(function () {
 		$("#amount_per_trn_post_item").attr("readonly", true);
 	});
 
+	$("#project_white_paper").on("click", function() {
+		$("#menu_body").offCanvas('close');
+		if (get_cookie('i18n_lang') === "zh") show_article_content_div(7);
+		else                                  show_article_content_div(8);
+	});
+
+	$("#project_introduction_and_user_manual").on("click", function() {
+		$("#menu_body").offCanvas('close');
+		if (get_cookie('i18n_lang') === "zh") show_article_content_div(5);
+		else                                  show_article_content_div(6);
+	});
+
 	$("#user_must_read").on("click", function() {
 		$("#menu_body").offCanvas('close');
-		alert($("#user_must_read_and_agreement_info").html());
+		if (get_cookie('i18n_lang') === "zh") show_article_content_div(3);
+		else                                  show_article_content_div(4);
+	});
+
+	$("#technical_implementation_principle").on("click", function() {
+		$("#menu_body").offCanvas('close');
+		if (get_cookie('i18n_lang') === "zh") show_article_content_div(1);
+		else                                  show_article_content_div(2);
+	});
+
+	$("#settings").on("click", function() {
+		$("#menu_body").offCanvas('close');
+		edit_settings();
 	});
 
 	articles_array        = [0];
@@ -254,6 +278,11 @@ $(document).ready(function () {
 	ScatterJS.plugins( new ScatterEOS() );
 
 	init_post_item();
+	init_settings();
+
+	$("#div_article_posting").hide();
+	$("#div_reply_posting").hide();
+	$("#div_item_posting").hide();
 
 	setTimeout(
 		function(){

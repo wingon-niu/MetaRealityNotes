@@ -138,7 +138,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				key_type: key_type,
 				lower_bound: lower_bound,
 				upper_bound: upper_bound,
-				limit: items_per_page,
+				limit: article_num_per_page,
 				reverse: false,
 				show_payer: false					
 			});
@@ -165,7 +165,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				articles = articles + '<div><table width="100%" border="0">';
 				articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + convert_dot_to_underline(resp.rows[i].user) + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 				articles = articles + '<tr>' + '<td>' + f + '<pre class="preview_of_article_' + resp.rows[i].article_id + '" onclick="show_article_content_div(' + resp.rows[i].article_id + ');">&nbsp;</pre></td>' + '</tr>';
-				articles = articles + '<tr>' + '<td align="right"><span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+				articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="copy_article_link_to_clipboard(' + resp.rows[i].article_id + ');">' + $("#copy_link_only").html() + '</a>&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;</td>' + '</tr>';
 				articles = articles + '</table></div><hr />';
 			}
 			// 下一页
@@ -191,9 +191,10 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 			// 以下逐个查询文章预览
 			for (i = 0; i < len; i++) {
 				if (preview_of_article_map.has(resp.rows[i].article_id)) {
+					//console.log("article preview get");
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(preview_of_article_map.get(resp.rows[i].article_id)));
-					//console.log("get");
 				} else {
+					//console.log("article preview no get");
 					let memo        = '';
 					let next_hash   = '';
 					let content     = '';
@@ -214,7 +215,6 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 								tmp_hash = next_hash;
 								transaction = await rpc.history_get_transaction(next_hash);
 								memo = transaction.trx.trx.actions[0].data.memo;
-								//content = '        ' + content + '\n';                                  // 修改了发送时的处理逻辑，此处无需操作。
 								content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
 							}
 						}
@@ -256,7 +256,6 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 					}
 					$(".preview_of_article_" + resp.rows[i].article_id).html(my_escapeHTML(content));
 					preview_of_article_map.set(resp.rows[i].article_id, content);
-					//console.log("no get");
 				}
 			}
 			// 以下逐个查询文章的用户头像
@@ -348,7 +347,7 @@ function show_article_content_div(article_id)
 					articles = articles + '<div><table width="100%" border="0">';
 					articles = articles + '<tr>' + '<td rowspan="3" width="71" align="center" valign="top"><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + '<div class="div_user_avatar_' + convert_dot_to_underline(resp.rows[i].user) + '" style="width:64px; height:64px;"></div></a></td>' + '<td><a href="##" onclick="query_user_profile(\'' + resp.rows[i].user + '\');">' + resp.rows[i].user + '</a>&nbsp;&nbsp;' + timestamp_trans_full(resp.rows[i].post_time) + '</td>' + '</tr>';
 					articles = articles + '<tr>' + '<td>' + f + '<div class="content_of_article_' + resp.rows[i].article_id + '" style="border:1px solid #B6B6B6;">&nbsp;</div></td>' + '</tr>';
-					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>' + '</tr>';
+					articles = articles + '<tr>' + '<td align="right"><a href="##" onclick="forward_an_article(' + resp.rows[i].article_id + ');">' + $("#forward").html() + '</a>&nbsp;&nbsp;<a href="##" onclick="reply_an_article(' + resp.rows[i].article_id + ', 0);">' + $("#reply").html() + '</a>&nbsp;&nbsp;<a href="##" onclick="copy_article_link_to_clipboard(' + resp.rows[i].article_id + ');">' + $("#copy_link_only").html() + '</a>&nbsp;&nbsp;<span class="am-icon-share"></span>&nbsp;' + resp.rows[i].forwarded_times + '&nbsp;&nbsp;<span class="am-icon-comment"></span>&nbsp;' + resp.rows[i].replied_times + '&nbsp;&nbsp;</td>' + '</tr>';
 					articles = articles + '</table></div><hr />';
 				}
 				// 将文章的基本信息赋值过去
@@ -374,7 +373,6 @@ function show_article_content_div(article_id)
 						let transaction = null;
 						if (resp.rows[i].storage_location === 1) {                                        // 数据存储在 EOS 链上
 							next_hash      = resp.rows[i].article_hash;
-							let first_loop = true;
 							try {
 								do {
 									transaction = await rpc.history_get_transaction(next_hash);
@@ -386,10 +384,6 @@ function show_article_content_div(article_id)
 										next_hash = '';
 									}
 									content = content + memo.slice(memo.indexOf('}') + 1, memo.length);
-									if (resp.rows[i].type === 2 && first_loop) {                              // 长文
-										//content = '        ' + content + '\n';                              // 修改了发送时的处理逻辑，此处无需操作。
-									}
-									first_loop = false;
 								} while (next_hash != '');
 							}
 							catch (e) {                                  // 找不到某个交易hash对应的交易，可能是这个交易没有被打包进区块，被丢弃了。
@@ -572,7 +566,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				key_type: key_type,
 				lower_bound: lower_bound,
 				upper_bound: upper_bound,
-				limit: items_per_page,
+				limit: reply_num_per_page,
 				reverse: false,
 				show_payer: false
 			});
@@ -789,7 +783,7 @@ function get_users(index_position, key_type, lower_bound, upper_bound)
 				key_type: key_type,
 				lower_bound: lower_bound,
 				upper_bound: upper_bound,
-				limit: items_per_page,
+				limit: user_num_per_page,
 				reverse: false,
 				show_payer: false					
 			});
@@ -855,4 +849,35 @@ function switch_and_get_user_articles(user)
 	}
 
 	get_user_articles(user);
+}
+
+function copy_article_link_to_clipboard(article_id)
+{
+	$('#div_copy_article_link').modal({
+		relatedTarget: this,
+		onCancel: function() {},
+		onConfirm: function() {}
+	});
+
+	if (get_cookie('i18n_lang') === "zh") {
+		$("#span_the_link_of_article_is").html("文章的链接为：");
+		$("#span_the_link_of_article_has_been_copied_to_the_clipboard").html("已经复制到剪贴板。");
+	}
+	else {
+		$("#span_the_link_of_article_is").html("The link of article is:");
+		$("#span_the_link_of_article_has_been_copied_to_the_clipboard").html("has been copied to the clipboard.");
+	}
+
+	let str_tmp = window.location.href.toString();
+	if (str_tmp.indexOf('#') >= 0) {
+		str_tmp = str_tmp.slice(0, str_tmp.indexOf('#'));
+	}
+	if (str_tmp.indexOf('?') >= 0) {
+		str_tmp = str_tmp.slice(0, str_tmp.indexOf('?'));
+	}
+
+	str_tmp = str_tmp + '?article=' + article_id;
+	$("#input_the_link_of_article").val(str_tmp);
+	$("#input_the_link_of_article").select();
+	document.execCommand("Copy");
 }

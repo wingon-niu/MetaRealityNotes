@@ -75,6 +75,8 @@ function view_times_of_txn_reply()
 
 function post_reply()
 {
+	if (! confirm($("#post_confirm").html()) ) return;
+
 	post_reply_first_time = true;
 	do_post_reply();
 }

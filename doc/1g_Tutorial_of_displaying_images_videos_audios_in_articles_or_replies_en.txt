@@ -1,0 +1,25 @@
+Tutorial of displaying images/videos/audios in articles or replies
+
+Steps:
+
+1. Post images/videos/audios to the album.
+
+2. Copy the link of the images/videos/audios in the album.
+
+3. Paste the link into the article or reply.
+
+4. Post the article or reply.
+
+5. Done.
+
+
+Image Example: Seaside Scenery (82KB)
+[[[DreamRealNotes:::Link###{ii:29, it:1, sl:6, ohh:~vRn_UuZaOMiNoaD3vjTlJwUz3pWCs0SaNvTW3t7De50~, osh:~b17f961dc5a2ae45fa79a86138d610c0b4f6885502f139deaca36ca5159bfe9f~}###DreamRealNotes:::Link]]]
+
+Video Example: Cute pandas playing (26MB)
+[[[DreamRealNotes:::Link###{ii:30, it:2, sl:6, ohh:~7aX5N_BNR4zfBmDGk4J4-xp0DkhkPZemDCPskVq6foI~, osh:~019a9b29057f03c41152fa221b813f1c554c39d616bc8fccf54f53153b5fd29b~}###DreamRealNotes:::Link]]]
+
+Audio Example: Simple Audio (260KB)
+[[[DreamRealNotes:::Link###{ii:27, it:3, sl:6, ohh:~Fw9pi5C7YiFSD3FfdrbqEnLWZwO7ZeIkLZ2uzo_EhBQ~, osh:~7ae6ea7bc6b8eb311efe0bb20fb701bbaafa059911cd48dd0f4c58c11faf6b82~}###DreamRealNotes:::Link]]]
+
+

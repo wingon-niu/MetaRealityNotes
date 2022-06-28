@@ -71,6 +71,7 @@
 <script src="/arweave_postreply.js"></script>
 <script src="/post_item.js"></script>
 <script src="/arweave_post_item.js"></script>
+<script src="/settings.js"></script>
 
 
 
@@ -116,11 +117,19 @@
           <li class="">
               <a href="##" class="" id="home_page">Home page</a>
           </li>
-          <li class="">
-              <a href="##" class="" id="create_edit_profile">Create or edit profile</a>
-          </li>
-          <li class="">
-              <a href="##" class="" id="delete_profile">Delete profile</a>
+          <li class="am-parent">
+              <a href="##" class="" id="management_operations">Management Operations</a>
+              <ul class="am-menu-sub am-collapse am-avg-sm-1">
+                  <li class="">
+                      <a href="##" class="" id="create_edit_profile">Create or edit profile</a>
+                  </li>
+                  <li class="">
+                      <a href="##" class="" id="delete_profile">Delete profile</a>
+                  </li>
+                  <li class="">
+                      <a href="##" class="" id="settings">Settings</a>
+                  </li>
+              </ul>
           </li>
           <li class="">
               <a href="##" class="" id="my_articles_menu">My articles</a>
@@ -134,8 +143,22 @@
           <li class="">
               <a href="##" class="" id="users_follow_me_menu">Users follow me</a>
           </li>
-          <li class="">
-              <a href="##" class="" id="user_must_read">Must Read and Agreement</a>
+          <li class="am-parent">
+              <a href="##" class="" id="directions_documents">Directions Documents</a>
+              <ul class="am-menu-sub am-collapse am-avg-sm-1">
+                  <li class="">
+                      <a href="##" class="" id="project_white_paper">Project White Paper</a>
+                  </li>
+                  <li class="">
+                      <a href="##" class="" id="project_introduction_and_user_manual">Introduction and User Manual</a>
+                  </li>
+                  <li class="">
+                      <a href="##" class="" id="user_must_read">Must Read and Agreement</a>
+                  </li>
+                  <li class="">
+                      <a href="##" class="" id="technical_implementation_principle">Technical Implementation Principle</a>
+                  </li>
+              </ul>
           </li>
           <li class="">
               <a href="##" class="" id="logoff">Logoff</a>
@@ -327,6 +350,7 @@
             <input type="text" class="am-modal-prompt-input" id="title_of_article" placeholder="" disabled="disabled" />
             <span id="article_content">Article content: (Unlimited length)</span>
             <textarea class="am-modal-prompt-input" rows="12" id="content_of_article" placeholder=""></textarea>
+            <div id="div_article_posting"><i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i></div>
             <div>
               <a href="##"><span class="number_of_trns" id="view_times_of_txn_article">View times of txn</span></a>&nbsp;&nbsp;&nbsp;
               <a href="##"><span                        id="post_article">Post</span></a><br />
@@ -372,6 +396,7 @@
             <input type="text" class="am-modal-prompt-input" id="amount_per_trn_reply" placeholder="" value="0.0001 EOS" />
             <span id="reply_content">Reply content: (Unlimited length)</span>
             <textarea class="am-modal-prompt-input" rows="12" id="content_of_reply" placeholder=""></textarea>
+            <div id="div_reply_posting"><i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i></div>
             <div>
               <a href="##"><span class="number_of_trns" id="view_times_of_txn_reply">View times of txn</span></a>&nbsp;&nbsp;&nbsp;
               <a href="##"><span                        id="post_reply">Post</span></a><br />
@@ -418,6 +443,7 @@
             <div id="div_post_item_file_content" style="width: 198px;height: 198px;"></div>
             <span id="span_post_item_description">Description: (Max 30 characters)</span>
             <textarea class="am-modal-prompt-input" rows="3" id="description_of_post_item" placeholder=""></textarea>
+            <div id="div_item_posting"><i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i>&nbsp;<i class="am-icon-spinner am-icon-pulse"></i></div>
             <div>
               <a href="##"><span class="number_of_trns" id="view_times_of_txn_post_item">View times of txn</span></a>&nbsp;&nbsp;&nbsp;
               <a href="##"><span                        id="post_item">Post</span></a><br />
@@ -437,6 +463,69 @@
     <div class="am-modal-dialog">
         <div id="div_big_picture" style="width:100px; height:100px; vertical-align:middle; display:table-cell; text-align:center;">
             <img id="img_big_picture" src="" alt="big picture" onclick="close_big_picture_modal_dialog();" style="width:auto; height:auto; max-width:100%; max-height:100%;" />
+        </div>
+    </div>
+</div>
+
+
+
+<!--  复制文章链接  显示的模态框  -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="div_copy_article_link">
+    <div class="am-modal-dialog">
+        <div>
+            <span id="span_the_link_of_article_is">The link of article is:</span>
+            <input type="text" class="am-modal-prompt-input" id="input_the_link_of_article" placeholder="" value="" readonly="readonly" />
+            <span id="span_the_link_of_article_has_been_copied_to_the_clipboard">has been copied to the clipboard.</span>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn my_confirm" data-am-modal-confirm>Confirm</span>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  设置  显示的模态框  -->
+<div class="am-modal am-modal-confirm" tabindex="-1" id="div_settings">
+    <div class="am-modal-dialog">
+        <div>
+            <table>
+                <tr><td><span id="span_article_num_per_page">article num per page</span></td><td><input type="number" id="input_article_num_per_page" min="1" max="20" value="20" /></td></tr>
+                <tr><td><span id="span_reply_num_per_page"  >reply   num per page</span></td><td><input type="number" id="input_reply_num_per_page"   min="1" max="20" value="20" /></td></tr>
+                <tr><td><span id="span_user_num_per_page"   >user    num per page</span></td><td><input type="number" id="input_user_num_per_page"    min="1" max="20" value="20" /></td></tr>
+                <tr><td><span id="span_item_num_per_page"   >item    num per page</span></td><td><input type="number" id="input_item_num_per_page"    min="1" max="20" value="20" /></td></tr>
+            </table>
+            <div class="am-form-group">
+              <span id="span_articles_sort_by">articles sort by:</span>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_articles_sort_by" value="article_post_time" id="radio_article_post_time" data-am-ucheck><span id="span_article_post_time">article post time</span>
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_articles_sort_by" value="last_replied_time" id="radio_last_replied_time" data-am-ucheck><span id="span_last_replied_time">last replied time</span>
+              </label>
+            </div>
+            <div class="am-form-group">
+              <span id="span_replies_sort_by">replies sort by:</span>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_replies_sort_by" value="ascending_order"  id="radio_ascending_order"  data-am-ucheck><span id="span_ascending_order" >ascending order</span>
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_replies_sort_by" value="descending_order" id="radio_descending_order" data-am-ucheck><span id="span_descending_order">descending order</span>
+              </label>
+            </div>
+            <div class="am-form-group">
+              <span id="span_album_items_sort_by">album items sort by:</span>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_album_items_sort_by" value="asc"  id="radio_asc"  data-am-ucheck><span id="span_asc" >asc</span>
+              </label>
+              <label class="am-radio-inline">
+                <input type="radio" name="radio_album_items_sort_by" value="desc" id="radio_desc" data-am-ucheck><span id="span_desc">desc</span>
+              </label>
+            </div>
+        </div>
+        <div class="am-modal-footer">
+            <span class="am-modal-btn my_confirm" data-am-modal-confirm>Confirm</span>
+            <span class="am-modal-btn my_cancel"  data-am-modal-cancel >Cancel</span>
         </div>
     </div>
 </div>
@@ -559,6 +648,8 @@
     <span id="user_actions">Actions</span>
     <span id="set_as_avatar">Set as Avatar</span>
     <span id="copy_link">Copy link</span>
+    <span id="post_confirm">Important note:</span>
+    <span id="copy_link_only">CopyLink</span>
 </div>
 
 

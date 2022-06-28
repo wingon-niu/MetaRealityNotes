@@ -5,7 +5,7 @@ function arweave_do_post_item(my_storage_location, my_quantity, my_description, 
 {
 	(async () => {
 		try {
-			$("#my_modal_loading").modal('open');
+			$("#div_item_posting").show();
 			for (let j = post_item_origin_data_current_index; j >= 0; j--) {
 				post_item_origin_data_current_index = j;
 				let transaction = await arweave.createTransaction({ data: '{' + trn_hash + '}' + strArray[j] });
@@ -58,10 +58,10 @@ function arweave_do_post_item(my_storage_location, my_quantity, my_description, 
 					post_item_write_to_table = true;
 				} else { trn_failed(); $("#my_modal_loading").modal('close'); return; }
 			}
-			$("#my_modal_loading").modal('close');
+			$("#div_item_posting").hide();
 			alert("OK");
 		} catch (e) {
-			$("#my_modal_loading").modal('close');
+			$("#div_item_posting").hide();
 			trn_success = false;
 			if (typeof e === 'object') alert(e.message);
 			else                       alert(e);

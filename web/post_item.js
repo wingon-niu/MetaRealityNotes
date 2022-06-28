@@ -173,6 +173,8 @@ function view_times_of_txn_post_item()
 
 function post_item()
 {
+	if (! confirm($("#post_confirm").html()) ) return;
+
 	post_item_origin_data_first_time = true;
 	do_post_item();
 }
