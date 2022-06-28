@@ -3,6 +3,34 @@
 
 function init_settings()
 {
+	let article_num      = get_cookie("article_num_per_page");
+	let reply_num        = get_cookie("reply_num_per_page");
+	let user_num         = get_cookie("user_num_per_page");
+	let item_num         = get_cookie("item_num_per_page");
+	let articles_sort    = get_cookie("articles_sort_by");
+	let replies_sort     = get_cookie("replies_sort_by");
+	let album_items_sort = get_cookie("album_items_sort_by");
+
+	if (article_num === "") article_num_per_page = 20;
+	else                    article_num_per_page = Number(article_num);
+
+	if (reply_num === "")   reply_num_per_page   = 20;
+	else                    reply_num_per_page   = Number(reply_num);
+
+	if (user_num === "")    user_num_per_page    = 20;
+	else                    user_num_per_page    = Number(user_num);
+
+	if (item_num === "")    item_num_per_page    = 20;
+	else                    item_num_per_page    = Number(item_num);
+
+	if (articles_sort === "")    articles_sort_by    = 'last_replied_time';
+	else                         articles_sort_by    =  articles_sort;
+
+	if (replies_sort === "")     replies_sort_by     = 'ascending_order';
+	else                         replies_sort_by     =  replies_sort;
+
+	if (album_items_sort === "") album_items_sort_by = 'asc';
+	else                         album_items_sort_by =  album_items_sort;
 }
 
 function edit_settings()
@@ -116,4 +144,13 @@ function do_edit_settings()
 	articles_sort_by    = $("input[name='radio_articles_sort_by']:checked").val();
 	replies_sort_by     = $("input[name='radio_replies_sort_by']:checked").val();
 	album_items_sort_by = $("input[name='radio_album_items_sort_by']:checked").val();
+
+	set_cookie("article_num_per_page", article_num_per_page.toString());
+	set_cookie("reply_num_per_page",   reply_num_per_page.toString());
+	set_cookie("user_num_per_page",    user_num_per_page.toString());
+	set_cookie("item_num_per_page",    item_num_per_page.toString());
+
+	set_cookie("articles_sort_by",    articles_sort_by);
+	set_cookie("replies_sort_by",     replies_sort_by);
+	set_cookie("album_items_sort_by", album_items_sort_by);
 }
