@@ -47,7 +47,7 @@ function get_album_items(index_position, key_type, lower_bound, upper_bound)
 				key_type: key_type,
 				lower_bound: lower_bound,
 				upper_bound: upper_bound,
-				limit: album_items_per_page,
+				limit: item_num_per_page,
 				reverse: false,
 				show_payer: false
 			});

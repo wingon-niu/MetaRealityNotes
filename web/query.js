@@ -138,7 +138,7 @@ function get_articles(index_position, key_type, lower_bound, upper_bound)
 				key_type: key_type,
 				lower_bound: lower_bound,
 				upper_bound: upper_bound,
-				limit: items_per_page,
+				limit: article_num_per_page,
 				reverse: false,
 				show_payer: false					
 			});
@@ -566,7 +566,7 @@ function get_replies(index_position, key_type, lower_bound, upper_bound)
 				key_type: key_type,
 				lower_bound: lower_bound,
 				upper_bound: upper_bound,
-				limit: items_per_page,
+				limit: reply_num_per_page,
 				reverse: false,
 				show_payer: false
 			});
@@ -783,7 +783,7 @@ function get_users(index_position, key_type, lower_bound, upper_bound)
 				key_type: key_type,
 				lower_bound: lower_bound,
 				upper_bound: upper_bound,
-				limit: items_per_page,
+				limit: user_num_per_page,
 				reverse: false,
 				show_payer: false					
 			});
