@@ -252,13 +252,13 @@ Arweave News 不仅会采访 Arweave 生态系统的项目，还会敞开大门�
 
 RedStone实现了WASM，是否有多索引表？
 
-KwilDB，"第一个免费使用的去中心化 web3 数据库平台"。
+KwilDB，“第一个免费使用的去中心化 web3 数据库平台”。
 
 要从Arweave读取数据，GraphQL是通常的选择。您可以编写GraphQL查询，也可以使用Ardb查询Arweave，就像它是一个SQL（结构化查询语言）这样的工具一样。
 
 RSS3，是 web3 的去中心化信息聚合协议，达到了每月请求次数超过 1 亿的里程碑。
 
-Bundlr 团队发布了可以利用 Bundlr 网络将内容从 Twitter 永存至 Arweave 的归档工具---ARchivers 。在与 Arweave 的合作中，Bundlr 项目方宣布为实现该工具与俄罗斯最大的社交媒体平台 VK 整合，将为完成上述任务的开发者提供 10,000  USDC 的资助。
+Bundlr 团队发布了可以利用 Bundlr 网络将内容从 Twitter 永存至 Arweave 的归档工具---ARchivers 。在与 Arweave 的合作中，Bundlr 项目方宣布为实现该工具与俄罗斯最大的社交媒体平台 VK 整合，将为完成上述任务的开发者提供 10,000 USDC 的资助。
 
 Spheron是一个基于 Arweave 的应用程序托管工具，允许开发者将 Github 库链接到自定义域名，并将应用程序构建和部署到 permaweb 。
 Spheron 是将 webapp 前端部署到 Arweave 上，并提供自定义域名的最简单途径。
